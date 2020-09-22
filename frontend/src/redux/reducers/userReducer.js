@@ -2,7 +2,8 @@ const initialState = {
 	urlPic: '',
 	token: '',
 	username: '',
-    wishlist: []
+	wishlist: [],
+	cart: []
 }
 
 function userReducer(state = initialState, action) {
