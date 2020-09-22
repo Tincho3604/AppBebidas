@@ -7,43 +7,38 @@ const productController = {
 		const newProduct=  new Product({category, title, description, price, stock, ml, aclPct, pic, rating})
 
 		newProduct.save()
-		res.json({succes: true, newProduct})
-		
+		.then(newProduct => res.json({succes: true, newProduct}))
+		.catch(error =>res.json({succes: false, error}))
 	},
 
 	modifyProduct: async (req, res) => {
 		const {	category, title, description, price, stock, ml, aclPct, pic, rating} = req.body
 		const id = "5f6a517949e7870d88bae908"
-		const newProduct = await Product.findByIdAndUpdate(id,{category, title, description, price, stock, ml, aclPct, pic, rating}, {returnNewDocument: true})
-		
+		Product.findByIdAndUpdate(id,{category, title, description, price, stock, ml, aclPct, pic, rating}, {returnNewDocument: true})
 		.then(newProduct => res.json({succes: true, newProduct}))
 		.catch(error =>res.json({succes: false, error}))
 	},
 	deleteProduct: async (req, res) => {
 		const id =  "5f6a577609912a19ac463031"
-		const productDeleted = await Product.findByIdAndDelete(id)
-				
+		Product.findByIdAndDelete(id)		
 		.then(productDeleted => res.json({succes: true, productDeleted}))
 		.catch(error =>res.json({succes: false, error}))
 	},
 	getProductByCat: async (req, res) => {
 		const {category} = req.body
-		
-		const listProducts = await Product.find({category: category})
+		Product.find({category: category})
 		.then(listProducts => res.json({succes: true, listProducts}))
 		.catch(error =>res.json({succes: false, error}))
 	},
 	getProductById: async (req, res) => {
 		const {id} =req.body
-		
-		const productFound = await Product.findById({_id: id})
+		Product.findById({_id: id})
 		.then(productFound => res.json({succes: true, productFound}))
 		.catch(error =>res.json({succes: false, error}))
 	},
 	getProductByWishlist: async (req, res) => {
 		const {arrayIDs} =req.body
-		
-		const productWishList = await Product.find({_id: arrayIDs})
+		Product.find({_id: arrayIDs})
 		.then(productWishList => res.json({succes: true, productWishList}))
 		.catch(error =>res.json({succes: false, error}))
 	}
