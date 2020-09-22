@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
 	},
 	status: {
 		type: String,
-		required: true
+		default:"pendiente"
 	},
 	items: {
 		type: Array,
