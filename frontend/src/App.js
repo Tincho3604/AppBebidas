@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
+import AdminDashboard from './pages/AdminDashboard';
 
 
 function App(props) {
@@ -20,8 +21,9 @@ function App(props) {
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
-		<Route path='/signup' component={SignUp} />
-		<Route path='/login' component={Login} />
+		<Route exact path='/admin' component={AdminDashboard} />
+		{/* <Route path='/signup' component={SignUp} />
+		<Route path='/login' component={Login} /> */}
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
