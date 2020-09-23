@@ -1,0 +1,50 @@
+.navAdmin {
+	display: flex;
+	width: 15%;
+	min-width: 200px;
+	height: 100vh;
+	flex-direction: column;
+	color: gray;
+}
+
+.navAdmin a {
+	text-decoration: none;
+}
+.navAdmin a:visited {
+	color: unset;
+}
+
+.navAdmin a.active .navItem div:first-child {
+	background: tomato;
+	color: white;
+}
+
+.navAdmin a:hover .navItem div:first-child {
+	background: tomato;
+	color: white;
+}
+
+
+.navAdmin .navItem {
+	width: 100%;
+	display: flex;
+}
+
+.navAdmin .navItem div:first-child {
+	height: 50px;
+	width: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid lightgray;
+}
+.navAdmin .navItem div:last-child {
+	flex: 1;
+	padding-left: 15px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	border: 1px solid lightgray;
+	font-weight: bold;
+	font-size: small;
+}

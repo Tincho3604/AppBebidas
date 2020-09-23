@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux'
 import "../styles/Home.css"
-import alcohol from "../images/alcoholbanner2.jpg"
+import alcohol from "../images/alcoholbanner.jpg"
 import decoration from "../images/decoration.png"
 import decoration2 from "../images/decoration2.png"
 import Categories from '../components/Categories';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 const Home = (props) => {
         const categories = [
             {nombre: "Vino", foto: "vino"}, 
@@ -18,7 +20,7 @@ const Home = (props) => {
     
     return (
         <>
-        <div id="space" style={{backgroundColor: "black", height:"20vh"}}></div>
+           <Header />
             <div className="banner" style={{backgroundImage:`url(${alcohol})`}}>
         </div>
         <img src={decoration} className="homeBackgroundOne"/>
@@ -47,10 +49,10 @@ const Home = (props) => {
 							<input type="text" name="mail" id="mail" placeholder="Email" value="mail"/>
 						</div>
 						<div className="inputBox">
-							
 						</div>
 						<button> send </button>
 		</form>
+        <Footer/>
         </>
     )
 

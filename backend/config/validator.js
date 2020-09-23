@@ -9,8 +9,8 @@ const validator = {
 			pass: Joi.string().trim().pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[!{}[\]@#$%\^&*)(+=._-]).{5,}/, 'password').required()
 		})
 		const validation = schema.validate(req.body, { abortEarly: false })
-		
-		if(validation.error !== undefined){
+
+		if (validation.error !== undefined) {
 			return res.json({
 				success: false,
 				error: 'Error de validacion. Uno o mas campos no respetan el formato',
@@ -19,13 +19,21 @@ const validator = {
 		}
 		next();
 	},
-	validateProduct: (req, res, next) =>{
+	validateProduct: (req, res, next) => {
 		const schema = Joi.object({
-			//...
+				category: Joi.string().trim().min(4).max(10).required,
+				title: Joi.string().trim().min(4).max(10).required,
+				description: Joi.string().trim().min(20).max(120).required,
+				price: Joi.number().required,
+			  	stock: Joi.number().required,
+				ml: Joi.number().required,
+				aclPct: Joi.number().required,
+				pic: Joi.string().trim().required,
+				rating: Joi.number().required
 		})
 		const validation = schema.validate(req.body, { abortEarly: false })
-		
-		if(validation.error !== undefined){
+
+		if (validation.error !== undefined) {
 			return res.json({
 				success: false,
 				error: 'Error de validacion. Uno o mas campos no respetan el formato',

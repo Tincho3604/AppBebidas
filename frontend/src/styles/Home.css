@@ -1,5 +1,5 @@
 .banner{
-    height:80vh;
+    height:85vh;
     background-position: start;
     background-repeat: no-repeat;
     background-size: cover;
@@ -82,7 +82,7 @@
     padding: 2vw;
     background-color: #ffffff1c;
 }
-.TheCategorie p{
+.categories .allCategories .TheCategorie p{
     margin-top: 2vh;
     color: #ffffff;
     

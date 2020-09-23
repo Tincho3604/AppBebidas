@@ -1,8 +1,11 @@
 const express = require("express")
 const userController = require("../controllers/userController")
 const commentController = require("../controllers/commentController")
+const productController = require ("../controllers/productController")
 const validator = require("../config/validator")
 const passport = require("../config/passport")
+const { get } = require("mongoose")
+const orderController = require("../controllers/orderController")
 
 const router = express.Router()
 
@@ -18,9 +21,40 @@ router.route("/user/login")
 .post(userController.loginUser)
 
 // PRODUCTS ROUTES
+router.route("/product/createProduct")
+.post(validator.validateProduct,productController.createProduct)
 
+router.route("/product/modifyProduct")
+.put(validator.validateProduct, productController.modifyProduct)
 
+router.route("/product/deleteProduct")
+.delete(productController.deleteProduct)
+
+router.route("/product/listProductsByCategory")
+.get(productController.getProductByCat)
+
+router.route("/product/productFound")
+.get(productController.getProductById)
+
+router.route("/product/wishList")
+.get(productController.getProductByWishlist)
 // ORDER ROUTES
+router.route("/orders")
+.get(orderController.getAllOrders)
+.post(orderController.createOrder)
+// .put(passport.authenticate('jwt', {session: false}), orderController.modifyOrder)
+
+router.route("/orders/:id")
+.get(orderController.getOrderById)
+.delete(orderController.deleteOrder)
+.put(orderController.modifyOrder)
+
+
+router.route("/orders/user")
+.get(passport.authenticate('jwt', {session: false}), orderController.getUserOrder)
+
+
+
 
 
 // COMNENTS ROUTES
