@@ -8,7 +8,7 @@ const userActions = {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
 			console.log(response)
             if(response.data.success === "false") {
-                set({status: false})
+                //set({status: false})
                 let errors = response.data.error.errors;
 				if(errors.username !== undefined) toast.error(errors.username.message);
 				if(errors.mail !== undefined ) toast.error(errors.mail.message);
