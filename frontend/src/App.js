@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import userActions from './redux/actions/userActions';
 import { ToastContainer } from 'react-toastify';
 import './styles/generalStyles.css';
+import './styles/createProduct.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 //Imports de pages
 import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
+import createProduct from '../src/pages/CreateProduct';
 
 
 function App(props) {
@@ -19,9 +21,10 @@ function App(props) {
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
-		<Route exact path='/' component={Home} />
+		{/* <Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
-		<Route path='/login' component={Login} />
+		<Route path='/login' component={Login} /> */}
+		<Route path="/createProduct" component={createProduct}/>
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>

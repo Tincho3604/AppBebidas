@@ -13,14 +13,14 @@ const productController = {
 
 	modifyProduct: async (req, res) => {
 		const {	category, title, description, price, stock, ml, aclPct, pic, rating} = req.body
-		const id = "5f6a517949e7870d88bae908"
+		const id = req.body
 		const newProduct = await Product.findByIdAndUpdate(id,{category, title, description, price, stock, ml, aclPct, pic, rating}, {returnNewDocument: true})
 		
 		.then(newProduct => res.json({succes: true, newProduct}))
 		.catch(error =>res.json({succes: false, error}))
 	},
 	deleteProduct: async (req, res) => {
-		const id =  "5f6a577609912a19ac463031"
+		const id =  req.body
 		const productDeleted = await Product.findByIdAndDelete(id)
 				
 		.then(productDeleted => res.json({succes: true, productDeleted}))
