@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import userActions from './redux/actions/userActions';
 import { ToastContainer } from 'react-toastify';
 import './styles/generalStyles.css';
+import './styles/createProduct.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 //Imports de pages
@@ -11,6 +12,7 @@ import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
+import createProduct from '../src/pages/CreateProduct';
 
 
 function App(props) {
