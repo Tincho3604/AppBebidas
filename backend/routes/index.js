@@ -4,6 +4,7 @@ const commentController = require("../controllers/commentController")
 const productController = require ("../controllers/productController")
 const validator = require("../config/validator")
 const passport = require("../config/passport")
+const orderController = require("../controllers/orderController")
 
 const router = express.Router()
 
@@ -18,12 +19,25 @@ router.route("/user/login")
 .get(passport.authenticate('jwt',{session: false}), userController.decodeUser)
 .post(userController.loginUser)
 
+router.route("/user/addWishList")
+.put(passport.authenticate('jwt',{session: false}), userController.addToWishlist)
+
+router.route("/user/removeWishList")
+.delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
+
+
+
+
+
 // PRODUCTS ROUTES
 router.route("/product/createProduct")
-.post(validator.validateProduct,productController.createProduct)
+.post( productController.createProduct)
 
-router.route("/product/modifyProduct")
-.put(validator.validateProduct, productController.modifyProduct)
+router.route("/product/getProduct")
+.post(productController.getProductById)
+
+router.route("/product/editProduct")
+.put( productController.modifyProduct)
 
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
@@ -37,6 +51,22 @@ router.route("/product/productFound")
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
 // ORDER ROUTES
+router.route("/orders")
+.get(orderController.getAllOrders)
+.post(orderController.createOrder)
+// .put(passport.authenticate('jwt', {session: false}), orderController.modifyOrder)
+
+router.route("/orders/:id")
+.get(orderController.getOrderById)
+.delete(orderController.deleteOrder)
+.put(orderController.modifyOrder)
+
+
+router.route("/orders/user")
+.get(passport.authenticate('jwt', {session: false}), orderController.getUserOrder)
+
+
+
 
 
 // COMNENTS ROUTES
@@ -50,6 +80,9 @@ router.route("/comment")
 
 router.route("/comment/:id")
 .delete(commentController.deleteCommentById)
+
+
+
 
 
 module.exports = router;

@@ -2,7 +2,7 @@ import axios from "axios"
 import { RUTA_API } from "../../constants"
 import { toast } from "react-toastify"
 
-const authActions = {
+const userActions = {
 	createUser: (user, set = null ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
@@ -119,4 +119,4 @@ const authActions = {
 	}
 }
 
-export default authActions
+export default userActions

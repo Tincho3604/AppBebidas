@@ -25,13 +25,13 @@ const productSchema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	aclPct: {
+	alcPct: {
 		type: Number,
 		required: true
 	},
 	pic: {
 		type: String,
-		required: true
+
 	},
 	rating: {
 		type: Array,

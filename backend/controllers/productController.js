@@ -2,50 +2,95 @@ const Product = require('../models/Product');
 
 const productController = {
 	createProduct: async (req, res) => {
-		const {	category, title, description, price, stock, ml, aclPct, pic, rating} = req.body
 
-		const newProduct=  new Product({category, title, description, price, stock, ml, aclPct, pic, rating})
+		const { category, title, description, price, stock, ml, alcPct, rating } = req.body
+
+		const newProduct = new Product({ category, title, description, price, stock, ml, alcPct, rating })
 
 		newProduct.save()
-		res.json({succes: true, newProduct})
 		
+			.then(newProduct => {
+	
+				if (req.files.pic !== undefined) {
+					const path = require('path');
+					const file = req.files.pic
+					const ruta = `${path.join(__dirname, '..', 'client', 'img')}/${newProduct._id}.jpg`
+					let error = false
+					file.mv(ruta, async err => {
+						if (err) {
+							error = 'Problemas al grabar la imagen';
+						}
+						else {
+							const newProducto = await Product.findOneAndUpdate({ _id: newProduct._id }, { pic: `http://localhost:4000/${newProduct._id}.jpg` }, { new: true })
+							res.json({
+								success: !error ? true : false,
+								error,
+								newProducto
+							})
+						}
+					})
+				}
+				
+			})
+			.catch(error =>{
+				
+				
+				res.json({ success: false, error })})
+
+
 	},
 
 	modifyProduct: async (req, res) => {
-		const {	category, title, description, price, stock, ml, aclPct, pic, rating} = req.body
-		const id = req.body
-		const newProduct = await Product.findByIdAndUpdate(id,{category, title, description, price, stock, ml, aclPct, pic, rating}, {returnNewDocument: true})
+		const { category, title, description, price, stock, ml, alcPct, id } = req.body
+
+		if (req.files.pic !== undefined) {
+			const path = require('path');
+			const file = req.files.pic
+			const ruta = `${path.join(__dirname, '..', 'client', 'img')}/${req.body.id}.jpg`
+			let error = false
+			file.mv(ruta, async err => {
+				if (err) {
+					error = 'Problemas al grabar la imagen';
+				}
+				else {
+					const editedProduct = await Product.findByIdAndUpdate(id, { category, title, description, price, stock, ml, alcPct,pic: `http://localhost:4000/${req.body.id}.jpg` }, { returnNewDocument: true })
+					res.json({
+						success: !error ? true : false,
+						error,
+						editedProduct
+					})
+				}
+			})
+		}
+
 		
-		.then(newProduct => res.json({succes: true, newProduct}))
-		.catch(error =>res.json({succes: false, error}))
+
 	},
 	deleteProduct: async (req, res) => {
-		const id =  req.body
+		const id = req.params.id
 		const productDeleted = await Product.findByIdAndDelete(id)
-				
-		.then(productDeleted => res.json({succes: true, productDeleted}))
-		.catch(error =>res.json({succes: false, error}))
+
+			.then(productDeleted => res.json({ success: true, productDeleted }))
+			.catch(error => res.json({ success: false, error }))
 	},
 	getProductByCat: async (req, res) => {
-		const {category} = req.body
-		
-		const listProducts = await Product.find({category: category})
-		.then(listProducts => res.json({succes: true, listProducts}))
-		.catch(error =>res.json({succes: false, error}))
+		const { category } = req.body
+		Product.find({ category: category })
+			.then(listProducts => res.json({ success: true, listProducts }))
+			.catch(error => res.json({ success: false, error }))
 	},
 	getProductById: async (req, res) => {
-		const {id} =req.body
-		
-		const productFound = await Product.findById({_id: id})
-		.then(productFound => res.json({succes: true, productFound}))
-		.catch(error =>res.json({succes: false, error}))
+		const { id } = req.body
+	
+		Product.findById({ _id: id })
+			.then(productFound => res.json({ success: true, productFound }))
+			.catch(error => res.json({ success: false, error }))
 	},
 	getProductByWishlist: async (req, res) => {
-		const {arrayIDs} =req.body
-		
-		const productWishList = await Product.find({_id: arrayIDs})
-		.then(productWishList => res.json({succes: true, productWishList}))
-		.catch(error =>res.json({succes: false, error}))
+		const { arrayIDs } = req.body
+		Product.find({ _id: arrayIDs })
+			.then(productWishList => res.json({ success: true, productWishList }))
+			.catch(error => res.json({ success: false, error }))
 	}
 }
 

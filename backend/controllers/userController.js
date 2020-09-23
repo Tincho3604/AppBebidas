@@ -1,4 +1,5 @@
 const User = require("../models/User")
+const Product = require("../models/Product")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const message = "Mail or Password incorrect"
@@ -21,9 +22,10 @@ const userController = {
 				res.json({
 					success: true,
 					token,
-					username: user.username,
+					firstName: user.firstName,
+					lastName: user.lastName,
 					urlPic: user.urlPic,
-					likes: user.likes,
+					wishlist: user.wishlist,
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
@@ -42,18 +44,20 @@ const userController = {
 		res.json({
 			success: true,
 			token,
-			username: userExists.username,
+			firstName: userExists.firstName,
+			lastName: userExists.lastName,
 			urlPic: userExists.urlPic,
-			likes: userExists.likes,
+			wishlist: userExists.wishlist,
 			id: userExists._id,
 		})
 	},
 	decodeUser: (req, res) => {
-		const { urlPic, username, likes } = req.user
+		const { urlPic, firstName, lastName, wishlist } = req.user
 		res.json({
 			urlPic,
-			username,
-			likes,
+			firstName,
+			lastName,
+			wishlist,
 		})
     },
     editUser: (req , res) =>{
@@ -63,12 +67,90 @@ const userController = {
 			res.json({success:true, error: err})
 		}) 
 	},
+	
+	
+
+
 	addToWishlist: async (req, res) => {
+		var id = req.params.id
+		var userId = req.user._id
+		
+		try{
+		
+			var user = await User.findOne({_id: userId})
+		
+		if(!user){
+			res.json({
+				success:false,
+				response: "User Not found"
+			})
+		}
+		
+		var product = await Product.findOne({_id: id})
+		if(!product){
+			res.json({
+				success: false,
+				response: "Product not found"
+			})
+		}
+		
 
-	},
-	removeToWishlist: async (req, res) => {
+		if(!user.wishlist.includes(id)){
+			user.wishlist.push(id)
+			
+			// await User.updateOne({_id:idUser}, {wish})
 
+			await user.save()
+		}
+		
+
+	}catch(error){
+            res.json({
+                success: false,
+                response: error
+		})
 	}
-}
+},
 
+
+
+
+	removeToWishlist: async (req, res) => {
+        var id = req.params.id
+		var userId = req.user._id
+		
+		try{
+			var user = await User.findOne({_id: userId})
+			if(!user){
+				res.json({
+					success:false,
+					response: "User Not found"
+				})
+			}
+			
+			var product = await Product.findOne({_id: id})
+			if(!product){
+				res.json({
+					success: false,
+					response: "Product not found"
+				})
+			}
+			
+			if(user.wishlist.includes(id)){
+			var wish = user.wishlist
+
+			user.wishlist = user.wishlist.filter(product => product != id) 
+
+			await user.save()
+			
+		}
+		}catch(error){
+		    res.json({
+			    success: false,
+			    response: error
+		    })
+	    }
+    }
+
+}
 module.exports = userController

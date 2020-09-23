@@ -1,7 +1,8 @@
 const initialState = {
 	urlPic: '',
 	token: '',
-	username: '',
+	firstName: '',
+	lastName: '',
 	wishlist: [],
 	cart: []
 }

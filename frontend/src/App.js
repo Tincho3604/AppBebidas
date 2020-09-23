@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import userActions from './redux/actions/userActions';
 import { ToastContainer } from 'react-toastify';
 import './styles/generalStyles.css';
+import './styles/createProduct.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 //Imports de pages
 import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
+import AdminDashboard from './pages/AdminDashboard';
+import createProduct from '../src/pages/CreateProduct';
+import editProduct from '../src/pages/EditProduct';
 
 
 function App(props) {
@@ -20,8 +24,11 @@ function App(props) {
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
-		<Route path='/signup' component={SignUp} />
-		<Route path='/login' component={Login} />
+		<Route  path='/admin' component={AdminDashboard} />
+		{/* <Route path='/signup' component={SignUp} />
+		<Route path='/login' component={Login} /> */}
+		<Route  path='/createProduct' component={createProduct} />
+		<Route  path='/editProduct/:id' component={editProduct} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
