@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema({
 	},
 	shippingAddress: {
 		type: Object,
-		required: true
+		required: false
 	},
 	billingAddress: {
 		type: Object,
-		required: true
+		required: false
 	},
 	phone: {
 		type: String,

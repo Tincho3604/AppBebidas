@@ -19,14 +19,14 @@ function App(props) {
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
-		<Route exact path='/' component={Home} />
+	    <Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
-		<Route path='/login' component={Login} />
+	    <Route path='/login' component={Login} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		{/* RUTAS USUARIO LOGUEADO */}
-		<Route exact path="/" component={Home}/>
+		
 		<Redirect to='/' />
 	</Switch>);
 	
