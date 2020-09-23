@@ -6,8 +6,9 @@ const validator = require("../config/validator")
 const passport = require("../config/passport")
 const { get } = require("mongoose")
 const orderController = require("../controllers/orderController")
-
 const router = express.Router()
+
+
 
 // USER ROUTES
 router.route("/user/register")
@@ -15,6 +16,9 @@ router.route("/user/register")
 
 router.route("/user/modifyUser")
 .put(passport.authenticate('jwt',{session: false}),userController.editUser)
+
+router.route("/user/getInfoUser")
+.get(passport.authenticate('jwt',{session: false}), userController.userInfo)
 
 router.route("/user/login")
 .get(passport.authenticate('jwt',{session: false}), userController.decodeUser)
@@ -40,6 +44,9 @@ router.route("/product/modifyProduct")
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
 
+router.route("/product/listProducts")
+.get(productController.getAllProducts)
+
 router.route("/product/listProductsByCategory")
 .get(productController.getProductByCat)
 
@@ -48,6 +55,8 @@ router.route("/product/productFound")
 
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
+
+
 // ORDER ROUTES
 router.route("/orders")
 .get(orderController.getAllOrders)
