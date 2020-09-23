@@ -17,8 +17,8 @@ const Cart = (props) => {
 				<div></div>
 			</div>
 			<div className='buttons'>
-				<button className=''>Finalizar compra</button>
-				<button className=''>Ver pedido</button>
+				<button className='btnPrimary'>Finalizar compra</button>
+				<button className='btnSecondary'>Ver pedido</button>
 			</div>
 		</div>
 	</> );
