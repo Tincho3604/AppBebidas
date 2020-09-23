@@ -1,8 +1,9 @@
 import React, { useState } from "react"
+import { connect } from "react-redux"
+import productActions from "../redux/actions/productActions"
 
 
-
-const CreateProduct = () => {
+const CreateProduct = (props) => {
 
     const [product, setProduct] = useState({
         category: "",
@@ -20,7 +21,6 @@ const CreateProduct = () => {
         title: "",
         price: "",
         ml: "",
-        rating: "",
         pic: "",
         alcPct: "",
         stock: "",
@@ -112,7 +112,7 @@ const CreateProduct = () => {
         }
         else error.alcPct = ''
         //return
-        console.log(error)
+
         return error.ok
     }
 
@@ -127,23 +127,25 @@ const CreateProduct = () => {
             [e.target.name]: valor
         })
     }
-    const handleClick = e => {
+    const handleClick = async e => {
         e.preventDefault();
         send.status = true
         setSend({ status: true })
         if (validation(product)) {
+            console.log(product)
             const fd = new FormData()
-            fd.append("category",product.category)
-            fd.append("price",product.price)
-            fd.append("alcPct",product.alcPct)
-            fd.append("ml",product.ml)
-            fd.append("stock",product.stock)
-            fd.append("description",product.description)
-            fd.append("pic",product.pic)
-            fd.append("rating",product.rating)
-            fd.append("title",product.title)
+            fd.append("category", product.category)
+            fd.append("price", product.price)
+            fd.append("alcPct", product.alcPct)
+            fd.append("ml", product.ml)
+            fd.append("stock", product.stock)
+            fd.append("description", product.description)
+            fd.append("pic", product.pic)
+            fd.append("rating", product.rating)
+            fd.append("title", product.title)
 
-            //ACCION
+            await props.createProduct(fd)
+
             setError({
                 ...error,
                 ok: true
@@ -190,14 +192,14 @@ const CreateProduct = () => {
                             <input type="number" name="ml" onChange={handleChange}></input>
                         </div>
                         <div className="inputs">
-                            <label for="aclPct">aclPct:</label>
+                            <label for="alcPct">alcPct:</label>
                             <input type="number" name="alcPct" onChange={handleChange}></input>
                         </div>
                         <div className="inputs">
                             <label for="pic">Pic:</label>
                             <input type="file" name="pic" onChange={handleChange}></input>
                         </div>
-                    
+
                     </div>
 
                 </div>
@@ -210,4 +212,13 @@ const CreateProduct = () => {
 
 }
 
-export default CreateProduct
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = {
+    createProduct: productActions.createProduct
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct)

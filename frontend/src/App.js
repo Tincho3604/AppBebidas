@@ -13,6 +13,7 @@ import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import createProduct from '../src/pages/CreateProduct';
+import editProduct from '../src/pages/EditProduct';
 
 
 function App(props) {
@@ -23,10 +24,11 @@ function App(props) {
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
-		<Route exact path='/admin' component={AdminDashboard} />
-	    <Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
 	    <Route path='/login' component={Login} />
+		<Route path='/admin' component={AdminDashboard} />
+		<Route path='/createProduct' component={createProduct} />
+		<Route path='/editProduct/:id' component={editProduct} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>

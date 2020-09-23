@@ -4,7 +4,6 @@ const commentController = require("../controllers/commentController")
 const productController = require ("../controllers/productController")
 const validator = require("../config/validator")
 const passport = require("../config/passport")
-const { get } = require("mongoose")
 const orderController = require("../controllers/orderController")
 
 const router = express.Router()
@@ -32,10 +31,13 @@ router.route("/user/removeWishList")
 
 // PRODUCTS ROUTES
 router.route("/product/createProduct")
-.post(validator.validateProduct,productController.createProduct)
+.post( productController.createProduct)
 
-router.route("/product/modifyProduct")
-.put(validator.validateProduct, productController.modifyProduct)
+router.route("/product/getProduct")
+.post(productController.getProductById)
+
+router.route("/product/editProduct")
+.put( productController.modifyProduct)
 
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
