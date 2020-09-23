@@ -20,6 +20,16 @@ router.route("/user/login")
 .get(passport.authenticate('jwt',{session: false}), userController.decodeUser)
 .post(userController.loginUser)
 
+router.route("/user/addWishList")
+.put(passport.authenticate('jwt',{session: false}), userController.addToWishlist)
+
+router.route("/user/removeWishList")
+.delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
+
+
+
+
+
 // PRODUCTS ROUTES
 router.route("/product/createProduct")
 .post(validator.validateProduct,productController.createProduct)
@@ -68,6 +78,9 @@ router.route("/comment")
 
 router.route("/comment/:id")
 .delete(commentController.deleteCommentById)
+
+
+
 
 
 module.exports = router;

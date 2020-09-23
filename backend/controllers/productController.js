@@ -39,7 +39,7 @@ const productController = {
 		.catch(error =>res.json({success: false, error}))
 	},
 	getProductByWishlist: async (req, res) => {
-		const {arrayIDs} =req.body
+		const {arrayIDs} = req.body
 		Product.find({_id: arrayIDs})
 		.then(productWishList => res.json({success: true, productWishList}))
 		.catch(error =>res.json({success: false, error}))
