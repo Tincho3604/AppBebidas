@@ -23,7 +23,7 @@ const Header = () => {
 			<div style={{flex: 1}}/>
 			<div className='links'>
 				<NavLink to className='ufc'>Ingresar</NavLink> / 
-				<NavLink to className='ufc'>Registrarse</NavLink>
+				<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
 			</div>
 			<div className='cart' onClick={cartHandler}>
 				<div className='icono'>

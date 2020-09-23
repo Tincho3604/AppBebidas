@@ -7,7 +7,7 @@ import { GoogleLogin } from 'react-google-login';
 class Login extends React.Component {
     state = {
         mail: '',
-        password:''
+        pass:''
     }
     leerInput = e => {
         const campo = e.target.name
@@ -19,10 +19,10 @@ class Login extends React.Component {
     enviarInfo = async e => {
         e.preventDefault()
         //Validacion
-        if (this.state.mail === '' || this.state.password === '') {
+        if (this.state.mail === '' || this.state.pass === '') {
             alert("Campos obligatorios")
         } else {
-            const usuarioALoguear = {mail: this.state.mail, password: this.state.password}
+            const usuarioALoguear = {mail: this.state.mail, pass: this.state.pass}
             const respuesta = await this.props.loguearUser(usuarioALoguear)
                 this.props.history.push('/')
         }
@@ -30,7 +30,7 @@ class Login extends React.Component {
     responseGoogle = respuesa => {
         this.props.loguearUser({
         mail: respuesa.profileObj.email, 
-        password: respuesa.profileObj.googleId, 
+        pass: respuesa.profileObj.googleId, 
      })
    }
     render(){
