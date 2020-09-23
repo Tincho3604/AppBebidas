@@ -1,0 +1,94 @@
+.banner{
+    height:80vh;
+    background-position: start;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: relative;
+
+}
+
+.homeBackgroundOne{
+    position: absolute;
+    top:40vh;
+    left: 0;
+    z-index: 1;
+    width: 25%;
+}
+.homeBackgroundTwo{
+    position: absolute;
+    top:80vh;
+    right: 0;
+    z-index: 1;
+    width: 25%;
+}
+.whoWeAre{
+    background-color: #000000;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.whoWeAre h2{
+    width: 35%;
+    text-align: center;
+    font-size: 7vh;
+    color: #ffffff;
+    padding-top: 20vh;
+}
+.whoWeAre p{
+    margin-top: 3vh;
+    width: 35%;
+    text-align: center;
+    color: #ffffff;
+}
+.whoWeAre h5{
+    margin-top: 3vh;
+    width: 45%;
+    text-align: center;
+    color: #ffffff;
+}
+.categories{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    padding: 30vh 0vw;
+    background-color: #000000;
+}
+.categories  h2{
+    font-size: 7vh;
+}
+.categories .allCategories{
+    padding: 10vh 0vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+}
+
+.categories .allCategories .TheCategorie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3vh 3vw;
+    width: 19vw;
+    height: 40vh;
+    padding: 2vw;
+    background-color: #ffffff1c;
+}
+.TheCategorie p{
+    margin-top: 2vh;
+    color: #ffffff;
+    
+}
+
+.categories .allCategories .TheCategorie:hover{
+    box-shadow: 0vw 0vw 1.5vw 0vw #7e7d7db9;
+    font-weight: bold;
+}
