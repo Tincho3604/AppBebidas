@@ -32,11 +32,11 @@ const userController = {
 	},
 	loginUser: async (req, res) => {
 		const { mail, pass } = req.body
-
+        console.log(req.body)
 		const userExists = await User.findOne({ mail })
 		if (!userExists) return res.json({ success: false, error: message })
 		const passwordMatches = bcrypt.compareSync(pass, userExists.pass)
-		console.log(passwordMatches)
+		console.log(passwordMatches, "password")
 		if (!passwordMatches) return res.json({ success: false, error: message })
 		const token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
 		if (!token) return res.json({ success: false, error })
