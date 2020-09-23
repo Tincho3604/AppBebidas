@@ -4,7 +4,6 @@
 	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
 }
-
 .formulario {
     background-color: black;
     opacity: 0.9;
@@ -18,30 +17,30 @@
     border-radius: 1rem;
     box-shadow: 5px 1px 20px -10px #D1B653;
     font-size: 1vw;
-   }
-   .formulario input{
-     margin: 1%;
-     width: 40vw;
-     text-align: center;
-     border-radius: 1rem;
-     border-color: #D1B653;
-     background-color: black;
-    padding: 3px;
-    color: #cfcb88;
-   }
-   .formulario button{
-    padding: 3px;
-    margin: 1%;
-    width: 40vw;
-    text-align: center;
-    border-color: #D1B653;
-    background-color: black;
-    color: #cfcb88;
-    border-radius: 1rem;
-  }
-  .fondoForm {
-    background-color: black;
-    padding: 5%;
-    height: 100vh;
-    margin: 0;
-  }
+}
+.formulario input{
+	margin: 1%;
+	width: 40vw;
+	text-align: center;
+	border-radius: 1rem;
+	border-color: #D1B653;
+	background-color: black;
+	padding: 3px;
+	color: #cfcb88;
+}
+.formulario button{
+	padding: 3px;
+	margin: 1%;
+	width: 40vw;
+	text-align: center;
+	border-color: #D1B653;
+	background-color: black;
+	color: #cfcb88;
+	border-radius: 1rem;
+}
+.fondoForm {
+	background-color: black;
+	padding: 5%;
+	height: 100vh;
+	margin: 0;
+}

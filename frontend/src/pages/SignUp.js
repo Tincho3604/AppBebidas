@@ -11,7 +11,7 @@ import '../styles/generalStyles.css'
 const SignUp = (props) => { 
     
     const [nuevoUsuario, setNuevoUsuario] = useState({
-        nombre: '', apellido: '', password: '', foto: '', phone: '', mail: ''
+        firstName: '', lastName: '', pass: '', mail: ''
     })
     const leerInput = e => {
         const campo = e.target.name
@@ -24,19 +24,19 @@ const SignUp = (props) => {
     const enviarInfo = async e => {
         e.preventDefault()
         //Validacion
-        if (nuevoUsuario.nombre === '' || nuevoUsuario.apellido === ''|| nuevoUsuario.password === ''|| nuevoUsuario.phone === '') {
+        if (nuevoUsuario.firstName === '' || nuevoUsuario.lastName === ''|| nuevoUsuario.pass === '') {
             alert("Campos obligatorios")
         } else {
-            const respuesa = props.crearCuenta(nuevoUsuario)
+            const response = props.createUser(nuevoUsuario)
+            props.history.push('/')
         }
     }
-    const responseGoogle = respuesa => {
-        props.crearCuenta({
-              nombre: respuesa.profileObj.givenName, 
-              apellido: respuesa.profileObj.familyName, 
-              mail: respuesa.profileObj.email, 
-              password: respuesa.profileObj.googleId, 
-              foto: respuesa.profileObj.imageUrl
+    const responseGoogle = response => {
+        props.createUser({
+              firstName: response.profileObj.givenName, 
+              lastName: response.profileObj.familyName, 
+              mail: response.profileObj.email, 
+              pass: response.profileObj.googleId, 
             })
       }
     return (
@@ -44,19 +44,18 @@ const SignUp = (props) => {
         <div className="mainContainer fondoForm">
             <div className="formulario">
             <h1>Nuevo usuario</h1>
-               <input type="text" name="nombre" onChange={leerInput} placeholder="Nombre" />
-               <input type="text" name="apellido" onChange={leerInput} placeholder="Apellido" />
+               <input type="text" name="firstName" onChange={leerInput} placeholder="Nombre" />
+               <input type="text" name="lastName" onChange={leerInput} placeholder="Apellido" />
                <input type="mail" name="mail" onChange={leerInput} placeholder="Email" />
-               <input type="numero" name="phone" onChange={leerInput} placeholder="Telefono" />
-               <input type="password" name="password" onChange={leerInput} placeholder="Contraseña (min 5 caracteres)" />
+               <input type="password" name="pass" onChange={leerInput} placeholder="Contraseña (min 5 caracteres)" />
                <button onClick={enviarInfo}>Registrarme</button>
                <h4>O</h4>
                <GoogleLogin
-                clientId="1070761935759-nsctc4ltqrua4gick49a01itbuopt2qj.apps.googleusercontent.com"
+                clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"
                 buttonText="Crear cuenta con Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
-                //cookiePolicy={'single_host_origin'}
+                cookiePolicy={'single_host_origin'}
                 />
                <button><NavLink to='/login'> Ya estoy registrado </NavLink></button>
             </div>
@@ -66,6 +65,6 @@ const SignUp = (props) => {
     )
 }
 const mapDispatchToProps = {
-    crearCuenta: userActions.createUser
+    createUser: userActions.createUser
 }
 export default connect(null, mapDispatchToProps)(SignUp)

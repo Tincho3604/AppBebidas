@@ -31,7 +31,7 @@ function App(props) {
 	</Switch>)
 	: (<Switch>
 		{/* RUTAS USUARIO LOGUEADO */}
-		
+		<Route exact path='/' component={Home} />
 		<Redirect to='/' />
 	</Switch>);
 	

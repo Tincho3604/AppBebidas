@@ -11,7 +11,7 @@ const router = express.Router()
 
 // USER ROUTES
 router.route("/user/register")
-.post(validator.validateUser,userController.createUser)
+.post(/*validator.validateUser,*/userController.createUser)
 
 router.route("/user/modifyUser")
 .put(passport.authenticate('jwt',{session: false}),userController.editUser)

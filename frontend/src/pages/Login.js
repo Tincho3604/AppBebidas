@@ -7,7 +7,7 @@ import { GoogleLogin } from 'react-google-login';
 class Login extends React.Component {
     state = {
         mail: '',
-        password:''
+        pass:''
     }
     leerInput = e => {
         const campo = e.target.name
@@ -19,10 +19,10 @@ class Login extends React.Component {
     enviarInfo = async e => {
         e.preventDefault()
         //Validacion
-        if (this.state.mail === '' || this.state.password === '') {
+        if (this.state.mail === '' || this.state.pass === '') {
             alert("Campos obligatorios")
         } else {
-            const usuarioALoguear = {mail: this.state.mail, password: this.state.password}
+            const usuarioALoguear = {mail: this.state.mail, pass: this.state.pass}
             const respuesta = await this.props.loguearUser(usuarioALoguear)
                 this.props.history.push('/')
         }
@@ -30,7 +30,7 @@ class Login extends React.Component {
     responseGoogle = respuesa => {
         this.props.loguearUser({
         mail: respuesa.profileObj.email, 
-        password: respuesa.profileObj.googleId, 
+        pass: respuesa.profileObj.googleId, 
      })
    }
     render(){
@@ -40,14 +40,14 @@ class Login extends React.Component {
               <div className="formulario">
               <h1>Ingresar a mi cuenta</h1>
                  <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
-                 <input type="password" name="password" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
+                 <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                  <button onClick={this.enviarInfo}>Identificarme</button>
                  <GoogleLogin
-                  clientId="1070761935759-nsctc4ltqrua4gick49a01itbuopt2qj.apps.googleusercontent.com"
+                  clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"
                   buttonText="Ingresar con Google"
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
-                //cookiePolicy={'single_host_origin'}
+                  cookiePolicy={'single_host_origin'}
                 />,
               </div>
            </div>
