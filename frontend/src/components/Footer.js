@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/HeaderFooter.css'
+import '../styles/HeaderFooter.css';
 
 function Footer() {
 	const year = new Date().getFullYear()
