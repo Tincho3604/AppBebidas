@@ -42,13 +42,14 @@ class Login extends React.Component {
                  <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
                  <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                  <button onClick={this.enviarInfo}>Identificarme</button>
+                 <h4>O</h4>
                  <GoogleLogin
                   clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"
                   buttonText="Ingresar con Google"
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                   cookiePolicy={'single_host_origin'}
-                />,
+                />
               </div>
            </div>
            </>
