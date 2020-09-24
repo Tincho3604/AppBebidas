@@ -53,9 +53,11 @@ const userActions = {
 					type: "USER_IN",
 					payload: {
 						token: response.data.token,
-						urlPic: response.data.urlPic,
-						username: response.data.username,
+						id: response.data.id,
+						firstName: response.data.firstName,
+						lastName: response.data.lastName,
 						wishlist: response.data.wishlist,
+
 					},
 				})
 			}
@@ -78,17 +80,19 @@ const userActions = {
 						Authorization: "Bearer " + token,
 					},
 				})
+				console.log(response)
 			} catch {
 				return false
 			}
-			const {urlPic, username, wishlist} = response.data
+			const {lastName, firstName, wishlist, id} = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
-					urlPic,
 					token,
-					username,
+					firstName,
+					lastName,
 					wishlist,
+					id
 				},
 			})
 		}
@@ -107,6 +111,7 @@ const userActions = {
 	newComment: comment => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+ "/api/comment/",comment)
+			console.log(response, "holi")
 		}
 	},
 	getComments: productId => {

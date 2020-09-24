@@ -36,7 +36,7 @@ const Home = (props) => {
 				})} 
             </div>
         </div>
-        <Contacto/>
+        <Contacto />
         <Footer/>
         </>
     )

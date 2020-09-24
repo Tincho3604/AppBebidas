@@ -37,8 +37,8 @@ router.route("/user/removeWishList")
 router.route("/product/createProduct")
 .post( productController.createProduct)
 
-router.route("/product/getProduct")
-.post(productController.getProductById)
+router.route("/product/getProduct/:id")
+.get(productController.getProductById)
 
 router.route("/product/editProduct")
 .put( productController.modifyProduct)
@@ -49,8 +49,6 @@ router.route("/product/deleteProduct")
 router.route("/product/listProducts")
 .get(productController.getAllProducts)
 
-router.route("/product/productFound")
-.get(productController.getProductById)
 
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
