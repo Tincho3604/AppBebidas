@@ -1,0 +1,85 @@
+.productCard {
+	height: 450px;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 2vw;
+	border: 1px solid black;
+	background: black;
+}
+
+.productCard .picture {
+	height: 60%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: contain;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow-x: hidden;
+	border-bottom: white 1px solid;
+}
+
+.productCard .picture img {
+	height: 90%;
+}
+
+.productCard .picture .like {
+	background: black;
+	color: goldenrod;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 0;
+	right: -50px;
+	transition: right .2s linear;
+}
+
+.productCard .picture:hover .like {
+	right: 0px;
+}
+
+.productCard .text {
+	flex: 1;
+	color: gray;
+	display: flex;
+	flex-direction: column;
+}
+
+.productCard .text .data {
+	display: flex;
+	padding: 10px;
+	flex-direction: column;
+	width: 100%;
+}
+
+.productCard .text .rating {
+	color: goldenrod;
+	font-size: 15px;
+}
+
+.productCard .text .data .title {
+	font-size: 30px;
+}
+
+.productCard .text .data .price {
+	font-size: 20px;
+}
+
+.productCard .text .addToCartBtn {
+	width: 80%;
+	padding: 8px;
+	background: #d1b653;
+	border: none;
+	align-self: center;
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
