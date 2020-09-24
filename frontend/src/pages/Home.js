@@ -7,17 +7,10 @@ import decoration2 from "../images/decoration2.png"
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Contacto from '../components/Contacto';
+import { CATEGORIES } from '../constants';
 const Home = (props) => {
-        const categories = [
-            {nombre: "Vino", foto: "vino"}, 
-            {nombre: "Champagne", foto: "champagne"},
-            {nombre: "Cerveza", foto: "cerveza"}, 
-            {nombre: "Whisky y Espirituosas", foto: "whiskyespirituosas"},
-            {nombre: "Sin Alcohol", foto: "sinalcohol"}, 
-            {nombre: "Promociones", foto: "promociones"}]
-    
-    
-    
+
     return (
         <>
            <Header />
@@ -28,12 +21,12 @@ const Home = (props) => {
         <div className="whoWeAre">
             <h2>QUIENES SOMOS</h2>
             <p>Somos una empresa que distribuye alcohol de calidad, tenemos las bebidas alcoholicas mas exclusivas para que nuestros clientes disfruten. Buscamos brindar una experiencia y producto de primera calidad.</p>
-            <h5>Si estas buscando bebidas exclusivas para disfrutar nuestro sitio es el correcto</h5>
+            <h5>Si estas buscando bebidas exclusivas para disfrutar aqui vas a poder encontrarlas</h5>
         </div>
         <div className="categories">
             <h2>CATEGORIAS</h2>
             <div className="allCategories">
-                {categories.map(conjunto => {
+                {CATEGORIES.map(conjunto => {
 				  return (
 					<div key={conjunto} >
                       <Categories categorie={conjunto}/>
@@ -42,16 +35,7 @@ const Home = (props) => {
 				})} 
             </div>
         </div>
-        <form className="sign">
-						<span className="title">INGRESAR</span>
-						<div className="inputBox">
-							<label htmlFor="mail"><i className="fas fa-envelope"></i></label>
-							<input type="text" name="mail" id="mail" placeholder="Email" value="mail"/>
-						</div>
-						<div className="inputBox">
-						</div>
-						<button> send </button>
-		</form>
+        <Contacto/>
         <Footer/>
         </>
     )

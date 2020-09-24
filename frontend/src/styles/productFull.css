@@ -1,0 +1,105 @@
+.Classbanner{
+    background-color: #58482a;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    
+}
+.Classbanner img{
+    margin-left: 3vw;
+    height: 35vh;
+    margin-top: 4vw;
+}
+.Classbanner p{
+    font-size: 3vw;
+    
+    margin-left: 3vw;
+    color: #ffffff;
+}
+
+
+.infoProduct{
+    background-color: #000000;
+    color: #ffffff;
+    padding-bottom: 5vh;
+    padding-top: 10vh;
+    
+    
+}
+.infoProduct .allInformation{
+    border-bottom: 3px solid transparent; 
+    border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b26cc4 100%) 1;
+    margin:0vh 5vw 0vh 5vw;
+    padding: 3vw;
+    display: flex;
+}
+.infoProduct h2{
+    font-size: 5vh;
+    color: #ffffff;
+   
+}
+.infoProduct .allInformation img{
+    width: 25vw;
+    margin-right: 3vw;
+}
+.infoProduct .allInformation .units{
+    margin-top: 1vw;
+   
+    font-style: italic;
+    font-size: 1.8vw;
+}
+.infoProduct .allInformation .price{
+    margin-top: 1vw;
+   font-size: 2vw;
+    font-weight: bold;
+}
+.infoProduct .allInformation .description{
+    margin-top: 1vw;
+    font-weight: lighter;
+    text-align: justify;
+    width: 50vw;
+}
+
+.infoProduct .allInformation .quantity{
+    margin-top: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.infoProduct .allInformation .quantity .plus{
+    border:none ;
+    background: none;
+    padding: 2vh 2vw;
+    margin: 1vw;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #ffffff;
+    border: 2px solid #d1b653;
+}
+.infoProduct .allInformation .quantity .addToBag{
+    border:none ;
+    padding: 2vh 2vw;
+    margin: 1vw;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: #d1b653;
+}
+.infoProduct .allInformation .quantity .addToBag:hover{
+    color: #d1b653;
+    background: #ffffff;
+}
+.infoProduct .allInformation .quantity p{
+    font-size: 2vw;
+    padding: 2.3vh 1vw;
+}
+.infoProduct .allInformation .aditionalInfo{
+    margin-top: 3vh;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    margin-bottom: 2vh;
+}
+.infoProduct .allInformation .ratings{
+  color:#d1b653 ;
+}

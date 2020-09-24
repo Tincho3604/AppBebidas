@@ -1,16 +1,16 @@
 import React from 'react';
 import AdminHeader from '../components/AdminHeader';
-import DataAdmin from '../components/DataAdmin';
+import CreateProduct from '../components/CreateProduct';
 import NavAdmin from '../components/NavAdmin';
 import '../styles/adminDashboard.css'
 
-const AdminDashboard = (props) => {
+const AdminCreateProduct = (props) => {
 	return ( <>
 	<AdminHeader />
 	<div className="dashboard">
 		<NavAdmin />
-		<DataAdmin />		
+		<CreateProduct />
 	</div></> );
 }
  
-export default AdminDashboard;
+export default AdminCreateProduct;
