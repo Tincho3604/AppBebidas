@@ -32,11 +32,11 @@ const userController = {
 	},
 	loginUser: async (req, res) => {
 		const { mail, pass } = req.body
-
+        console.log(req.body)
 		const userExists = await User.findOne({ mail })
 		if (!userExists) return res.json({ success: false, error: message })
 		const passwordMatches = bcrypt.compareSync(pass, userExists.pass)
-		console.log(passwordMatches)
+		console.log(passwordMatches, "password")
 		if (!passwordMatches) return res.json({ success: false, error: message })
 		const token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
 		if (!token) return res.json({ success: false, error })
@@ -46,20 +46,21 @@ const userController = {
 			token,
 			firstName: userExists.firstName,
 			lastName: userExists.lastName,
-			urlPic: userExists.urlPic,
 			wishlist: userExists.wishlist,
 			id: userExists._id,
 		})
 	},
+	
 	decodeUser: (req, res) => {
 		const { urlPic, firstName, lastName, wishlist } = req.user
 		res.json({
-			urlPic,
 			firstName,
 			lastName,
 			wishlist,
 		})
-    },
+	},
+	
+
     editUser: (req , res) =>{
         User.findOneAndUpdate({_id: req.user._id },{...req.body},{new:true})
 		.then(user => res.json({ success: true, user }))
@@ -70,7 +71,26 @@ const userController = {
 	
 	
 
+	
+	userInfo: (req, res) => {
+	var userId = req.user._id
 
+		const usuarioUser = User.findOne({_id: userId})
+		
+
+		.then(usuarioUser => res.json({
+			success: true,
+			token,
+			firstName: usuarioUser.firstName,
+			wishlist: usuarioUser.wishlist,
+            phone: usuarioUser.phone
+            
+		}))
+		.catch(error => res.json({success: false, error}))
+	},
+
+
+	
 	addToWishlist: async (req, res) => {
 		var id = req.params.id
 		var userId = req.user._id

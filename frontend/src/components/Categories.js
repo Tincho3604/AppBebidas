@@ -6,7 +6,7 @@ import "../styles/Home.css"
 const Categories = (props) => {
   
     return(
-        <Link to={`/categories/${props.categorie.nombre}`} style={{textDecoration: "none"}}>
+        <Link to={`/products/${props.categorie.foto}`} style={{textDecoration: "none"}}>
             <div className="TheCategorie">
                 <img src={require(`../images/${props.categorie.foto}.png`)} />
                 <p>{props.categorie.nombre}</p>

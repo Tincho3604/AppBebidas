@@ -6,20 +6,20 @@ const userActions = {
 	createUser: (user, set = null ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
+			console.log(response)
             if(response.data.success === "false") {
-                set({status: false})
+                //set({status: false})
                 let errors = response.data.error.errors;
 				if(errors.username !== undefined) toast.error(errors.username.message);
 				if(errors.mail !== undefined ) toast.error(errors.mail.message);
 				return;
 			}
 			else {
-				toast.success(`Cuenta creada!`)
+				toast.success(`Account created!`)
 				dispatch({
 					type: "USER_IN",
 					payload: {
 						token: response.data.token,
-						urlPic: response.data.urlPic,
 						username: response.data.username,
 						wishlist: response.data.wishlist,
 					},
@@ -28,6 +28,19 @@ const userActions = {
 			return response
 		}
 	},
+
+    getUserInfo: (user) => {
+        return async (dispatch, getState) => {
+			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, user)
+			const info = response.data.user
+			dispatch({
+				type:'GET_INFO_USER',
+				payload:info
+			    })	
+			}
+		}, 
+	
+
 	loginUser: user => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API + "/api/user/login", user)
@@ -35,7 +48,7 @@ const userActions = {
 				toast.error(response.data.error)
 				return response.data.error
 			} else {
-				toast.success(`Buenas ${response.data.username}!`)
+				toast.success(`Welcome ${response.data.username}!`)
 				dispatch({
 					type: "USER_IN",
 					payload: {
@@ -113,8 +126,8 @@ const userActions = {
 	editComment: edited => {
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
-			if (response.data.success === true) toast.success("Comentario editado")
-			else toast.error("Ocurrió un error")
+			if (response.data.success === true) toast.success("Edited comment")
+			else toast.error("An error occurred")
 		}
 	}
 }

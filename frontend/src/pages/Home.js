@@ -8,19 +8,9 @@ import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Contacto from '../components/Contacto';
-
+import { CATEGORIES } from '../constants';
 const Home = (props) => {
-   
-        const categories = [
-            {nombre: "Vino", foto: "vino"}, 
-            {nombre: "Champagne", foto: "champagne"},
-            {nombre: "Cerveza", foto: "cerveza"}, 
-            {nombre: "Whisky y Espirituosas", foto: "whiskyespirituosas"},
-            {nombre: "Sin Alcohol", foto: "sinalcohol"}, 
-            {nombre: "Promociones", foto: "promociones"}]
-    
-    
-    
+
     return (
         <>
            <Header />
@@ -36,7 +26,7 @@ const Home = (props) => {
         <div className="categories">
             <h2>CATEGORIAS</h2>
             <div className="allCategories">
-                {categories.map(conjunto => {
+                {CATEGORIES.map(conjunto => {
 				  return (
 					<div key={conjunto} >
                       <Categories categorie={conjunto}/>
@@ -45,7 +35,7 @@ const Home = (props) => {
 				})} 
             </div>
         </div>
-        <Contacto/>
+        <Contacto />
         <Footer/>
         </>
     )

@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import alcohol from "../images/alcohol.jpg"
 import "../styles/productFull.css"
 import vino from "../images/botella.png"
+import Comment from '../components/Comment';
 
 
 const ProductFull = (props) => {
@@ -48,6 +49,7 @@ const ProductFull = (props) => {
                     </div>
                 </div>
             </div>
+            <Comment />
         </div>
         <Footer />
         </>

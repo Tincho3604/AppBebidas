@@ -84,10 +84,12 @@
     font-size: 1.5vw;
     font-weight: bold;
     background: #d1b653;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity .addToBag:hover{
-    color: #d1b653;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity p{
     font-size: 2vw;

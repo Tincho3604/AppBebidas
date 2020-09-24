@@ -4,7 +4,8 @@ const initialState = {
 	firstName: '',
 	lastName: '',
 	wishlist: [],
-	cart: []
+	cart: [],
+	comments: null
 }
 
 function userReducer(state = initialState, action) {
@@ -19,7 +20,12 @@ function userReducer(state = initialState, action) {
 			localStorage.removeItem("token")
 			return {
 				...initialState
-        	};
+			};
+		case "GET_COM":
+			return {
+				...state,
+				comments: action.payload,
+			}
 		default:
 			return state
 	}
