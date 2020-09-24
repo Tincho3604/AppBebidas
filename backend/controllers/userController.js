@@ -46,20 +46,21 @@ const userController = {
 			token,
 			firstName: userExists.firstName,
 			lastName: userExists.lastName,
-			urlPic: userExists.urlPic,
 			wishlist: userExists.wishlist,
 			id: userExists._id,
 		})
 	},
+	
 	decodeUser: (req, res) => {
 		const { urlPic, firstName, lastName, wishlist } = req.user
 		res.json({
-			urlPic,
 			firstName,
 			lastName,
 			wishlist,
 		})
-    },
+	},
+	
+
     editUser: (req , res) =>{
         User.findOneAndUpdate({_id: req.user._id },{...req.body},{new:true})
 		.then(user => res.json({ success: true, user }))
@@ -70,7 +71,26 @@ const userController = {
 	
 	
 
+	
+	userInfo: (req, res) => {
+	var userId = req.user._id
 
+		const usuarioUser = User.findOne({_id: userId})
+		
+
+		.then(usuarioUser => res.json({
+			success: true,
+			token,
+			firstName: usuarioUser.firstName,
+			wishlist: usuarioUser.wishlist,
+            phone: usuarioUser.phone
+            
+		}))
+		.catch(error => res.json({success: false, error}))
+	},
+
+
+	
 	addToWishlist: async (req, res) => {
 		var id = req.params.id
 		var userId = req.user._id

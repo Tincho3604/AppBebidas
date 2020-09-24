@@ -18,7 +18,7 @@ const productActions = {
     dataProduct: id=> {
 
         return async (dispatch, getState) => {
-            const response = await axios.post(RUTA_API + "/api/product/getProduct", {id: id })
+            const response = await axios.post(RUTA_API + "/api/product/getProduct/" + id)
 
             dispatch({
 				type: "DATA_PRODUCT",
@@ -35,7 +35,28 @@ const productActions = {
                 }
 
             })
+		}
+	},
+    getProductByCategory: category => {
+        
+        return async(dispatch, getState) => {
+        const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
+        const products = respuesta.data.listProducts
+        dispatch({
+            type: 'GET_PRODUCT_BY_CATEGORY',
+            dispatch: products
+            })
+        }
+    },
 
+    getAllProducts: () => {
+        return async(dispatch, getState) => {
+            const respuesta = await axios.get(`${RUTA_API}/api/product/listProducts`)
+            const allProduct = respuesta.data.list
+            dispatch({
+                type:'GET_ALL_PRODUCTS',
+                dispatch: allProduct
+            })
         }
     },
 }

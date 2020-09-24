@@ -7,7 +7,7 @@ const AdminHeader = (props) => {
 				<img src={logoBlanco} />
 		</div>
 		<div style={{flex: 1}}></div>
-		<span>Salir</span>
+		<span><i className='fas fa-sign-out-alt'></i>Salir</span>
 	</div> );
 }
  

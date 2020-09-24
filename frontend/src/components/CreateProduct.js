@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
+import { CATEGORIES } from "../constants"
 import productActions from "../redux/actions/productActions"
 
 
@@ -35,7 +36,8 @@ const CreateProduct = (props) => {
         error.ok = true
         //RegEx
         const alphanum = RegExp(/^\w+$/)
-        const num = RegExp(/\d.{1,}/)
+        const num = RegExp(/\d./)
+        const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
         //category
         if (product.category === '') {
             error.category = 'Cannot be empty'
@@ -45,10 +47,10 @@ const CreateProduct = (props) => {
             error.category = 'Need three characters at least'
             error.ok = false
         }
-        else if (!alphanum.test(product.title)) {
-            error.title = 'Only can contains letters and numbers'
-            error.ok = false
-        }
+        // else if (!alphanum.test(product.title)) {
+        //     error.title = 'Only can contains letters and numbers'
+        //     error.ok = false
+        // }
         else error.title = ''
         //description
         if (product.description === '') {
@@ -59,18 +61,18 @@ const CreateProduct = (props) => {
             error.description = 'Need thirty characters at least'
             error.ok = false
         }
-        else if (!alphanum.test(product.title)) {
-            error.title = 'Only can contains letters and numbers'
-            error.ok = false
-        }
+        // else if (!alphanum.test(product.description)) {
+        //     error.title = 'Only can contains letters and numbers'
+        //     error.ok = false
+        // }
         else error.title = ''
         // price
         if (product.price === '') {
             error.price = 'Cannot be empty'
             error.ok = false
         }
-        else if (!num.test(product.price)) {
-            error.price = 'Only can contains numbers'
+        else if (!decimals.test(product.price)) {
+            error.price = 'Solo puede contener numeros con dos decimales'
             error.ok = false
         }
         else error.price = ''
@@ -94,10 +96,10 @@ const CreateProduct = (props) => {
             error.stock = 'Cannot be empty'
             error.ok = false
         }
-        else if (!num.test(product.stock)) {
-            error.stock = 'Only can contains numbers'
-            error.ok = false
-        }
+        // else if (!num.test(product.stock)) {
+        //     error.stock = 'Only can contains numbers'
+        //     error.ok = false
+        // }
         else error.stock = ''
         // alcPct
 
@@ -106,13 +108,13 @@ const CreateProduct = (props) => {
             error.ok = false
         }
 
-        else if (!num.test(product.alcPct)) {
-            error.alcPct = 'Only can contains numbers'
+        else if (!decimals.test(product.alcPct)) {
+            error.alcPct = 'Solo puede contener numeros con dos decimales '
             error.ok = false
         }
         else error.alcPct = ''
         //return
-
+		console.log(error)
         return error.ok
     }
 
@@ -165,45 +167,49 @@ const CreateProduct = (props) => {
 
     return (
         <>
-            <div id="mainContainerProduct">
-                <h1>Create your product</h1>
-                <div className="formContainer">
-                    <div className="inputs">
-                        <label for="category">Category:</label>
-                        <input type="text" name="category" onChange={handleChange}></input>
-                        <div className="inputs">
-                            <label for="title">Title:</label>
-                            <input type="text" name="title" onChange={handleChange}></input>
+            <div className="container">
+					<form className="form">
+						<h2>Create your product</h2>
+						<div className="inputBox">
+							<label for="category">Categoria:</label>
+							<select name="category" onChange={handleChange} value={product.category}>
+								<option> - Seleccionar Categoria - </option>
+								{CATEGORIES.map(category => {
+									return <option value={category.foto}>{category.nombre}</option>
+								})}
+							</select>
+						</div>
+                        <div className="inputBox">
+                            <label for="title">Titulo:</label>
+                            <input type="text" name="title" onChange={handleChange} value={product.title}></input>
                         </div>
-                        <div className="inputs">
-                            <label for="description">Description:</label>
-                            <input type="text" name="description" onChange={handleChange}></input>
+                        <div className="inputBox">
+                            <label for="description">Descripción:</label>
+                            <input type="text" name="description" onChange={handleChange} value={product.description}></input>
                         </div>
-                        <div className="inputs">
-                            <label for="price">Price:</label>
-                            <input type="number" name="price" onChange={handleChange}></input>
+                        <div className="inputBox">
+                            <label for="price">Precio:</label>
+                            <input type="number" name="price" onChange={handleChange} value={product.price}></input>
                         </div>
-                        <div className="inputs">
+                        <div className="inputBox">
                             <label for="stock">Stock:</label>
-                            <input type="number" name="stock" onChange={handleChange}></input>
+                            <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
                         </div>
-                        <div className="inputs">
-                            <label for="ml">ml:</label>
-                            <input type="number" name="ml" onChange={handleChange}></input>
+                        <div className="inputBox">
+                            <label for="ml">Mililitros:</label>
+                            <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
                         </div>
-                        <div className="inputs">
-                            <label for="alcPct">alcPct:</label>
-                            <input type="number" name="alcPct" onChange={handleChange}></input>
+                        <div className="inputBox">
+                            <label for="alcPct">Porcentaje Alcoholico (%):</label>
+                            <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
                         </div>
-                        <div className="inputs">
-                            <label for="pic">Pic:</label>
+                        <div className="inputBox">
+                            <label for="pic">Foto del producto:</label>
                             <input type="file" name="pic" onChange={handleChange}></input>
                         </div>
 
-                    </div>
-
-                </div>
-                <button style={{ background: "none", border: "none", cursor: "pointer" }} onClick={handleClick}><img src={require("../pokebola.png")} style={{ width: "150px" }}></img></button>
+                		<button onClick={handleClick}>Enviar datos</button>
+                    </form>
             </div>
 
 
