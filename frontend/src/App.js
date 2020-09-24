@@ -12,8 +12,8 @@ import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
-import createProduct from '../src/pages/CreateProduct';
-import editProduct from '../src/pages/EditProduct';
+import AdminCreateProduct from './pages/AdminCreateProduct';
+import AdminEditProduct from './pages/AdminEditProduct';
 
 
 function App(props) {
@@ -27,8 +27,8 @@ function App(props) {
 		<Route path='/signup' component={SignUp} />
 	    <Route path='/login' component={Login} />
 		<Route path='/admin' component={AdminDashboard} />
-		<Route path='/createProduct' component={createProduct} />
-		<Route path='/editProduct/:id' component={editProduct} />
+		<Route path='/createProduct' component={AdminCreateProduct} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
