@@ -4,8 +4,10 @@ import '../styles/HeaderFooter.css';
 import logo from '../images/logo.png';
 import logoBlanco from '../images/logoBlanco.png';
 import Cart from './Cart';
+import { connect } from 'react-redux';
+import userActions from '../redux/actions/userActions';
 
-const Header = () => {
+const Header = (props) => {
 	const [cart, setCart] = useState(false)
 	const cartHandler = () => {
 		setCart(!cart)
@@ -22,8 +24,15 @@ const Header = () => {
 			</div>
 			<div style={{flex: 1}}/>
 			<div className='links'>
+				{!props.token
+				?<>
 				<NavLink to="/login" className='ufc'>Ingresar</NavLink> / 
 				<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
+				</>
+				:<>
+				<NavLink to="/account" className='ufc'>Mi cuenta</NavLink> / 
+				<NavLink to onClick={props.logOut} className='ufc'>Salir</NavLink>
+				</>}
 			</div>
 			<div className='cart' onClick={cartHandler}>
 				<div className='icono'>
@@ -39,4 +48,14 @@ const Header = () => {
 	</> );
 }
  
-export default Header;
+const mapStateToProps = state => {
+    return {
+        token: state.userReducer.token,
+    }
+}
+
+const mapDispatchToProps = {
+    logOut: userActions.logoutUser
+}
+  
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
