@@ -14,6 +14,7 @@ import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
+import Products from './pages/Products';
 
 
 function App(props) {
@@ -29,6 +30,7 @@ function App(props) {
 		<Route path='/admin' component={AdminDashboard} />
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>

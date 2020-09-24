@@ -49,15 +49,14 @@ router.route("/product/deleteProduct")
 router.route("/product/listProducts")
 .get(productController.getAllProducts)
 
-router.route("/product/listProductsByCategory")
-.get(productController.getProductByCat)
-
 router.route("/product/productFound")
 .get(productController.getProductById)
 
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
 
+router.route("/products/:category")
+.get(productController.getProductByCat)
 
 // ORDER ROUTES
 router.route("/orders")

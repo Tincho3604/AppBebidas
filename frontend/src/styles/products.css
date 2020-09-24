@@ -1,0 +1,15 @@
+.products {
+	background: #1f2327;
+	display: flex;
+	min-height: 80vh;
+}
+
+.navProducts {
+	display: flex;
+	width: 15%;
+	min-width: 250px;
+	height: 100%;
+	flex-direction: column;
+	color: gray;
+	background: #16191c;
+}

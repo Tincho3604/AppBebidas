@@ -37,14 +37,14 @@ const productActions = {
             })
 		}
 	},
-    getProductByCategory: (category) => {
+    getProductByCategory: category => {
         
         return async(dispatch, getState) => {
-        const respuesta = await axios.get(`${RUTA_API}/api/product/listProductsByCategory`,{category})
-        const product = respuesta.data.listProducts
+        const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
+        const products = respuesta.data.listProducts
         dispatch({
             type: 'GET_PRODUCT_BY_CATEGORY',
-            dispatch: product
+            dispatch: products
             })
         }
     },
