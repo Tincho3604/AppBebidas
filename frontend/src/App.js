@@ -38,6 +38,7 @@ function App(props) {
 	: (<Switch>
 		{/* RUTAS USUARIO LOGUEADO */}
 		<Route exact path='/' component={Home} />
+		<Route path='/product/:id' component={ProductFull} />
 		<Redirect to='/' />
 	</Switch>);
 	

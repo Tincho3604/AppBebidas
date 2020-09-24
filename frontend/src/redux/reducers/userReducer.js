@@ -1,5 +1,5 @@
 const initialState = {
-	urlPic: '',
+	id: '',
 	token: '',
 	firstName: '',
 	lastName: '',
@@ -12,6 +12,7 @@ function userReducer(state = initialState, action) {
 	switch (action.type) {
 		case "USER_IN":
 			localStorage.setItem("token", action.payload.token)
+			console.log(action.payload, "dato del usuario")
 			return {
 				...state,
 				...action.payload,

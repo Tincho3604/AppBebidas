@@ -24,7 +24,7 @@ const userController = {
 					token,
 					firstName: user.firstName,
 					lastName: user.lastName,
-					urlPic: user.urlPic,
+					id: user._id,
 					wishlist: user.wishlist,
 				})
 			})
