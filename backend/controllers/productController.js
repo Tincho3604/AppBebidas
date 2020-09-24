@@ -73,18 +73,25 @@ const productController = {
 			.then(productDeleted => res.json({ success: true, productDeleted }))
 			.catch(error => res.json({ success: false, error }))
 	},
-	getProductByCat: async (req, res) => {
-		const { category } = req.body
-		Product.find({ category: category })
-			.then(listProducts => res.json({ success: true, listProducts }))
-			.catch(error => res.json({ success: false, error }))
-	},
-	getProductById: async (req, res) => {
-		const { id } = req.body
 	
-		Product.findById({ _id: id })
-			.then(productFound => res.json({ success: true, productFound }))
-			.catch(error => res.json({ success: false, error }))
+	getAllProducts: async (req, res) => {
+		Product.find()
+		.then(list => res.json({success:true, list:list}))
+	    .catch(error => res.json({success: false, error:error}))
+	},
+
+	getProductByCat: async (req, res) => {
+		const {category} = req.params.id
+		Product.find({category: category})
+		.then(listProducts => res.json({success: true, listProducts}))
+		.catch(error =>res.json({success: false, error}))
+	},
+
+	getProductById: async (req, res) => {
+		const {id} = req.params.id
+		Product.findById({_id: id})
+		.then(productFound => res.json({success: true, productFound}))
+		.catch(error =>res.json({success: false, error}))
 	},
 	getProductByWishlist: async (req, res) => {
 		const { arrayIDs } = req.body
