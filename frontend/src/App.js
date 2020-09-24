@@ -13,7 +13,7 @@ import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import createProduct from '../src/pages/CreateProduct';
-
+import shippingAddress from './components/ShippingAddress'
 
 function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
@@ -24,6 +24,7 @@ function App(props) {
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
 		<Route exact path='/admin' component={AdminDashboard} />
+		<Route exact path='/shippingAddress' component={shippingAddress}/>
 		{/* <Route path='/signup' component={SignUp} />
 		<Route path='/login' component={Login} /> */}
 		<Redirect to='/' />
