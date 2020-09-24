@@ -3,6 +3,8 @@ const initialState = {
 	token: '',
 	firstName: '',
 	lastName: '',
+	shippingAddress: '',
+	billingAddress: '',
 	wishlist: [],
 	cart: [],
 	comments: null
