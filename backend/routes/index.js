@@ -4,7 +4,6 @@ const commentController = require("../controllers/commentController")
 const productController = require ("../controllers/productController")
 const validator = require("../config/validator")
 const passport = require("../config/passport")
-const { get } = require("mongoose")
 const orderController = require("../controllers/orderController")
 const router = express.Router()
 
@@ -12,7 +11,7 @@ const router = express.Router()
 
 // USER ROUTES
 router.route("/user/register")
-.post(validator.validateUser,userController.createUser)
+.post(/*validator.validateUser,*/userController.createUser)
 
 router.route("/user/modifyUser")
 .put(passport.authenticate('jwt',{session: false}),userController.editUser)
@@ -36,10 +35,13 @@ router.route("/user/removeWishList")
 
 // PRODUCTS ROUTES
 router.route("/product/createProduct")
-.post(validator.validateProduct,productController.createProduct)
+.post( productController.createProduct)
 
-router.route("/product/modifyProduct")
-.put(validator.validateProduct, productController.modifyProduct)
+router.route("/product/getProduct")
+.post(productController.getProductById)
+
+router.route("/product/editProduct")
+.put( productController.modifyProduct)
 
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
@@ -47,15 +49,14 @@ router.route("/product/deleteProduct")
 router.route("/product/listProducts")
 .get(productController.getAllProducts)
 
-router.route("/product/listProductsByCategory")
-.get(productController.getProductByCat)
-
 router.route("/product/productFound")
 .get(productController.getProductById)
 
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
 
+router.route("/products/:category")
+.get(productController.getProductByCat)
 
 // ORDER ROUTES
 router.route("/orders")

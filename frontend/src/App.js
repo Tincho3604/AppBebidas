@@ -12,8 +12,12 @@ import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
-import createProduct from '../src/pages/CreateProduct';
 import shippingAddress from './components/ShippingAddress'
+import AdminCreateProduct from './pages/AdminCreateProduct';
+import AdminEditProduct from './pages/AdminEditProduct';
+import Products from './pages/Products';
+import ProductFull from './pages/ProductFull';
+
 
 function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
@@ -23,15 +27,19 @@ function App(props) {
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
-		<Route exact path='/admin' component={AdminDashboard} />
-		<Route exact path='/shippingAddress' component={shippingAddress}/>
-		{/* <Route path='/signup' component={SignUp} />
-		<Route path='/login' component={Login} /> */}
+		<Route path='/shippingAddress' component={shippingAddress}/>
+		<Route path='/signup' component={SignUp} />
+	    <Route path='/login' component={Login} />
+		<Route path='/admin' component={AdminDashboard} />
+		<Route path='/createProduct' component={AdminCreateProduct} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
+		<Route path='/product/:id' component={ProductFull} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		{/* RUTAS USUARIO LOGUEADO */}
-		<Route exact path="/" component={Home}/>
+		<Route exact path='/' component={Home} />
 		<Redirect to='/' />
 	</Switch>);
 	
