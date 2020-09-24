@@ -54,7 +54,8 @@ const EditProduct = (props) => {
         error.ok = true
         //RegEx
         const alphanum = RegExp(/^\w+$/)
-        const num = RegExp(/\d.{1,}/)
+		const num = RegExp(/\d.{1,}/)
+		const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
         //category
         if (product.category === '') {
             error.category = 'Cannot be empty'
@@ -64,10 +65,10 @@ const EditProduct = (props) => {
             error.category = 'Need three characters at least'
             error.ok = false
         }
-        else if (!alphanum.test(product.title)) {
-            error.title = 'Only can contains letters and numbers'
-            error.ok = false
-        }
+        // else if (!alphanum.test(product.title)) {
+        //     error.title = 'Only can contains letters and numbers'
+        //     error.ok = false
+        // }
         else error.title = ''
         //description
         if (product.description === '') {
@@ -78,10 +79,10 @@ const EditProduct = (props) => {
             error.description = 'Need thirty characters at least'
             error.ok = false
         }
-        else if (!alphanum.test(product.title)) {
-            error.title = 'Only can contains letters and numbers'
-            error.ok = false
-        }
+        // else if (!alphanum.test(product.description)) {
+        //     error.description = 'Only can contains letters and numbers'
+        //     error.ok = false
+        // }
         else error.title = ''
         // price
         if (product.price === '') {
@@ -113,10 +114,10 @@ const EditProduct = (props) => {
             error.stock = 'Cannot be empty'
             error.ok = false
         }
-        else if (!num.test(product.stock)) {
-            error.stock = 'Only can contains numbers'
-            error.ok = false
-        }
+        // else if (!num.test(product.stock)) {
+        //     error.stock = 'Only can contains numbers'
+        //     error.ok = false
+        // }
         else error.stock = ''
         // alcPct
 
@@ -125,7 +126,7 @@ const EditProduct = (props) => {
             error.ok = false
         }
 
-        else if (!num.test(product.alcPct)) {
+        else if (!decimals.test(product.alcPct)) {
             error.alcPct = 'Only can contains numbers'
             error.ok = false
         }
