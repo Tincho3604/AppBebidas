@@ -81,14 +81,14 @@ const productController = {
 	},
 
 	getProductByCat: async (req, res) => {
-		const {category} = req.params.id
+		const {category} = req.params
 		Product.find({ category })
 		.then(listProducts => res.json({success: true, listProducts}))
 		.catch(error =>res.json({success: false, error}))
 	},
 
 	getProductById: async (req, res) => {
-		const {id} = req.params.id
+		const {id} = req.params
 		Product.findById({_id: id})
 		.then(productFound => res.json({success: true, productFound}))
 		.catch(error =>res.json({success: false, error}))

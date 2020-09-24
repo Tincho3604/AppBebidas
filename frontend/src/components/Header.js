@@ -16,13 +16,13 @@ const Header = () => {
 				<img src={logoBlanco} />
 			</div>
 			<div className='links'>
-				<NavLink to className='ufc'>Home</NavLink>
-				<NavLink to className='ufc'>Bebidas</NavLink>
+				<NavLink to="/" className='ufc'>Home</NavLink>
+				<NavLink to="products/all" className='ufc'>Bebidas</NavLink>
 				<NavLink to className='ufc'>Contacto</NavLink>
 			</div>
 			<div style={{flex: 1}}/>
 			<div className='links'>
-				<NavLink to className='ufc'>Ingresar</NavLink> / 
+				<NavLink to="/login" className='ufc'>Ingresar</NavLink> / 
 				<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
 			</div>
 			<div className='cart' onClick={cartHandler}>
