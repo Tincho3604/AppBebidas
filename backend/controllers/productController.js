@@ -88,7 +88,7 @@ const productController = {
 	},
 
 	getProductById: async (req, res) => {
-		const {id} = req.params.id
+		const {id} = req.params
 		Product.findById({_id: id})
 		.then(productFound => res.json({success: true, productFound}))
 		.catch(error =>res.json({success: false, error}))

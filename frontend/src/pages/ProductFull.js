@@ -9,6 +9,7 @@ import Comment from '../components/Comment';
 import userActions from "../redux/actions/userActions"
 import { toast } from "react-toastify"
 import productActions from '../redux/actions/productActions';
+import { CATEGORIES } from '../constants';
 
 const ProductFull = (props) => {
     
@@ -60,21 +61,23 @@ const ProductFull = (props) => {
 
     return(
         <>
+		{console.log(props.product)}
         <Header/>
         <div >
             <div className="Classbanner">
                 <img src={vino}/>
-                <p>vinos</p>
+                <p>{CATEGORIES.map(cat => {
+					return cat.foto === props.product.category && cat.nombre
+				})}</p>
             </div>
             <div className="infoProduct">
                 <div className="allInformation">
-                    <img src={alcohol}/>
+                    <img src={props.product.pic}/>
                     <div>
-                    <h2>Luis Cañas Crianza 2016</h2>
-                        <p className="units">20 unidades</p>
-                        <p className="price">10,41 €</p>
-                        <p className="description">Luis Cañas Crianza 2016, elaborado con tempranillo y algo de garnacha, es, sin duda, un vino de extraordinaria relación calidad/precio.
-                           En el año 1970 Luis Cañas funda la Bodega que lleva su nombre, siendo su objetivo elaborar los mejores vinos cosecheros. En 1989 pasa a manos de su hijo Juan Luis, que prima la elaboración de vinos de crianza de calidad.</p>
+                    <h2>{props.product.title}</h2>
+                        <p className="units">{props.product.stock} unidades</p>
+                        <p className="price">$ {props.product.price}</p>
+                        <p className="description">{props.product.description}</p>
                         <div className="quantity">
                             <button className="plus"> -</button>
                             <p>0</p>
@@ -82,8 +85,8 @@ const ProductFull = (props) => {
                             <button className="addToBag">agregar al carrito</button>
                         </div>
                         <div className="aditionalInfo">
-                        <p>750 ml</p>
-                        <p>6,5% alc</p>
+                        <p>{props.product.ml} ml</p>
+                        <p>{props.product.alcPct}% alc</p>
                         </div>
                         <div className="ratings">
                             <i class="fas fa-star"></i>
@@ -96,7 +99,7 @@ const ProductFull = (props) => {
                 </div>
                 <div id="theComments">
 			        <div id="scrollComments">
-                        {props.comments === null
+                        {props.comments === null || props.comments === undefined
                         ? "cargando..."
                         : props.comments.map((comentario, index) => {
                             return <Comment key={index} fx={setUpdate} data={comentario} />
