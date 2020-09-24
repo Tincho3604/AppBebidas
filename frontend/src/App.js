@@ -28,7 +28,7 @@ function App(props) {
 	    <Route path='/login' component={Login} />
 		<Route path='/admin' component={AdminDashboard} />
 		<Route path='/createProduct' component={createProduct} />
-		<Route path='/editProduct/:id' component={editProduct} />
+		<Route path='/editProduct' component={editProduct} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>

@@ -38,21 +38,12 @@ const EditProduct = (props) => {
     useEffect(() => {
         
         const {id} = props.match.params
-           props.dataProduct(id)
+           props.dataProduct("5f6baa40353b272460f03bb7")
         
-           setProduct({
-            category: "",
-            title: "",
-            price: "",
-            ml: "",
-            rating: "",
-            pic: "",
-            alcPct: "",
-            stock: "",
-            description: ""
-           })
+    
            
        },[]) 
+       console.log(props)
     const validation = product => {
         error.ok = true
         //RegEx
@@ -188,6 +179,7 @@ const EditProduct = (props) => {
     }
     
     return (
+
         <>
        {/* AGREGAR VALUES CON PROPS DE LA ACCION AL OBTENER DATOS DE UN PRODUCTO ASI SE RENDERIZAN AL QUERER EDITAR UN PRODUCTO */}
          <div id="mainContainerProduct">
@@ -195,34 +187,34 @@ const EditProduct = (props) => {
                 <div className="formContainer">
                     <div className="inputs">
                         <label for="category">Category:</label>
-                        <input type="text" name="category" onChange={handleChange}></input>
+                        <input type="text" name="category" onChange={handleChange} value={props.productData.category}></input>
                         <div className="inputs">
                             <label for="title">Title:</label>
-                            <input type="text" name="title" onChange={handleChange}></input>
+                            <input type="text" name="title" onChange={handleChange} value = {props.productData.title}></input>
                         </div>
                         <div className="inputs">
                             <label for="description">Description:</label>
-                            <input type="text" name="description" onChange={handleChange}></input>
+                            <input type="text" name="description" onChange={handleChange} value={props.productData.description}></input>
                         </div>
                         <div className="inputs">
                             <label for="price">Price:</label>
-                            <input type="number" name="price" onChange={handleChange}></input>
+                            <input type="number" name="price" onChange={handleChange} value={props.productData.price}></input>
                         </div>
                         <div className="inputs">
                             <label for="stock">Stock:</label>
-                            <input type="number" name="stock" onChange={handleChange}></input>
+                            <input type="number" name="stock" onChange={handleChange} value={props.productData.stock}></input>
                         </div>
                         <div className="inputs">
                             <label for="ml">ml:</label>
-                            <input type="number" name="ml" onChange={handleChange}></input>
+                            <input type="number" name="ml" onChange={handleChange} value={props.productData.ml}></input>
                         </div>
                         <div className="inputs">
                             <label for="alcPct">alcPct:</label>
-                            <input type="number" name="alcPct" onChange={handleChange}></input>
+                            <input type="number" name="alcPct" onChange={handleChange} value={props.productData.alcPct}></input>
                         </div>
                         <div className="inputs">
                             <label for="pic">Pic:</label>
-                            <input type="file" name="pic" onChange={handleChange}></input>
+                            <input type="file" name="pic" onChange={handleChange} ></input>
                         </div>
 
                     </div>

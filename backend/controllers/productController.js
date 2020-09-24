@@ -18,7 +18,7 @@ const productController = {
 					let error = false
 					file.mv(ruta, async err => {
 						if (err) {
-							error = 'Problemas al grabar la imagen';
+							error = "Error saving image";
 						}
 						else {
 							const newProducto = await Product.findOneAndUpdate({ _id: newProduct._id }, { pic: `http://localhost:4000/${newProduct._id}.jpg` }, { new: true })
@@ -50,7 +50,7 @@ const productController = {
 			let error = false
 			file.mv(ruta, async err => {
 				if (err) {
-					error = 'Problemas al grabar la imagen';
+					error = 'Error saving image';
 				}
 				else {
 					const editedProduct = await Product.findByIdAndUpdate(id, { category, title, description, price, stock, ml, alcPct,pic: `http://localhost:4000/${req.body.id}.jpg` }, { returnNewDocument: true })
