@@ -20,7 +20,7 @@ const Home = (props) => {
         <div className="whoWeAre">
             <h2>QUIENES SOMOS</h2>
             <p>Somos una empresa que distribuye alcohol de calidad, tenemos las bebidas alcoholicas mas exclusivas para que nuestros clientes disfruten. Buscamos brindar una experiencia y producto de primera calidad.</p>
-            <h5>Si estas buscando bebidas exclusivas para disfrutar nuestro sitio es el correcto</h5>
+            <h5>Si estas buscando bebidas exclusivas para disfrutar aqui vas a poder encontrarlas</h5>
         </div>
         <div className="categories">
             <h2>CATEGORIAS</h2>
@@ -34,16 +34,7 @@ const Home = (props) => {
 				})} 
             </div>
         </div>
-        <form className="sign">
-						<span className="title">INGRESAR</span>
-						<div className="inputBox">
-							<label htmlFor="mail"><i className="fas fa-envelope"></i></label>
-							<input type="text" name="mail" id="mail" placeholder="Email" value="mail"/>
-						</div>
-						<div className="inputBox">
-						</div>
-						<button> send </button>
-		</form>
+        <Contacto/>
         <Footer/>
         </>
     )
