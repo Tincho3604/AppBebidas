@@ -13,6 +13,7 @@ import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import createProduct from '../src/pages/CreateProduct';
+import ProductFull from './pages/ProductFull';
 
 
 function App(props) {
@@ -24,6 +25,7 @@ function App(props) {
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
 		<Route exact path='/admin' component={AdminDashboard} />
+		<Route exact path='/productfull' component={ProductFull} />
 		{/* <Route path='/signup' component={SignUp} />
 		<Route path='/login' component={Login} /> */}
 		<Redirect to='/' />

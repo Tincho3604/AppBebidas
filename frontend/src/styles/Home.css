@@ -15,14 +15,14 @@
     top:40vh;
     left: 0;
     z-index: 1;
-    width: 25%;
+    width: 320px;
 }
 .homeBackgroundTwo{
     position: absolute;
     top:80vh;
     right: 0;
     z-index: 1;
-    width: 25%;
+    width: 320px;
 }
 .whoWeAre{
     background-color: #000000;
@@ -63,7 +63,7 @@
     font-size: 7vh;
 }
 .categories .allCategories{
-    padding: 10vh 0vw;
+    padding: 10vh 0vw 2vh 0vw;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
