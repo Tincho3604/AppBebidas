@@ -3,10 +3,9 @@ import userActions from '../redux/actions/userActions'
 import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
 
-
 // import userActions from '../redux/actions/userActions';
 
-const ShippingAddress = (props) => {
+const BillingAddress = (props) => {
 
 const [shipAddress, setAddress] = useState({
     street: "",
@@ -124,7 +123,7 @@ const handleClick = async e => {
         fd.append("apartment",shipAddress.apartment)
         
 
-        await props.addShippingAddress(fd)
+        await props.addBillingAddress(fd)
         
         
         //ACCION
@@ -155,7 +154,7 @@ function handleGameClick() {
 return (
     <>
         <div id="mainContainerProduct">
-            <h1>Shipping Address</h1>
+            <h1>Billing Address</h1>
             
            
                 
@@ -204,15 +203,15 @@ return (
 
 const mapStateToProps = state => {
     return {
-        shippingAddress: state.userReducer.shippingAddress
+        billingAddress: state.userReducer.billingAddress
     }
 }
 
 const mapDispatchToProps = {
     
-    addShippingAddress: userActions.addShippingAddress
+    addBillingAddress: userActions.addBillingAddress
 
     }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShippingAddress);
+export default connect(mapStateToProps, mapDispatchToProps)(BillingAddress);

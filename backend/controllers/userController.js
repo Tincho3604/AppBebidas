@@ -24,7 +24,6 @@ const userController = {
 					token,
 					firstName: user.firstName,
 					lastName: user.lastName,
-					urlPic: user.urlPic,
 					wishlist: user.wishlist,
 				})
 			})
@@ -52,7 +51,7 @@ const userController = {
 	},
 	
 	decodeUser: (req, res) => {
-		const { urlPic, firstName, lastName, wishlist } = req.user
+		const {firstName, lastName, wishlist } = req.user
 		res.json({
 			firstName,
 			lastName,
@@ -170,7 +169,54 @@ const userController = {
 			    response: error
 		    })
 	    }
-    }
+	},
+
+
+	addShippingAddress: async (req, res) => {
+		var id = req.params.id
+		var userId = res.user._id
+		
+		const data = {street,number,floor,apartment} = req.body
+		
+		try {
+			var user = await  User.findOne({_id: userId}, {shippingAddress: req.body})
+			res.json({
+				success: true,
+				response: user
+			})
+
+		}catch(error){
+		    res.json({
+			    success: false,
+			    response: error
+		    })
+			
+		}
+	},
+
+	addBillingAddress: async (req, res) => {
+		var id = req.params.id
+		var userId = res.user._id
+		
+		const data = {street,number,floor,apartment} = req.body
+		
+		try {
+			var user = await  User.findOne({_id: userId}, {billingAddress: req.body})
+			res.json({
+				success: true,
+				response: user
+			})
+
+		}catch(error){
+		    res.json({
+			    success: false,
+			    response: error
+		    })
+			
+		}
+	},
+
+
 
 }
 module.exports = userController

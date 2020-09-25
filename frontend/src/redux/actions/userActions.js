@@ -28,7 +28,52 @@ const userActions = {
 			return response
 		}
 	},
+	
+	
+	
+	addShippingAddress: (user, shippinginfo) => {
+return async (dispatch, getState) => {
+	const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
+	const info = response.data.user
+	
+	if (!response.data.success) {
+		toast.error(response.data.error)
+		return response.data.error
+	} else {
+		dispatch({
+			type: "INFO_SHIPPING_ADDRESS_UPDATE",
+			payload: info
+	            })
+	        }
+        }
+	},
 
+	addBillingAddress: (user, billinginfo) => {
+		return async (dispatch, getState) => {
+			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`,billinginfo,user)
+			const info = response.data.user
+			
+			if (!response.data.success) {
+				toast.error(response.data.error)
+				return response.data.error
+			} else {
+				dispatch({
+					type: "INFO_BILLING_ADDRESS_UPDATE",
+					payload: info
+						})
+					}
+				}
+			},
+
+
+
+
+
+
+
+
+
+    
     getUserInfo: (user) => {
         return async (dispatch, getState) => {
 			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, user)
@@ -61,6 +106,8 @@ const userActions = {
 			}
 		}
 	},
+
+
 	logoutUser: () => {
 		return (dispatch, getState) => {
 			toast.info("See you later! =D")
@@ -93,6 +140,9 @@ const userActions = {
 			})
 		}
 	},
+
+
+
 	modifyUser:	user => {
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
@@ -103,7 +153,9 @@ const userActions = {
 			if(response.data.success) toast.success('Cambios guardados!')
 			else toast.error('Ha habido un problema')
 		}
-    },
+	},
+	
+
 	newComment: comment => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+ "/api/comment/",comment)

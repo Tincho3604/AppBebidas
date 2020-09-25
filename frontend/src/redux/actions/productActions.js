@@ -15,7 +15,7 @@ const productActions = {
 
         }
     },
-    dataProduct: id=> {
+    dataProduct: id => {
 
         return async (dispatch, getState) => {
             const response = await axios.post(RUTA_API + "/api/product/getProduct/" + id)
