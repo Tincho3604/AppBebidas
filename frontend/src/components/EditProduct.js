@@ -34,22 +34,12 @@ const EditProduct = (props) => {
 
     useEffect(() => {
         
-        const {id} = props.match.params
-           props.dataProduct(id)
+
         
-           setProduct({
-            category: "",
-            title: "",
-            price: "",
-            ml: "",
-            rating: "",
-            pic: "",
-            alcPct: "",
-            stock: "",
-            description: ""
-           })
+    
            
        },[]) 
+       console.log(props)
     const validation = product => {
         error.ok = true
         //RegEx
@@ -186,6 +176,7 @@ const EditProduct = (props) => {
     }
     
     return (
+
         <>
        {/* AGREGAR VALUES CON PROPS DE LA ACCION AL OBTENER DATOS DE UN PRODUCTO ASI SE RENDERIZAN AL QUERER EDITAR UN PRODUCTO */}
 	   <div className="container">
