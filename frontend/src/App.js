@@ -26,9 +26,9 @@ function App(props) {
 		props.authUser(localStorage.getItem('token'))
 	}
 	
-	if(localStorage.getItem('items') && props.user.cart.length === 0) {
-		props.loadCart()
-	}
+	// if(localStorage.getItem('items') && props.user.cart.length === 0) {
+	// 	props.loadCart()
+	// }
 
 	const rutas = (props.user.token === '')
 	? (<Switch>

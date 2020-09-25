@@ -9,6 +9,24 @@ const getCartItems = () => {
 }
 
 const userActions = {
+	addToCart: (id, cantidad) =>{
+		return async (dispatch, getState) => {
+			console.log("Add to cart action")
+			console.log(id, cantidad)
+			let cart = getCartItems()
+			console.log(cart)
+			const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
+			const item = response.data.productFound
+			item.quantity = cantidad
+			console.log(item)
+			cart.push(item)
+			console.log(cart)
+			dispatch({
+                type:'LOAD_CART',
+                payload: cart
+            })
+		}
+	},
 	createUser: (user, set = null ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
@@ -178,17 +196,6 @@ const userActions = {
 			else toast.error("An error occurred")
 		}
 	},
-	loadCart: () => {
-		return (dispatch, getState) => {
-			console.log('Ejecutando Load Cart')
-			let cart = getCartItems();
-			console.log(cart)
-            dispatch({
-                type:'LOAD_CART',
-                payload: cart
-            })
-        }
-	}
 }
 
 export default userActions
