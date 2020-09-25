@@ -18,8 +18,13 @@
     margin-left: 3vw;
     color: #ffffff;
 }
-
-
+.nameAndRating{
+    display: flex;
+    align-items: center;
+}
+.nameAndRating .ratings{
+    margin-left: 1vw;
+}
 .infoProduct{
     background-color: #000000;
     color: #ffffff;
@@ -41,7 +46,7 @@
    
 }
 .infoProduct .allInformation img{
-    height: 65vh;
+    height: 60vh;
     margin-right: 3vw;
 }
 .infoProduct .allInformation .units{
@@ -71,7 +76,7 @@
 .infoProduct .allInformation .quantity .plus{
     border:none ;
     background: none;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
     font-weight: bold;
@@ -80,10 +85,9 @@
 }
 .infoProduct .allInformation .quantity .addToBag{
     border:none ;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
-    font-weight: bold;
     background: #d1b653;
     border: 2px solid #d1b653;
 }
