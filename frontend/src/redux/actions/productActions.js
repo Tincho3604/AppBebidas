@@ -59,6 +59,21 @@ const productActions = {
             })
         }
     },
+
+
+    getListProduct: category => {
+        
+        return async(dispatch, getState) => {
+        const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
+        
+        return respuesta.data.listProducts
+        
+        
+        }
+    },
+
+
+
 }
 
 export default productActions
