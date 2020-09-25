@@ -20,7 +20,8 @@ const ProductFull = (props) => {
     const [comment, setComment] = useState({
 		comment: "",
         name: "",
-		productId: "",
+        productId: "",
+        id: ""
 	})
     useEffect(() => {
 		const gR = async () => {
@@ -38,7 +39,8 @@ const ProductFull = (props) => {
 			...comment,
 			[comment]: text,
             name:`${props.firstName} ${props.lastName}`,
-			productId: props.product._id,
+            productId: props.product._id,
+            id: props.id
 		})
 	}
 	const sendComment = async e => {
@@ -159,6 +161,7 @@ const mapStateToProps = state => {
         lastName: state.userReducer.lastName,
         comments: state.userReducer.comments,
         token: state.userReducer.token,
+        id: state.userReducer.id
     }
   }
 const mapDispatchToProps = {

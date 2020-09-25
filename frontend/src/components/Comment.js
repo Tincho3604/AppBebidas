@@ -13,6 +13,7 @@ const Comment = (props) => {
             comment: props.data.comment,
         })
         const [edit, setEdit] = useState(false)
+       
         const [commentId, setDeleted] = useState(props.data._id)
     
         const erased = async () => {
@@ -49,10 +50,9 @@ const Comment = (props) => {
                     <>{edit 
                     ? <input type='text' onChange={readComment}className="CommentEditText" name="comment" style={{ background: "none"}} value={editedComment.comment}></input>
                      : <div className="heigtComment">
-                     <p style={{ background: "none"}}> {props.data.comment}</p>
-                     </div>
+                          <p style={{ background: "none"}}> {props.data.comment}</p>
+                       </div>
                      }
-            
                         <div className="buttonEdit">
                             <button onClick={erased} className="buttonRubish" >
                                 <img className="rubish" src={rubish}></img>
