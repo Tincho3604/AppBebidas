@@ -1,7 +1,6 @@
 import axios from "axios"
 import { RUTA_API } from "../../constants"
 
-
 const productActions = {
     createProduct: (fd) => {
         console.log(fd)
@@ -10,13 +9,10 @@ const productActions = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-
             })
-
         }
     },
     dataProduct: id=> {
-
         return async (dispatch, getState) => {
             const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
 
@@ -47,7 +43,6 @@ const productActions = {
             })
         }
     },
-
     getAllProducts: () => {
         return async(dispatch, getState) => {
             const respuesta = await axios.get(`${RUTA_API}/api/product/listProducts`)
@@ -57,7 +52,7 @@ const productActions = {
                 payload: allProduct
             })
         }
-    },
+	}
 }
 
 export default productActions

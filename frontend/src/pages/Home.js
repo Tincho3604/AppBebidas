@@ -9,7 +9,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Contacto from '../components/Contacto';
 import { CATEGORIES } from '../constants';
-import Contacto from "../components/Contacto"
 const Home = (props) => {
 
     return (

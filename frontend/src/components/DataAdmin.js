@@ -13,7 +13,7 @@ const DataAdmin = (props) => {
 			</div>
 			<div className='adminData'>
 				<span>35</span>
-				<span>Cantida de usuarios</span>
+				<span>Cantidad de usuarios</span>
 			</div>
 			<div className='adminData'>
 				<span>7</span>

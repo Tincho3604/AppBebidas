@@ -29,6 +29,11 @@ function userReducer(state = initialState, action) {
 				...state,
 				comments: action.payload,
 			}
+		case "LOAD_CART":
+			return {
+				...state,
+				cart: action.payload,
+			}
 		default:
 			return state
 	}
