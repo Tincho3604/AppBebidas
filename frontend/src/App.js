@@ -12,6 +12,8 @@ import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
+import ShippingAddress from './components/ShippingAddress'
+import BillingAddress from './components/BillingAddress'
 import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
 import Account from './pages/Account';
@@ -29,17 +31,19 @@ function App(props) {
 		<Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
 	    <Route path='/login' component={Login} />
-		<Route path='/admin' component={AdminDashboard} />
+		<Route path='/admin' component={AdminDashboard}/>
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
 		<Route path='/Account' component={Account} />
-		
-		<Redirect to='/' />
+		{/* Estas rutas deberian estar cuando el usuario este logeado */}
+		<Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/>
+		<Redirect to='/' /> 
 	</Switch>)
 	: (<Switch>
-		{/* RUTAS USUARIO LOGUEADO */}
+		RUTAS USUARIO LOGUEADO 
 		<Route exact path='/' component={Home} />
 		<Route path='/product/:id' component={ProductFull} />
 		<Route path='/Account' component={Account} />

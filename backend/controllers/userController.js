@@ -177,7 +177,54 @@ const userController = {
 			    response: error
 		    })
 	    }
-    }
+	},
+
+
+	addShippingAddress: async (req, res) => {
+		var id = req.params.id
+		var userId = res.user._id
+		
+		const data = {street,number,floor,apartment} = req.body
+		
+		try {
+			var user = await  User.findOne({_id: userId}, {shippingAddress: req.body})
+			res.json({
+				success: true,
+				response: user
+			})
+
+		}catch(error){
+		    res.json({
+			    success: false,
+			    response: error
+		    })
+			
+		}
+	},
+
+	addBillingAddress: async (req, res) => {
+		var id = req.params.id
+		var userId = res.user._id
+		
+		const data = {street,number,floor,apartment} = req.body
+		
+		try {
+			var user = await  User.findOne({_id: userId}, {billingAddress: req.body})
+			res.json({
+				success: true,
+				response: user
+			})
+
+		}catch(error){
+		    res.json({
+			    success: false,
+			    response: error
+		    })
+			
+		}
+	},
+
+
 
 }
 module.exports = userController

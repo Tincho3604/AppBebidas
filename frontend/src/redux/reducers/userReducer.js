@@ -34,6 +34,20 @@ function userReducer(state = initialState, action) {
 				...state,
 				cart: action.payload,
 			}
+		
+		case "INFO_SHIPPING_ADDRESS_UPDATE":
+			return{
+				...state,
+				shippingAddress: action.payload
+			}
+		
+		case "INFO_BILLING_ADDRESS_UPDATE":
+			return{
+				...state,
+				billingAddress: action.payload
+			}
+		
+
 		default:
 			return state
 	}
