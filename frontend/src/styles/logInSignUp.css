@@ -26,7 +26,7 @@
 }
 .formulario input{
     font-size: 15px;
-	margin: 1%;
+	margin: 2%;
 	width: 45vw;
 	text-align: center;
     border: none;
@@ -37,8 +37,8 @@
 }
 .formulario button{
 	padding: 7px;
-	margin: 3%;
-	width: 45vw;
+margin-top: 2vh;
+	width: 25vw;
 	text-align: center;
 	border: none;
     background-color: #D1B653;
@@ -52,11 +52,10 @@
 }
 .formulario button.goToLogIn{
     background-color: #000000;
-    border: 1px solid #D1B653;
+    border: none;
+    margin-top: 0vh;
 }
-.formulario button.goToLogIn:hover{
-    background-color: #D1B653;
-}
+
 
 
 #botonGoogle button{

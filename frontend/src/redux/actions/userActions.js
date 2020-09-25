@@ -35,20 +35,20 @@ const userActions = {
 		}
 	},
 	addShippingAddress: (user, shippinginfo) => {
-return async (dispatch, getState) => {
-	const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
-	const info = response.data.user
-	
-	if (!response.data.success) {
-		toast.error(response.data.error)
-		return response.data.error
-	} else {
-		dispatch({
-			type: "INFO_SHIPPING_ADDRESS_UPDATE",
-			payload: info
-	            })
-	        }
-        }
+		return async (dispatch, getState) => {
+		const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
+		const info = response.data.user
+		
+		if (!response.data.success) {
+			toast.error(response.data.error)
+			return response.data.error
+		} else {
+			dispatch({
+				type: "INFO_SHIPPING_ADDRESS_UPDATE",
+				payload: info
+					})
+				}
+			}
 	},
 
 	addBillingAddress: (user, billinginfo) => {
@@ -178,52 +178,62 @@ return async (dispatch, getState) => {
 			else toast.error("An error occurred")
 		}
 	},
+	addToCart: (id, cantidad) =>{
+		return async (dispatch, getState) => {
+			let found = false
+			let cart = getCartItems()
+			if(cart.length > 0) {
+				cart.map(item => {
+					if(item._id === id){
+						item.quantity += cantidad;
+						found = true;
+					}
+				})
+			}
+			if(found) {
+				dispatch({
+					type:'LOAD_CART',
+					payload: cart
+				})
+			}
+			else {
+				const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
+				const item = response.data.productFound
+				item.quantity = cantidad
+				cart.push(item)
+				dispatch({
+					type:'LOAD_CART',
+					payload: cart
+				})
+			}
+		}
+	},
 	loadCart: () => {
-		return async(dispatch, getState) => {
-            let cart = getCartItems();
+		return (dispatch, getState) => {
+			let cart = getCartItems();
             dispatch({
                 type:'LOAD_CART',
                 payload: cart
             })
         }
 	},
-	addToCart: (id, cantidad, cart) => {
+	removeFromCart: id => {
 		return async(dispatch, getState) => {
 			let cart = getCartItems()
-			cart.map(item => {
-				if(true){
-
+			cart.map((item, index) => {
+				if(item._id === id) {
+					item.quantity--
+					if(item.quantity === 0) {
+						cart.splice(index,1)
+					}
 				}
 			})
-			const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
-			const item = response.data.productFound
-			item.quantity = cantidad
-            dispatch({
-                type:'LOAD_CART',
-                payload: cart
-            })
-        }
-		// const item = articleAll.find(item => item._id === id)
-		// const items = traerItems();
-		// let cantidad = items.filter(item => item._id === id).length
-		// console.log(cantidad);
-		// if(cantidad === 0) {
-		// 	item.cantidad = 1;
-		// 	items.push(item);
-		// }
-		// else {
-		// 	items.map(article => {
-		// 		if(article._id === id) {
-		// 			article.cantidad += 1
-		// 		}
-		// 	})
-		// }
-		// localStorage.setItem('items', JSON.stringify(items));
-		// loadCarrito(traerItems());
+			dispatch({
+				type:'LOAD_CART',
+				payload: cart
+			})
+		}
 	},
-	removeFromCart: () => {
-
-	}
 }
 
 export default userActions

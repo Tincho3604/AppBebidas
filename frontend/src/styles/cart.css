@@ -19,6 +19,9 @@
 	z-index: 2;
 	transition: right .25s linear;
 	color: #9a9a9a;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .drawerCart .close {
@@ -41,18 +44,20 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 }
 
 .drawerCart .buttons {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;	
+	align-items: center;
+	width: 100%;	
 }
 
 .drawerCart .buttons .btnPrimary {
 	width: 80%;
-	padding: 8px;
+	padding: 10px;
 	background: #d1b653;
 	border: none;
 	margin: 15px 0;
@@ -60,10 +65,14 @@
 
 .drawerCart .buttons .btnSecondary {
 	width: 80%;
-	padding: 8px;
+	padding: 10px;
 	background: none;
 	color: #d1b653;
 	border: #d1b653 1px solid;	
+}
+
+.drawerCart .empty {
+	margin-top: 30px;
 }
 
 /* Cart Item */
@@ -87,4 +96,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+}
+
+.cartItem .actions {
+	display: flex;
+	justify-content: center;
+	flex: 1;
 }

@@ -72,12 +72,21 @@ const ProductFull = (props) => {
         }
     }
     const sumar = async e => {
-        e.preventDefault()
+		e.preventDefault()
+		if(product.product < props.product.stock) {
             setproduct({
                 product: product.product + 1
             })
-
-    }
+		}
+	}
+	
+	const addHandler = () =>{
+		props.addToCart(props.product._id, product.product); 
+		props.product.stock = props.product.stock - product.product;
+		setproduct({
+			product: 1
+		})
+	}
 
     return(
         <>
@@ -95,27 +104,29 @@ const ProductFull = (props) => {
                 <div className="allInformation">
                     <img src={props.product.pic}/>
                     <div>
+                    <div className="nameAndRating">
                     <h2>{props.product.title}</h2>
-                        <p className="units">{props.product.stock} unidades</p>
-                        <p className="price">$ {props.product.price}</p>
-                        <p className="description">{props.product.description}</p>
-                        <div className="quantity">
-                            <button onClick={restar} className="plus"> -</button>
-                            <p>{product.product}</p>
-                            <button onClick={sumar} className="plus">+</button>
-                            <button className="addToBag">agregar al carrito</button>
-                        </div>
-                        <div className="aditionalInfo">
-                        <p>{props.product.ml} ml</p>
-                        <p>{props.product.alcPct}% alc</p>
-                        </div>
-                        <div className="ratings">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                        </div>
+                    <div className="ratings">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    </div>
+                    <p className="units">{props.product.stock} unidades</p>
+                    <p className="price">$ {props.product.price}</p>
+                    <p className="description">{props.product.description}</p>
+                    <div className="quantity">
+                        <button onClick={restar} className="plus"> -</button>
+                        <p>{product.product}</p>
+                        <button onClick={sumar} className="plus">+</button>
+                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button>
+                    </div>
+                    <div className="aditionalInfo">
+                    <p>{props.product.ml} ml</p>
+                    <p>{props.product.alcPct}% alc</p>
+                    </div>
                     </div>
                 </div>
                 <div className="theComments">
@@ -154,6 +165,7 @@ const mapDispatchToProps = {
     dataProduct: productActions.dataProduct,
     newComment: userActions.newComment,
 	getComments: userActions.getComments,
+	addToCart: userActions.addToCart
 }
   
   export default connect(mapStateToProps,mapDispatchToProps) (ProductFull)
