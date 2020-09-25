@@ -14,7 +14,7 @@ const userActions = {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
 			console.log(response)
             if(response.data.success === "false") {
-                //set({status: false})
+                set({status: false})
                 let errors = response.data.error.errors;
 				if(errors.username !== undefined) toast.error(errors.username.message);
 				if(errors.mail !== undefined ) toast.error(errors.mail.message);
@@ -26,7 +26,9 @@ const userActions = {
 					type: "USER_IN",
 					payload: {
 						token: response.data.token,
-						username: response.data.username,
+						id: response.data.id,
+						firstName: response.data.firstName,
+						lastName: response.data.lastName,
 						wishlist: response.data.wishlist,
 					},
 				})
@@ -84,7 +86,7 @@ const userActions = {
 				toast.error(response.data.error)
 				return response.data.error
 			} else {
-				toast.success(`Welcome ${response.data.username}!`)
+				toast.success(`Buenas ${response.data.firstName}!`)
 				dispatch({
 					type: "USER_IN",
 					payload: {
@@ -93,7 +95,6 @@ const userActions = {
 						firstName: response.data.firstName,
 						lastName: response.data.lastName,
 						wishlist: response.data.wishlist,
-
 					},
 				})
 			}

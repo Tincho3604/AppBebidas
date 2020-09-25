@@ -42,6 +42,7 @@ const Comment = (props) => {
         }
         const options = () => {
 			console.log(props.data, "data props")
+			console.log(props.id, "id")
             if (props.id === props.data.id) {
                 return (
     
