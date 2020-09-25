@@ -41,6 +41,7 @@ const Comment = (props) => {
             setEdit(false)
         }
         const options = () => {
+			console.log(props.data, "data props")
             if (props.id === props.data.id) {
                 return (
     

@@ -17,8 +17,8 @@ const Cart = (props) => {
 				:props.cart.map(product => {
 					return <CartItem data={product} />
 				})}
-				<div></div>
 			</div>
+			<div className="total" style={props.total !== '$0' ? {} : {display: 'none'}}><span>Total</span><span>{props.total}</span></div>
 			{props.cart.length !== 0 && <div className='buttons'>
 				<button className='btnPrimary'>Finalizar compra</button>
 				<button className='btnSecondary'>Ver pedido</button>

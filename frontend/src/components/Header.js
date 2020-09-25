@@ -61,7 +61,7 @@ const Header = (props) => {
 				</div>
 			</div>
 		</header>
-		<Cart show={cart} cerrar={cartHandler} />
+		<Cart show={cart} cerrar={cartHandler} total={moneyTotal()} />
 	</> );
 }
  
