@@ -27,6 +27,30 @@
 	height: 90%;
 }
 
+.productCard .picture .info {
+	background: none;
+	color: goldenrod;
+	font-size: 30px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.productCard .picture:hover .info {
+	background: rgba(61, 61, 61, 0.8);
+	border-radius: 100%;
+	display: flex;
+	animation: lupa 1.5s infinite;
+}
+
 .productCard .picture .like {
 	background: black;
 	color: goldenrod;
@@ -83,4 +107,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+@keyframes lupa {
+	0% {font-size: 40px;}
+	50% {font-size: 60px;}
+	100% {font-size: 40px;}
 }

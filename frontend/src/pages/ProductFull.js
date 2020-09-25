@@ -72,12 +72,21 @@ const ProductFull = (props) => {
         }
     }
     const sumar = async e => {
-        e.preventDefault()
+		e.preventDefault()
+		if(product.product < props.product.stock) {
             setproduct({
                 product: product.product + 1
             })
-
-    }
+		}
+	}
+	
+	const addHandler = () =>{
+		props.addToCart(props.product._id, product.product); 
+		props.product.stock = props.product.stock - product.product;
+		setproduct({
+			product: 1
+		})
+	}
 
     return(
         <>
@@ -112,7 +121,7 @@ const ProductFull = (props) => {
                         <button onClick={restar} className="plus"> -</button>
                         <p>{product.product}</p>
                         <button onClick={sumar} className="plus">+</button>
-                        <button className="addToBag">agregar al carrito<i className="fas fa-cart-plus"></i></button>
+                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button>
                     </div>
                     <div className="aditionalInfo">
                     <p>{props.product.ml} ml</p>
@@ -156,6 +165,7 @@ const mapDispatchToProps = {
     dataProduct: productActions.dataProduct,
     newComment: userActions.newComment,
 	getComments: userActions.getComments,
+	addToCart: userActions.addToCart
 }
   
   export default connect(mapStateToProps,mapDispatchToProps) (ProductFull)
