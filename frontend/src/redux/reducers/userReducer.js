@@ -1,18 +1,20 @@
 const initialState = {
+	id: '',
 	token: '',
 	firstName: '',
 	lastName: '',
+	shippingAddress: '',
+	billingAddress: '',
 	wishlist: [],
 	cart: [],
-	shippingAddress:'',
-	billingAddress:''
-	
+	comments: null
 }
 
 function userReducer(state = initialState, action) {
 	switch (action.type) {
 		case "USER_IN":
 			localStorage.setItem("token", action.payload.token)
+			console.log(action.payload, "dato del usuario")
 			return {
 				...state,
 				...action.payload,
@@ -22,6 +24,16 @@ function userReducer(state = initialState, action) {
 			return {
 				...initialState
 			};
+		case "GET_COM":
+			return {
+				...state,
+				comments: action.payload,
+			}
+		case "LOAD_CART":
+			return {
+				...state,
+				cart: action.payload,
+			}
 		
 		case "INFO_SHIPPING_ADDRESS_UPDATE":
 			return{

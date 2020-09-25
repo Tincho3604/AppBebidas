@@ -16,6 +16,7 @@ import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
 import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
+import Account from './pages/Account';
 import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
 
@@ -26,26 +27,27 @@ function App(props) {
 	}
 	const rutas = (props.user.token === '')
 	? (<Switch>
-		RUTAS USUARIO DESLOGUEADO 
-		<Route exact path='/' component={Home} />         
+		{/* RUTAS USUARIO DESLOGUEADO */}
+		<Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
 	    <Route path='/login' component={Login} />
 		<Route path='/admin' component={AdminDashboard}/>
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Route path='/products/:category' component={Products} />
-		<Route path='/product/:id' component={ProductFull} /> 
-		
+		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/Account' component={Account} />
 		{/* Estas rutas deberian estar cuando el usuario este logeado */}
 		<Route path='/shippingAddress' component={ShippingAddress}/>      
 		<Route path='/billingAddress' component={BillingAddress}/>
-		
-		
 		<Redirect to='/' /> 
 	</Switch>)
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
 		<Route exact path='/' component={Home} />
+		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/Account' component={Account} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Redirect to='/' />
 	</Switch>);
 	

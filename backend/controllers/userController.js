@@ -24,7 +24,10 @@ const userController = {
 					token,
 					firstName: user.firstName,
 					lastName: user.lastName,
+					id: user._id,
 					wishlist: user.wishlist,
+					shippingAddress: user.shippingAddress,
+					billingAddress: user.billingAddress
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
@@ -47,15 +50,20 @@ const userController = {
 			lastName: userExists.lastName,
 			wishlist: userExists.wishlist,
 			id: userExists._id,
+			shippingAddress: userExists.shippingAddress,
+			billingAddress: userExists.billingAddress
 		})
 	},
 	
 	decodeUser: (req, res) => {
-		const {firstName, lastName, wishlist } = req.user
+		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id } = req.user
 		res.json({
 			firstName,
 			lastName,
 			wishlist,
+			shippingAddress,
+			billingAddress,
+			id: _id
 		})
 	},
 	
