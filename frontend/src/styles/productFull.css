@@ -36,8 +36,7 @@
 .infoProduct .allInformation{
     border-bottom: 3px solid transparent; 
     border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b26cc4 100%) 1;
-    margin:0vh 5vw 0vh 5vw;
-    padding: 3vw;
+    margin:0vh 2vw 0vh 2vw;
     display: flex;
 }
 .infoProduct h2{
@@ -47,11 +46,9 @@
 }
 .infoProduct .allInformation img{
     height: 60vh;
-    margin-right: 3vw;
 }
 .infoProduct .allInformation .units{
     margin-top: 1vw;
-   
     font-style: italic;
     font-size: 1.8vw;
 }
@@ -64,7 +61,7 @@
     margin-top: 1vw;
     font-weight: lighter;
     text-align: justify;
-    width: 50vw;
+    width: 54vw;
 }
 
 .infoProduct .allInformation .quantity{
@@ -116,5 +113,48 @@
     top:12.5vh;
     right: 0;
     z-index: 0;
-    width: 200px;
+    width: 140px;
 }
+
+@media only screen and (max-width: 900px){
+    .infoProduct .allInformation .description{
+        margin-top: 1vw;
+        font-weight: lighter;
+        text-align: justify;
+        width: 45vw;
+    }
+}
+@media only screen and (max-width: 900px){
+    .infoProduct .allInformation{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .infoProduct .allInformation .units{
+        text-align: center;
+    }
+    .infoProduct .allInformation .price{
+ 
+        text-align: center;
+    }
+    .infoProduct .allInformation .description{
+        width: 75vw;
+        text-align: center;
+    }
+    .nameAndRating{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nameAndRating .ratings{
+        margin-left: 1vw;
+    }
+    .infoProduct .allInformation img{
+        height: 40vh;
+    }
+    .infoProduct .allInformation .aditionalInfo{
+        margin-bottom: 3vh;
+    }
+}
+
