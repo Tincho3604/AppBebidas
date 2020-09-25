@@ -45,24 +45,24 @@ const Comment = (props) => {
                 return (
     
                     <>{edit 
-                    ? <input type='text' onChange={readComment}id="CommentEditText" name="comment" style={{ backgroundColor: "white"}} value={editedComment.comment}></input>
-                     : <div id="heigtComment">
-                     <p style={{ backgroundColor: "white"}}> {props.data.comment}</p>
+                    ? <input type='text' onChange={readComment}className="CommentEditText" name="comment" style={{ background: "none"}} value={editedComment.comment}></input>
+                     : <div className="heigtComment">
+                     <p style={{ background: "none"}}> {props.data.comment}</p>
                      </div>
                      }
             
-                        <div id="buttonEdit">
+                        <div className="buttonEdit">
                             <button onClick={erased} className="buttonRubish" >
-                                <img id="rubish" src={rubish}></img>
+                                <img className="rubish" src={rubish}></img>
                             </button>
     
                             {edit
                             ? <button onClick={sendEditedComment} className="buttonRubish">
-                                 <img id="edit" src={saveTik}></img>
+                                 <img className="edit" src={saveTik}></img>
                              </button>
     
                             :<button onClick={editing} className="buttonRubish">
-                                <img id="edit" src={editComment}></img>
+                                <img className="edit" src={editComment}></img>
                              </button>
                             }		
                         </div>
@@ -71,7 +71,7 @@ const Comment = (props) => {
             } else {
             return (
                     <>
-                        <p style={{ backgroundColor: "white"}}>
+                        <p style={{ backgroundColor: "none"}}>
                             {props.data.comment}
                         </p>
                     </>
@@ -80,19 +80,11 @@ const Comment = (props) => {
         }
         
         return (
-                <div id="allComentsDone">
-                    <div id="foto">
-                        {props.data.userPic == "false"
-                        ? <div id="userPic">{props.data.username.substr(0,1).toUpperCase()}</div>
-                        : <div id="userPic" style={{ backgroundImage: `url(${props.data.userPic == "true" ? `${RUTA_API}/${props.data.username}.jpg` : props.data.userPic})`,}}></div>
-                        }
-                    </div>
+                <div className="allComentsDone">
                     <div>
-                        <div id="titleEditComments" >
-                            <div id="titleComment">
-                                <p style={{fontWeight: "bold"}}>{props.data.username}  </p>
-                            </div>
-                            <div id="editComments">
+                        <div className="titleEditComments" >
+                                <p style={{fontWeight: "bold"}}>{props.data.name}  </p>
+                            <div className="editComments">
                                 {options()}
                             </div>
                         </div>

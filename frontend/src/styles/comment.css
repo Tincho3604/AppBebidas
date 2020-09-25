@@ -1,190 +1,107 @@
-#TheInput{
-    box-shadow: 0vw -3vw 2vw 0vw #6b6b6b27;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 0vw 0vw 1vh 1vw;
-    background-color: #ffffff;
-    border:1px solid#7ad70fc0;
-    padding:0.8vw;
-    height: 10vh;
-}
-#theComments{
-    margin: 5vh 0vw;
-    width: 85%;
-    height: 50vh;
-    background-color:#7ad70f75;
-    border-radius: 1vw;
+
+.theComments{
+    margin: 5vh 5vw;
+    border-bottom:3px solid#d1b653a6;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-    
 }
-#scrollComments{
+.scrollComments{
 	overflow-y: scroll;
 	overflow-x: hidden;
-    margin: 1.5vh;
+    margin: 1vh;
+    height: 60vh;
+    
 }
-
-#TextComment{
-    width: 80%;
-    height: 7vh;
+.TheInput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.TextComment{
+    width: 93%;
     border: 1px black solid;
     padding: 1vw;
+    border:2px solid#d1b653a6;
+    background-color: #000000;  
+    color: #ffffff;
+}
+.buttonSend{
     margin-left: 1vw;
-	border-radius: 1em;
-	background-color: white;
-	resize: none;
-	overflow: hidden;
+    border: none;
+    background-color: #d1b653a6; 
+    border:1px solid#d1b653a6;
+    padding: 3.5vh 2vw;
+    box-shadow: 0vw 0vw 1vw 0vw #81818154;
+ }
+ .buttonSend:hover{
 
-    
+     color: #ffffff;
+     box-shadow: 0vw 0vw 1vw 0vw #8181816c;
+     background-color: black; 
+ 
+ }
+
+.theComments h2{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    border-bottom: 1px solid #d7e05c46;
 }
 
-#allComentsDone{
-    display: flex;
-    flex-direction: row;
-	flex-wrap: nowrap;
-    justify-content: space-between;
-	align-items: stretch;
-	align-content: flex-start;
-	padding-bottom: 5px;
-	width: 100%;
-}
-#userPic{
-    width: 4.5em;
-	border: 0.3vw solid white;
-    height: 4.5em;
-    box-shadow: 0vw 0vw 1vw 0vw #807f7f57;
-	background-size: cover;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: bold;
-    margin: 1vw;
-	border-radius: 100%;
 
-    
-}
-#titleEditComments{
-    width: 35vw;
-    margin-right: 3vw;
+.allComentsDone .titleEditComments{
+  background-color: #4b3f3f50;
+  border-bottom:1px solid #d1b653a6;;
+  margin: 0vh 0vw 4vh 0vw;
+  padding: 2vh 0vw 2vh 1vw;
   
 }
-#titleComment{
-    display:flex;
-	flex-direction: row;
-	justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
-    padding: 2vh 2vw 0vh 2vw;
-    border-radius: 1vw 0vw 0vw 0vw;
-    border-bottom: 0.2vw dashed #d7e05cb0;
 
-}
-#editComments{
+
+.allComentsDone .editComments{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-	border-left: 0.5vw solid #dedede;
-    border-bottom: 0.5vw solid #dedede;
-    border-radius: 0vw 0vw 1vw 0vw;
-    min-height: 6vw;
-    margin-bottom: 2vh;
+    min-height: 2vw;
+    margin-bottom: 1vh;
 }
 
 
-#editComments p{
-    width: 20vw;
+.editComments p{
+    width: 50vw;
     margin-left: 1vw;
-    margin-top: 3vh;
+    margin-top: 1vh;
 }
-#CommentEditText{
+.CommentEditText{
     width: 75%;
-    border: 2px #7ad70f65 solid;
-	padding: 0.5vw;
-	border-radius: 1em;
-    background-color: white;
-    resize: none;
-    outline: none;
+    border: 2px #d1b653a6 solid;
+    padding: 0.5vw;
+    background: none;
     margin:1vw;
+    color: #ffffff;
     min-height: 6vh;
 }
 
-.picturebox{
-    width: 4.5em;
-    height: 4.5em;
-	background-size: cover;
-	align-items: center;
-	display: flex;
-	margin: 0 2%;
-}
-#buttonSend{
-   margin-right: 1vw;
-   border: none;
-   background-color: #7ad70f5e; 
-   padding: 0.7vh 1vw;
-   border-radius: 1vw;
-   box-shadow: 0vw 0vw 1vw 0vw #81818154;
-   font-weight: bold ;
-}
-#buttonSend:hover{
-    font-weight: bold ;
-    color: #ffffff;
-    box-shadow: 0vw 0vw 1vw 0vw #8181816c;
-    background-color: #79c225a6; 
 
-}
 
-#buttonEdit{
+
+.buttonEdit{
     display: flex;
     flex-direction: column;
 }
-#rubish {
-    width: 15px; 
+.rubish {
+    width: 25px; 
 }
-#edit{
-    width: 15px; 
+.edit{
+    width: 25px; 
 }
 .buttonRubish{
     margin-right: 2vw;
-    background-color: #ffffffd8;
+    background: none;
     border:none;
 }
 
-@media only screen and (max-width: 800px){
-    #theComments{
-        margin: 20vh 0vw;
-        width: 85vw;
-        border-radius: 2vw;   
-    }
-    #scrollComments{
-        margin: 2vh 1vh 1vh 1vh;
-    }
-    #userPic{
-        margin: 1vh 1vw 0vh 1vw;
-        width: 20vw;
-        height: 20vw;
-    }
-    #titleEditComments{
-        width: 45vw;
-        margin-right: 3vw;
-      
-    }
-    #editComments{
-        border-radius: 0vw 0vw 3vw 0vw;
-
-    }
-    #titleComment{
-        border-radius: 3vw 0vw 0vw 0vw;
-
-    }
-    #buttonSend{
-        margin-right: 2vw;
-        width: 8vw;
-     }
 
 
-
-}
