@@ -38,11 +38,7 @@ router.route("/product/createProduct")
 .post( productController.createProduct)
 
 router.route("/product/getProduct/:id")
-<<<<<<< HEAD
 .get(productController.getProductById)
-=======
-.post(productController.getProductById)
->>>>>>> Cris
 
 router.route("/product/editProduct")
 .put( productController.modifyProduct)
