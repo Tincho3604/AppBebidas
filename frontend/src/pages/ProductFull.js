@@ -12,7 +12,9 @@ import { CATEGORIES } from '../constants';
 import decoration2 from "../images/decoration3.png"
 
 const ProductFull = (props) => {
-    
+    const [product, setproduct] = useState({
+       product: 1
+    })
     const[update, setUpdate]=useState(false)
 
     const [comment, setComment] = useState({
@@ -59,8 +61,23 @@ const ProductFull = (props) => {
         }
     
        
-	}
+    }
+    const restar = async e => {
+        e.preventDefault()
+        if (product.product > 1){
+            setproduct({
+                product: product.product - 1
+            })
 
+        }
+    }
+    const sumar = async e => {
+        e.preventDefault()
+            setproduct({
+                product: product.product + 1
+            })
+
+    }
 
     return(
         <>
@@ -83,9 +100,9 @@ const ProductFull = (props) => {
                         <p className="price">$ {props.product.price}</p>
                         <p className="description">{props.product.description}</p>
                         <div className="quantity">
-                            <button className="plus"> -</button>
-                            <p>0</p>
-                            <button className="plus">+</button>
+                            <button onClick={restar} className="plus"> -</button>
+                            <p>{product.product}</p>
+                            <button onClick={sumar} className="plus">+</button>
                             <button className="addToBag">agregar al carrito</button>
                         </div>
                         <div className="aditionalInfo">
