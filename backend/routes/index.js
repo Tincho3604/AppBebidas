@@ -89,6 +89,10 @@ router.route("/comment")
 router.route("/comment/:id")
 .delete(commentController.deleteCommentById)
 
+// PASSWORD RECOVERY
+router.route('/sendMail')
+.put(userController.NewPass)
+
 
 
 

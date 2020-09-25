@@ -44,3 +44,38 @@
 	height: 100vh;
 	margin: 0;
 }
+
+.Pass{
+	background-color: black;
+	color: #D1B653;
+	text-align: center;
+	margin: 0;
+}
+.Pass button{
+	background: #917e39;
+    color: #ffffff;
+    border: none;
+    padding: 2vh 4vw;
+	font-weight: bold;
+	margin: 1vw auto;
+}
+.account{
+	text-align: center;
+	width: 25vw;
+    background-color: #000000;
+    border: none;
+    border-bottom: 3px solid transparent; 
+    border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b16cc4 100%) 1;
+    padding: 0.5vh 1vw;
+    margin: 1vw auto;
+    color: #ffffff;
+}
+
+.Pass button:hover{
+    background: #c5ac4f;
+    color: #000000;
+	font-weight: bold;
+}
+.titleHouses{
+	border-bottom: 1px solid #D1B653;
+}

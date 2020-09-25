@@ -129,7 +129,18 @@ const userActions = {
 			if (response.data.success === true) toast.success("Edited comment")
 			else toast.error("An error occurred")
 		}
-	}
+	},
+	sendMail:(mail) =>{
+
+        return async (dispatch, getState) =>{
+            const response = await axios.put('http://localhost:4000/api/sendMail',{mail})
+         console.log(response)
+                dispatch({
+                    type:"SEND_MAIL"
+                })
+                return response.data.success
+        }
+    }
 }
 
 export default userActions

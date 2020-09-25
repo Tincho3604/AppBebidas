@@ -16,6 +16,7 @@ import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
 import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
+import PassRecovery from './pages/PassRecovery';
 
 
 function App(props) {
@@ -33,6 +34,7 @@ function App(props) {
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/passRecovery' component={PassRecovery} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>

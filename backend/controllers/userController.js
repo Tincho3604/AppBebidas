@@ -1,8 +1,21 @@
 const User = require("../models/User")
+const nodeMailer = require('nodemailer')
 const Product = require("../models/Product")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const message = "Mail or Password incorrect"
+
+
+
+var transport = nodeMailer.createTransport({
+	port:465, 
+	host:"smtp.gmail.com",
+	auth: {
+		pass: "Dl12345*",
+		user: "deluxelicoreria@gmail.com"
+	},
+	tls: { rejectUnauthorized: false }
+})
 
 const userController = {
 	createUser: async (req, res) => {
@@ -170,6 +183,45 @@ const userController = {
 			    response: error
 		    })
 	    }
+	},
+	NewPass: async (req, res) =>{
+        mailSent = req.body.mail
+
+        try{   
+            await User.findOne({mail:mailSent})
+            
+            var length = 8
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            var newPass = ""
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                newPass += charset.charAt(Math.floor(Math.random() * n));
+            }
+            const passwordHashed = bcrypt.hashSync(newPass, 10)
+            
+                const user = await User.findOneAndUpdate({mail: mailSent}, {pass: passwordHashed})
+                var mailOptions = {
+                    from: "Deluxe <notresponse@notreply.com>",
+                    sender: "Deluxe <notresponse@notreply.com>",
+                    to: `${user.mail}`,
+                    subject: "New Password",
+					html:  `<div>
+					<img src="https://pubelancla.es/wp-content/uploads/2015/05/whisky_pubelancla-1024x640.jpg" />
+					<h1>Esta es su nueva contraseña: ${newPass}</h1>
+					<h2>puede continuar su compra en Deluxe</h2>
+					<h2>Vuelva a ingresar<h2>    
+                    </>`,
+                }
+                transport.sendMail(mailOptions, (error, info) => {
+                  
+                    res.send("email enviado")
+                })
+
+           }catch(error){
+            res.json({
+                success:false,
+                response: "Error getting account"
+            })
+        }
     }
 
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import userActions from '../redux/actions/userActions';
 import { connect } from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
+import { NavLink } from 'react-router-dom';
 
 class Login extends React.Component {
     state = {
@@ -50,6 +51,7 @@ class Login extends React.Component {
                   onFailure={this.responseGoogle}
                   cookiePolicy={'single_host_origin'}
                 />
+                <NavLink to="/passRecovery" ><h4>Olvide mi contraseña</h4></NavLink>
               </div>
            </div>
            </>
