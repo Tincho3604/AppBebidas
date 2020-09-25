@@ -25,6 +25,11 @@ function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
 		props.authUser(localStorage.getItem('token'))
 	}
+	
+	if(localStorage.getItem('items') && props.user.cart.length === 0) {
+		props.loadCart()
+	}
+
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
@@ -45,9 +50,15 @@ function App(props) {
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
 		<Route exact path='/' component={Home} />
+		<Route path='/admin' component={AdminDashboard}/>
+		<Route path='/createProduct' component={AdminCreateProduct} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
 		<Route path='/Account' component={Account} />
-		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		{/* Estas rutas deberian estar cuando el usuario este logeado */}
+		<Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/>
 		<Redirect to='/' />
 	</Switch>);
 	
@@ -80,7 +91,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	authUser: userActions.authUser
+	authUser: userActions.authUser,
+	loadCart: userActions.loadCart
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../styles/cart.css';
 import CartItem from './CartItem';
@@ -11,9 +12,11 @@ const Cart = (props) => {
 			<span onClick={props.cerrar} className='close'>X Cerrar</span>
 			<div className='title'>Mi pedido</div>
 			<div className='items'>
-				<CartItem />
-				<CartItem />
-				<CartItem />
+				{props.cart.length === 0
+				? 'No hay items en el carrito'
+				:props.cart.map(product => {
+					return <CartItem data={product} />
+				})}
 				<div></div>
 			</div>
 			<div className='buttons'>
@@ -24,4 +27,14 @@ const Cart = (props) => {
 	</> );
 }
  
-export default Cart;
+const mapStateToProps = state => {
+    return {
+		cart: state.userReducer.cart
+    }
+}
+
+const mapDispatchToProps = {
+	
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

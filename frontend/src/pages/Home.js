@@ -14,6 +14,7 @@ const Home = (props) => {
     return (
         <>
 		{console.log(props.product)}
+		{console.log(props.user)}
            <Header />
             <div className="banner" style={{backgroundImage:`url(${alcohol})`}}>
         </div>
@@ -46,7 +47,8 @@ const Home = (props) => {
 
 const mapStateToProps = state => {
     return{
-		product: state.productReducer
+		product: state.productReducer,
+		user: state.userReducer
     }
   }
   

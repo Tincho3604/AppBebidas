@@ -35,20 +35,20 @@ const userActions = {
 		}
 	},
 	addShippingAddress: (user, shippinginfo) => {
-return async (dispatch, getState) => {
-	const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
-	const info = response.data.user
-	
-	if (!response.data.success) {
-		toast.error(response.data.error)
-		return response.data.error
-	} else {
-		dispatch({
-			type: "INFO_SHIPPING_ADDRESS_UPDATE",
-			payload: info
-	            })
-	        }
-        }
+		return async (dispatch, getState) => {
+		const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
+		const info = response.data.user
+		
+		if (!response.data.success) {
+			toast.error(response.data.error)
+			return response.data.error
+		} else {
+			dispatch({
+				type: "INFO_SHIPPING_ADDRESS_UPDATE",
+				payload: info
+					})
+				}
+			}
 	},
 
 	addBillingAddress: (user, billinginfo) => {
@@ -179,50 +179,15 @@ return async (dispatch, getState) => {
 		}
 	},
 	loadCart: () => {
-		return async(dispatch, getState) => {
-            let cart = getCartItems();
+		return (dispatch, getState) => {
+			console.log('Ejecutando Load Cart')
+			let cart = getCartItems();
+			console.log(cart)
             dispatch({
                 type:'LOAD_CART',
                 payload: cart
             })
         }
-	},
-	addToCart: (id, cantidad, cart) => {
-		return async(dispatch, getState) => {
-			let cart = getCartItems()
-			cart.map(item => {
-				if(true){
-
-				}
-			})
-			const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
-			const item = response.data.productFound
-			item.quantity = cantidad
-            dispatch({
-                type:'LOAD_CART',
-                payload: cart
-            })
-        }
-		// const item = articleAll.find(item => item._id === id)
-		// const items = traerItems();
-		// let cantidad = items.filter(item => item._id === id).length
-		// console.log(cantidad);
-		// if(cantidad === 0) {
-		// 	item.cantidad = 1;
-		// 	items.push(item);
-		// }
-		// else {
-		// 	items.map(article => {
-		// 		if(article._id === id) {
-		// 			article.cantidad += 1
-		// 		}
-		// 	})
-		// }
-		// localStorage.setItem('items', JSON.stringify(items));
-		// loadCarrito(traerItems());
-	},
-	removeFromCart: () => {
-
 	}
 }
 
