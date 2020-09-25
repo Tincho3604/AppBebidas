@@ -13,16 +13,16 @@ const Cart = (props) => {
 			<div className='title'>Mi pedido</div>
 			<div className='items'>
 				{props.cart.length === 0
-				? 'No hay items en el carrito'
+				? <span className='empty'>No hay items en el carrito</span>
 				:props.cart.map(product => {
 					return <CartItem data={product} />
 				})}
 				<div></div>
 			</div>
-			<div className='buttons'>
+			{props.cart.length !== 0 && <div className='buttons'>
 				<button className='btnPrimary'>Finalizar compra</button>
 				<button className='btnSecondary'>Ver pedido</button>
-			</div>
+			</div>}
 		</div>
 	</> );
 }

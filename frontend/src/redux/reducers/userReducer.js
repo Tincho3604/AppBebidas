@@ -30,6 +30,8 @@ function userReducer(state = initialState, action) {
 				comments: action.payload,
 			}
 		case "LOAD_CART":
+			if(action.payload.length === 0) localStorage.removeItem('items')
+			else localStorage.setItem('items', JSON.stringify(action.payload));
 			return {
 				...state,
 				cart: action.payload,

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import foto from '../images/ron-barcelo.png'
+import userActions from '../redux/actions/userActions';
 
 const CartItem = (props) => {
 	return ( <>
@@ -13,10 +15,18 @@ const CartItem = (props) => {
 				<span>{props.data.quantity} x ${props.data.price}</span>
 			</div>
 			<div className='actions'>
-				<span>X</span>
+				<span onClick={() => props.removeFromCart(props.data._id)}>X</span>
 			</div>
 		</div>
 	</> );
 }
  
-export default CartItem;
+const mapStateToProps = state => {
+    return{
+	}
+}
+const mapDispatchToProps = {
+	removeFromCart: userActions.removeFromCart
+}
+  
+export default connect(mapStateToProps,mapDispatchToProps)(CartItem);

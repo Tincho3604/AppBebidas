@@ -12,6 +12,23 @@ const Header = (props) => {
 	const cartHandler = () => {
 		setCart(!cart)
 	}
+
+	const itemsTotal = () => {
+		let q = 0
+		props.cart.map(product => {
+			q += product.quantity
+		})
+		return q === 1 ? `${q} item` : `${q} items`
+	}
+
+	const moneyTotal = () => {
+		let m = 0
+		props.cart.map(product => {
+			m += (product.quantity * product.price)
+		})
+		return `$${m}`
+	}
+
 	return ( <> 
 		<header>
 			<div className='logo'>
@@ -39,8 +56,8 @@ const Header = (props) => {
 					<i class="fas fa-shopping-cart"></i>
 				</div>
 				<div className='data'>
-					<span>$ 1000</span>
-					<span>1 item</span>
+					<span>{moneyTotal()}</span>
+					<span>{itemsTotal()}</span>
 				</div>
 			</div>
 		</header>
@@ -50,7 +67,8 @@ const Header = (props) => {
  
 const mapStateToProps = state => {
     return {
-        token: state.userReducer.token,
+		token: state.userReducer.token,
+		cart: state.userReducer.cart
     }
 }
 

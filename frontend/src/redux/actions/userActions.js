@@ -9,24 +9,6 @@ const getCartItems = () => {
 }
 
 const userActions = {
-	addToCart: (id, cantidad) =>{
-		return async (dispatch, getState) => {
-			console.log("Add to cart action")
-			console.log(id, cantidad)
-			let cart = getCartItems()
-			console.log(cart)
-			const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
-			const item = response.data.productFound
-			item.quantity = cantidad
-			console.log(item)
-			cart.push(item)
-			console.log(cart)
-			dispatch({
-                type:'LOAD_CART',
-                payload: cart
-            })
-		}
-	},
 	createUser: (user, set = null ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API+'/api/user/register', user)
@@ -194,6 +176,62 @@ const userActions = {
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
 			if (response.data.success === true) toast.success("Edited comment")
 			else toast.error("An error occurred")
+		}
+	},
+	addToCart: (id, cantidad) =>{
+		return async (dispatch, getState) => {
+			let found = false
+			let cart = getCartItems()
+			if(cart.length > 0) {
+				cart.map(item => {
+					if(item._id === id){
+						item.quantity += cantidad;
+						found = true;
+					}
+				})
+			}
+			if(found) {
+				dispatch({
+					type:'LOAD_CART',
+					payload: cart
+				})
+			}
+			else {
+				const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
+				const item = response.data.productFound
+				item.quantity = cantidad
+				cart.push(item)
+				dispatch({
+					type:'LOAD_CART',
+					payload: cart
+				})
+			}
+		}
+	},
+	loadCart: () => {
+		return (dispatch, getState) => {
+			let cart = getCartItems();
+            dispatch({
+                type:'LOAD_CART',
+                payload: cart
+            })
+        }
+	},
+	removeFromCart: id => {
+		return async(dispatch, getState) => {
+			let cart = getCartItems()
+			cart.map((item, index) => {
+				if(item._id === id) {
+					item.quantity--
+					if(item.quantity === 0) {
+						cart.splice(index,1)
+					}
+				}
+			})
+			dispatch({
+				type:'LOAD_CART',
+				payload: cart
+			})
 		}
 	},
 }

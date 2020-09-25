@@ -25,7 +25,7 @@ const Product = (props) => {
 					<span className="title">{props.data.title}</span>
 					<span className="price">${props.data.price}</span>
 				</div>
-				<div className="addToCartBtn" onClick={props.addToCart(props.data._id, 1)}>
+				<div className="addToCartBtn" onClick={() => props.addToCart(props.data._id, 1)}>
 					Agregar al pedido <i className="fas fa-cart-plus"></i>
 				</div>
 			</div>
@@ -36,11 +36,10 @@ const Product = (props) => {
  
 const mapStateToProps = state => {
     return{
-		addToCart: userActions.addToCart
-    }
-  }
+	}
+}
 const mapDispatchToProps = {
-
+	addToCart: userActions.addToCart
 }
   
   export default connect(mapStateToProps,mapDispatchToProps)(Product);
