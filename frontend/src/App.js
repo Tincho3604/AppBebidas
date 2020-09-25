@@ -44,6 +44,7 @@ function App(props) {
 		<Route path='/product/:id' component={ProductFull} />
 		<Route path='/Account' component={Account} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
 		<Redirect to='/' />
 	</Switch>);
 	

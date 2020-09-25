@@ -46,7 +46,7 @@ class Login extends React.Component {
                         <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
                         <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                         <button onClick={this.enviarInfo}>Ingresar</button>
-                        <h4>O</h4>
+                   
                         <div id="botonGoogle">
                             <GoogleLogin
                             clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"
@@ -54,7 +54,7 @@ class Login extends React.Component {
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                             cookiePolicy={'single_host_origin'}
-                            />,
+                            />
                         </div>
                         <button className="goToLogIn"><NavLink to='/signup' style={{textDecoration: "none", color:"white"}}> Crear cuenta </NavLink></button>
                     </div>
