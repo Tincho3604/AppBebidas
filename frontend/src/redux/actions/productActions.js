@@ -16,9 +16,9 @@ const productActions = {
         }
     },
     dataProduct: id=> {
-
+console.log(id)
         return async (dispatch, getState) => {
-            const response = await axios.post(RUTA_API + "/api/product/getProduct/" + id)
+            const response = await axios.post(RUTA_API + "/api/product/getProduct",{id: id})
 
             dispatch({
 				type: "DATA_PRODUCT",
