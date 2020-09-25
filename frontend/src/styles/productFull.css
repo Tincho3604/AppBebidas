@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    z-index: 2;
     
 }
 .Classbanner img{
@@ -40,7 +41,7 @@
    
 }
 .infoProduct .allInformation img{
-    width: 25vw;
+    height: 65vh;
     margin-right: 3vw;
 }
 .infoProduct .allInformation .units{
@@ -106,3 +107,10 @@
   color:#d1b653 ;
 }
 
+.homeBackgroundTwoo{
+    position: absolute;
+    top:12.5vh;
+    right: 0;
+    z-index: 0;
+    width: 200px;
+}
