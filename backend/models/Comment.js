@@ -15,6 +15,10 @@ const commentSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	id: {
+		type: String,
+		required: true,
+	},
 	rate: {
 		type: Number
 	}

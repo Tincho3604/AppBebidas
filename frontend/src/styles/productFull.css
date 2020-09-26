@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    z-index: 2;
     
 }
 .Classbanner img{
@@ -17,8 +18,13 @@
     margin-left: 3vw;
     color: #ffffff;
 }
-
-
+.nameAndRating{
+    display: flex;
+    align-items: center;
+}
+.nameAndRating .ratings{
+    margin-left: 1vw;
+}
 .infoProduct{
     background-color: #000000;
     color: #ffffff;
@@ -40,7 +46,7 @@
    
 }
 .infoProduct .allInformation img{
-    width: 25vw;
+    height: 60vh;
     margin-right: 3vw;
 }
 .infoProduct .allInformation .units{
@@ -70,7 +76,7 @@
 .infoProduct .allInformation .quantity .plus{
     border:none ;
     background: none;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
     font-weight: bold;
@@ -79,15 +85,16 @@
 }
 .infoProduct .allInformation .quantity .addToBag{
     border:none ;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
-    font-weight: bold;
     background: #d1b653;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity .addToBag:hover{
-    color: #d1b653;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity p{
     font-size: 2vw;
@@ -102,4 +109,12 @@
 }
 .infoProduct .allInformation .ratings{
   color:#d1b653 ;
+}
+
+.homeBackgroundTwoo{
+    position: absolute;
+    top:12.5vh;
+    right: 0;
+    z-index: 0;
+    width: 200px;
 }

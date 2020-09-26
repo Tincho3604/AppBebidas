@@ -7,12 +7,14 @@ import decoration2 from "../images/decoration2.png"
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Contacto from '../components/Contacto';
 import { CATEGORIES } from '../constants';
-import Contacto from "../components/Contacto"
 const Home = (props) => {
 
     return (
         <>
+		{console.log(props.product)}
+		{console.log(props.user)}
            <Header />
             <div className="banner" style={{backgroundImage:`url(${alcohol})`}}>
         </div>
@@ -35,7 +37,7 @@ const Home = (props) => {
 				})} 
             </div>
         </div>
-        <Contacto/>
+        <Contacto />
         <Footer/>
         </>
     )
@@ -45,7 +47,8 @@ const Home = (props) => {
 
 const mapStateToProps = state => {
     return{
-  
+		product: state.productReducer,
+		user: state.userReducer
     }
   }
   
