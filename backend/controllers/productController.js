@@ -62,10 +62,9 @@ const productController = {
 				}
 			})
 		}
-
-		
-
 	},
+
+	
 	deleteProduct: async (req, res) => {
 		const id = req.params.id
 		const productDeleted = await Product.findByIdAndDelete(id)
@@ -98,6 +97,14 @@ const productController = {
 		Product.find({ _id: arrayIDs })
 			.then(productWishList => res.json({ success: true, productWishList }))
 			.catch(error => res.json({ success: false, error }))
+	},
+
+	
+	getListProduct: async (req, res) => {
+		const { category } = req.params
+		Product.find({ category })
+		.then(listProducts => res.json({success: true, listProducts}))
+	    .catch(error => res.json({success: false ,error}))
 	}
 }
 

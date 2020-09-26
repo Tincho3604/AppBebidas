@@ -19,7 +19,7 @@ import AdminEditProduct from './pages/AdminEditProduct';
 import Account from './pages/Account';
 import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
-
+import AdminListProduct from './pages/AdminListProduct'
 
 function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
@@ -45,6 +45,7 @@ function App(props) {
 		{/* Estas rutas deberian estar cuando el usuario este logeado */}
 		<Route path='/shippingAddress' component={ShippingAddress}/>      
 		<Route path='/billingAddress' component={BillingAddress}/>
+		<Route path='/adminListProduct' component={AdminListProduct} />
 		<Redirect to='/' /> 
 	</Switch>)
 	: (<Switch>
