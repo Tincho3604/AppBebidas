@@ -51,7 +51,7 @@ margin-top: 2vh;
     border: 1px solid #D1B653;
 }
 .formulario button.goToLogIn{
-    background-color: #000000;
+    background: none;
     border: none;
     margin-top: 0vh;
 }
@@ -89,4 +89,14 @@ margin-top: 2vh;
 .divGoBack .goBack:hover{
     background-color: #D1B653;
     border: none;
+}
+@media only screen and (max-width: 950px){
+    .formulario button{
+        width: 35vw;
+    }
+}
+@media only screen and (max-width: 590px){
+    .formulario button{
+        width: 46vw;
+    }
 }

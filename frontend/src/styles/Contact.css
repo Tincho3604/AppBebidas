@@ -3,13 +3,14 @@
 }
 .contactanos .title{
     text-align: center;
-    font-size: 7vh;
+    font-size: 5vw;
     color: #ffffff;
 }
 .contactanos h5{
     text-align: center;
     color: #ffffff;
     padding: 3vh 0vw 12vh 0vw;
+    font-size: 1.5vw;
 }
 
 
@@ -82,4 +83,68 @@ padding-bottom: 10vh;
 .sign .theInfo .nuestraInfo p{
     width: 25vw;
     padding-left: 1vw ;
+}
+@media only screen and (max-width: 850px){
+    .contactanos .title{
+        padding-top: 10vh;
+    }
+    .contactanos h5{
+        font-size: 2vw;
+        padding-bottom: 5vh;
+    }
+    .sign{
+       flex-direction: column;
+       padding-bottom: 10vh;
+    }
+    .sign .theForm{
+        padding: 4vh 10vw;
+        margin-bottom: 3vh;
+    }
+    .sign .theForm .inputBox input{ 
+        width: 50vw;
+        border-bottom: 2px solid transparent; 
+        border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b16cc4 100%) 1;
+    }
+    .sign .theForm .inputBox textarea{ 
+        width: 50vw;
+        height: 17vh;
+        border: 2px solid transparent; 
+        border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b26cc4 100%) 1;
+    }
+    .sign .theForm button{
+        padding: 1vh 4vw;
+    }
+    .sign .theInfo{
+        margin-left: 0vw ;
+        width: 85vw;
+    }
+    .sign .theInfo .nuestraInfo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2vh 5vw;
+        
+        
+    }
+    .sign .theInfo .nuestraInfo p{
+        text-align: center;
+        width: auto;
+        font-size: 2vw;
+        padding-left: 1vw ;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+    .sign .theInfo .nuestraInfo h3{
+        font-size: 2.5vw;
+    }
+
+}
+@media only screen and (max-width: 850px){
+    .sign .theInfo .nuestraInfo h3{
+        font-size: 3vw;
+    }
+    .sign .theInfo .nuestraInfo p{
+        font-size: 2.5vw;
+    }
 }

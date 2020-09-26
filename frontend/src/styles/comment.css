@@ -6,22 +6,16 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.scrollComments{
-	overflow-y: scroll;
-	overflow-x: hidden;
-    margin: 1vh;
-    height: 60vh;
-    
-}
+
 .TheInput{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 3vh;
     margin-bottom: 3vh;
 }
 .TextComment{
-    width: 93%;
+    width: 90%;
     border: 1px black solid;
     padding: 1vw;
     border:2px solid#d1b653a6;
@@ -29,11 +23,13 @@
     color: #ffffff;
 }
 .buttonSend{
+    font-size: 3vh;
+    width: 9%;
     margin-left: 1vw;
     border: none;
     background-color: #d1b653a6; 
     border:1px solid#d1b653a6;
-    padding: 2.3vh 2vw;
+    padding: 8px 1vw;
     box-shadow: 0vw 0vw 1vw 0vw #81818154;
  }
  .buttonSend:hover{
@@ -102,6 +98,8 @@
     background: none;
     border:none;
 }
-
-
-
+@media only screen and (max-width: 500px){
+    .buttonSend{
+        padding: 0.5vh 1vw
+    }
+}

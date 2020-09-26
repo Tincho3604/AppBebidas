@@ -117,9 +117,11 @@ const ProductFull = (props) => {
                         <i class="far fa-star"></i>
                     </div>
                     </div>
-						<p className="units">{props.product.stock} unidades</p>
-						<p className="price">$ {props.product.price}</p>
-						<p className="description">{props.product.description}</p>
+                    <p className="units">{props.product.stock < 5 
+                    ? "Ultimas unidades."
+                    : ""} </p>
+                    <p className="price">$ {props.product.price}</p>
+                    <p className="description">{props.product.description}</p>
                     <div className="quantity">
                         <button onClick={restar} className="plus"> -</button>
                         <p>{product.product}</p>
@@ -135,8 +137,8 @@ const ProductFull = (props) => {
                 <div className="theComments">
                 <h2>Comentarios</h2>
 			        <div className="scrollComments">
-                        {props.comments === null || props.comments === undefined
-                        ? "cargando..."
+                        { props.comments === null || props.comments === undefined
+                        ? <p>Todavia no hay comentarios, se el primero en comentar!</p>
                         : props.comments.map((comentario, index) => {
                             return <Comment key={index} fx={setUpdate} data={comentario} />
                         })}

@@ -6,8 +6,15 @@ import logoBlanco from '../images/logoBlanco.png';
 import Cart from './Cart';
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions';
+import MenuHamburguesa from './MenuHamburguesa';
 
 const Header = (props) => {
+	const [menu, setmenu] = useState(false)
+	
+	const menuHandler = () => {
+		setmenu(!menu)
+	}
+
 	const [cart, setCart] = useState(false)
 	const cartHandler = () => {
 		setCart(!cart)
@@ -31,37 +38,61 @@ const Header = (props) => {
 
 	return ( <> 
 		<header>
-			<div className='logo'>
-				<img src={logoBlanco} />
-			</div>
-			<div className='links'>
-				<NavLink to="/" className='ufc'>Home</NavLink>
-				<NavLink to="products/all" className='ufc'>Bebidas</NavLink>
-				<NavLink to className='ufc'>Contacto</NavLink>
-			</div>
-			<div style={{flex: 1}}/>
-			<div className='links'>
-				{!props.token
-				?<>
-				<NavLink to="/login" className='ufc'>Ingresar</NavLink> / 
-				<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
-				</>
-				:<>
-				<NavLink to="/account" className='ufc'>Mi cuenta</NavLink> / 
-				<NavLink to onClick={props.logOut} className='ufc'>Salir</NavLink>
-				</>}
-			</div>
-			<div className='cart' onClick={cartHandler}>
-				<div className='icono'>
-					<i class="fas fa-shopping-cart"></i>
+			<div className="bigSize">
+				<div className='logo'>
+					<img src={logoBlanco} />
 				</div>
-				<div className='data'>
-					<span>{moneyTotal()}</span>
-					<span>{itemsTotal()}</span>
+				<div className='links'>
+					<NavLink to="/" className='ufc'>Home</NavLink>
+					<NavLink to="products/all" className='ufc'>Bebidas</NavLink>
+					<NavLink to className='ufc'>Contacto</NavLink>
 				</div>
+				<div style={{flex: 1}}/>
+				<div className='links'>
+					{!props.token
+					?<>
+					<NavLink to="/login" className='ufc'>Ingresar</NavLink> / 
+					<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
+					</>
+					:<>
+					<NavLink to="/account" className='ufc'>Mi cuenta</NavLink> / 
+					<NavLink to onClick={props.logOut} className='ufc'>Salir</NavLink>
+					</>}
+				</div>
+				<div className='cart' onClick={cartHandler}>
+					<div className='icono'>
+						<i class="fas fa-shopping-cart"></i>
+					</div>
+					<div className='data'>
+						<span>{moneyTotal()}</span>
+						<span>{itemsTotal()}</span>
+					</div>
+				</div>
+				<Cart show={cart} cerrar={cartHandler} total={moneyTotal()} />
 			</div>
+			<div className="smallSize">
+				<div className='menu' onClick={menuHandler}>
+					<div className='icono'>
+						<i class="fas fa-bars"></i>
+					</div>
+				</div>
+				<MenuHamburguesa show={menu} cerrar={menuHandler} />
+				<div className='logo'>
+					<img src={logoBlanco} />
+			    </div>
+				<div className='cart' onClick={cartHandler}>
+					<div className='icono'>
+						<i class="fas fa-shopping-cart"></i>
+					</div>
+					<div className='data'>
+						<span>{moneyTotal()}</span>
+						<span>{itemsTotal()}</span>
+					</div>
+				</div>
+				<Cart show={cart} cerrar={cartHandler} total={moneyTotal()} />
+			</div>
+			
 		</header>
-		<Cart show={cart} cerrar={cartHandler} total={moneyTotal()} />
 	</> );
 }
  

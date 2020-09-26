@@ -104,7 +104,7 @@ const userActions = {
 
 	logoutUser: () => {
 		return (dispatch, getState) => {
-			toast.info("See you later! =D")
+			toast.info("Nos vemos mas tarde!")
 			dispatch({
 				type: "LOGOUT_USER",
 			})
@@ -175,8 +175,8 @@ const userActions = {
 	editComment: edited => {
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
-			if (response.data.success === true) toast.success("Edited comment")
-			else toast.error("An error occurred")
+			if (response.data.success === true) toast.success("Comentario editado")
+			else toast.error("Ha ocurrido un error")
 		}
 	},
 	addToCart: (id, cantidad) =>{
