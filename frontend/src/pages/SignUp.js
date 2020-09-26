@@ -55,7 +55,7 @@ const SignUp = (props) => {
                 <div id="botonGoogle">
                     <GoogleLogin
                         clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"
-                        buttonText="Crear cuenta con Google"
+                        buttonText="Ingresar con Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}

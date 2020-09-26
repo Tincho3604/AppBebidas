@@ -84,7 +84,7 @@ const userActions = {
 				toast.error(response.data.error)
 				return response.data.error
 			} else {
-				toast.success(`Welcome ${response.data.username}!`)
+				toast.success(`Bienvenido ${response.data.firstName}!`)
 				dispatch({
 					type: "USER_IN",
 					payload: {
@@ -103,7 +103,7 @@ const userActions = {
 
 	logoutUser: () => {
 		return (dispatch, getState) => {
-			toast.info("See you later! =D")
+			toast.info("Nos vemos mas tarde!")
 			dispatch({
 				type: "LOGOUT_USER",
 			})
@@ -174,8 +174,8 @@ const userActions = {
 	editComment: edited => {
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
-			if (response.data.success === true) toast.success("Edited comment")
-			else toast.error("An error occurred")
+			if (response.data.success === true) toast.success("Comentario editado")
+			else toast.error("Ha ocurrido un error")
 		}
 	},
 	addToCart: (id, cantidad) =>{
