@@ -43,14 +43,18 @@ router.route("/user/addBillingAddress")
 router.route("/product/createProduct")
 .post( productController.createProduct)
 
+
 router.route("/product/getProduct/:id")
 .get(productController.getProductById)
+
 
 router.route("/product/editProduct")
 .put( productController.modifyProduct)
 
+
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
+
 
 router.route("/product/listProducts")
 .get(productController.getAllProducts)
@@ -59,8 +63,15 @@ router.route("/product/listProducts")
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
 
+
 router.route("/products/:category")
 .get(productController.getProductByCat)
+
+
+router.route("/products/:category")
+.get(productController.getListProduct)
+
+
 
 // ORDER ROUTES
 router.route("/orders")
