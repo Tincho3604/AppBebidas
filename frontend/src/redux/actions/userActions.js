@@ -174,15 +174,9 @@ const userActions = {
 	},
 	editComment: edited => {
 		return async (dispatch, getState) => {
-<<<<<<< HEAD
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
 			if (response.data.success === true) toast.success("Comentario editado")
 			else toast.error("Ha ocurrido un error")
-=======
-			const response = await axios.put(RUTA_API + "/api/comment", edited)
-			if (response.data.success === true) toast.success("Edited comment")
-			else toast.error("An error occurred")
->>>>>>> Cris
 		}
 	},
 	addToCart: (id, cantidad) => {

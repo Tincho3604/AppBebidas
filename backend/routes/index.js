@@ -68,14 +68,6 @@ router.route("/products/:category")
 .get(productController.getProductByCat)
 
 
-<<<<<<< HEAD
-router.route("/products/:category")
-.get(productController.getListProduct)
-
-
-
-=======
->>>>>>> Cris
 // ORDER ROUTES
 router.route("/orders")
 .get(orderController.getAllOrders)
