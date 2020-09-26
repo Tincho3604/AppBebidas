@@ -10,6 +10,7 @@ import { toast } from "react-toastify"
 import productActions from '../redux/actions/productActions';
 import { CATEGORIES } from '../constants';
 import decoration2 from "../images/decoration3.png"
+import Rate from '../components/Rate';
 
 const ProductFull = (props) => {
     const [product, setproduct] = useState({
@@ -116,20 +117,20 @@ const ProductFull = (props) => {
                         <i class="far fa-star"></i>
                     </div>
                     </div>
-                    <p className="units">{props.product.stock} unidades</p>
-                    <p className="price">$ {props.product.price}</p>
-                    <p className="description">{props.product.description}</p>
+						<p className="units">{props.product.stock} unidades</p>
+						<p className="price">$ {props.product.price}</p>
+						<p className="description">{props.product.description}</p>
                     <div className="quantity">
                         <button onClick={restar} className="plus"> -</button>
                         <p>{product.product}</p>
                         <button onClick={sumar} className="plus">+</button>
                         <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button>
                     </div>
-                    <div className="aditionalInfo">
-                    <p>{props.product.ml} ml</p>
-                    <p>{props.product.alcPct}% alc</p>
-                    </div>
-                    </div>
+					<div className="aditionalInfo">
+						<p>{props.product.ml} ml</p>
+						<p>{props.product.alcPct}% alc</p>
+					</div>
+                </div>
                 </div>
                 <div className="theComments">
                 <h2>Comentarios</h2>
