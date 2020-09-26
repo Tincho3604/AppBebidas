@@ -9,15 +9,15 @@ const getCartItems = () => {
 }
 
 const userActions = {
-	createUser: (user, set = null ) => {
+	createUser: (user, set = null) => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(RUTA_API+'/api/user/register', user)
+			const response = await axios.post(RUTA_API + '/api/user/register', user)
 			console.log(response)
-            if(response.data.success === "false") {
-                set({status: false})
-                let errors = response.data.error.errors;
-				if(errors.username !== undefined) toast.error(errors.username.message);
-				if(errors.mail !== undefined ) toast.error(errors.mail.message);
+			if (response.data.success === "false") {
+				set({ status: false })
+				let errors = response.data.error.errors;
+				if (errors.username !== undefined) toast.error(errors.username.message);
+				if (errors.mail !== undefined) toast.error(errors.mail.message);
 				return;
 			}
 			else {
@@ -38,26 +38,26 @@ const userActions = {
 	},
 	addShippingAddress: (user, shippinginfo) => {
 		return async (dispatch, getState) => {
-		const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`,shippinginfo,user)
-		const info = response.data.user
-		
-		if (!response.data.success) {
-			toast.error(response.data.error)
-			return response.data.error
-		} else {
-			dispatch({
-				type: "INFO_SHIPPING_ADDRESS_UPDATE",
-				payload: info
-					})
-				}
+			const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`, shippinginfo, user)
+			const info = response.data.user
+
+			if (!response.data.success) {
+				toast.error(response.data.error)
+				return response.data.error
+			} else {
+				dispatch({
+					type: "INFO_SHIPPING_ADDRESS_UPDATE",
+					payload: info
+				})
 			}
+		}
 	},
 
 	addBillingAddress: (user, billinginfo) => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`,billinginfo,user)
+			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`, billinginfo, user)
 			const info = response.data.user
-			
+
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -65,20 +65,20 @@ const userActions = {
 				dispatch({
 					type: "INFO_BILLING_ADDRESS_UPDATE",
 					payload: info
-						})
-					}
-				}
-			},
-    getUserInfo: (user) => {
-        return async (dispatch, getState) => {
+				})
+			}
+		}
+	},
+	getUserInfo: (user) => {
+		return async (dispatch, getState) => {
 			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, user)
 			const info = response.data.user
 			dispatch({
-				type:'GET_INFO_USER',
-				payload:info
-			    })	
-			}
-	}, 
+				type: 'GET_INFO_USER',
+				payload: info
+			})
+		}
+	},
 	loginUser: user => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API + "/api/user/login", user)
@@ -109,7 +109,7 @@ const userActions = {
 				type: "LOGOUT_USER",
 			})
 		}
-    },
+	},
 	authUser: token => {
 		return async (dispatch, getState) => {
 			let response
@@ -119,11 +119,11 @@ const userActions = {
 						Authorization: "Bearer " + token,
 					},
 				})
-				console.log(response)
+
 			} catch {
 				return false
 			}
-			const {lastName, firstName, wishlist, id} = response.data
+			const { lastName, firstName, wishlist, id } = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
@@ -139,22 +139,22 @@ const userActions = {
 
 
 
-	modifyUser:	user => {
+	modifyUser: user => {
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
 					'Authorization': "Bearer " + getState().userReducer.token,
 				}
 			})
-			if(response.data.success) toast.success('Cambios guardados!')
+			if (response.data.success) toast.success('Cambios guardados!')
 			else toast.error('Ha habido un problema')
 		}
 	},
-	
+
 
 	newComment: comment => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(RUTA_API+ "/api/comment/",comment)
+			const response = await axios.post(RUTA_API + "/api/comment/", comment)
 			console.log(response, "holi")
 		}
 	},
@@ -174,26 +174,32 @@ const userActions = {
 	},
 	editComment: edited => {
 		return async (dispatch, getState) => {
+<<<<<<< HEAD
 			const response = await axios.put(RUTA_API + "/api/comment",	edited)
 			if (response.data.success === true) toast.success("Comentario editado")
 			else toast.error("Ha ocurrido un error")
+=======
+			const response = await axios.put(RUTA_API + "/api/comment", edited)
+			if (response.data.success === true) toast.success("Edited comment")
+			else toast.error("An error occurred")
+>>>>>>> Cris
 		}
 	},
-	addToCart: (id, cantidad) =>{
+	addToCart: (id, cantidad) => {
 		return async (dispatch, getState) => {
 			let found = false
 			let cart = getCartItems()
-			if(cart.length > 0) {
+			if (cart.length > 0) {
 				cart.map(item => {
-					if(item._id === id){
+					if (item._id === id) {
 						item.quantity += cantidad;
 						found = true;
 					}
 				})
 			}
-			if(found) {
+			if (found) {
 				dispatch({
-					type:'LOAD_CART',
+					type: 'LOAD_CART',
 					payload: cart
 				})
 			}
@@ -203,7 +209,7 @@ const userActions = {
 				item.quantity = cantidad
 				cart.push(item)
 				dispatch({
-					type:'LOAD_CART',
+					type: 'LOAD_CART',
 					payload: cart
 				})
 			}
@@ -212,26 +218,59 @@ const userActions = {
 	loadCart: () => {
 		return (dispatch, getState) => {
 			let cart = getCartItems();
-            dispatch({
-                type:'LOAD_CART',
-                payload: cart
-            })
-        }
+			dispatch({
+				type: 'LOAD_CART',
+				payload: cart
+			})
+		}
 	},
 	removeFromCart: id => {
-		return async(dispatch, getState) => {
+		return async (dispatch, getState) => {
 			let cart = getCartItems()
 			cart.map((item, index) => {
-				if(item._id === id) {
+				if (item._id === id) {
 					item.quantity--
-					if(item.quantity === 0) {
-						cart.splice(index,1)
+					if (item.quantity === 0) {
+						cart.splice(index, 1)
 					}
 				}
 			})
 			dispatch({
-				type:'LOAD_CART',
+				type: 'LOAD_CART',
 				payload: cart
+			})
+		}
+	},
+
+	addToWishList: (id, token) => {
+
+		return async (dispatch, getState) => {
+
+			const response = await axios.put(`${RUTA_API}/api/user/addWishList/`, {id:id}, {
+				headers: {
+					'Authorization': "Bearer " + token,
+				}
+			})
+		
+			dispatch({
+				type: "WISHLIST",
+				payload: response.data.wishlist
+			})
+		}
+	},
+	removeFromWishList: (id, token) => {
+
+		return async (dispatch, getState) => {
+			const response = await axios.delete(`${RUTA_API}/api/user/removeWishList/${id}`, {
+				headers: {
+					'Authorization': "Bearer " + token,
+				}
+			})
+
+
+			dispatch({
+				type: "WISHLIST",
+				payload: response.data.wishlist
 			})
 		}
 	},

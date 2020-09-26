@@ -26,7 +26,7 @@ router.route("/user/login")
 router.route("/user/addWishList")
 .put(passport.authenticate('jwt',{session: false}), userController.addToWishlist)
 
-router.route("/user/removeWishList")
+router.route("/user/removeWishList/:id")
 .delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
 
 router.route("/user/addShippingAddress")
@@ -68,11 +68,14 @@ router.route("/products/:category")
 .get(productController.getProductByCat)
 
 
+<<<<<<< HEAD
 router.route("/products/:category")
 .get(productController.getListProduct)
 
 
 
+=======
+>>>>>>> Cris
 // ORDER ROUTES
 router.route("/orders")
 .get(orderController.getAllOrders)

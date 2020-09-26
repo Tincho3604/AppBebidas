@@ -34,7 +34,7 @@ const userController = {
 	},
 	loginUser: async (req, res) => {
 		const { mail, pass } = req.body
-        console.log(req.body)
+		console.log(req.body)
 		const userExists = await User.findOne({ mail })
 		if (!userExists) return res.json({ success: false, error: message })
 		const passwordMatches = bcrypt.compareSync(pass, userExists.pass)
@@ -54,7 +54,7 @@ const userController = {
 			billingAddress: userExists.billingAddress
 		})
 	},
-	
+
 	decodeUser: (req, res) => {
 		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id } = req.user
 		res.json({
@@ -66,161 +66,110 @@ const userController = {
 			id: _id
 		})
 	},
-	
 
-    editUser: (req , res) =>{
-        User.findOneAndUpdate({_id: req.user._id },{...req.body},{new:true})
-		.then(user => res.json({ success: true, user }))
-        .catch(err => {
-			res.json({success:true, error: err})
-		}) 
+
+	editUser: (req, res) => {
+		User.findOneAndUpdate({ _id: req.user._id }, { ...req.body }, { new: true })
+			.then(user => res.json({ success: true, user }))
+			.catch(err => {
+				res.json({ success: true, error: err })
+			})
 	},
-	
-	
 
-	
+
+
+
 	userInfo: (req, res) => {
-	var userId = req.user._id
+		var userId = req.user._id
 
-		const usuarioUser = User.findOne({_id: userId})
-		
+		const usuarioUser = User.findOne({ _id: userId })
 
-		.then(usuarioUser => res.json({
-			success: true,
-			token,
-			firstName: usuarioUser.firstName,
-			wishlist: usuarioUser.wishlist,
-            phone: usuarioUser.phone
-            
-		}))
-		.catch(error => res.json({success: false, error}))
+
+			.then(usuarioUser => res.json({
+				success: true,
+				token,
+				firstName: usuarioUser.firstName,
+				wishlist: usuarioUser.wishlist,
+				phone: usuarioUser.phone
+
+			}))
+			.catch(error => res.json({ success: false, error }))
 	},
 
 
-	
+
 	addToWishlist: async (req, res) => {
-		var id = req.params.id
+		var {id}= req.body
 		var userId = req.user._id
-		
-		try{
-		
-			var user = await User.findOne({_id: userId})
-		
-		if(!user){
-			res.json({
-				success:false,
-				response: "User Not found"
-			})
-		}
-		
-		var product = await Product.findOne({_id: id})
-		if(!product){
-			res.json({
-				success: false,
-				response: "Product not found"
-			})
-		}
-		
 
-		if(!user.wishlist.includes(id)){
-			user.wishlist.push(id)
-			
-			// await User.updateOne({_id:idUser}, {wish})
-
-			await user.save()
-		}
-		
-
-	}catch(error){
-            res.json({
-                success: false,
-                response: error
+		const userWishList = await User.findOneAndUpdate({ _id: userId }, { $push: {wishlist: [id] } }, { new: true })
+	
+		res.json({
+			success:true,
+			wishlist:userWishList.wishlist
 		})
-	}
-},
+
+	},
 
 
 
 
 	removeToWishlist: async (req, res) => {
-        var id = req.params.id
+		var id = req.params.id
 		var userId = req.user._id
-		
-		try{
-			var user = await User.findOne({_id: userId})
-			if(!user){
-				res.json({
-					success:false,
-					response: "User Not found"
-				})
-			}
-			
-			var product = await Product.findOne({_id: id})
-			if(!product){
-				res.json({
-					success: false,
-					response: "Product not found"
-				})
-			}
-			
-			if(user.wishlist.includes(id)){
-			var wish = user.wishlist
+		const userWishList= await User.findById({_id:userId})
 
-			user.wishlist = user.wishlist.filter(product => product != id) 
-
-			await user.save()
-			
-		}
-		}catch(error){
-		    res.json({
-			    success: false,
-			    response: error
-		    })
-	    }
+		const filteredWishList= userWishList.wishlist.filter(wishlist => wishlist != id)
+		// console.log(filteredWishList)
+		const user = await User.findOneAndUpdate({_id:userId}, {wishlist: filteredWishList}, {new: true})
+		res.json({
+			success:true,
+			wishlist:user.wishlist
+		})
 	},
 
 
 	addShippingAddress: async (req, res) => {
 		var id = req.params.id
 		var userId = res.user._id
-		
-		const data = {street,number,floor,apartment} = req.body
-		
+
+		const data = { street, number, floor, apartment } = req.body
+
 		try {
-			var user = await  User.findOne({_id: userId}, {shippingAddress: req.body})
+			var user = await User.findOne({ _id: userId }, { shippingAddress: req.body })
 			res.json({
 				success: true,
 				response: user
 			})
 
-		}catch(error){
-		    res.json({
-			    success: false,
-			    response: error
-		    })
-			
+		} catch (error) {
+			res.json({
+				success: false,
+				response: error
+			})
+
 		}
 	},
 
 	addBillingAddress: async (req, res) => {
 		var id = req.params.id
 		var userId = res.user._id
-		
-		const data = {street,number,floor,apartment} = req.body
-		
+
+		const data = { street, number, floor, apartment } = req.body
+
 		try {
-			var user = await  User.findOne({_id: userId}, {billingAddress: req.body})
+			var user = await User.findOne({ _id: userId }, { billingAddress: req.body })
 			res.json({
 				success: true,
 				response: user
 			})
 
-		}catch(error){
-		    res.json({
-			    success: false,
-			    response: error
-		    })
-			
+		} catch (error) {
+			res.json({
+				success: false,
+				response: error
+			})
+
 		}
 	},
 

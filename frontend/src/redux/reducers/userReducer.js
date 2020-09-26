@@ -14,7 +14,7 @@ function userReducer(state = initialState, action) {
 	switch (action.type) {
 		case "USER_IN":
 			localStorage.setItem("token", action.payload.token)
-			console.log(action.payload, "dato del usuario")
+
 			return {
 				...state,
 				...action.payload,
@@ -49,7 +49,11 @@ function userReducer(state = initialState, action) {
 				billingAddress: action.payload
 			}
 		
-
+			case "WISHLIST":
+			return{
+				...state,
+				wishlist: action.payload
+			}
 		default:
 			return state
 	}

@@ -13,7 +13,7 @@ const Products = (props) => {
 			await props.getProducts(props.match.params.category)
 		}
 		f()
-		console.log(props.products)
+
 	}, [])
 	return ( <>
 	<Header />
