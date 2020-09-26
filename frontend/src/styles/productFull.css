@@ -116,14 +116,7 @@
     width: 140px;
 }
 
-@media only screen and (max-width: 900px){
-    .infoProduct .allInformation .description{
-        margin-top: 1vw;
-        font-weight: lighter;
-        text-align: justify;
-        width: 45vw;
-    }
-}
+
 @media only screen and (max-width: 900px){
     .infoProduct .allInformation{
         display: flex;
@@ -139,6 +132,8 @@
         text-align: center;
     }
     .infoProduct .allInformation .description{
+        margin-top: 1vw;
+        font-weight: lighter;
         width: 75vw;
         text-align: center;
     }
@@ -156,5 +151,28 @@
     .infoProduct .allInformation .aditionalInfo{
         margin-bottom: 3vh;
     }
+    .infoProduct .allInformation .quantity .addToBag{
+        font-size: 2vw;
+    }
+    .infoProduct .allInformation .quantity .plus{
+        font-size: 2vw;
+    }
 }
-
+@media only screen and (max-width: 540px){
+    .infoProduct .allInformation .quantity .addToBag{
+        font-size: 3vw;
+    }
+    .infoProduct .allInformation .quantity .plus{
+        font-size: 3vw;
+    }
+    .homeBackgroundTwoo{
+        position: absolute;
+        top:13.5vh;
+        right: 0;
+        z-index: 0;
+        width: 105px;
+    }
+    .Classbanner p{
+        font-size: 4vw;
+    }
+}

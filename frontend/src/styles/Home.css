@@ -179,3 +179,34 @@
        height: 28vh;
     }
 }
+@media only screen and (max-width: 400px){
+   
+    .categories .allCategories .TheCategorie{
+        width: 65vw;
+        padding: 7vh 3vw;
+    }
+    .whoWeAre h2{
+        font-size: 5.5vw;
+
+    }
+    .whoWeAre p{
+        font-size: 2.5vw;
+    
+    }
+    .whoWeAre h5{
+        margin-right: 3vw;
+        width: 50%;
+        font-size: 2.5vw;
+       
+    }
+    .homeBackgroundOne{
+        top:20vh;
+        width: 120px;
+    }
+    .homeBackgroundTwo{
+
+        top:53vh;
+        width: 120px;
+    }
+    
+}
