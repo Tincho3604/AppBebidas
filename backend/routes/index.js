@@ -35,8 +35,11 @@ router.route("/user/addShippingAddress")
 router.route("/user/addBillingAddress")
 .post(passport.authenticate('jwt',{session: false}), userController.addBillingAddress)
 
+router.route("/user/rate")
+.patch(passport.authenticate('jwt',{session: false}), userController.setRate)
 
-
+router.route("/user/rate/r")
+.patch(passport.authenticate('jwt',{session: false}), userController.delRate)
 
 
 // PRODUCTS ROUTES

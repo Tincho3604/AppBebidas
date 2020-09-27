@@ -40,7 +40,8 @@ const userController = {
 					id: user._id,
 					wishlist: user.wishlist,
 					shippingAddress: user.shippingAddress,
-					billingAddress: user.billingAddress
+					billingAddress: user.billingAddress,
+					rates: user.rates
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
@@ -64,19 +65,21 @@ const userController = {
 			wishlist: userExists.wishlist,
 			id: userExists._id,
 			shippingAddress: userExists.shippingAddress,
-			billingAddress: userExists.billingAddress
+			billingAddress: userExists.billingAddress,
+			rates: userExists.rates
 		})
 	},
 
 	decodeUser: (req, res) => {
-		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id } = req.user
+		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates } = req.user
 		res.json({
 			firstName,
 			lastName,
 			wishlist,
 			shippingAddress,
 			billingAddress,
-			id: _id
+			id: _id,
+			rates
 		})
 	},
 
@@ -95,16 +98,13 @@ const userController = {
 	userInfo: (req, res) => {
 		var userId = req.user._id
 
-		const usuarioUser = User.findOne({ _id: userId })
-
-
+		User.findOne({ _id: userId })
 			.then(usuarioUser => res.json({
 				success: true,
 				token,
 				firstName: usuarioUser.firstName,
 				wishlist: usuarioUser.wishlist,
 				phone: usuarioUser.phone
-
 			}))
 			.catch(error => res.json({ success: false, error }))
 	},
@@ -223,7 +223,68 @@ const userController = {
                 response: "Error getting account"
             })
         }
-    }
-
+	},
+	setRate: async (req,res) => {
+		const rId = req.body.id
+		const rVal = req.body.value
+		let found = false
+		if (req.user.rates.length > 0) {
+			req.user.rates.map(rate => {
+				if (rate.id === rId) {
+					rate.value = rVal;
+					found = true;
+				}
+			})
+		}
+		if(found) {
+			req.user.save()
+				.then(user => {
+					res.json({
+						success: true,
+						rates: user.rates
+					})
+				})
+				.catch(err => {
+					res.json({
+						success: false,
+						err
+					})
+					
+				}) 
+		} else {
+			req.user.rates.push({id: rId, value: rVal})
+			req.user.save()
+				.then(user => {
+					res.json({
+						success: true,
+						rates: user.rates
+					})
+				})
+				.catch(err => {
+					res.json({
+						success: false,
+						err
+					})
+				}) 
+		}
+	},
+	delRate: (req,res) => {
+		const { id } = req.body
+		req.user.rates = req.user.rates.filter(rate => rate.id !== id)
+		req.user.save()
+				.then(user => {
+					res.json({
+						success: true,
+						rates: user.rates
+					})
+				})
+				.catch(err => {
+					res.json({
+						success: false,
+						err
+					})
+					
+				})
+	}
 }
 module.exports = userController

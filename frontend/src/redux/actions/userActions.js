@@ -30,6 +30,9 @@ const userActions = {
 						firstName: response.data.firstName,
 						lastName: response.data.lastName,
 						wishlist: response.data.wishlist,
+						billingAddress: response.data.billingAddress,
+						shippingAddress: response.data.shippingAddress,
+						rates: response.data.rates
 					},
 				})
 			}
@@ -95,6 +98,9 @@ const userActions = {
 						firstName: response.data.firstName,
 						lastName: response.data.lastName,
 						wishlist: response.data.wishlist,
+						billingAddress: response.data.billingAddress,
+						shippingAddress: response.data.shippingAddress,
+						rates: response.data.rates
 					},
 				})
 			}
@@ -123,15 +129,18 @@ const userActions = {
 			} catch {
 				return false
 			}
-			const { lastName, firstName, wishlist, id } = response.data
+			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates } = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
 					token,
+					id,
 					firstName,
 					lastName,
 					wishlist,
-					id
+					billingAddress,
+					shippingAddress,
+					rates,
 				},
 			})
 		}
@@ -278,7 +287,37 @@ const userActions = {
                 })
                 return response.data.success
         }
-    }
+	},
+	setRate: (token, id, value) => {
+		return async (dispatch, getState) => {
+			const response = await axios.patch(`${RUTA_API}/api/user/rate`, {id, value} , {
+				headers: {
+					'Authorization': "Bearer " + token,
+				}
+			})
+			if(response.data.success) {
+				toast.success('Calificacion hecha!')
+				dispatch({
+					type: "RATES",
+					payload: response.data.rates
+				})
+			}
+			else toast.error('Hubo un error al calificar')
+		}
+	},
+	delRate: (token, id) => {
+		return async (dispatch, getState) => {
+			const response = await axios.patch(`${RUTA_API}/api/user/rate/r`, {id} , {
+				headers: {
+					'Authorization': "Bearer " + token,
+				}
+			})
+			dispatch({
+				type: "RATES",
+				payload: response.data.rates
+			})
+		}
+	},
 }
 
 export default userActions

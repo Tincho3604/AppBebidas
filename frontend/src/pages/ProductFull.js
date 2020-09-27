@@ -134,6 +134,9 @@ const ProductFull = (props) => {
 					</div>
                 </div>
                 </div>
+				<div className="rating">
+						<Rate dato={props.product._id} rates={props.rates} />
+				</div>
                 <div className="theComments">
                 <h2>Comentarios</h2>
 			        <div className="scrollComments">
@@ -164,6 +167,7 @@ const mapStateToProps = state => {
         lastName: state.userReducer.lastName,
         comments: state.userReducer.comments,
         token: state.userReducer.token,
+        rates: state.userReducer.rates,
         id: state.userReducer.id
     }
   }
