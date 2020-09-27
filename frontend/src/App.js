@@ -20,6 +20,8 @@ import Account from './pages/Account';
 import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
 import AdminListProduct from './pages/AdminListProduct'
+import PassRecovery from './pages/PassRecovery';
+
 
 function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
@@ -46,7 +48,8 @@ function App(props) {
 		<Route path='/shippingAddress' component={ShippingAddress}/>      
 		<Route path='/billingAddress' component={BillingAddress}/>
 		<Route path='/adminListProduct' component={AdminListProduct} />
-		<Redirect to='/' /> 
+		<Route path='/passRecovery' component={PassRecovery} />
+		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
