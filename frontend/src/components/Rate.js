@@ -9,17 +9,12 @@ const Rate = (props) => {
 		exists: false
 	})
 
-	useEffect(() => {
-		console.log(props.rates.map(i => Object.values(i)).flat(), props.dato)
-		if(props.rates.map(i => Object.values(i)).flat().includes(props.dato)) {
-			setRate({
-				...rate,
-				exists: true
-			})
-		}
-	}, [])
-
-
+	if(props.rates && props.dato && !rate.exists && props.rates.map(i => Object.values(i)).flat().includes(props.dato)) {
+		setRate({
+			...rate,
+			exists: true
+		})
+	}
 
 	const overHandler = e => {
 		setRate({
@@ -36,6 +31,8 @@ const Rate = (props) => {
 		<i className={rate.n >= 4 ? "fas fa-star" : "far fa-star"} id={4} onMouseEnter={overHandler}></i>
 		<i className={rate.n >= 5 ? "fas fa-star" : "far fa-star"} id={5} onMouseEnter={overHandler}></i>
 		<span>{rate.n}</span>
+	</div>
+	<div class="stars">
 		<button className="vote" onClick={() => {props.setRate(props.token, props.dato, rate.n)}}>{rate.exists ? "Cambiar" : "Calificar"}</button>
 		{rate.exists &&
 		<button className="voteSec" onClick={() => props.delRate(props.token, props.dato)}>Quitar</button>}
