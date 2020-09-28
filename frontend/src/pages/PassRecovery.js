@@ -3,8 +3,8 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
-import Swal from 'sweetalert2'
 import '../styles/generalStyles.css'
+import { toast } from 'react-toastify'
 
 
 class PassRecovery extends React.Component{
@@ -48,7 +48,7 @@ class PassRecovery extends React.Component{
                     disabled: false
                 }) 
             } else{
-                Swal.fire({  title: 'A email has been sent!',  text: "Please check your mail box",  icon: 'success',  showConfirmButton: false, timer: 4000,allowOutsideClick: false})
+                toast.info("Mail de recuperacion enviado. Chequea tu casilla de mail")
                 this.props.history.push('/')
                 this.setState({
                     ...this.state,

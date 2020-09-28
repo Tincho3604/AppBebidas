@@ -11,7 +11,6 @@ const CreateProduct = (props) => {
         title: "",
         price: "",
         ml: "",
-        rating: "",
         pic: "",
         alcPct: "",
         stock: "",
@@ -143,7 +142,6 @@ const CreateProduct = (props) => {
             fd.append("stock", product.stock)
             fd.append("description", product.description)
             fd.append("pic", product.pic)
-            fd.append("rating", product.rating)
             fd.append("title", product.title)
 
             await props.createProduct(fd)

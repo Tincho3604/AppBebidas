@@ -31,31 +31,37 @@ const EditProduct = (props) => {
     const [send, setSend] = useState({
         status: false
     })
-
+    const f = async () => {
+        await props.dataProduct("5f6baa40353b272460f03bb7")
+setTimeout(() => {
+    setProduct({
+            
+        category: props.productData.category,
+        description: props.productData.description
+    })
+}, 3000);
+      
+    }
     useEffect(() => {
-        
-        const {id} = props.match.params
-           props.dataProduct(id)
-        
-           setProduct({
-            category: "",
-            title: "",
-            price: "",
-            ml: "",
-            rating: "",
-            pic: "",
-            alcPct: "",
-            stock: "",
-            description: ""
-           })
-           
-       },[]) 
+
+     
+        f()
+
+
+
+
+
+    }, [])
+ 
+
+    console.log(product)
+    console.log(props)
     const validation = product => {
         error.ok = true
         //RegEx
         const alphanum = RegExp(/^\w+$/)
-		const num = RegExp(/\d.{1,}/)
-		const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
+        const num = RegExp(/\d.{1,}/)
+        const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
         //category
         if (product.category === '') {
             error.category = 'Cannot be empty'
@@ -152,8 +158,8 @@ const EditProduct = (props) => {
         send.status = true
         setSend({ status: true })
         if (validation(product)) {
-           
-            const {id} = props.match.params
+
+            const { id } = props.match.params
             const fd = new FormData()
             fd.append("category", product.category)
             fd.append("price", product.price)
@@ -164,7 +170,7 @@ const EditProduct = (props) => {
             fd.append("pic", product.pic)
             fd.append("rating", product.rating)
             fd.append("title", product.title)
-          
+
 
             await props.editProduct(fd, id)
 
@@ -184,53 +190,54 @@ const EditProduct = (props) => {
         }
 
     }
-    
-    return (
-        <>
-       {/* AGREGAR VALUES CON PROPS DE LA ACCION AL OBTENER DATOS DE UN PRODUCTO ASI SE RENDERIZAN AL QUERER EDITAR UN PRODUCTO */}
-	   <div className="container">
-					<form className="form">
-						<h2>Create your product</h2>
-						<div className="inputBox">
-							<label for="category">Categoria:</label>
-							<select name="category" onChange={handleChange} value={product.category}>
-								<option> - Seleccionar Categoria - </option>
-								{CATEGORIES.map(category => {
-									return <option value={category.foto}>{category.nombre}</option>
-								})}
-							</select>
-						</div>
-                        <div className="inputBox">
-                            <label for="title">Titulo:</label>
-                            <input type="text" name="title" onChange={handleChange} value={product.title}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="description">Descripción:</label>
-                            <input type="text" name="description" onChange={handleChange} value={product.description}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="price">Precio:</label>
-                            <input type="number" name="price" onChange={handleChange} value={product.price}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="stock">Stock:</label>
-                            <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="ml">Mililitros:</label>
-                            <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="alcPct">Porcentaje Alcoholico (%):</label>
-                            <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
-                        </div>
-                        <div className="inputBox">
-                            <label for="pic">Foto del producto:</label>
-                            <input type="file" name="pic" onChange={handleChange}></input>
-                        </div>
 
-                		<button onClick={handleClick}>Enviar datos</button>
-                    </form>
+    return (
+
+        <>
+            {/* AGREGAR VALUES CON PROPS DE LA ACCION AL OBTENER DATOS DE UN PRODUCTO ASI SE RENDERIZAN AL QUERER EDITAR UN PRODUCTO */}
+            <div className="container">
+                <form className="form">
+                    <h2>Create your product</h2>
+                    <div className="inputBox">
+                        <label for="category">Categoria:</label>
+                        <select name="category" onChange={handleChange} value={product.category}>
+                            <option> - Seleccionar Categoria - </option>
+                            {CATEGORIES.map(category => {
+                                return <option value={category.foto}>{category.nombre}</option>
+                            })}
+                        </select>
+                    </div>
+                    <div className="inputBox">
+                        <label for="title">Titulo:</label>
+                        <input type="text" name="title" onChange={handleChange} value={product.title}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="description">Descripción:</label>
+                        <input type="text" name="description" onChange={handleChange} value={product.description}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="price">Precio:</label>
+                        <input type="number" name="price" onChange={handleChange} value={product.price}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="stock">Stock:</label>
+                        <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="ml">Mililitros:</label>
+                        <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="alcPct">Porcentaje Alcoholico (%):</label>
+                        <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
+                    </div>
+                    <div className="inputBox">
+                        <label for="pic">Foto del producto:</label>
+                        <input type="file" name="pic" onChange={handleChange}></input>
+                    </div>
+
+                    <button onClick={handleClick}>Enviar datos</button>
+                </form>
             </div>
 
         </>
@@ -242,7 +249,7 @@ const EditProduct = (props) => {
 
 const mapStateToProps = state => {
     return {
-    productData: state.productReducer.productFound
+        productData: state.productReducer.productFound
     }
 }
 

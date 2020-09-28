@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    z-index: 2;
     
 }
 .Classbanner img{
@@ -17,8 +18,13 @@
     margin-left: 3vw;
     color: #ffffff;
 }
-
-
+.nameAndRating{
+    display: flex;
+    align-items: center;
+}
+.nameAndRating .ratings{
+    margin-left: 1vw;
+}
 .infoProduct{
     background-color: #000000;
     color: #ffffff;
@@ -30,8 +36,7 @@
 .infoProduct .allInformation{
     border-bottom: 3px solid transparent; 
     border-image: linear-gradient(to bottom, #7f673ec7 0%, #d7b26cc4 100%) 1;
-    margin:0vh 5vw 0vh 5vw;
-    padding: 3vw;
+    margin:0vh 2vw 0vh 2vw;
     display: flex;
 }
 .infoProduct h2{
@@ -40,12 +45,10 @@
    
 }
 .infoProduct .allInformation img{
-    width: 25vw;
-    margin-right: 3vw;
+    height: 60vh;
 }
 .infoProduct .allInformation .units{
     margin-top: 1vw;
-   
     font-style: italic;
     font-size: 1.8vw;
 }
@@ -58,7 +61,7 @@
     margin-top: 1vw;
     font-weight: lighter;
     text-align: justify;
-    width: 50vw;
+    width: 54vw;
 }
 
 .infoProduct .allInformation .quantity{
@@ -70,7 +73,7 @@
 .infoProduct .allInformation .quantity .plus{
     border:none ;
     background: none;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
     font-weight: bold;
@@ -79,15 +82,16 @@
 }
 .infoProduct .allInformation .quantity .addToBag{
     border:none ;
-    padding: 2vh 2vw;
+    padding: 1vh 1.5vw;
     margin: 1vw;
     font-size: 1.5vw;
-    font-weight: bold;
     background: #d1b653;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity .addToBag:hover{
-    color: #d1b653;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
+    border: 2px solid #d1b653;
 }
 .infoProduct .allInformation .quantity p{
     font-size: 2vw;
@@ -102,4 +106,73 @@
 }
 .infoProduct .allInformation .ratings{
   color:#d1b653 ;
+}
+
+.homeBackgroundTwoo{
+    position: absolute;
+    top:12.5vh;
+    right: 0;
+    z-index: 0;
+    width: 140px;
+}
+
+
+@media only screen and (max-width: 900px){
+    .infoProduct .allInformation{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .infoProduct .allInformation .units{
+        text-align: center;
+    }
+    .infoProduct .allInformation .price{
+ 
+        text-align: center;
+    }
+    .infoProduct .allInformation .description{
+        margin-top: 1vw;
+        font-weight: lighter;
+        width: 75vw;
+        text-align: center;
+    }
+    .nameAndRating{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nameAndRating .ratings{
+        margin-left: 1vw;
+    }
+    .infoProduct .allInformation img{
+        height: 40vh;
+    }
+    .infoProduct .allInformation .aditionalInfo{
+        margin-bottom: 3vh;
+    }
+    .infoProduct .allInformation .quantity .addToBag{
+        font-size: 2vw;
+    }
+    .infoProduct .allInformation .quantity .plus{
+        font-size: 2vw;
+    }
+}
+@media only screen and (max-width: 540px){
+    .infoProduct .allInformation .quantity .addToBag{
+        font-size: 3vw;
+    }
+    .infoProduct .allInformation .quantity .plus{
+        font-size: 3vw;
+    }
+    .homeBackgroundTwoo{
+        position: absolute;
+        top:13.5vh;
+        right: 0;
+        z-index: 0;
+        width: 105px;
+    }
+    .Classbanner p{
+        font-size: 4vw;
+    }
 }

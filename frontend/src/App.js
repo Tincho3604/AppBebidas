@@ -12,10 +12,14 @@ import Home from '../src/pages/Home';
 import SignUp from '../src/pages/SignUp';
 import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
+import ShippingAddress from './components/ShippingAddress'
+import BillingAddress from './components/BillingAddress'
 import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
+import Account from './pages/Account';
 import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
+import AdminListProduct from './pages/AdminListProduct'
 import PassRecovery from './pages/PassRecovery';
 
 
@@ -23,23 +27,42 @@ function App(props) {
 	if(localStorage.getItem('token') && props.user.token === '') {
 		props.authUser(localStorage.getItem('token'))
 	}
+	
+	if(localStorage.getItem('items') && props.user.cart.length === 0) {
+		props.loadCart()
+	}
+
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
 		<Route exact path='/' component={Home} />
 		<Route path='/signup' component={SignUp} />
 	    <Route path='/login' component={Login} />
-		<Route path='/admin' component={AdminDashboard} />
+		<Route path='/admin' component={AdminDashboard}/>
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/Account' component={Account} />
+		{/* Estas rutas deberian estar cuando el usuario este logeado */}
+		<Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/>
+		<Route path='/adminListProduct' component={AdminListProduct} />
 		<Route path='/passRecovery' component={PassRecovery} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
-		{/* RUTAS USUARIO LOGUEADO */}
+		RUTAS USUARIO LOGUEADO 
 		<Route exact path='/' component={Home} />
+		<Route path='/admin' component={AdminDashboard}/>
+		<Route path='/createProduct' component={AdminCreateProduct} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
+		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/Account' component={Account} />
+		{/* Estas rutas deberian estar cuando el usuario este logeado */}
+		<Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/>
 		<Redirect to='/' />
 	</Switch>);
 	
@@ -72,7 +95,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	authUser: userActions.authUser
+	authUser: userActions.authUser,
+	loadCart: userActions.loadCart
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(App);

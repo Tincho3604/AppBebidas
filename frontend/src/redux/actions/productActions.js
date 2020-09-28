@@ -1,7 +1,6 @@
 import axios from "axios"
 import { RUTA_API } from "../../constants"
 
-
 const productActions = {
     createProduct: (fd) => {
         console.log(fd)
@@ -10,15 +9,12 @@ const productActions = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-
             })
-
         }
     },
     dataProduct: id=> {
-
         return async (dispatch, getState) => {
-            const response = await axios.post(RUTA_API + "/api/product/getProduct/" + id)
+            const response = await axios.get(`${RUTA_API}/api/product/getProduct/${id}`)
 
             dispatch({
 				type: "DATA_PRODUCT",
@@ -38,27 +34,39 @@ const productActions = {
 		}
 	},
     getProductByCategory: category => {
-        
         return async(dispatch, getState) => {
-        const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
+		const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
         const products = respuesta.data.listProducts
         dispatch({
             type: 'GET_PRODUCT_BY_CATEGORY',
-            dispatch: products
+            payload: products
             })
         }
     },
-
     getAllProducts: () => {
         return async(dispatch, getState) => {
             const respuesta = await axios.get(`${RUTA_API}/api/product/listProducts`)
             const allProduct = respuesta.data.list
             dispatch({
                 type:'GET_ALL_PRODUCTS',
-                dispatch: allProduct
+                payload: allProduct
             })
         }
     },
-}
 
-export default productActions
+
+    getListProduct: category => {
+        
+        return async(dispatch, getState) => {
+        const respuesta = await axios.get(`${RUTA_API}/api/products/${category}`)
+        
+        return respuesta.data.listProducts
+        
+        
+            }
+        },
+    }
+
+
+
+    export default productActions

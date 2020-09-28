@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import NavProducts from '../components/NavProducts';
+import Product from '../components/Product';
 import productActions from '../redux/actions/productActions';
 import '../styles/products.css'
 
@@ -12,13 +13,17 @@ const Products = (props) => {
 			await props.getProducts(props.match.params.category)
 		}
 		f()
-		console.log(props.products)
+
 	}, [])
 	return ( <>
 	<Header />
 	<div className='products'>
-	<NavProducts />
-
+		<NavProducts />
+		<div className='productList'>
+			{props.products.map(product => {
+				return <Product data={product} />
+			})}
+		</div>
 	</div>
 	<Footer />
 	</> );

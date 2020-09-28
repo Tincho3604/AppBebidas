@@ -26,37 +26,50 @@ router.route("/user/login")
 router.route("/user/addWishList")
 .put(passport.authenticate('jwt',{session: false}), userController.addToWishlist)
 
-router.route("/user/removeWishList")
+router.route("/user/removeWishList/:id")
 .delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
 
+router.route("/user/addShippingAddress")
+.post(passport.authenticate('jwt',{session: false}), userController.addShippingAddress)
 
+router.route("/user/addBillingAddress")
+.post(passport.authenticate('jwt',{session: false}), userController.addBillingAddress)
 
+router.route("/user/rate")
+.patch(passport.authenticate('jwt',{session: false}), userController.setRate)
+
+router.route("/user/rate/r")
+.patch(passport.authenticate('jwt',{session: false}), userController.delRate)
 
 
 // PRODUCTS ROUTES
 router.route("/product/createProduct")
 .post( productController.createProduct)
 
-router.route("/product/getProduct")
-.post(productController.getProductById)
+
+router.route("/product/getProduct/:id")
+.get(productController.getProductById)
+
 
 router.route("/product/editProduct")
 .put( productController.modifyProduct)
 
+
 router.route("/product/deleteProduct")
 .delete(productController.deleteProduct)
+
 
 router.route("/product/listProducts")
 .get(productController.getAllProducts)
 
-router.route("/product/productFound")
-.get(productController.getProductById)
 
 router.route("/product/wishList")
 .get(productController.getProductByWishlist)
 
+
 router.route("/products/:category")
 .get(productController.getProductByCat)
+
 
 // ORDER ROUTES
 router.route("/orders")
