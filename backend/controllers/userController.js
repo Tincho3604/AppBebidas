@@ -203,12 +203,17 @@ const userController = {
                     from: "Deluxe <notresponse@notreply.com>",
                     sender: "Deluxe <notresponse@notreply.com>",
                     to: `${user.mail}`,
-                    subject: "New Password",
+					subject: "Nueva Contreseña",
 					html:  `<div>
-					<img src="https://pubelancla.es/wp-content/uploads/2015/05/whisky_pubelancla-1024x640.jpg" />
-					<h1>Esta es su nueva contraseña: ${newPass}</h1>
-					<h2>puede continuar su compra en Deluxe</h2>
-					<h2>Vuelva a ingresar<h2>    
+					<img src= "https://paraiba.com.br/site/wp-content/uploads/2019/12/UISQUE.jpg" />
+					<div>
+					<span style="color: #d7b26c; font-size:15px; text-align: center;">
+					<h1><a href="https://www.lostragos.com/">DELUXE</a></h1>
+                    <h1 border="1" >Nueva contraseña: <span style="color: #d7b26c; font-size:25px;">${newPass}</span></h1>
+					<h1><span style="color: #7f673e; font-size:25px;">puede continuar su compra en Deluxe 🔥</span></h1>
+					<p>Vuelva a ingresar<p>
+					</span>
+					</div>  
                     </>`,
                 }
                 transport.sendMail(mailOptions, (error, info) => {
