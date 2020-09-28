@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux'
 import userActions from "../redux/actions/userActions"
-import { toast } from "react-toastify"
 import rubish from "../images/rubish.png"
 import editComment from "../images/editComment.png"
 import saveTik from "../images/saveTik.png"
-import { RUTA_API } from "../constants"
 import "../styles/comment.css"
 
 const Comment = (props) => {
@@ -42,8 +40,6 @@ const Comment = (props) => {
             setEdit(false)
         }
         const options = () => {
-			console.log(props.data, "data props")
-			console.log(props.id, "id")
             if (props.id === props.data.id) {
                 return (
     

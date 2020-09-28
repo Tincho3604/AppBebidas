@@ -26,7 +26,7 @@ router.route("/user/login")
 router.route("/user/addWishList")
 .put(passport.authenticate('jwt',{session: false}), userController.addToWishlist)
 
-router.route("/user/removeWishList")
+router.route("/user/removeWishList/:id")
 .delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
 
 router.route("/user/addShippingAddress")
@@ -35,8 +35,11 @@ router.route("/user/addShippingAddress")
 router.route("/user/addBillingAddress")
 .post(passport.authenticate('jwt',{session: false}), userController.addBillingAddress)
 
+router.route("/user/rate")
+.patch(passport.authenticate('jwt',{session: false}), userController.setRate)
 
-
+router.route("/user/rate/r")
+.patch(passport.authenticate('jwt',{session: false}), userController.delRate)
 
 
 // PRODUCTS ROUTES
@@ -66,11 +69,6 @@ router.route("/product/wishList")
 
 router.route("/products/:category")
 .get(productController.getProductByCat)
-
-
-router.route("/products/:category")
-.get(productController.getListProduct)
-
 
 
 // ORDER ROUTES
@@ -103,6 +101,10 @@ router.route("/comment")
 
 router.route("/comment/:id")
 .delete(commentController.deleteCommentById)
+
+// PASSWORD RECOVERY
+router.route('/sendMail')
+.put(userController.NewPass)
 
 
 
