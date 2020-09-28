@@ -4,11 +4,13 @@ const uniqueValidator = require('mongoose-unique-validator');
 const userSchema = new mongoose.Schema({
 	firstName: {
 		type: String,
-		trim: true
+		trim: true,
+		require: true
 	},
 	lastName: {
 		type: String,
-		trim: true
+		trim: true,
+		require: true
 	},
 	mail: {
 		type: String,
@@ -25,20 +27,21 @@ const userSchema = new mongoose.Schema({
 		default: []
 	},
 	shippingAddress: {
-		type: Object,
-		required: true
+		type: Object
 	},
 	billingAddress: {
-		type: Object,
-		required: true
+		type: Object
 	},
 	phone: {
-		type: String,
-		required: true
+		type: String
 	},
 	role: {
 		type: String,
 		default: 'customer'
+	},
+	rates: {
+		type: Array,
+		default: []
 	}
 })
 
