@@ -12,7 +12,7 @@ const userActions = {
 	createUser: (user, set = null) => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API + '/api/user/register', user)
-			console.log(response)
+
 			if (response.data.success === "false") {
 				set({ status: false })
 				let errors = response.data.error.errors;
@@ -32,7 +32,8 @@ const userActions = {
 						wishlist: response.data.wishlist,
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
-						rates: response.data.rates
+						rates: response.data.rates,
+						phone: response.data.phone
 					},
 				})
 			}
@@ -85,6 +86,7 @@ const userActions = {
 	loginUser: user => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API + "/api/user/login", user)
+
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -100,7 +102,8 @@ const userActions = {
 						wishlist: response.data.wishlist,
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
-						rates: response.data.rates
+						rates: response.data.rates,
+						phone: response.data.phone
 					},
 				})
 			}
@@ -129,7 +132,7 @@ const userActions = {
 			} catch {
 				return false
 			}
-			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates } = response.data
+			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates, phone } = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
@@ -141,6 +144,7 @@ const userActions = {
 					billingAddress,
 					shippingAddress,
 					rates,
+					phone
 				},
 			})
 		}
@@ -148,16 +152,31 @@ const userActions = {
 
 
 
-	modifyUser: user => {
+	modifyUser: (user) => {
+
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
 					'Authorization': "Bearer " + getState().userReducer.token,
 				}
+
+			})
+			dispatch({
+				type: "USER_IN",
+				payload: {
+					firstName: response.data.newInfo.firstName,
+					lastName: response.data.newInfo.lastName,
+					billingAddress: response.data.newInfo.billingAddress,
+					shippingAddress: response.data.newInfo.shippingAddress,
+					phone: response.data.newInfo.phone,
+					token:  getState().userReducer.token
+				},
 			})
 			if (response.data.success) toast.success('Cambios guardados!')
 			else toast.error('Ha habido un problema')
+
 		}
+
 	},
 
 
@@ -183,7 +202,7 @@ const userActions = {
 	},
 	editComment: edited => {
 		return async (dispatch, getState) => {
-			const response = await axios.put(RUTA_API + "/api/comment",	edited)
+			const response = await axios.put(RUTA_API + "/api/comment", edited)
 			if (response.data.success === true) toast.success("Comentario editado")
 			else toast.error("Ha ocurrido un error")
 		}
@@ -249,12 +268,12 @@ const userActions = {
 
 		return async (dispatch, getState) => {
 
-			const response = await axios.put(`${RUTA_API}/api/user/addWishList/`, {id:id}, {
+			const response = await axios.put(`${RUTA_API}/api/user/addWishList/`, { id: id }, {
 				headers: {
 					'Authorization': "Bearer " + token,
 				}
 			})
-		
+
 			dispatch({
 				type: "WISHLIST",
 				payload: response.data.wishlist
@@ -277,25 +296,25 @@ const userActions = {
 			})
 		}
 	},
-	sendMail:(mail) =>{
+	sendMail: (mail) => {
 
-        return async (dispatch, getState) =>{
-            const response = await axios.put('http://localhost:4000/api/sendMail',{mail})
-         console.log(response)
-                dispatch({
-                    type:"SEND_MAIL"
-                })
-                return response.data.success
-        }
+		return async (dispatch, getState) => {
+			const response = await axios.put('http://localhost:4000/api/sendMail', { mail })
+			console.log(response)
+			dispatch({
+				type: "SEND_MAIL"
+			})
+			return response.data.success
+		}
 	},
 	setRate: (token, id, value) => {
 		return async (dispatch, getState) => {
-			const response = await axios.patch(`${RUTA_API}/api/user/rate`, {id, value} , {
+			const response = await axios.patch(`${RUTA_API}/api/user/rate`, { id, value }, {
 				headers: {
 					'Authorization': "Bearer " + token,
 				}
 			})
-			if(response.data.success) {
+			if (response.data.success) {
 				toast.success('Calificacion hecha!')
 				dispatch({
 					type: "RATES",
@@ -307,7 +326,7 @@ const userActions = {
 	},
 	delRate: (token, id) => {
 		return async (dispatch, getState) => {
-			const response = await axios.patch(`${RUTA_API}/api/user/rate/r`, {id} , {
+			const response = await axios.patch(`${RUTA_API}/api/user/rate/r`, { id }, {
 				headers: {
 					'Authorization': "Bearer " + token,
 				}

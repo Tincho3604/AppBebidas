@@ -8,8 +8,8 @@ const message = "Mail or Password incorrect"
 
 
 var transport = nodeMailer.createTransport({
-	port:465, 
-	host:"smtp.gmail.com",
+	port: 465,
+	host: "smtp.gmail.com",
 	auth: {
 		pass: "Dl12345*",
 		user: "deluxelicoreria@gmail.com"
@@ -41,14 +41,15 @@ const userController = {
 					wishlist: user.wishlist,
 					shippingAddress: user.shippingAddress,
 					billingAddress: user.billingAddress,
-					rates: user.rates
+					rates: user.rates,
+					phone: user.phone
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
 	},
 	loginUser: async (req, res) => {
 		const { mail, pass } = req.body
-		console.log(req.body)
+
 		const userExists = await User.findOne({ mail })
 		if (!userExists) return res.json({ success: false, error: message })
 		const passwordMatches = bcrypt.compareSync(pass, userExists.pass)
@@ -66,12 +67,14 @@ const userController = {
 			id: userExists._id,
 			shippingAddress: userExists.shippingAddress,
 			billingAddress: userExists.billingAddress,
-			rates: userExists.rates
+			rates: userExists.rates,
+			phone: userExists.phone
+
 		})
 	},
 
 	decodeUser: (req, res) => {
-		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates } = req.user
+		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates, phone } = req.user
 		res.json({
 			firstName,
 			lastName,
@@ -79,16 +82,26 @@ const userController = {
 			shippingAddress,
 			billingAddress,
 			id: _id,
-			rates
+			rates,
+			phone
 		})
 	},
 
 
-	editUser: (req, res) => {
-		User.findOneAndUpdate({ _id: req.user._id }, { ...req.body }, { new: true })
-			.then(user => res.json({ success: true, user }))
-			.catch(err => {
-				res.json({ success: true, error: err })
+	editUser: async (req, res) => {
+
+		const { firstName, lastName, phone, street, numberStreet, floor, apartament, streetFAC, numberStreetFAC, floorFAC, apartamentFAC } = req.body
+	const newInfo = await User.findOneAndUpdate({ _id: req.user._id },
+			{
+				firstName, lastName, phone,
+				$set: {
+					shippingAddress: { street: street, numberStreet: numberStreet, floor: floor, apartament: apartament },
+					billingAddress: { streetFAC: streetFAC, numberStreetFAC: numberStreetFAC, floorFAC: floorFAC, apartamentFAC: apartamentFAC }
+				}
+			}, { new: true })
+
+			res.json({
+				success: true, newInfo: newInfo
 			})
 	},
 
@@ -104,7 +117,7 @@ const userController = {
 				token,
 				firstName: usuarioUser.firstName,
 				wishlist: usuarioUser.wishlist,
-				phone: usuarioUser.phone
+
 			}))
 			.catch(error => res.json({ success: false, error }))
 	},
@@ -112,14 +125,14 @@ const userController = {
 
 
 	addToWishlist: async (req, res) => {
-		var {id}= req.body
+		var { id } = req.body
 		var userId = req.user._id
 
-		const userWishList = await User.findOneAndUpdate({ _id: userId }, { $push: {wishlist: [id] } }, { new: true })
-	
+		const userWishList = await User.findOneAndUpdate({ _id: userId }, { $push: { wishlist: [id] } }, { new: true })
+
 		res.json({
-			success:true,
-			wishlist:userWishList.wishlist
+			success: true,
+			wishlist: userWishList.wishlist
 		})
 
 	},
@@ -130,14 +143,14 @@ const userController = {
 	removeToWishlist: async (req, res) => {
 		var id = req.params.id
 		var userId = req.user._id
-		const userWishList= await User.findById({_id:userId})
+		const userWishList = await User.findById({ _id: userId })
 
-		const filteredWishList= userWishList.wishlist.filter(wishlist => wishlist != id)
+		const filteredWishList = userWishList.wishlist.filter(wishlist => wishlist != id)
 		// console.log(filteredWishList)
-		const user = await User.findOneAndUpdate({_id:userId}, {wishlist: filteredWishList}, {new: true})
+		const user = await User.findOneAndUpdate({ _id: userId }, { wishlist: filteredWishList }, { new: true })
 		res.json({
-			success:true,
-			wishlist:user.wishlist
+			success: true,
+			wishlist: user.wishlist
 		})
 	},
 
@@ -216,20 +229,20 @@ const userController = {
 					</span>
 					</div>  
                     </>`,
-                }
-                transport.sendMail(mailOptions, (error, info) => {
-                  
-                    res.send("email enviado")
-                })
+			}
+			transport.sendMail(mailOptions, (error, info) => {
 
-           }catch(error){
-            res.json({
-                success:false,
-                response: "Error getting account"
-            })
-        }
+				res.send("email enviado")
+			})
+
+		} catch (error) {
+			res.json({
+				success: false,
+				response: "Error getting account"
+			})
+		}
 	},
-	setRate: async (req,res) => {
+	setRate: async (req, res) => {
 		const rId = req.body.id
 		const rVal = req.body.value
 		let found = false
@@ -241,7 +254,7 @@ const userController = {
 				}
 			})
 		}
-		if(found) {
+		if (found) {
 			req.user.save()
 				.then(user => {
 					res.json({
@@ -254,10 +267,10 @@ const userController = {
 						success: false,
 						err
 					})
-					
-				}) 
+
+				})
 		} else {
-			req.user.rates.push({id: rId, value: rVal})
+			req.user.rates.push({ id: rId, value: rVal })
 			req.user.save()
 				.then(user => {
 					res.json({
@@ -270,26 +283,26 @@ const userController = {
 						success: false,
 						err
 					})
-				}) 
+				})
 		}
 	},
-	delRate: (req,res) => {
+	delRate: (req, res) => {
 		const { id } = req.body
 		req.user.rates = req.user.rates.filter(rate => rate.id !== id)
 		req.user.save()
-				.then(user => {
-					res.json({
-						success: true,
-						rates: user.rates
-					})
+			.then(user => {
+				res.json({
+					success: true,
+					rates: user.rates
 				})
-				.catch(err => {
-					res.json({
-						success: false,
-						err
-					})
-					
+			})
+			.catch(err => {
+				res.json({
+					success: false,
+					err
 				})
+
+			})
 	}
 }
 module.exports = userController

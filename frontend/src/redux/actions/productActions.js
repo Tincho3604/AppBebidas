@@ -3,7 +3,7 @@ import { RUTA_API } from "../../constants"
 
 const productActions = {
     createProduct: (fd) => {
-        console.log(fd)
+
         return async (dispatch, getState) => {
             const response = await axios.post(RUTA_API + "/api/product/createProduct", fd, {
                 headers: {
@@ -48,7 +48,7 @@ const productActions = {
             const respuesta = await axios.get(`${RUTA_API}/api/product/listProducts`)
             const allProduct = respuesta.data.list
             dispatch({
-                type:'GET_ALL_PRODUCTS',
+                type:'DATA_PRODUCT',
                 payload: allProduct
             })
         }
