@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
 	mail: {
 		type: String,
 		required: true,
-        trim: true,
-        unique: true
-    },
+		trim: true,
+		unique: true
+	},
 	pass: {
 		type: String,
 		required: true
@@ -42,9 +42,11 @@ const userSchema = new mongoose.Schema({
 	rates: {
 		type: Array,
 		default: []
-	}
+	},
+
+
 })
 
 const User = mongoose.model('user', userSchema);
-userSchema.plugin(uniqueValidator,{ message: '{PATH} alredy used'});
+userSchema.plugin(uniqueValidator, { message: '{PATH} alredy used' });
 module.exports = User;
