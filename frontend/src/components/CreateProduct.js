@@ -57,12 +57,15 @@ const CreateProduct = (props) => {
         }
         else error.category = ""
         //title
-        if (product.title === "") {
-            error.title = "Cannot be empty"
+        if (product.title === '') {
+            error.title = 'Cannot be empty'
             error.ok = false
-        } else {
-            error.title = ""
         }
+        else if (product.title.length > 10) {
+            error.title = "Max 10 characters"
+            error.ok = false
+        }
+        else error.title = ''
         //description
         if (product.description === '') {
             error.description = 'Cannot be empty'
