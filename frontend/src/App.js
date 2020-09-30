@@ -5,6 +5,7 @@ import userActions from './redux/actions/userActions';
 import { ToastContainer } from 'react-toastify';
 import './styles/generalStyles.css';
 import './styles/createProduct.css';
+import './styles/CardItemList.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 //Imports de pages
@@ -21,6 +22,7 @@ import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
 import AdminListProduct from './pages/AdminListProduct'
 import PassRecovery from './pages/PassRecovery';
+import CardList from './components/CardList';
 
 
 function App(props) {
@@ -49,21 +51,24 @@ function App(props) {
 		<Route path='/billingAddress' component={BillingAddress}/>
 		<Route path='/adminListProduct' component={AdminListProduct} />
 		<Route path='/passRecovery' component={PassRecovery} />
+		
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
-		<Route exact path='/' component={Home} />
+		{/* <Route exact path='/' component={Home} />
 		<Route path='/admin' component={AdminDashboard}/>
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
 		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
-		<Route path='/Account' component={Account} />
-		{/* Estas rutas deberian estar cuando el usuario este logeado */}
-		<Route path='/shippingAddress' component={ShippingAddress}/>      
-		<Route path='/billingAddress' component={BillingAddress}/>
-		<Redirect to='/' />
+		<Route path='/Account' component={Account} /> */}
+		Estas rutas deberian estar cuando el usuario este logeado 
+		{/* <Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/> */}
+		<Route path='/' component={CardList}/>
+	
+ 		<Redirect to='/' />
 	</Switch>);
 	
 
