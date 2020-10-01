@@ -32,6 +32,7 @@ const SignUp = (props) => {
             props.history.push('/')
         }
     }
+    
     const responseGoogle = response => {
         props.createUser({
               firstName: response.profileObj.givenName, 

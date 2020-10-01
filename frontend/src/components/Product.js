@@ -38,7 +38,7 @@ const wishlist = e => {
 
 	}
 }
-console.log(props)
+
 return (<>
 	<div className="productCard">
 		<div className="picture">

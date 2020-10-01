@@ -15,10 +15,29 @@ const Products = (props) => {
 		f()
 
 	}, [])
+
+
+console.log(props)
+const productsFiltered = props.products.filter(product => product.price > 500)
+console.log(productsFiltered)
+
 	return ( <>
 	<Header />
 	<div className='products'>
-		<NavProducts />
+	<div className="navProducts">
+			<div className="categories">
+
+			</div>
+			<div className="filters">
+				<div style={{display:"flex", flexDirection:"column", margin:"25px"}}>
+					<p>Filtrar por Precio</p>
+					<button style={{marginBottom:"10px"}}>$500 - $1000</button>
+					<button  style={{marginBottom:"10px"}}>$1001- $2500</button>
+					<button  style={{marginBottom:"10px"}}>$2501-$5000</button>
+				</div>
+
+			</div>
+		</div>
 		<div className='productList'>
 			{props.products.map(product => {
 				return <Product data={product} />

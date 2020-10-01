@@ -20,6 +20,8 @@ function Account(props) {
     
 useEffect(()=>{
     props.productsList()
+    props.getInfo()
+    
 },[])
 
 
@@ -52,13 +54,7 @@ useEffect(()=>{
         }
 
     }
-    const newValue = e => {
-        const value = e.target.value
-        setUser({
-            ...user,
-            [e.target.name]: value
-        })
-    }
+
 
     const handlData = e => {
         const valor = e.target.name === "pic" ? e.target.files[0] : e.target.value
@@ -166,7 +162,8 @@ const mapDispatchToProps = {
     modifyUser: userActions.modifyUser,
     productsList: productActions.getAllProducts,
     addToWishList: userActions.addToWishList,
-	removeFromWishList: userActions.removeFromWishList
+    removeFromWishList: userActions.removeFromWishList,
+    getInfo:userActions.getUserInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account)
