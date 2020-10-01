@@ -27,13 +27,13 @@ const userSchema = new mongoose.Schema({
 		default: []
 	},
 	shippingAddress: {
-		type: Object
+		type: Object, default: ""
 	},
 	billingAddress: {
-		type: Object
+		type: Object, default: ""
 	},
 	phone: {
-		type: String
+		type: String, default: ""
 	},
 	role: {
 		type: String,
