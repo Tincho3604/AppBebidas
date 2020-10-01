@@ -40,11 +40,13 @@ const userActions = {
 			return response
 		}
 	},
-	addShippingAddress: (user, shippinginfo) => {
+	addShippingAddress: (fd,user) => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`, shippinginfo, user)
+			console.log(fd)
+			const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`, fd, user)
+			console.log(response)
 			const info = response.data.user
-
+			console.log("la data-->",info)
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -57,9 +59,9 @@ const userActions = {
 		}
 	},
 
-	addBillingAddress: (user, billinginfo) => {
+	addBillingAddress: (fd, user) => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`, billinginfo, user)
+			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`, fd, user)
 			const info = response.data.user
 
 			if (!response.data.success) {

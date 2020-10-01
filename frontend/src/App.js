@@ -66,7 +66,7 @@ function App(props) {
 		Estas rutas deberian estar cuando el usuario este logeado 
 		<Route path='/shippingAddress' component={ShippingAddress}/>      
 		<Route path='/billingAddress' component={BillingAddress}/> 
-		<Route path='/' component={CardList}/>
+		<Route path='/cardList' component={CardList}/>
  		<Redirect to='/' />
 	</Switch>);
 	

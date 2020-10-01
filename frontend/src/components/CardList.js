@@ -39,10 +39,8 @@ const mapStateToProps = state => {
         cart: state.userReducer.cart
 	}
 }
-const mapDispatchToProps = {
+
   
-}
-  
-export default connect(mapStateToProps,mapDispatchToProps)(CardList);
+export default connect(mapStateToProps,null)(CardList);
 
 

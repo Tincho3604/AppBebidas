@@ -2,24 +2,23 @@ import React, { useState } from 'react'
 import userActions from '../redux/actions/userActions'
 import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
-
-
-// import userActions from '../redux/actions/userActions';
+import { NavLink } from 'react-router-dom';
+import swal from 'sweetalert'
 
 const ShippingAddress = (props) => {
 
 const [shipAddress, setAddress] = useState({
-    street: "",
-    number:"",
-    floor:"",
-    apartment:"",
+    street: '',
+    number: '',
+    floor:  '',
+    apartment: '',
 })
 
 const [error, setError] = useState({
-    street: "",
-    number:"",
-    floor:"",
-    apartment:"",
+    street: '',
+    number:'',
+    floor:'',
+    apartment:'',
 })
 
 const [send, setSend] = useState({
@@ -27,8 +26,6 @@ const [send, setSend] = useState({
 })
 
 const [disabled, setDisabled] = useState(true);
-
-
 
 const validation = shipAddress => {
     error.ok = true
@@ -81,7 +78,6 @@ const validation = shipAddress => {
     else error.number = ''
     
 
-
      //Apartment
     if (shipAddress.apartment === '') {
         error.apartment = 'Cannot be empty'
@@ -102,30 +98,37 @@ const validation = shipAddress => {
     return error.ok
 }
 
-
 const handleChange = e => {
     
     setAddress({
         ...shipAddress,
         [e.target.name]: e.target.value
     })
-console.log(e.target.value)
 }
+
+const confirm = () => {
+    swal({
+        title: "¡Advertencia",
+        text: "Recuerde que si confirma los datos, no podra cambiarlos",
+        icon: "warning",
+        button: "¡Entiendo!",
+      });
+}
+
 
 const handleClick = async e => {
     e.preventDefault();
     send.status = true
     setSend({ status: true })
     if (validation(shipAddress)) {
+        
         const fd = new FormData()
         fd.append("street",shipAddress.street)
         fd.append("number",shipAddress.number)
         fd.append("floor",shipAddress.floor)
         fd.append("apartment",shipAddress.apartment)
         
-
         await props.addShippingAddress(fd)
-        
         
         //ACCION
         setError({
@@ -145,20 +148,16 @@ const handleClick = async e => {
     }
 }
 
-
 function handleGameClick() {
     setDisabled(!disabled);
-  }
-    
-        
+}
+
 
 return (
     <>
         <div id="mainContainerProduct">
             <h1>Shipping Address</h1>
-            
-           
-                
+    
                 <label for="option">¿Do you want to modify the information?</label>
                 
                 <label htmlFor="yes">Yes</label>
@@ -167,51 +166,50 @@ return (
                 <label htmlFor="no">No</label>
                 <input type="radio" name="option"  id="no" value="No" onChange={handleGameClick}/>
             
-           
+    
             <div className="formContainer">
                 <div className="inputs">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" onChange={handleChange} value={props.shippingAddress.address}  disabled={disabled}></input>
+                    <input type="text" name="street" onChange={handleChange} value={props.user.shippingAddress === undefined ? shipAddress.street : props.shippingAddress.street} disabled={disabled}></input>
                     
                     <div className="inputs">
                         <label for="number">Number:</label>
-                        <input type="number" name="number" onChange={handleChange} value={props.shippingAddress.number}  disabled={disabled}></input>
+                        <input type="number" name="number" onChange={handleChange} value={props.user.shippingAddress === undefined ? shipAddress.number : props.shippingAddress.number} disabled={disabled}></input>
                     </div>
                     
                     <div className="inputs">
                         <label for="floor">Floor:</label>
-                        <input type="text" name="floor" onChange={handleChange} value={props.shippingAddress.floor}  disabled={disabled}></input>
+                        <input type="text" name="floor" onChange={handleChange} value={props.user.shippingAddress === undefined ? shipAddress.floor : props.shippingAddress.floor} disabled={disabled}></input>
                     </div>
                         
                     <div className="inputs">
                         <label for="apartment">Apartment:</label>
-                        <input type="text" name="apartment" onChange={handleChange} value={props.shippingAddress.apartament}  disabled={disabled}></input>
+                        <input type="text" name="apartment" onChange={handleChange} value={props.user.shippingAddress === undefined ? shipAddress.apartment : props.shippingAddress.apartament} disabled={disabled}></input>
                     </div>
                 
                 </div>
             </div>
-
-
                 <button style={{ background: "none", border: "none", cursor: "pointer" }} onClick={handleClick}>Send Info</button>
-        
-        
-        </div>
+                <NavLink to="/billingAddress"><button style={{height:'5vh', width:'10vh',margin:'0 auto'}} onClick={confirm}>Next</button></NavLink>
+        </div> 
     
+        
     </>
-    )
-}
+        )
+    }
+
+    
 
 
 const mapStateToProps = state => {
     return {
-        shippingAddress: state.userReducer.shippingAddress
+        shippingAddress: state.userReducer.shippingAddress,
+        user: state.userReducer
     }
 }
 
 const mapDispatchToProps = {
-    
     addShippingAddress: userActions.addShippingAddress
-
     }
 
 
