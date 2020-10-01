@@ -142,8 +142,8 @@ const userController = {
 
 	removeToWishlist: async (req, res) => {
 		var id = req.params.id
-		var userId = req.user._id
-		const userWishList = await User.findById({ _id: userId })
+		
+		const userWishList = await User.findById({ _id: req.user._id })
 
 		const filteredWishList = userWishList.wishlist.filter(wishlist => wishlist != id)
 		// console.log(filteredWishList)
@@ -156,18 +156,18 @@ const userController = {
 
 
 	addShippingAddress: async (req, res) => {
-		var id = req.params.id
-		var userId = res.user._id
+		// var id = req.params.id
+		
 
 		const data = { street, number, floor, apartment } = req.body
-
+		console.log(data)
 		try {
-			var user = await User.findOne({ _id: userId }, { shippingAddress: req.body })
+			var user = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
 			res.json({
 				success: true,
 				response: user
 			})
-
+       
 		} catch (error) {
 			res.json({
 				success: false,
@@ -179,12 +179,12 @@ const userController = {
 
 	addBillingAddress: async (req, res) => {
 		var id = req.params.id
-		var userId = res.user._id
+		
 
 		const data = { street, number, floor, apartment } = req.body
 
 		try {
-			var user = await User.findOne({ _id: userId }, { billingAddress: req.body })
+			var user = await User.findOne({ _id: req.user._id }, { billingAddress: req.body })
 			res.json({
 				success: true,
 				response: user

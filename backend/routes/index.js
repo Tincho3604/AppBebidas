@@ -30,7 +30,7 @@ router.route("/user/removeWishList/:id")
 .delete(passport.authenticate('jwt',{session: false}), userController.removeToWishlist)
 
 router.route("/user/addShippingAddress")
-.post(passport.authenticate('jwt',{session: false}), userController.addShippingAddress)
+.post(userController.addShippingAddress)
 
 router.route("/user/addBillingAddress")
 .post(passport.authenticate('jwt',{session: false}), userController.addBillingAddress)

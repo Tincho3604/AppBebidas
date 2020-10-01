@@ -49,7 +49,7 @@ function userReducer(state = initialState, action) {
 				...state,
 				billingAddress: action.payload
 			}
-		
+
 			case "WISHLIST":
 			return{
 				...state,

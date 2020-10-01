@@ -38,12 +38,12 @@ const  CardListItem = (props) => {
         return <h1>Loading</h1>
     }else{
     return (
+    <>
     <div className="conteiner">
-       <h1>{props.data.title}</h1>
-    
+        <h1>{props.data.title}</h1>
+        
         <div className="photo" style={{backgroundImage: `url(${props.data.pic})`}}> 
-            
-        </div>  
+    </div>  
         
 
     <div className="botones">
@@ -52,8 +52,10 @@ const  CardListItem = (props) => {
         <button onClick={addProduct}>+</button>
         <p>X $ {props.data.price}={valuePrice}$</p> 
     </div>
-   </div>
     
+   </div>
+  
+        </>
         )
     }
 }
