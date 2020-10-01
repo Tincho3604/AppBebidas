@@ -34,40 +34,32 @@ function App(props) {
 		props.loadCart()
 	}
 
+	const rutasGenerales = ( <> 
+	<Route exact path='/' component={Home} />
+	<Route path='/signup' component={SignUp} />
+	<Route path='/login' component={Login} />
+	<Route path='/admin' component={AdminDashboard}/>
+	<Route path='/createProduct' component={AdminCreateProduct} />
+	<Route path='/editProduct/:id' component={AdminEditProduct} />
+	<Route path='/products/:category' component={Products} />
+	<Route path='/product/:id' component={ProductFull} />
+	<Route path='/Account' component={Account} />
+	<Route path='/shippingAddress' component={ShippingAddress}/>      
+	<Route path='/billingAddress' component={BillingAddress}/>
+	<Route path='/adminListProduct' component={AdminListProduct} />
+	<Route path='/passRecovery' component={PassRecovery} />
+	<Route path='/cartList' component={CardList}/>
+	 </>)
+
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
-		<Route exact path='/' component={Home} />
-		<Route path='/signup' component={SignUp} />
-	    <Route path='/login' component={Login} />
-		<Route path='/admin' component={AdminDashboard}/>
-		<Route path='/createProduct' component={AdminCreateProduct} />
-		<Route path='/editProduct/:id' component={AdminEditProduct} />
-		<Route path='/products/:category' component={Products} />
-		<Route path='/product/:id' component={ProductFull} />
-		<Route path='/Account' component={Account} />
-		{/* Estas rutas deberian estar cuando el usuario este logeado */}
-		<Route path='/shippingAddress' component={ShippingAddress}/>      
-		<Route path='/billingAddress' component={BillingAddress}/>
-		<Route path='/adminListProduct' component={AdminListProduct} />
-		<Route path='/passRecovery' component={PassRecovery} />
-		
+		{rutasGenerales}
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
-		{/* <Route exact path='/' component={Home} />
-		<Route path='/admin' component={AdminDashboard}/>
-		<Route path='/createProduct' component={AdminCreateProduct} />
-		<Route path='/editProduct/:id' component={AdminEditProduct} />
-		<Route path='/products/:category' component={Products} />
-		<Route path='/product/:id' component={ProductFull} />
-		<Route path='/Account' component={Account} /> */}
-		Estas rutas deberian estar cuando el usuario este logeado 
-		{/* <Route path='/shippingAddress' component={ShippingAddress}/>      
-		<Route path='/billingAddress' component={BillingAddress}/> */}
-		<Route path='/' component={CardList}/>
-	
+		{rutasGenerales}	
  		<Redirect to='/' />
 	</Switch>);
 	
