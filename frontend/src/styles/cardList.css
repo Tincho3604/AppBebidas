@@ -43,7 +43,10 @@ padding: 1vh;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    font-size: 2vh;
+    
+}
+.botones h1{
+    font-size: 4vh;
 }
 .botones .theButtons{
     margin-top: 1vw;
@@ -71,4 +74,52 @@ padding: 1vh;
     font-weight: bold;
     padding: 0 1vw;
     color: #d1b653;
+}
+@media only screen and (max-width: 800px){
+    .cardContainer{
+        width: 20vw;
+        }
+        
+        .Photo{
+            width:18vw;   
+        }
+        .botones .theButtons  p{
+            font-size: 3vw;
+        }
+        .botones h1{
+            font-size: 3vh;
+        }
+}
+@media only screen and (max-width: 450px){
+    .cardCard{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .Photo{
+        width:100vw;
+        height: 20vh;
+        border: none;
+        border-bottom: 1px solid #ffffff;
+        
+    }
+    .cardContainer{
+        display: flex;
+        align-items: center;
+        width: 70vw;
+    }
+    .botones{
+        text-align: center;
+        margin-left: 7vh;
+        align-items:center;
+        width: 80vw;
+    }
+    .botones h1{
+        font-size: 2vh;
+    }
+    .botones .theButtons  p{
+        font-size: 3.3vw;
+    }
+
 }
