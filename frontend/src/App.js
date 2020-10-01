@@ -58,7 +58,7 @@ function App(props) {
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
-		RUTAS USUARIO LOGUEADO 
+		{/* RUTAS USUARIO LOGUEADO  */}
 		{rutasGenerales}	
  		<Redirect to='/' />
 	</Switch>);
