@@ -3,8 +3,10 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { connect } from 'react-redux'
 import userActions from '../redux/actions/userActions'
-import '../styles/generalStyles.css'
+import '../styles/logInSignUp.css'
+import background from "../images/deluxebackground.png"
 import { toast } from 'react-toastify'
+import { NavLink } from 'react-router-dom';
 
 
 class PassRecovery extends React.Component{
@@ -62,20 +64,24 @@ class PassRecovery extends React.Component{
         return(
             <>
             <Header />
-            <div className="Pass">
-            <h3 className="titleHouses">CAMBIA TU CONTRASEÑA</h3>
+            <div className="fondoForm" >
+            <div className="theBackground" style={{backgroundImage: `url(${background})`}}>
+            <h3 className="titleRecovery">CAMBIA TU CONTRASEÑA</h3>
             <div style={{marginTop:"2rem",marginBottom:"1rem"}} className="signContainer">
                 <h4 style={{color:"whitesmoke",textAlign:"center",fontSize:"1rem",margin:"1rem"}}>Si olvidó su contraseña por favor ingrese su correo electrónico</h4>
-                <div className="inputs">
+                <div className="formulario">
                     <span className={this.state.error === "" ? "" : "logError"}>{this.state.error}</span>
                     <input className="account" onChange={this.getForm} name="mail" type="text" placeholder="Tu email"></input>
                     <button disabled={this.state.disabled} className="send" onClick={this.submit}>Enviar</button>
                 </div>
             </div>
-            <img src="https://www.vinetur.com/imagenes/2020/mayo/18/whisky.jpg"/>
+               <div className="divGoBack">
+                    <button className="goBack"><NavLink to='/login' style={{textDecoration: "none", color:"white"}}> volver </NavLink></button>
+                </div>
+           {/* <img src="https://www.vinetur.com/imagenes/2020/mayo/18/whisky.jpg"/> */}
             </div>
             <Footer/>
-            
+            </div>
             </>
         )
     }

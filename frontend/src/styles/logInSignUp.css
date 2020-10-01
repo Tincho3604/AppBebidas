@@ -3,6 +3,10 @@
 
 	margin: 0;
 }
+.titleRecovery {
+    text-align: center;
+    color: #cfcb88;
+}
 .theBackground{
     padding: 5% 0%;
     height: 110vh;
