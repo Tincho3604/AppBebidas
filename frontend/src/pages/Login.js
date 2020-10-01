@@ -42,7 +42,7 @@ class Login extends React.Component {
            <div className="mainContainer fondoForm">
                 <div className="theBackground" style={{backgroundImage: `url(${background})`}}>  
                     <div className="formulario">
-                    <h1>Ingresar a mi cuenta</h1>
+                        <h1>Ingresar a mi cuenta</h1>
                         <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
                         <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                         <button onClick={this.enviarInfo}>Ingresar</button>

@@ -1,19 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import { toast } from 'react-toastify';
-
+import "../styles/cardList.css"
 const  CardListItem = (props) => {
 
     const [valor, setValor] = useState (0)
-    var [count, setCount] = useState(1)
+    var [count, setCount] = useState("")
     var[valuePrice, setPrice] = useState(0)
 
-    useEffect ( async () => {
+    useEffect ( () => {
+        const fx = async() =>{
         const precio = await props.data.price
     setValor({
         valor:precio
     })
     setCount(count = props.data.quantity)
     setPrice(valuePrice = precio * count )
+    }
+    fx()
     },[])
 
   
@@ -38,20 +41,21 @@ const  CardListItem = (props) => {
         return <h1>Loading</h1>
     }else{
     return (
-    <div className="conteiner">
-       <h1>{props.data.title}</h1>
-    
-        <div className="photo" style={{backgroundImage: `url(${props.data.pic})`}}> 
-            
-        </div>  
-        
-
-    <div className="botones">
-        <button onClick={removeProduct}>-</button>
-        <p>{count - 1}</p>
-        <button onClick={addProduct}>+</button>
-        <p>X $ {props.data.price}={valuePrice}$</p> 
-    </div>
+    <div className="TheConteiner">
+        <div className="cardCard">
+            <div className="cardContainer"> 
+                <div className="Photo" style={{backgroundImage: `url(${props.data.pic})`}}> </div>
+            </div>  
+            <div className="botones">
+                <h1>{props.data.title}</h1>
+                <div className="theButtons">
+                    <button onClick={removeProduct} className="plus">-</button>
+                    <p>{count}</p>
+                    <button onClick={addProduct} className="plus">+</button>
+                    <p><span>x</span> $ {props.data.price} <span>=</span> {valuePrice}$</p> 
+                </div>
+            </div> 
+        </div>
    </div>
     
         )

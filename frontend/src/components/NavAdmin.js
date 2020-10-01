@@ -12,7 +12,7 @@ const NavAdmin = (props) => {
 				<div>Dashboard</div>
 			</div>
 		</NavLink>
-		<NavLink to='/admin/products'>
+		<NavLink to='/AdminListproducts'>
 			<div className='navItem str'>
 				<div><i className="fas fa-wine-bottle"></i></div>
 				<div>Productos</div>

@@ -49,24 +49,25 @@ function App(props) {
 		{/* Estas rutas deberian estar cuando el usuario este logeado */}
 		<Route path='/shippingAddress' component={ShippingAddress}/>      
 		<Route path='/billingAddress' component={BillingAddress}/>
-		<Route path='/adminListProduct' component={AdminListProduct} />
+		<Route path='/AdminListproducts' component={AdminListProduct} />
 		<Route path='/passRecovery' component={PassRecovery} />
 		
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		RUTAS USUARIO LOGUEADO 
-		{/* <Route exact path='/' component={Home} />
+		 <Route exact path='/' component={Home} />
 		<Route path='/admin' component={AdminDashboard}/>
 		<Route path='/createProduct' component={AdminCreateProduct} />
 		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/AdminListproducts' component={AdminListProduct} />
 		<Route path='/products/:category' component={Products} />
 		<Route path='/product/:id' component={ProductFull} />
-		<Route path='/Account' component={Account} /> */}
+		<Route path='/Account' component={Account} /> 
 		Estas rutas deberian estar cuando el usuario este logeado 
-		{/* <Route path='/shippingAddress' component={ShippingAddress}/>      
-		<Route path='/billingAddress' component={BillingAddress}/> */}
-		<Route path='/' component={CardList}/>
+		 <Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/> 
+		<Route path='/cardlist' component={CardList}/>
 	
  		<Redirect to='/' />
 	</Switch>);

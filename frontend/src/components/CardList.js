@@ -3,6 +3,7 @@ import CardListItem from './CardListItem'
 import AdminHeader from'./AdminHeader'
 import NavAdmin from './NavAdmin'
 import { connect } from 'react-redux';
+import Header from './Header';
 
 const CardList = (props) => {
 
@@ -17,9 +18,8 @@ const CardList = (props) => {
 
 return  (
 <>
-<AdminHeader />
-	        <div className="dashboard">
-		        <NavAdmin/>
+<Header />
+	        <div className="Dashboard">
 				{props.cart.map(product => {
 					return <CardListItem data = {product} />
 				})} 
