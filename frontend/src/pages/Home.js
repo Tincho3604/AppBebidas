@@ -13,7 +13,6 @@ const Home = (props) => {
 
     return (
         <>
-
            <Header />
             <div className="banner" style={{backgroundImage:`url(${alcohol})`}}>
         </div>
