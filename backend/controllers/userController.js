@@ -89,23 +89,23 @@ const userController = {
 
 	editUser: async (req, res) => {
 
-		const { firstName, lastName, phone, street, numberStreet, floor, apartament, streetFAC, numberStreetFAC, floorFAC, apartamentFAC } = req.body
-	const newInfo = await User.findOneAndUpdate({ _id: req.user._id },
+		const { firstName, lastName, phoneFAC, street, nameFAC, floor, notes, notesFAC, phone, receiver, voucherFAC, dniFAC, streetHeight } = req.body
+		const newInfo = await User.findOneAndUpdate({ _id: req.user._id },
 			{
 				firstName, lastName, phone,
 				$set: {
-					shippingAddress: { street: street, numberStreet: numberStreet, floor: floor, apartament: apartament },
-					billingAddress: { streetFAC: streetFAC, numberStreetFAC: numberStreetFAC, floorFAC: floorFAC, apartamentFAC: apartamentFAC }
+					shippingAddress: { street: street, streetHeight: streetHeight, floor: floor, receiver: receiver, phone: phone, notes: notes },
+					billingAddress: { nameFAC: nameFAC, dniFAC: dniFAC, voucherFAC: voucherFAC, phoneFAC: phoneFAC, notesFAC: notesFAC }
 				}
 			}, { new: true })
 
-			res.json({
-				success: true, newInfo: newInfo
-			})
+		res.json({
+			success: true, newInfo: newInfo
+		})
 	},
 
 	userInfo: async (req, res) => {
-		const {_id} = req.user
+		const { _id } = req.user
 		try {
 			const user = await User.findOne({ _id })
 			res.json({
@@ -134,13 +134,13 @@ const userController = {
 
 	removeToWishlist: async (req, res) => {
 		var id = req.params.id
-		
+
 		const userWishList = await User.findById({ _id: req.user._id })
 
 		const filteredWishList = userWishList.wishlist.filter(wishlist => wishlist != id)
 		// console.log(filteredWishList)
 		const user = await User.findOneAndUpdate({ _id: req.user._id }, { wishlist: filteredWishList }, { new: true })
-		
+
 		res.json({
 			success: true,
 			wishlist: user.wishlist
@@ -150,17 +150,17 @@ const userController = {
 
 	addShippingAddress: async (req, res) => {
 		// var id = req.params.id
-		
+
 
 		const data = { street, number, floor, apartment } = req.body
 		console.log(data)
 		try {
-			var user = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
+			var user = await User.findOneAndUpdate({ _id: req.user._id }, { shippingAddress: req.body })
 			res.json({
 				success: true,
 				response: user
 			})
-       
+
 		} catch (error) {
 			res.json({
 				success: false,
@@ -172,7 +172,7 @@ const userController = {
 
 	addBillingAddress: async (req, res) => {
 		var id = req.params.id
-		
+
 
 		const data = { street, number, floor, apartment } = req.body
 
@@ -191,27 +191,27 @@ const userController = {
 
 		}
 	},
-	NewPass: async (req, res) =>{
-        mailSent = req.body.mail
+	NewPass: async (req, res) => {
+		mailSent = req.body.mail
 
-        try{   
-            await User.findOne({mail:mailSent})
-            
-            var length = 8
-            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            var newPass = ""
-            for (var i = 0, n = charset.length; i < length; ++i) {
-                newPass += charset.charAt(Math.floor(Math.random() * n));
-            }
-            const passwordHashed = bcrypt.hashSync(newPass, 10)
-            
-                const user = await User.findOneAndUpdate({mail: mailSent}, {pass: passwordHashed})
-                var mailOptions = {
-                    from: "Deluxe <notresponse@notreply.com>",
-                    sender: "Deluxe <notresponse@notreply.com>",
-                    to: `${user.mail}`,
-					subject: "Nueva Contreseña",
-					html:  `<div>
+		try {
+			await User.findOne({ mail: mailSent })
+
+			var length = 8
+			var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+			var newPass = ""
+			for (var i = 0, n = charset.length; i < length; ++i) {
+				newPass += charset.charAt(Math.floor(Math.random() * n));
+			}
+			const passwordHashed = bcrypt.hashSync(newPass, 10)
+
+			const user = await User.findOneAndUpdate({ mail: mailSent }, { pass: passwordHashed })
+			var mailOptions = {
+				from: "Deluxe <notresponse@notreply.com>",
+				sender: "Deluxe <notresponse@notreply.com>",
+				to: `${user.mail}`,
+				subject: "Nueva Contreseña",
+				html: `<div>
 					<img src= "https://paraiba.com.br/site/wp-content/uploads/2019/12/UISQUE.jpg" />
 					<div>
 					<span style="color: #d7b26c; font-size:15px; text-align: center;">

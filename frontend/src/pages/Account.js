@@ -5,7 +5,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import userActions from '../redux/actions/userActions';
 import productActions from '../redux/actions/productActions';
-import ProductLike from  "../components/productLike";
+import ProductLike from "../components/productLike";
 
 function Account(props) {
 
@@ -16,18 +16,12 @@ function Account(props) {
     const [user, setUser] = useState({
 
     })
-  
-    
-useEffect(()=>{
-    props.productsList()
-	//props.getInfo() 
-	/* Que funcion cumple esto? Tuve que modificar 
-	la action y agregarle el token porque me daba 
-	error 401 pero no le veo utilidad aca.
-	El formulario se esta agarrando la data que esta
-	en el reducer.
-    */
-},[])
+
+
+    useEffect(() => {
+        props.productsList()
+
+    }, [])
 
 
 
@@ -35,17 +29,19 @@ useEffect(()=>{
         if (editInfo.editInfo === false) {
             setUser({
                 ...user,
-                firstName: props.firstName,
-                lastName: props.lastName,
+                firstName:props.firstName,
+                lastName:props.lastName,
+                nameFAC: props.billingAddress.nameFAC,
                 street: props.shippingAddress.street,
-                streetFAC: props.billingAddress.streetFAC,
                 floor: props.shippingAddress.floor,
-                floorFAC: props.billingAddress.floorFAC,
-                apartament: props.shippingAddress.apartament,
-                apartamentFAC: props.billingAddress.apartamentFAC,
-                numberStreet: props.shippingAddress.numberStreet,
-                numberStreetFAC: props.billingAddress.numberStreetFAC,
-                phone: props.phone
+                streetHeight: props.shippingAddress.streetHeight,
+                dniFAC: props.billingAddress.dni, 
+                voucherFAC: props.billingAddress.voucher,
+                phone: props.shippingAddress.phone,
+                phoneFAC: props.billingAddress.phoneFAC,
+                notes: props.shippingAddress.notes,
+                receiver:props.shippingAddress.receiver,
+                notesFAC: props.billingAddress.notesFAC,
 
             })
 
@@ -59,7 +55,7 @@ useEffect(()=>{
         }
 
     }
-
+    console.log(user)
 
     const handlData = e => {
         const valor = e.target.name === "pic" ? e.target.files[0] : e.target.value
@@ -87,8 +83,8 @@ useEffect(()=>{
 
     }
 
-    
-    console.log(props)
+
+
     // nombre apellido mail telefono direccion calle number floor apartamento
     return (
         <>
@@ -101,9 +97,8 @@ useEffect(()=>{
                     <div className='title'>Tus Datos</div>
                     <div className="yourProfileInfo" >
                         <div className="myPersonalInfo">
-                            <div className="theInfo">  {editInfo.editInfo ? <input type="text" name="firstName" placeholder="Nombre" onChange={handlData} value={user.firstName}></input> : <p><span>Nombre: </span>{props.firstName}</p>}</div>
+                            <div className="theInfo">  {editInfo.editInfo ? <input type="text" name="firstName" placeholder="Nombre" onChange={handlData} value={user.firstName} ></input> : <p><span>Nombre: </span>{props.firstName}</p>}</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phone" placeholder="Celular" onChange={handlData} value={user.phone}></input> : <p><span>Telefono:  {props.phone}</span></p>}</div>
                         </div>
                         <div className="buttonsInfo">
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
@@ -112,35 +107,38 @@ useEffect(()=>{
                     </div>
                 </div>
                 <div className="myBillingInfo">
-                    <div ><div className='title'>Direccion de Envio</div>
+                    <div ><div className='title'>Datos de Envio</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="street" placeholder="Calle" onChange={handlData} value={user.street}></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="numberStreet" placeholder="Numero de calle" onChange={handlData} value={user.numberStreet}></input> : <p>Nro.: {props.shippingAddress.numberStreet}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="floor" placeholder="Piso" onChange={handlData} value={user.floor}></input> : <p>Piso: {props.shippingAddress.floor}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="apartament" placeholder="apartamento" onChange={handlData} value={user.apartament}></input> : <p>Apartamento: {props.shippingAddress.apartament}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="streetHeight" placeholder="Altura" onChange={handlData} value={user.numberStreet}></input> : <p>Altura.: {props.shippingAddress.streetHeight}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="floor" placeholder="Piso" onChange={handlData} value={user.floor}></input> : <p>Piso/Dpto: {props.shippingAddress.floor}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="receiver" placeholder="Quien recibe?" onChange={handlData} value={user.receiver}></input> : <p>Quien recibe?: {props.shippingAddress.receiver}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phone" placeholder="Telefono" onChange={handlData} value={user.phone}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="notes" placeholder="Notas" onChange={handlData} value={user.notes}></input> : <p>Notas: {props.shippingAddress.notes}</p>}</div>
                     </div>
-                    <div><div className='title'>Direccion de facturacion</div>
-                        <div className="theInfo">   {editInfo.editInfo ? <input type="text" name="streetFAC" placeholder="Calle" onChange={handlData} value={user.streetFAC}></input> : <p>Calle: {props.billingAddress.streetFAC}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="numberStreetFAC" placeholder="Numero de calle" onChange={handlData} value={user.numberStreetFAC}></input> : <p>Nro.: {props.billingAddress.numberStreetFAC}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="floorFAC" placeholder="Piso" onChange={handlData} value={user.floorFAC}></input> : <p>Piso: {props.billingAddress.floorFAC}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="apartamentFAC" placeholder="apartamento" onChange={handlData} value={user.apartamentFAC}></input> : <p>Apartamento: {props.billingAddress.apartamentFAC}</p>}</div>
+                    <div><div className='title'>Datos de facturacion</div>
+                        <div className="theInfo">   {editInfo.editInfo ? <input type="text" name="nameFAC" placeholder="Nombre y apellido / Nombre de fantasia" onChange={handlData} value={user.nameFAC}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.nameFAC}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="dniFAC" placeholder="CUIT/CUIL/DNI" onChange={handlData} value={user.dniFAC}></input> : <p>CUIT/CUIL/DNI.: {props.billingAddress.dniFAC}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="voucherFAC" placeholder="Tipo de comprobante" onChange={handlData} value={user.voucherFAC}></input> : <p>Tipo de comprobante: {props.billingAddress.voucherFAC}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phoneFAC" placeholder="Telefono" onChange={handlData} value={user.phoneFAC}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="notesFAC" placeholder="Notas" onChange={handlData} value={user.notesFAC}></input> : <p>Notas: {props.billingAddress.notesFAC}</p>}</div>
                     </div>
                     <div><div className='title'>Productos que deseo</div>
-                    
-                     {props.productFound.length === undefined?
-                     
-                     <p>No products available</p>:
-                     
-                     props.productFound.map(product =>{
-                         if(props.wishlist.includes(product._id)){
-                              
-                            return  <>
-                       <p><ProductLike producto = {product} />  </p> 
-                       </>
-                            
-                         }
-                  
-                    }) 
-                     }
+
+                        {props.productFound.length === undefined ?
+
+                            <p>No products available</p> :
+
+                            props.productFound.map(product => {
+                                if (props.wishlist.includes(product._id)) {
+
+                                    return <>
+                                        <p><ProductLike producto={product} />  </p>
+                                    </>
+
+                                }
+
+                            })
+                        }
                     </div>
                 </div>
             </div>
@@ -168,7 +166,7 @@ const mapDispatchToProps = {
     productsList: productActions.getAllProducts,
     addToWishList: userActions.addToWishList,
     removeFromWishList: userActions.removeFromWishList,
-    getInfo:userActions.getUserInfo
+    getInfo: userActions.getUserInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account)

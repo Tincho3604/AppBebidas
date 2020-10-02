@@ -32,9 +32,6 @@ const userSchema = new mongoose.Schema({
 	billingAddress: {
 		type: Object, default: ""
 	},
-	phone: {
-		type: String, default: ""
-	},
 	role: {
 		type: String,
 		default: 'customer'
