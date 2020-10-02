@@ -35,8 +35,8 @@ function Account(props) {
                 street: props.shippingAddress.street,
                 floor: props.shippingAddress.floor,
                 streetHeight: props.shippingAddress.streetHeight,
-                dniFAC: props.billingAddress.dni, 
-                voucherFAC: props.billingAddress.voucher,
+                dniFAC: props.billingAddress.dniFAC, 
+                voucherFAC: props.billingAddress.voucherFAC,
                 phone: props.shippingAddress.phone,
                 phoneFAC: props.billingAddress.phoneFAC,
                 notes: props.shippingAddress.notes,
@@ -109,7 +109,7 @@ function Account(props) {
                 <div className="myBillingInfo">
                     <div ><div className='title'>Datos de Envio</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="street" placeholder="Calle" onChange={handlData} value={user.street}></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="streetHeight" placeholder="Altura" onChange={handlData} value={user.numberStreet}></input> : <p>Altura.: {props.shippingAddress.streetHeight}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="streetHeight" placeholder="Altura" onChange={handlData} value={user.  streetHeight}></input> : <p>Altura: {props.shippingAddress.streetHeight}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="floor" placeholder="Piso" onChange={handlData} value={user.floor}></input> : <p>Piso/Dpto: {props.shippingAddress.floor}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="receiver" placeholder="Quien recibe?" onChange={handlData} value={user.receiver}></input> : <p>Quien recibe?: {props.shippingAddress.receiver}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phone" placeholder="Telefono" onChange={handlData} value={user.phone}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
@@ -117,7 +117,7 @@ function Account(props) {
                     </div>
                     <div><div className='title'>Datos de facturacion</div>
                         <div className="theInfo">   {editInfo.editInfo ? <input type="text" name="nameFAC" placeholder="Nombre y apellido / Nombre de fantasia" onChange={handlData} value={user.nameFAC}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.nameFAC}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="dniFAC" placeholder="CUIT/CUIL/DNI" onChange={handlData} value={user.dniFAC}></input> : <p>CUIT/CUIL/DNI.: {props.billingAddress.dniFAC}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="dniFAC" placeholder="CUIT/CUIL/DNI" onChange={handlData} value={user.dniFAC}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.dniFAC}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="voucherFAC" placeholder="Tipo de comprobante" onChange={handlData} value={user.voucherFAC}></input> : <p>Tipo de comprobante: {props.billingAddress.voucherFAC}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phoneFAC" placeholder="Telefono" onChange={handlData} value={user.phoneFAC}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="notesFAC" placeholder="Notas" onChange={handlData} value={user.notesFAC}></input> : <p>Notas: {props.billingAddress.notesFAC}</p>}</div>
