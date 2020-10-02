@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import userActions from '../redux/actions/userActions'
 import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
@@ -19,6 +19,11 @@ const [shipping, setShipping] = useState({
     notes: props.shippingAddress !== undefined ? props.shippingAddress.notes : '',
 })
 
+
+
+
+
+
 const inputHandler = (e) => {
 	const valor = e.target.value;
 	const campo = e.target.name;
@@ -28,14 +33,17 @@ const inputHandler = (e) => {
 	})
 }
 
-
-
 const submitHandler = async e => {
     e.preventDefault();
+        await props.addShippingAddress(shipping,props.user.token)
+            toast.success("¡Datos Confirmados!", {
+                position: toast.POSITION.TOP_CENTER
+        });
+    }
+
+
+
     
-}
-
-
 return (
     <>
 		<Header />
@@ -53,30 +61,35 @@ return (
 			<form className='addressForm'>
 				<div className="input">
 					<label>Calle</label>
-					<input type='text' onChange={inputHandler} value={shipping.street} />
+					<input type='text' onChange={inputHandler} name="street" value={shipping.street} />
 				</div>
 				<div className="input">
 					<label>Altura</label>
-					<input type='text' onChange={inputHandler} value={shipping.number} />
+					<input type='text' onChange={inputHandler} name="number" value={shipping.number} />
 				</div>
 				<div className="input">
 					<label>Piso/Dpto</label>
-					<input type='text' onChange={inputHandler} value={shipping.dpto} />
+					<input type='text' onChange={inputHandler} name="dpto" value={shipping.dpto} />
 				</div>
 				<div className="input">
 					<label>Quien recibe?</label>
-					<input type='text' onChange={inputHandler} value={shipping.who} />
+					<input type='text' onChange={inputHandler} name="who" value={shipping.who} />
 				</div>
 				<div className="input">
 					<label>Telefono</label>
-					<input type='text' onChange={inputHandler} value={shipping.phone} />
+					<input type='text' onChange={inputHandler} name="phone" value={shipping.phone} />
 				</div>
 				<div className="input">
 					<label>Notas</label>
-					<input type='text' onChange={inputHandler} value={shipping.notes} />
+					<input type='text' onChange={inputHandler} name="notes" value={shipping.notes} />
 				</div>
-				<div className="buttons">
-				<button className="btnSecondary" onClick={() => props.history.push('/cartList')}>Volver a Mi pedido</button>
+				
+                <div className="input">
+                    <button className="btnPrimary" style={{margin:'0 auto', width:'40vh'}} type="submit" value="Send Info" onClick={submitHandler}>Actualizar datos</button>
+                </div>
+                
+                <div className="buttons">
+                <button className="btnSecondary" onClick={() => props.history.push('/cartList')}>Volver a Mi pedido</button>
 				<button className="btnPrimary" onClick={() => props.history.push('/billingAddress')}>Ir datos de facturacion</button>
 				</div>
 			</form>
@@ -84,9 +97,9 @@ return (
         <Footer />
     </>
         )
-    }
+}
 
-    
+
 
 
 const mapStateToProps = state => {

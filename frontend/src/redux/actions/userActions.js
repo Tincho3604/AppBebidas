@@ -40,30 +40,39 @@ const userActions = {
 			return response
 		}
 	},
-	addShippingAddress: (fd,user) => {
+	addShippingAddress: (shipping,token) => {
 		return async (dispatch, getState) => {
-			console.log(fd)
-			const response = await axios.post(`${RUTA_API}/api/user/addShippingAddress`, fd, user)
-			console.log(response)
-			const info = response.data.user
-			console.log("la data-->",info)
+			
+		    const response = await axios.put(`${RUTA_API}/api/user/addShippingAddress`,shipping ,{
+				headers: {
+				Authorization: "Bearer " + token,
+			},
+		})
+		
+			const info = response.data.response.shippingAddress
+           
+			
 			if (!response.data.success) {
-				toast.error(response.data.error)
-				return response.data.error
-			} else {
-				dispatch({
-					type: "INFO_SHIPPING_ADDRESS_UPDATE",
-					payload: info
-				})
-			}
+		     	toast.error(response.data.error)
+		     	return response.data.error
+		     } else {
+		     	dispatch({
+		     		type: "INFO_SHIPPING_ADDRESS_UPDATE",
+		     		payload: info
+		     	})
+			 }
 		}
 	},
 
-	addBillingAddress: (fd, user) => {
+	addBillingAddress: (billing,token) => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(`${RUTA_API}/api/user/addBillingAddress`, fd, user)
-			const info = response.data.user
-
+			const response = await axios.put(`${RUTA_API}/api/user/addBillingAddress`, billing,{ 
+				headers: {
+				Authorization: "Bearer " + token,
+			},
+		})	
+			const info = response.data.response.billingAddress
+			
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -75,6 +84,9 @@ const userActions = {
 			}
 		}
 	},
+
+
+
 	getUserInfo: ( token ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, {

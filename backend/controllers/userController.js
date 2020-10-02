@@ -149,38 +149,36 @@ const userController = {
 
 
 	addShippingAddress: async (req, res) => {
-		// var id = req.params.id
-		
 
-		const data = { street, number, floor, apartment } = req.body
-		console.log(data)
+		const data = { street, number, dpto, who, phone, notes } = req.body
+
 		try {
-			var user = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
-			res.json({
-				success: true,
-				response: user
-			})
-       
-		} catch (error) {
-			res.json({
-				success: false,
-				response: error
-			})
+		 	const shipping = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
+			
+			 res.json({
+		 		success: true,
+		 		response: shipping
+		 	})
+		 } catch (error) {
+		 	res.json({
+		 		success: false,
+		 		response: error
+		 	})
 
 		}
 	},
+
+
 
 	addBillingAddress: async (req, res) => {
-		var id = req.params.id
 		
-
-		const data = { street, number, floor, apartment } = req.body
-
+		const data = { name, cuit, type, phone, notes } = req.body
 		try {
-			var user = await User.findOne({ _id: req.user._id }, { billingAddress: req.body })
+			const billing = await User.findOneAndUpdate({ _id: req.user._id }, { billingAddress: req.body })
+			
 			res.json({
 				success: true,
-				response: user
+				response: billing
 			})
 
 		} catch (error) {
@@ -191,6 +189,9 @@ const userController = {
 
 		}
 	},
+
+
+
 	NewPass: async (req, res) =>{
         mailSent = req.body.mail
 
