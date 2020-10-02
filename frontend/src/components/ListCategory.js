@@ -2,61 +2,63 @@ import React, {useState, useEffect} from 'react';
 import productActions from '../redux/actions/productActions'
 import {connect} from 'react-redux'
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import "../styles/listCategory.css"
 
 const ListCategory = (props) => {
+    const [abrir, setAbrir] = useState(false)
+    const [listProduct, setList] = useState([])
+
     
-    const [listProduct, setList] = useState({
-    })
 
-    const card =  {
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-        transition: '0.3s',
-        width: '20%',
-        textAlign:'center',
-        color:'white',
-        backgroundColor:'#323232',
-        borderRadius:'5px',
-    }
-    const link = {
-       display:'flex',
-       fontSize:'10px',
-       justifyContent:'space-between'
-    }
-
-    useEffect (async () => {
-        const respuesta = await props.getListProduct(props.category)
-    setList({
-        ...listProduct,
-        ...respuesta
-        })
-         
+    useEffect ( () => {
+        const f = async() => {
+			const respuesta = await props.getListProduct(props.category)
+			setList([...respuesta])
+    	}
+    f()   
     },[])
    
-   
+    const openDiv =() =>{
+        setAbrir(!abrir)
+    }
     
-      
 
     if(listProduct[0] === undefined){
-        return <h1>Loading...</h1>
+        return <div className="theTitleDiv">
+                    <div className="theTitlesList">
+                        <h2>{props.category}</h2>
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </div>
     }else{ 
         return(
         <>
-
-        <div class="card" style={card}>
-            <div class="container">
-                <h4>{listProduct[0].title}</h4> 
-                <p>${listProduct[0].price}</p> 
-
-            
-            <div style={link}>
-            
-            <Link to={`/editProduct/${listProduct[0]._id}`}>Edit</Link>
-            
-            {/* Este link iria removeProduct */}
-            <Link  to="/">Remove</Link>
-                
-                </div>
+        <div className="theTitleDiv">
+            <div onClick={openDiv} className="theTitlesList">
+                <h2>{props.category}</h2>
+                {abrir ? <i class="fas fa-angle-up"></i> :<i class="fas fa-angle-down"></i> }
             </div>
+            {abrir 
+            ? (
+				listProduct.map(product => {
+				return (<div className="listCard">
+                <div className="listContainer">
+                    <img src={product.pic} className="listImage"></img>
+                    <div className="listSomeInfo">
+                        <h4 className="listTitle">{product.title}</h4> 
+                        <p className="listStock">{product.stock} unidades</p>
+                        <p className="listPrice">$ {product.price}</p> 
+                    </div>
+                </div>
+                <div className="listLink">
+                    <Link to={`/editProduct/${product._id}`} className="theLink">Edit</Link>
+                    {/* Este link iria removeProduct */}
+                    <Link  to="/" className="theLink2">Remove</Link>  
+                </div>
+            </div>)
+			})
+			)
+            : <></>}
         </div>
         
         </> 

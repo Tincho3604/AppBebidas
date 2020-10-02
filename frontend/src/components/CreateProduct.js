@@ -61,8 +61,8 @@ const CreateProduct = (props) => {
             error.title = 'Cannot be empty'
             error.ok = false
         }
-        else if (product.title.length > 10) {
-            error.title = "Max 10 characters"
+        else if (product.title.length > 31) {
+            error.title = "Max 30 characters"
             error.ok = false
         }
         else error.title = ''
@@ -160,8 +160,30 @@ const CreateProduct = (props) => {
             setError({
                 ...error,
                 ok: true
-            })
-        }
+			})
+			
+			setAlerta({
+                errorCat: '',
+                errorALC: '',
+                errorML: '',
+                errorPrice: '',
+                errorSTOCK: '',
+                errorDES: '',
+                errorTitle: '',
+                errorPIC: '',
+			})
+			
+			setProduct({
+				category: "",
+				title: "",
+				price: "",
+				ml: "",
+				pic: "",
+				alcPct: "",
+				stock: "",
+				description: ""
+			})
+		}
         else {
             send.status = false
             setSend({ status: false })
@@ -178,8 +200,6 @@ const CreateProduct = (props) => {
                 errorDES: error.description,
                 errorTitle: error.title,
                 errorPIC: error.pic,
-
-
             })
 
         }
@@ -204,7 +224,7 @@ const CreateProduct = (props) => {
                     </div>
                     <div className="inputBox">
                         <label for="title">Titulo:</label>
-                        <input type="text" name="title" onChange={handleChange} value={product.title}></input>
+                        <input type="text" name="title" onChange={handleChange} value={product.title} maxLength={30}></input>
                         <span style={{ color: "white" }}>{alerta.errorTitle}</span>
                     </div>
                     <div className="inputBox">

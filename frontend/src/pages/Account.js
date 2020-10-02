@@ -20,8 +20,13 @@ function Account(props) {
     
 useEffect(()=>{
     props.productsList()
-    props.getInfo()
-    
+	//props.getInfo() 
+	/* Que funcion cumple esto? Tuve que modificar 
+	la action y agregarle el token porque me daba 
+	error 401 pero no le veo utilidad aca.
+	El formulario se esta agarrando la data que esta
+	en el reducer.
+    */
 },[])
 
 

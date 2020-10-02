@@ -75,9 +75,13 @@ const userActions = {
 			}
 		}
 	},
-	getUserInfo: (user) => {
+	getUserInfo: ( token ) => {
 		return async (dispatch, getState) => {
-			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, user)
+			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
 			const info = response.data.user
 			dispatch({
 				type: 'GET_INFO_USER',
@@ -239,6 +243,20 @@ const userActions = {
 			}
 		}
 	},
+	actCart: (id, cantidad) => {
+		return async (dispatch, getState) => {
+			let cart = getCartItems()
+				cart.map(item => {
+					if (item._id === id) {
+						item.quantity = cantidad;
+					}
+				})
+				dispatch({
+					type: 'LOAD_CART',
+					payload: cart
+				})
+		}
+	},
 	loadCart: () => {
 		return (dispatch, getState) => {
 			let cart = getCartItems();
@@ -275,11 +293,14 @@ const userActions = {
 					'Authorization': "Bearer " + token,
 				}
 			})
+			if(response.data.success){
+				toast.success('Añadido a favoritos')
+				dispatch({
+					type: "WISHLIST",
+					payload: response.data.wishlist
+				})
+			}
 
-			dispatch({
-				type: "WISHLIST",
-				payload: response.data.wishlist
-			})
 		}
 	},
 	removeFromWishList: (id, token) => {
@@ -290,12 +311,13 @@ const userActions = {
 					'Authorization': "Bearer " + token,
 				}
 			})
-
-
-			dispatch({
-				type: "WISHLIST",
-				payload: response.data.wishlist
-			})
+			if(response.data.success){
+				toast.success('Removido a favoritos')
+				dispatch({
+					type: "WISHLIST",
+					payload: response.data.wishlist
+				})
+			}
 		}
 	},
 	sendMail: (mail) => {

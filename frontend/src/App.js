@@ -22,7 +22,7 @@ import Products from './pages/Products';
 import ProductFull from './pages/ProductFull';
 import AdminListProduct from './pages/AdminListProduct'
 import PassRecovery from './pages/PassRecovery';
-import CardList from './components/CardList';
+import CartList from './pages/CartList';
 
 
 function App(props) {
@@ -36,6 +36,7 @@ function App(props) {
 
 	const rutasGenerales = ( <> 
 	<Route exact path='/' component={Home} />
+	<Route exact path='/home' component={Home} />
 	<Route path='/signup' component={SignUp} />
 	<Route path='/login' component={Login} />
 	<Route path='/admin' component={AdminDashboard}/>
@@ -43,12 +44,12 @@ function App(props) {
 	<Route path='/editProduct/:id' component={AdminEditProduct} />
 	<Route path='/products/:category' component={Products} />
 	<Route path='/product/:id' component={ProductFull} />
-	<Route path='/Account' component={Account} />
+	<Route path='/account' component={Account} />
 	<Route path='/shippingAddress' component={ShippingAddress}/>      
 	<Route path='/billingAddress' component={BillingAddress}/>
 	<Route path='/adminListProduct' component={AdminListProduct} />
 	<Route path='/passRecovery' component={PassRecovery} />
-	<Route path='/cartList' component={CardList}/>
+	<Route path='/cartList' component={CartList}/>
 	 </>)
 
 	const rutas = (props.user.token === '')

@@ -5,7 +5,7 @@ import NavAdmin from '../components/NavAdmin';
 import '../styles/adminDashboard.css'
 import ListProduct from '../components/ListProduct'
 
-const AdminCreateProduct = (props) => {
+const AdminListProduct = (props) => {
 	return ( <>
 	<AdminHeader />
 	<div className="dashboard">
@@ -14,4 +14,4 @@ const AdminCreateProduct = (props) => {
 	</div></> );
 }
  
-export default AdminCreateProduct;
+export default AdminListProduct;

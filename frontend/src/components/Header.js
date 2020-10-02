@@ -44,7 +44,7 @@ const Header = (props) => {
 				</div>
 				<div className='links'>
 					<NavLink to="/" className='ufc'>Home</NavLink>
-					<NavLink to="products/all" className='ufc'>Bebidas</NavLink>
+					<NavLink to="/products/all" className='ufc'>Bebidas</NavLink>
 					<NavLink to className='ufc'>Contacto</NavLink>
 				</div>
 				<div style={{flex: 1}}/>

@@ -9,3 +9,19 @@ a, a:visited {
 	text-decoration: none;
 	color: inherit;
 }
+
+.btnPrimary {
+	width: 80%;;
+	padding: 10px;
+	background: #d1b653;
+	border: none;
+	margin: 15px 0;
+}
+
+.btnSecondary {
+	width: 80%;
+	padding: 10px;
+	background: none;
+	color: #d1b653;
+	border: #d1b653 1px solid;	
+}

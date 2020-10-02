@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
 import '../styles/logInSignUp.css'
 import background from "../images/deluxebackground.png"
+import { toast } from 'react-toastify';
 
 class Login extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class Login extends React.Component {
         e.preventDefault()
         //Validacion
         if (this.state.mail === '' || this.state.pass === '') {
-            alert("Campos obligatorios")
+            toast.error("Campos obligatorios")
         } else {
             const usuarioALoguear = {mail: this.state.mail, pass: this.state.pass}
             const respuesta = await this.props.loguearUser(usuarioALoguear)
@@ -41,8 +42,8 @@ class Login extends React.Component {
             <>
            <div className="mainContainer fondoForm">
                 <div className="theBackground" style={{backgroundImage: `url(${background})`}}>  
-                    <div className="formulario">
-                    <h1>Ingresar a mi cuenta</h1>
+                    <form className="formulario">
+                        <h1>Ingresar a mi cuenta</h1>
                         <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
                         <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                         <button onClick={this.enviarInfo}>Ingresar</button>
@@ -57,7 +58,7 @@ class Login extends React.Component {
                             />
                         </div>
                         <button className="goToLogIn"><NavLink to='/signup' style={{textDecoration: "none", color:"white"}}> Crear cuenta </NavLink></button>
-                    </div>
+                    </form>
                     <div className="divGoBack">
                         <button className="goBack"><NavLink to='/' style={{textDecoration: "none", color:"white"}}> volver </NavLink></button>
                     </div>

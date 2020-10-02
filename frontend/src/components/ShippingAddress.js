@@ -3,7 +3,7 @@ import userActions from '../redux/actions/userActions'
 import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom';
-import swal from 'sweetalert'
+import { toast } from 'react-toastify';
 
 const ShippingAddress = (props) => {
 
@@ -107,12 +107,7 @@ const handleChange = e => {
 }
 
 const confirm = () => {
-    swal({
-        title: "¡Advertencia",
-        text: "Recuerde que si confirma los datos, no podra cambiarlos",
-        icon: "warning",
-        button: "¡Entiendo!",
-      });
+    toast.info('Los datos van a cambiarse.')
 }
 
 
@@ -155,7 +150,7 @@ function handleGameClick() {
 
 return (
     <>
-        <div id="mainContainerProduct">
+        <div id="Dashboard">
             <h1>Shipping Address</h1>
     
                 <label for="option">¿Do you want to modify the information?</label>

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { toast } from "react-toastify"
 import { RUTA_API } from "../../constants"
 
 const productActions = {
@@ -9,7 +10,9 @@ const productActions = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            })
+			})
+			if(response.data.success) toast.success('Articulo creado con exito!')
+			else toast.error('Falla al cargar el articulo')
         }
     },
     dataProduct: id=> {
@@ -29,8 +32,9 @@ const productActions = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-
-            })
+			})
+			if(response.data.success) toast.success('Articulo modificado con exito!')
+			else toast.error('Falla al modificar el articulo')
 		}
 	},
     getProductByCategory: category => {

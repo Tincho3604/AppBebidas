@@ -6,7 +6,7 @@ const ListProducts = () => {
 
     return (
         <>
-        <div className="container">
+        <div className="Container">
             
         {CATEGORIES.map(category => {
                 return  <ListCategory key={category._id} category = {category.foto}/> 

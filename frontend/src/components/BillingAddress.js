@@ -3,7 +3,7 @@ import userActions from '../redux/actions/userActions'
 import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom';
-import swal from 'sweetalert'
+import { toast } from 'react-toastify';
 // import userActions from '../redux/actions/userActions';
 
 const BillingAddress = (props) => {
@@ -151,12 +151,7 @@ function handleGameClick() {
 }
 
 const confirm = () => {
-    swal({
-        title: "¡Datos Confirmados!",
-        text: "¡Los datos fueron confirmados exitosamente!",
-        icon: "success",
-        
-      });
+    toast.info('Los datos van a cambiarse.')
 }
         
 
