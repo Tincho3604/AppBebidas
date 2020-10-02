@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import "../styles/checkout.css"
 import "../styles/cartList.css"
 
 const CardList = (props) => {	
@@ -17,7 +18,17 @@ const CardList = (props) => {
 
 return(<>
 		<Header />
-		<div className="Dashboard">
+		<div className="checkout">
+			<div className='breadcrum'>
+				<img src={require('../images/stepOneOn.png')} />
+				<img src={require('../images/stepTwoOff.png')} />
+				<img src={require('../images/stepThreeOff.png')} />
+				<img src={require('../images/stepFourOff.png')} />
+				<img src={require('../images/stepFiveOff.png')} />
+			</div>
+			<div className='title'>
+				<span>Mi pedido</span>
+			</div>
 			{props.cart.map((product, index) => {
 				return <CartListItem data={product} index={index} key={index} />
 			})} 

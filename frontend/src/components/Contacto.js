@@ -28,7 +28,7 @@ const submitHandler = async (e) => {
         const uname = RegExp(/^[a-zA-Z0-9._]+$/)
 		const reMail = RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)
         if (user.nombre === '' || user.apellido === '' || user.mail === '' || user.telefono === '' || user.mensaje === '') {
-            toast("por favor complete todos los campos")
+            toast.error("Por favor complete todos los campos")
         
         } else if (!uname.test(user.nombre)) {
             toast("Tu nombre solo puede contener Letras, Numeros, '_' and '.'")
@@ -54,7 +54,7 @@ const submitHandler = async (e) => {
                 asunto: '',
                 mensaje: ''
         })
-            toast("Gracias por enviarnos tu mensaje")
+            toast.success("Gracias por enviarnos tu mensaje")
 
         }
 }

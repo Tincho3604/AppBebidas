@@ -4,201 +4,84 @@ import userReducer from '../redux/reducers/userReducer'
 import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import userActions from '../redux/actions/userActions';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../styles/checkout.css';
 
 const BillingAddress = (props) => {
 
-const [billingAddress, setAddress] = useState({
-    street: "",
-    number:"",
-    floor:"",
-    apartment:"",
+const [billing, setBilling] = useState({
+    name: props.billingAddress !== undefined ? props.billingAddress.name : '',
+    cuit: props.billingAddress !== undefined ? props.billingAddress.cuit : '',
+    type:  props.billingAddress !== undefined ? props.billingAddress.type : '',
+    phone: props.billingAddress !== undefined ? props.billingAddress.phone : '',
+    notes: props.billingAddress !== undefined ? props.billingAddress.notes : '',
 })
 
-const [error, setError] = useState({
-    street: "",
-    number:"",
-    floor:"",
-    apartment:"",
-})
-
-const [send, setSend] = useState({
-    status: false
-})
-
-const [disabled, setDisabled] = useState(true);
-
-
-
-const validation = billingAddress => {
-    error.ok = true
-    //RegEx
-    
-    const alphanum = RegExp(/^\w+$/)
-    const num = RegExp(/\d.{1,}/)
-    
-
-    //Street
-    
-    if (billingAddress.street === '') {
-        error.street = 'Cannot be empty'
-        error.ok = false
-    }
-    else if (billingAddress.street < 3) {
-        error.street = 'Need three characters at least'
-        error.ok = false
-    }
-    else if (!alphanum.test(billingAddress.street)) {
-        error.street = 'Only can contains letters and numbers'
-        error.ok = false
-    }
-    else error.title = ''
-    
-
-
-    //Number
-    if (billingAddress.number === '') {
-        error.number = 'Cannot be empty'
-        error.ok = false
-    }
-    else if (!num.test(billingAddress.number)) {
-        error.number = 'Only can contains numbers'
-        error.ok = false
-    }
-    else error.number = ''
-    
-    
-
-    //Floor
-    if (billingAddress.floor === '') {
-        error.number = 'Cannot be empty'
-        error.ok = false
-    }
-    else if (!num.test(billingAddress.floor)) {
-        error.number = 'Only can contains numbers'
-        error.ok = false
-    }
-    else error.number = ''
-    
-
-
-     //Apartment
-    if (billingAddress.apartment === '') {
-        error.apartment = 'Cannot be empty'
-        error.ok = false
-    }
-    else if (billingAddress.street === 1) {
-        error.street = 'Need three characters at least'
-        error.ok = false
-    }
-    else if (!alphanum.test(billingAddress.apartment)) {
-        error.apartment = 'Only can contains letters and numbers'
-        error.ok = false
-    }
-    else error.apartment = ''
-    
-    console.log(error)
-
-    return error.ok
+const inputHandler = (e) => {
+	const valor = e.target.value;
+	const campo = e.target.name;
+	setBilling({
+			...billing,
+			[campo]: valor
+	})
 }
 
 
-const handleChange = e => {
-    
-    setAddress({
-        ...billingAddress,
-        [e.target.name]: e.target.value
-    })
-console.log(e.target.value)
-}
 
-const handleClick = async e => {
+const submitHandler = async e => {
     e.preventDefault();
-    send.status = true
-    setSend({ status: true })
-    if (validation(billingAddress)) {
-        const fd = new FormData()
-        fd.append("street",billingAddress.street)
-        fd.append("number",billingAddress.number)
-        fd.append("floor",billingAddress.floor)
-        fd.append("apartment",billingAddress.apartment)
-        
-
-        await props.addBillingAddress(fd)
-        
-        
-        //ACCION
-        setError({
-            ...error,
-            ok: true
-        })
-    }
     
-    else {
-        send.status = false
-        setSend({ status: false })
-        setError({
-            ...error,
-            ok: false
-        })
-        alert("ERROR")
-    }
 }
 
-
-function handleGameClick() {
-    setDisabled(!disabled);
-}
-
-const confirm = () => {
-    toast.info('Los datos van a cambiarse.')
-}
-        
 
 return (
     <>
-        <div id="mainContainerProduct">
-            <h1>Billing Address</h1>
-            
-        
-                
-                <label for="option">¿Do you want to modify the information?</label>
-                
-                <label htmlFor="yes">Yes</label>
-                <input type="radio" name="option" id="yes" value="yes" onChange={handleGameClick}/>
-                
-                <label htmlFor="no">No</label>
-                <input type="radio" name="option"  id="no" value="No" onChange={handleGameClick}/>
-            
-        
-                <div className="formContainer">
-                <div className="inputs">
-                    <label for="street">Street:</label>
-                    <input type="text" name="street" onChange={handleChange} value={props.user.billingAddress === undefined ? billingAddress.street : props.billingAddress.street} disabled={disabled}></input>
-                    
-                    <div className="inputs">
-                        <label for="number">Number:</label>
-                        <input type="number" name="number" onChange={handleChange} value={props.user.billingAddress === undefined ? billingAddress.number : props.billingAddress.number} disabled={disabled}></input>
-                    </div>
-                    
-                    <div className="inputs">
-                        <label for="floor">Floor:</label>
-                        <input type="text" name="floor" onChange={handleChange} value={props.user.billingAddress === undefined ? billingAddress.floor : props.billingAddress.floor} disabled={disabled}></input>
-                    </div>
-                        
-                    <div className="inputs">
-                        <label for="apartment">Apartment:</label>
-                        <input type="text" name="apartment" onChange={handleChange} value={props.user.billingAddress === undefined ? billingAddress.apartment : props.billingAddress.apartament} disabled={disabled}></input>
-                    </div>               
-                </div>
-            
-            </div>
-                <button style={{ background: "none", border: "none", cursor: "pointer" }} onClick={handleClick}>Send Info</button>
-                <NavLink to="/"><button style={{height:'5vh', width:'10vh',margin:'0 auto'}} onClick={confirm}>Next</button></NavLink>
-            </div> 
-        </>
-    )
-}
+		<Header />
+        <div className='checkout'>
+			<div className='breadcrum'>
+				<img src={require('../images/stepOneOn.png')} />
+				<img src={require('../images/stepTwoOn.png')} />
+				<img src={require('../images/stepThreeOn.png')} />
+				<img src={require('../images/stepFourOff.png')} />
+				<img src={require('../images/stepFiveOff.png')} />
+			</div>
+			<div className='title'>
+				<span>Datos de facturacion</span>
+			</div>
+			<form className='addressForm'>
+				<div className="input">
+					<label>Nombre y apellido / Nombre de fantasia</label>
+					<input type='text' onChange={inputHandler} value={billing.name} />
+				</div>
+				<div className="input">
+					<label>CUIT/CUIL/DNI</label>
+					<input type='text' onChange={inputHandler} value={billing.cuit} />
+				</div>
+				<div className="input">
+					<label>Tipo de comprobante</label>
+					<input type='text' onChange={inputHandler} value={billing.type} />
+				</div>
+				<div className="input">
+					<label>Telefono</label>
+					<input type='text' onChange={inputHandler} value={billing.phone} />
+				</div>
+				<div className="input">
+					<label>Notas</label>
+					<input type='text' onChange={inputHandler} value={billing.notes} />
+				</div>
+				<div className="buttons">
+				<button className="btnSecondary" onClick={() => props.history.push('/shippingAddress')}>Volver a datos de envio</button>
+				<button className="btnPrimary" onClick={() => props.history.push('/payment')}>Ir pagar</button>
+				</div>
+			</form>
+        </div> 
+        <Footer />
+    </>
+        )
+    }
+
+    
 
 
 const mapStateToProps = state => {
@@ -209,10 +92,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    
     addBillingAddress: userActions.addBillingAddress
-
-    }
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillingAddress);

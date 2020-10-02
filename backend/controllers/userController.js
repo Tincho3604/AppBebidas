@@ -53,7 +53,6 @@ const userController = {
 		const userExists = await User.findOne({ mail })
 		if (!userExists) return res.json({ success: false, error: message })
 		const passwordMatches = bcrypt.compareSync(pass, userExists.pass)
-		console.log(passwordMatches, "password")
 		if (!passwordMatches) return res.json({ success: false, error: message })
 		const token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
 		if (!token) return res.json({ success: false, error })
@@ -105,25 +104,18 @@ const userController = {
 			})
 	},
 
-
-
-
-	userInfo: (req, res) => {
-		var userId = req.user._id
-
-		User.findOne({ _id: userId })
-			.then(usuarioUser => res.json({
-				success: true,
-				token,
-				firstName: usuarioUser.firstName,
-				wishlist: usuarioUser.wishlist,
-
-			}))
-			.catch(error => res.json({ success: false, error }))
+	userInfo: async (req, res) => {
+		const {_id} = req.user
+		try {
+			const user = await User.findOne({ _id })
+			res.json({
+				success: user ? true : false,
+				user
+			})
+		} catch (error) {
+			console.log(error)
+		}
 	},
-
-
-
 	addToWishlist: async (req, res) => {
 		var { id } = req.body
 		var userId = req.user._id
@@ -147,7 +139,8 @@ const userController = {
 
 		const filteredWishList = userWishList.wishlist.filter(wishlist => wishlist != id)
 		// console.log(filteredWishList)
-		const user = await User.findOneAndUpdate({ _id: userId }, { wishlist: filteredWishList }, { new: true })
+		const user = await User.findOneAndUpdate({ _id: req.user._id }, { wishlist: filteredWishList }, { new: true })
+		
 		res.json({
 			success: true,
 			wishlist: user.wishlist
@@ -250,11 +243,13 @@ const userController = {
 			req.user.rates.map(rate => {
 				if (rate.id === rId) {
 					rate.value = rVal;
+					console.log(rate)
 					found = true;
 				}
 			})
 		}
 		if (found) {
+			console.log(req.user.rates)
 			req.user.save()
 				.then(user => {
 					res.json({

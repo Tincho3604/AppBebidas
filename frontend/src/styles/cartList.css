@@ -9,7 +9,7 @@
     flex-direction: column;
     background: #1f2327;
 	display: flex;
-    
+    min-height: 75vh;
 }
 
 .cardCard{
