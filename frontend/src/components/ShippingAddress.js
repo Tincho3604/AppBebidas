@@ -53,27 +53,27 @@ return (
 			<form className='addressForm'>
 				<div className="input">
 					<label>Calle</label>
-					<input type='text' onChange={inputHandler} value={shipping.street} />
+					<input type='text' onChange={inputHandler} name='street' value={shipping.street} />
 				</div>
 				<div className="input">
 					<label>Altura</label>
-					<input type='text' onChange={inputHandler} value={shipping.number} />
+					<input type='text' onChange={inputHandler} name='number' value={shipping.number} />
 				</div>
 				<div className="input">
 					<label>Piso/Dpto</label>
-					<input type='text' onChange={inputHandler} value={shipping.dpto} />
+					<input type='text' onChange={inputHandler} name='dpto' value={shipping.dpto} />
 				</div>
 				<div className="input">
 					<label>Quien recibe?</label>
-					<input type='text' onChange={inputHandler} value={shipping.who} />
+					<input type='text' onChange={inputHandler} name='who' value={shipping.who} />
 				</div>
 				<div className="input">
 					<label>Telefono</label>
-					<input type='text' onChange={inputHandler} value={shipping.phone} />
+					<input type='text' onChange={inputHandler} name='phone' value={shipping.phone} />
 				</div>
 				<div className="input">
 					<label>Notas</label>
-					<input type='text' onChange={inputHandler} value={shipping.notes} />
+					<input type='text' onChange={inputHandler} name='notes' value={shipping.notes} />
 				</div>
 				<div className="buttons">
 				<button className="btnSecondary" onClick={() => props.history.push('/cartList')}>Volver a Mi pedido</button>
