@@ -74,7 +74,7 @@ console.log(productsFiltered)
 						<p>Filtrar por Precio</p>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="0">Todas las bebidas</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="1">$150 - $500</button>
-						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="2">$500 - $1000</button>
+						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="2">$501 - $1000</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="3">$1001- $2500</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="4">$2501-$5000</button>
 					</div>

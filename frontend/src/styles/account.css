@@ -33,7 +33,8 @@
 	color: white;
 	font-weight: bold;
 	font-size: 25px;
-	border-bottom: 1px solid #a0a0a0;
+    border-bottom: 1px solid #a0a0a0;
+    
 }
 .generaAccount .myInfo .yourProfileInfo .theInfo{
     padding: 4vh 0vw;
@@ -41,7 +42,11 @@
 }
 .generaAccount .myInfo .yourProfileInfo .theInfo input{
     padding: 1vh 2vw;
-
+    background: none;
+	border: 1px solid goldenrod;
+	padding: 7px;
+    margin-bottom: 10px;
+    color:white
 }
 .generaAccount .myInfo .yourProfileInfo .theInfo button{
     width: 20vw;
@@ -49,6 +54,7 @@
     font-size: 1.5vw;
     background: #d1b653;
     border: 2px solid #d1b653;
+    
 }
 .generaAccount .myInfo .yourProfileInfo .theInfo button:hover{
     color: #ffffff;
@@ -69,6 +75,8 @@
 .generaAccount .myInfo .yourProfileInfo .theInfo span{
     font-weight: bold;
     margin-right: 1vw;
+    
+    
 }
 .generaAccount .myBillingInfo{
     width: 70%;
@@ -77,6 +85,11 @@
 }
 .generaAccount .myBillingInfo .theInfo input{
     padding: 0.5vh 2vw;
+    background: none;
+	border: 1px solid goldenrod;
+	padding: 7px;
+    margin-bottom: 10px;
+    color:white
 }
 .generaAccount .myBillingInfo .theInfo {
     padding: 1vh 2vw;
