@@ -30,9 +30,13 @@ const inputHandler = (e) => {
 
 
 const submitHandler = async e => {
-	e.preventDefault();
-	
-}
+    e.preventDefault();
+        await props.addBillingAddress(billing,props.user.token)
+            toast.success("¡Datos Confirmados!", {
+                position: toast.POSITION.TOP_CENTER
+        });
+    }
+
 
 
 return (
@@ -52,24 +56,30 @@ return (
 			<form className='addressForm'>
 				<div className="input">
 					<label>Nombre y apellido / Nombre de fantasia</label>
-					<input type='text' onChange={inputHandler} name='name' value={billing.name} />
+					<input type='text' onChange={inputHandler} name="name" value={billing.name} />
 				</div>
 				<div className="input">
 					<label>CUIT/CUIL/DNI</label>
-					<input type='text' onChange={inputHandler} name='cuit' value={billing.cuit} />
+					<input type='text' onChange={inputHandler} name="cuit" value={billing.cuit} />
 				</div>
 				<div className="input">
 					<label>Tipo de comprobante</label>
-					<input type='text' onChange={inputHandler} name='type' value={billing.type} />
+					<input type='text' onChange={inputHandler} name="type" value={billing.type} />
 				</div>
 				<div className="input">
 					<label>Telefono</label>
-					<input type='text' onChange={inputHandler} name='phone' value={billing.phone} />
+					<input type='text' onChange={inputHandler} name="phone" value={billing.phone} />
 				</div>
 				<div className="input">
 					<label>Notas</label>
-					<input type='text' onChange={inputHandler} name='notes' value={billing.notes} />
+					<input type='text' onChange={inputHandler} name="notes" value={billing.notes} />
 				</div>
+                
+				
+                <div className="input">
+                    <button className="btnPrimary" style={{margin:'0 auto', width:'40vh'}} type="submit" value="Send Info" onClick={submitHandler}>Actualizar datos</button>
+                </div>
+
 				<div className="buttons">
 				<button className="btnSecondary" onClick={() => props.history.push('/shippingAddress')}>Volver a datos de envio</button>
 				<button className="btnPrimary" onClick={() => props.history.push('/payment')}>Ir pagar</button>
@@ -79,7 +89,8 @@ return (
         <Footer />
     </>
         )
-    }
+	}
+
 
     
 
