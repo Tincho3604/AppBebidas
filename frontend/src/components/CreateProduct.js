@@ -26,6 +26,7 @@ const CreateProduct = (props) => {
         stock: "",
         description: ""
     })
+    
     const [send, setSend] = useState({
         status: false
     })
@@ -42,6 +43,7 @@ const CreateProduct = (props) => {
     })
 
     console.log(alerta)
+    
     const validation = product => {
         error.ok = true
         //RegEx

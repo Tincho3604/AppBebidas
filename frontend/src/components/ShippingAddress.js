@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/checkout.css';
-
+import { Alert } from 'reactstrap';
 const ShippingAddress = (props) => {
 
 const [shipping, setShipping] = useState({
@@ -19,10 +19,108 @@ const [shipping, setShipping] = useState({
     notes: props.shippingAddress !== undefined ? props.shippingAddress.notes : '',
 })
 
+const [error, setError] = useState({
+	street:'',
+	number:'',
+	dpto:'',
+	who:'',
+	phone:'',
+	notes:''
+})
+
+const [send, setSend] = useState({
+	status: false
+})
+
+const [alerta, setAlerta] = useState({
+	errorStreet: "",
+	errorNumber: "",
+	errorDpto: "",
+	errorWho: "",
+	errorPhone: "",
+	errorNotes: "",
+})
 
 
 
+                                    /*----------------------------------------------VALIDATION-----------------------------------------*/
 
+const validation = shipping => {
+	error.ok = true
+	//RegEx
+	const alphanum = RegExp(/^\w+$/)
+	const num = RegExp(/\d./)
+	const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
+	
+
+
+	//street
+	if (shipping.street === '') {
+		error.street = 'Cannot be empty'
+		error.ok = false
+	}
+	else error.street = ""
+	
+
+
+	// number
+	if (shipping.number === '') {
+		error.number = 'Cannot be empty'
+		error.ok = false
+	}
+	
+	else if (!num.test(shipping.number)) {
+		error.number = 'Solo puede contener numeros '
+		error.ok = false
+	}
+	else error.number = ''
+	
+
+
+	//dpto
+	if (shipping.dpto === '') {
+		error.dpto = 'Cannot be empty'
+		error.ok = false
+	}
+	else if (shipping.dpto.length > 3 || shipping.dpto === undefined) {
+		error.dpto = "Max 2 characters"
+		error.ok = false
+	}
+	else error.dpto = ''
+	
+
+
+	//who
+	if (shipping.who === '') {
+		error.who = 'Cannot be empty'
+		error.ok = false
+	}
+	else error.who = ""
+	
+
+
+	//phone
+	if (shipping.phone === '') {
+		error.phone = 'Cannot be empty'
+		error.ok = false
+	}
+	else if (!num.test(shipping.phone)) {
+		error.phone = 'Only can contains numbers'
+		error.ok = false
+	}
+	else error.phone = ''
+	
+
+
+	//notes
+	if (shipping.notes === '') {
+		error.notes = 'Cannot be empty'
+		error.ok = false
+	}
+	else error.notes = ""
+}
+
+                                        /*----------------------------------------------VALIDATION-----------------------------------------*/
 
 const inputHandler = (e) => {
 	const valor = e.target.value;
@@ -33,17 +131,63 @@ const inputHandler = (e) => {
 	})
 }
 
+
 const submitHandler = async e => {
     e.preventDefault();
-        await props.addShippingAddress(shipping,props.user.token)
-            toast.success("¡Datos Confirmados!", {
-                position: toast.POSITION.TOP_CENTER
-        });
-    }
-
-
-
+    send.status = true
+    setSend({ status: true })
+	
+	if (validation(shipping)) {
+	toast.success("¡Datos Confirmados!", {
+			position: toast.POSITION.TOP_CENTER
+	    });
     
+	
+		await props.addShippingAddress(shipping,props.user.token)
+	
+	setError({
+		...error,
+		ok: true
+	})
+	
+	setAlerta({
+		errorStreet: '',
+		errorNumber: '',
+		errorDpto: '',
+		errorWho: '',
+		errorPhone: '',
+		errorNotes: '',
+	})
+
+
+	setShipping({
+		street: "",
+		number: "",
+		dpto: "",
+		who: "",
+		phone: "",
+		notes: "",
+	})
+}
+
+else {
+	send.status = false
+	setSend({ status: false })
+	setError({
+		...error,
+		ok: false
+	})
+	setAlerta({
+		errorStreet: error.street,
+		errorNumber: error.number,
+		errorDpto: error.dpto,
+		errorWho: error.who,
+		errorPhone: error.phone,
+		errorNotes: error.notes,
+	    })
+    }
+}
+
 return (
     <>
 		<Header />
@@ -62,26 +206,34 @@ return (
 				<div className="input">
 					<label>Calle</label>
 					<input type='text' onChange={inputHandler} name="street" value={shipping.street} />
+					<span style={{ color: "white" }}>{alerta.errorStreet}</span>
+
 				</div>
 				<div className="input">
 					<label>Altura</label>
 					<input type='text' onChange={inputHandler} name="number" value={shipping.number} />
+				    <span style={{ color: "white" }}>{alerta.errorNumber}</span>
 				</div>
+				
 				<div className="input">
 					<label>Piso/Dpto</label>
 					<input type='text' onChange={inputHandler} name="dpto" value={shipping.dpto} />
+				    <span style={{ color: "white" }}>{alerta.errorDpto}</span>
 				</div>
 				<div className="input">
 					<label>Quien recibe?</label>
 					<input type='text' onChange={inputHandler} name="who" value={shipping.who} />
+				    <span style={{ color: "white" }}>{alerta.errorWho}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
 					<input type='text' onChange={inputHandler} name="phone" value={shipping.phone} />
+					<span style={{ color: "white" }}>{alerta.errorPhone}</span>
 				</div>
 				<div className="input">
 					<label>Notas</label>
 					<input type='text' onChange={inputHandler} name="notes" value={shipping.notes} />
+				    <span style={{ color: "white" }}>{alerta.errorNotes}</span>
 				</div>
 				
                 <div className="input">
