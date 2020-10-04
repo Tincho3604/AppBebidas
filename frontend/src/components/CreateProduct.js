@@ -141,6 +141,10 @@ const CreateProduct = (props) => {
             [e.target.name]: valor
         })
     }
+    
+    
+    
+    
     const handleClick = async e => {
         e.preventDefault();
         send.status = true

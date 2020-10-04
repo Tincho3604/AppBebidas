@@ -47,16 +47,15 @@ const [alerta, setAlerta] = useState({
 
 const validation = shipping => {
 	error.ok = true
-	//RegEx
-	const alphanum = RegExp(/^\w+$/)
-	const num = RegExp(/\d./)
-	const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
 	
-
-
+	//RegEx
+		const alphanum = RegExp(/^\w+$/)
+		const num = RegExp(/\d./)
+		const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)			
+	
 	//street
 	if (shipping.street === '') {
-		error.street = 'Cannot be empty'
+		error.street = 'Calle no puede estar vacía'
 		error.ok = false
 	}
 	else error.street = ""
@@ -65,25 +64,23 @@ const validation = shipping => {
 
 	// number
 	if (shipping.number === '') {
-		error.number = 'Cannot be empty'
+		error.number = 'El número no puede estar vacío'
 		error.ok = false
 	}
-	
-	else if (!num.test(shipping.number)) {
-		error.number = 'Solo puede contener numeros '
+	else if (!num.test(shipping.phone)) {
+		error.number = 'Solo puede contener números'
 		error.ok = false
 	}
 	else error.number = ''
-	
-
-
+	 
+    
 	//dpto
 	if (shipping.dpto === '') {
-		error.dpto = 'Cannot be empty'
+		error.dpto = 'Piso/Dpto no puede estar vacía'
 		error.ok = false
 	}
-	else if (shipping.dpto.length > 3 || shipping.dpto === undefined) {
-		error.dpto = "Max 2 characters"
+	else if (shipping.dpto > 15 || shipping.dpto === undefined) {
+		error.dpto = "El número máximo de pisos es 14"
 		error.ok = false
 	}
 	else error.dpto = ''
@@ -92,7 +89,7 @@ const validation = shipping => {
 
 	//who
 	if (shipping.who === '') {
-		error.who = 'Cannot be empty'
+		error.who = 'Quien recibe el producto No puede estar vacía'
 		error.ok = false
 	}
 	else error.who = ""
@@ -101,11 +98,11 @@ const validation = shipping => {
 
 	//phone
 	if (shipping.phone === '') {
-		error.phone = 'Cannot be empty'
+		error.phone = 'El teléfono no puede estar vacío'
 		error.ok = false
 	}
 	else if (!num.test(shipping.phone)) {
-		error.phone = 'Only can contains numbers'
+		error.phone = 'Solo puede contener números'
 		error.ok = false
 	}
 	else error.phone = ''
@@ -114,10 +111,15 @@ const validation = shipping => {
 
 	//notes
 	if (shipping.notes === '') {
-		error.notes = 'Cannot be empty'
+		error.notes = 'Las notas no pueden estar vacías'
 		error.ok = false
 	}
 	else error.notes = ""
+
+ //return
+ console.log(error)
+ return error.ok
+
 }
 
                                         /*----------------------------------------------VALIDATION-----------------------------------------*/
@@ -133,17 +135,18 @@ const inputHandler = (e) => {
 
 
 const submitHandler = async e => {
-    e.preventDefault();
+	
+		
+	e.preventDefault();
     send.status = true
     setSend({ status: true })
+
+if (validation(shipping)) {
 	
-	if (validation(shipping)) {
 	toast.success("¡Datos Confirmados!", {
-			position: toast.POSITION.TOP_CENTER
-	    });
-    
-	
-		await props.addShippingAddress(shipping,props.user.token)
+		position: toast.POSITION.TOP_CENTER
+});
+	await props.addShippingAddress(shipping,props.user.token)
 	
 	setError({
 		...error,
@@ -159,7 +162,6 @@ const submitHandler = async e => {
 		errorNotes: '',
 	})
 
-
 	setShipping({
 		street: "",
 		number: "",
@@ -171,6 +173,7 @@ const submitHandler = async e => {
 }
 
 else {
+
 	send.status = false
 	setSend({ status: false })
 	setError({
@@ -206,34 +209,34 @@ return (
 				<div className="input">
 					<label>Calle</label>
 					<input type='text' onChange={inputHandler} name="street" value={shipping.street} />
-					<span style={{ color: "white" }}>{alerta.errorStreet}</span>
+					<span style={{ color: "red" }}>{alerta.errorStreet}</span>
 
 				</div>
 				<div className="input">
 					<label>Altura</label>
 					<input type='text' onChange={inputHandler} name="number" value={shipping.number} />
-				    <span style={{ color: "white" }}>{alerta.errorNumber}</span>
+				    <span style={{ color: "red" }}>{alerta.errorNumber}</span>
 				</div>
 				
 				<div className="input">
 					<label>Piso/Dpto</label>
 					<input type='text' onChange={inputHandler} name="dpto" value={shipping.dpto} />
-				    <span style={{ color: "white" }}>{alerta.errorDpto}</span>
+				    <span style={{ color: "red" }}>{alerta.errorDpto}</span>
 				</div>
 				<div className="input">
 					<label>Quien recibe?</label>
 					<input type='text' onChange={inputHandler} name="who" value={shipping.who} />
-				    <span style={{ color: "white" }}>{alerta.errorWho}</span>
+				    <span style={{ color: "red" }}>{alerta.errorWho}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
 					<input type='text' onChange={inputHandler} name="phone" value={shipping.phone} />
-					<span style={{ color: "white" }}>{alerta.errorPhone}</span>
+					<span style={{ color: "red" }}>{alerta.errorPhone}</span>
 				</div>
 				<div className="input">
 					<label>Notas</label>
 					<input type='text' onChange={inputHandler} name="notes" value={shipping.notes} />
-				    <span style={{ color: "white" }}>{alerta.errorNotes}</span>
+				    <span style={{ color: "red" }}>{alerta.errorNotes}</span>
 				</div>
 				
                 <div className="input">

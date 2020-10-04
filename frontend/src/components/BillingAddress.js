@@ -50,8 +50,8 @@ const [alerta, setAlerta] = useState({
 		const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)							
 		
 		//name
-		if (billing.street === '') {
-			error.name = 'Cannot be empty'
+		if (billing.name === '') {
+			error.name = 'Nombre no puede estar vacío'
 			error.ok = false
 		}
 		else error.name = ""
@@ -60,7 +60,7 @@ const [alerta, setAlerta] = useState({
 	
 		// cuit
 		if (billing.cuit === '') {
-			error.cuit = 'Cannot be empty'
+			error.cuit = 'CUIT / CUIL / DNI no puede estar vacío'
 			error.ok = false
 		}
 		
@@ -74,11 +74,11 @@ const [alerta, setAlerta] = useState({
 	
 		//type
 		if (billing.type === '') {
-			error.type = 'Cannot be empty'
+			error.type = 'El tipo no puede estar vacío'
 			error.ok = false
 		}
-		else if (billing.type.length > 3) {
-			error.type = "Max 2 characters"
+		else if (billing.type > 3) {
+			error.type = "2 caracteres como máximo"
 			error.ok = false
 		}
 		else error.type = ''
@@ -87,11 +87,11 @@ const [alerta, setAlerta] = useState({
 	
 		//phone
 		if (billing.phone === '') {
-			error.phone = 'Cannot be empty'
+			error.phone = 'Telefono no puede estar vacío'
 			error.ok = false
 		}
 		else if (!num.test(billing.phone)) {
-			error.phone = 'Only can contains numbers'
+			error.phone = 'Solo puede contener números'
 			error.ok = false
 		}
 		else error.phone = ''
@@ -100,10 +100,15 @@ const [alerta, setAlerta] = useState({
 	
 		//notes
 		if (billing.notes === '') {
-			error.notes = 'Cannot be empty'
+			error.notes = 'Las notas no pueden estar vacías'
 			error.ok = false
 		}
 		else error.notes = ""
+	 
+		//return
+	 console.log(error)
+	 return error.ok
+	
 	}
 									
 	    /*----------------------------------------------VALIDATION-----------------------------------------*/
@@ -126,13 +131,12 @@ const submitHandler = async e => {
 	
 
 	if (validation(billing)) {
-        
 		toast.success("¡Datos Confirmados!", {
-                position: toast.POSITION.TOP_CENTER
-        });
-	
-		await props.addBillingAddress(billing,props.user.token)
+			position: toast.POSITION.TOP_CENTER
+	});
 		
+		await props.addBillingAddress(billing,props.user.token)
+
 		setError({
 			...error,
 			ok: true
@@ -156,6 +160,7 @@ const submitHandler = async e => {
 		})
 	}
 	else {
+	
 		send.status = false
 		setSend({ status: false })
 		setError({
@@ -190,27 +195,27 @@ return (
 				<div className="input">
 					<label>Nombre y apellido / Nombre de fantasia</label>
 					<input type='text' onChange={inputHandler} name="name" value={billing.name} />
-				    <span style={{ color: "white" }}>{alerta.errorName}</span>
+				    <span style={{ color: "red" }}>{alerta.errorName}</span>
 				</div>
 				<div className="input">
 					<label>CUIT/CUIL/DNI</label>
 					<input type='text' onChange={inputHandler} name="cuit" value={billing.cuit} />
-					<span style={{ color: "white" }}>{alerta.errorCuit}</span>
+					<span style={{ color: "red" }}>{alerta.errorCuit}</span>
 				</div>
 				<div className="input">
 					<label>Tipo de comprobante</label>
 					<input type='text' onChange={inputHandler} name="type" value={billing.type} />
-				    <span style={{ color: "white" }}>{alerta.errorType}</span>
+				    <span style={{ color: "red" }}>{alerta.errorType}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
 					<input type='text' onChange={inputHandler} name="phone" value={billing.phone} />
-				    <span style={{ color: "white" }}>{alerta.errorPhone}</span>
+				    <span style={{ color: "red" }}>{alerta.errorPhone}</span>
 				</div>
 				<div className="input">
 					<label>Notas</label>
 					<input type='text' onChange={inputHandler} name="notes" value={billing.notes} />
-				    <span style={{ color: "white" }}>{alerta.errorNotes}</span>
+				    <span style={{ color: "red" }}>{alerta.errorNotes}</span>
 				</div>
                 
 				
