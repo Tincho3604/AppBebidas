@@ -5,6 +5,8 @@ const initialState = {
 	lastName: '',
 	shippingAddress: '',
 	billingAddress: '',
+	orderShippingInfo:'',
+	orderBillingInfo:'',
 	wishlist: [],
 	cart: [],
 	comments: null,
@@ -55,6 +57,17 @@ function userReducer(state = initialState, action) {
 				...state,
 				wishlist: action.payload
 			}
+			case "SHIPPING_ORDER_INFO":
+				return{
+				...state,
+				orderShippingInfo: action.payload
+			}
+            case "BILLING_ORDER_INFO":
+				return{
+				...state,
+				orderBillingInfo: action.payload
+			}
+			
 		default:
 			return state
 	}

@@ -40,6 +40,42 @@ const [alerta, setAlerta] = useState({
 
 
 
+
+console.log("Esto es lo que me viene del redux en billing --> ",props.orderBillingInfo)
+
+// Ale use esta funcion usando la action "addBillingOrderInfo" para cargar el redux :),
+const actualizarHandler = async e => {
+	e.preventDefault();
+    send.status = true
+	setSend({ status: true })
+
+	if (validation(billing)) {
+		props.history.push('/payment')
+		await props.addBillingOrderInfo(billing)
+	}else{
+		toast.error("¡Porfavor completar los campos obligatorios!", {
+			position: toast.POSITION.TOP_CENTER
+	    });
+		send.status = false
+		setSend({ status: false })
+		setError({
+			...error,
+			ok: false
+		})
+		setAlerta({
+			errorName: error.name,
+			errorCuit: error.cuit,
+			errorType: error.type,
+			errorPhone: error.phone,
+			errorNotes: error.notes,
+		})
+	}
+}
+
+
+
+
+
 /*----------------------------------------------VALIDATION-----------------------------------------*/
 
 	const validation = billing => {
@@ -83,8 +119,6 @@ const [alerta, setAlerta] = useState({
 		}
 		else error.voucherFAC = ''
 		
-	
-	
 		//phone
 		if (billing.phoneFAC === '') {
 			error.phoneFAC = 'Telefono no puede estar vacío'
@@ -94,22 +128,15 @@ const [alerta, setAlerta] = useState({
 			error.phoneFAC = 'Solo puede contener números'
 			error.ok = false
 		}
-		else error.phoneFAC = ''
-		
+		else error.phone = ''
 	
-	
-		//notes
-		if (billing.notesFAC === '') {
-			error.notesFAC = 'Las notas no pueden estar vacías'
-			error.ok = false
-		}
-		else error.notesFAC = ""
-	 
 		//return
-	 console.log(error)
-	 return error.ok
+    console.log(error)
+	return error.ok
 	
 	}
+
+
 									
 	    /*----------------------------------------------VALIDATION-----------------------------------------*/
 
@@ -121,8 +148,6 @@ const inputHandler = (e) => {
 			[campo]: valor
 	})
 }
-
-console.log(props)
 
 const submitHandler = async e => {
 	e.preventDefault();
@@ -149,18 +174,9 @@ const submitHandler = async e => {
 			errorPhoneFAC: '',
 			errorNotesFAC: '',
 		})
-	
-	
-		setBilling({
-			nameFAC: billing.nameFAC,
-			dniFAC: billing.dniFAC,
-			voucherFAC: billing.voucherFAC,
-			phoneFAC: billing.phoneFAC,
-			notesFAC: billing.notesFAC,
-		})
 	}
+
 	else {
-	
 		send.status = false
 		setSend({ status: false })
 		setError({
@@ -225,7 +241,7 @@ return (
 
 				<div className="buttons">
 				<button className="btnSecondary" onClick={() => props.history.push('/shippingAddress')}>Volver</button>
-				<button className="btnPrimary" onClick={() => props.history.push('/payment')}>Siguiente</button>
+				<button className="btnPrimary" onClick={actualizarHandler}>Siguiente</button>
 				</div>
 			</form>
         </div> 
@@ -242,12 +258,14 @@ const mapStateToProps = state => {
     return {
 
         billingAddress: state.userReducer.billingAddress,
-        user: state.userReducer
+		orderBillingInfo: state.userReducer.orderBillingInfo,
+		user: state.userReducer
     }
 }
 
 const mapDispatchToProps = {
-    billingAddress: userActions.addBillingAddress
+	addBillingAddress: userActions.addBillingAddress,
+	addBillingOrderInfo: userActions.addBillingOrderInfo
 }
 
 
