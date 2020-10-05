@@ -149,12 +149,12 @@ const userController = {
 
 
 	addShippingAddress: async (req, res) => {
-
-		const data = { street, number, dpto, who, phone, notes } = req.body
+console.log(req.body)
+		const data = { street, streetHeight, floor, receiver, phone, notes } = req.body
 
 		try {
 		 	const shipping = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
-			
+			console.log(shipping)
 			 res.json({
 		 		success: true,
 		 		response: shipping
@@ -171,8 +171,8 @@ const userController = {
 
 
 	addBillingAddress: async (req, res) => {
-		
-		const data = { name, cuit, type, phone, notes } = req.body
+		console.log(req.body)
+		const data = { nameFAC, dniFAC, voucherFAC, phoneFAC, notesFAC } = req.body
 		try {
 			const billing = await User.findOneAndUpdate({ _id: req.user._id }, { billingAddress: req.body })
 			

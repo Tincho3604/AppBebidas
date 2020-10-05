@@ -11,19 +11,19 @@ import '../styles/checkout.css';
 const BillingAddress = (props) => {
 
 const [billing, setBilling] = useState({
-    name: props.billingAddress !== undefined ? props.billingAddress.name : '',
-    cuit: props.billingAddress !== undefined ? props.billingAddress.cuit : '',
-    type:  props.billingAddress !== undefined ? props.billingAddress.type : '',
-    phone: props.billingAddress !== undefined ? props.billingAddress.phone : '',
-    notes: props.billingAddress !== undefined ? props.billingAddress.notes : '',
+    nameFAC: props.billingAddress !== undefined ? props.billingAddress.nameFAC : '',
+    dniFAC: props.billingAddress !== undefined ? props.billingAddress.dniFAC : '',
+    voucherFAC:  props.billingAddress !== undefined ? props.billingAddress.voucherFAC : '',
+    phoneFAC: props.billingAddress !== undefined ? props.billingAddress.phoneFAC : '',
+    notesFAC: props.billingAddress !== undefined ? props.billingAddress.notesFAC : '',
 })
 
 const [error, setError] = useState({
-	name:'',
-    cuit:'',
-	type:'',
-	phone:'',
-	notes:''
+	nameFAC:'',
+    dniFAC:'',
+	voucherFAC:'',
+	phoneFAC:'',
+	notesFAC:''
 })
 
 const [send, setSend] = useState({
@@ -31,11 +31,11 @@ const [send, setSend] = useState({
 })
 
 const [alerta, setAlerta] = useState({
-	errorName: "",
-	errorCuit: "",
-	errorType: "",
-	errorPhone: "",
-	errorNotes: "",
+	errorNameFAC: "",
+	errorDniFAC: "",
+	errorVoucherFAC: "",
+	errorPhoneFAC: "",
+	errorNotesFAC: "",
 })
 
 
@@ -50,60 +50,60 @@ const [alerta, setAlerta] = useState({
 		const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)							
 		
 		//name
-		if (billing.name === '') {
-			error.name = 'Nombre no puede estar vacío'
+		if (billing.nameFAC === '') {
+			error.nameFAC = 'Nombre no puede estar vacío'
 			error.ok = false
 		}
-		else error.name = ""
+		else error.nameFAC = ""
 		
 	
 	
 		// cuit
-		if (billing.cuit === '') {
-			error.cuit = 'CUIT / CUIL / DNI no puede estar vacío'
+		if (billing.dniFAC === '') {
+			error.dniFAC = 'CUIT / CUIL / DNI no puede estar vacío'
 			error.ok = false
 		}
 		
 		else if (!alphanum.test(billing.number)) {
-			error.cuit = 'Solo puede contener numeros '
+			error.dniFAC = 'Solo puede contener numeros '
 			error.ok = false
 		}
-		else error.cuit = ''
+		else error.dniFAC = ''
 		
 	
 	
 		//type
-		if (billing.type === '') {
-			error.type = 'El tipo no puede estar vacío'
+		if (billing.voucherFAC === '') {
+			error.voucherFAC = 'El tipo no puede estar vacío'
 			error.ok = false
 		}
-		else if (billing.type > 3) {
-			error.type = "2 caracteres como máximo"
+		else if (billing.voucherFAC > 3) {
+			error.voucherFAC = "2 caracteres como máximo"
 			error.ok = false
 		}
-		else error.type = ''
+		else error.voucherFAC = ''
 		
 	
 	
 		//phone
-		if (billing.phone === '') {
-			error.phone = 'Telefono no puede estar vacío'
+		if (billing.phoneFAC === '') {
+			error.phoneFAC = 'Telefono no puede estar vacío'
 			error.ok = false
 		}
-		else if (!num.test(billing.phone)) {
-			error.phone = 'Solo puede contener números'
+		else if (!num.test(billing.phoneFAC)) {
+			error.phoneFAC = 'Solo puede contener números'
 			error.ok = false
 		}
-		else error.phone = ''
+		else error.phoneFAC = ''
 		
 	
 	
 		//notes
-		if (billing.notes === '') {
-			error.notes = 'Las notas no pueden estar vacías'
+		if (billing.notesFAC === '') {
+			error.notesFAC = 'Las notas no pueden estar vacías'
 			error.ok = false
 		}
-		else error.notes = ""
+		else error.notesFAC = ""
 	 
 		//return
 	 console.log(error)
@@ -122,7 +122,7 @@ const inputHandler = (e) => {
 	})
 }
 
-
+console.log(props)
 
 const submitHandler = async e => {
 	e.preventDefault();
@@ -135,7 +135,7 @@ const submitHandler = async e => {
 			position: toast.POSITION.TOP_CENTER
 	});
 		
-		await props.addBillingAddress(billing,props.user.token)
+		await   props.billingAddress(billing, props.user.token)
 
 		setError({
 			...error,
@@ -143,20 +143,20 @@ const submitHandler = async e => {
 		})
 		
 		setAlerta({
-			errorName: '',
-			errorCuit: '',
-			errorType: '',
-			errorPhone: '',
-			errorNotes: '',
+			errorNameFAC: '',
+			errorDniFAC: '',
+			errorVoucherFAC: '',
+			errorPhoneFAC: '',
+			errorNotesFAC: '',
 		})
 	
 	
 		setBilling({
-			name: "",
-			cuit: "",
-			type: "",
-			phone: "",
-			notes: "",
+			nameFAC: billing.nameFAC,
+			dniFAC: billing.dniFAC,
+			voucherFAC: billing.voucherFAC,
+			phoneFAC: billing.phoneFAC,
+			notesFAC: billing.notesFAC,
 		})
 	}
 	else {
@@ -168,11 +168,11 @@ const submitHandler = async e => {
 			ok: false
 		})
 		setAlerta({
-			errorName: error.name,
-			errorCuit: error.cuit,
-			errorType: error.type,
-			errorPhone: error.phone,
-			errorNotes: error.notes,
+			errorNameFAC: error.nameFAC,
+			errorDniFAC: error.dniFAC,
+			errorVoucherFAC: error.voucherFAC,
+			errorPhoneFAC: error.phoneFAC,
+			errorNotesFAC: error.notesFAC,
 			})
 		}
 }
@@ -194,28 +194,28 @@ return (
 			<form className='addressForm'>
 				<div className="input">
 					<label>Nombre y apellido / Nombre de fantasia</label>
-					<input type='text' onChange={inputHandler} name="name" value={billing.name} />
-				    <span style={{ color: "red" }}>{alerta.errorName}</span>
+					<input type='text' onChange={inputHandler} name="nameFAC" value={billing.nameFAC} />
+				    <span style={{ color: "red" }}>{alerta.errorNameFAC}</span>
 				</div>
 				<div className="input">
 					<label>CUIT/CUIL/DNI</label>
-					<input type='text' onChange={inputHandler} name="cuit" value={billing.cuit} />
-					<span style={{ color: "red" }}>{alerta.errorCuit}</span>
+					<input type='text' onChange={inputHandler} name="dniFAC" value={billing.dniFAC} />
+					<span style={{ color: "red" }}>{alerta.errorDniFAC}</span>
 				</div>
 				<div className="input">
 					<label>Tipo de comprobante</label>
-					<input type='text' onChange={inputHandler} name="type" value={billing.type} />
-				    <span style={{ color: "red" }}>{alerta.errorType}</span>
+					<input type='text' onChange={inputHandler} name="voucherFAC" value={billing.voucherFAC} />
+				    <span style={{ color: "red" }}>{alerta.errorVoucherFAC}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
-					<input type='text' onChange={inputHandler} name="phone" value={billing.phone} />
-				    <span style={{ color: "red" }}>{alerta.errorPhone}</span>
+					<input type='text' onChange={inputHandler} name="phoneFAC" value={billing.phoneFAC} />
+				    <span style={{ color: "red" }}>{alerta.errorPhoneFAC}</span>
 				</div>
 				<div className="input">
 					<label>Notas</label>
-					<input type='text' onChange={inputHandler} name="notes" value={billing.notes} />
-				    <span style={{ color: "red" }}>{alerta.errorNotes}</span>
+					<input type='text' onChange={inputHandler} name="notesFAC" value={billing.notesFAC} />
+				    <span style={{ color: "red" }}>{alerta.errorNotesFAC}</span>
 				</div>
                 
 				
@@ -240,13 +240,14 @@ return (
 
 const mapStateToProps = state => {
     return {
+
         billingAddress: state.userReducer.billingAddress,
         user: state.userReducer
     }
 }
 
 const mapDispatchToProps = {
-    addBillingAddress: userActions.addBillingAddress
+    billingAddress: userActions.addBillingAddress
 }
 
 

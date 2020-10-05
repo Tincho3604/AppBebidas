@@ -50,7 +50,7 @@ const userActions = {
 		})
 		
 			const info = response.data.response.shippingAddress
-           
+			console.log(info)
 			
 			if (!response.data.success) {
 		     	toast.error(response.data.error)
@@ -72,7 +72,7 @@ const userActions = {
 			},
 		})	
 			const info = response.data.response.billingAddress
-			
+			console.log(info)
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
