@@ -28,7 +28,7 @@ const productActions = {
     editProduct: (fd, id) => {
         console.log(fd)
         return async (dispatch, getState) => {
-            const response = await axios.put(RUTA_API + "/api/product/editProduct", fd, {
+            const response = await axios.put(RUTA_API + `/api/product/editProduct/${id}`, fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

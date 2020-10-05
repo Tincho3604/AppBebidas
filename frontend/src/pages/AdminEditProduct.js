@@ -5,12 +5,13 @@ import NavAdmin from '../components/NavAdmin';
 import '../styles/adminDashboard.css'
 
 const AdminCreateProduct = (props) => {
+
 	return ( <>
 	<AdminHeader />
 	<div className="dashboard">
 		<NavAdmin />
-		<EditProduct />
+		<EditProduct  props={props}/>
 	</div></> );
 }
  
-export default AdminCreateProduct;
+export default AdminCreateProduct;	

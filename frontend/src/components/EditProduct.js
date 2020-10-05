@@ -8,15 +8,7 @@ import productActions from "../redux/actions/productActions"
 const EditProduct = (props) => {
 
     const [product, setProduct] = useState({
-        category: "",
-        title: "",
-        price: "",
-        ml: "",
-        rating: "",
-        pic: "",
-        alcPct: "",
-        stock: "",
-        description: ""
+
     })
     const [error, setError] = useState({
         category: "",
@@ -41,30 +33,34 @@ const EditProduct = (props) => {
     const [send, setSend] = useState({
         status: false
     })
-    const f = async () => {
-        await props.dataProduct("5f6baa40353b272460f03bb7")
-setTimeout(() => {
-    setProduct({
-            
-        category: props.productData.category,
-        description: props.productData.description
-    })
-}, 3000);
-      
-    }
+
     useEffect(() => {
+        const f = async () => {
+            await props.dataProduct(props.props.match.params.id)
 
-     
+        }
         f()
+        changeState()
+
+    }, [props.productData.category])
+
+    const changeState = () => {
+        setProduct({
+            category: props.productData.category,
+            title: props.productData.title,
+            price: props.productData.price,
+            ml: props.productData.ml,
+            rating: props.productData.rating,
+            pic: props.productData.pic,
+            alcPct: props.productData.alcPct,
+            stock: props.productData.stock,
+            description: props.productData.description
+        })
+
+    }
 
 
-
-
-
-    }, [])
- 
-
-
+    console.log(product)
     const validation = product => {
         error.ok = true
         //RegEx
@@ -73,10 +69,10 @@ setTimeout(() => {
         const decimals = RegExp(/^([0-9]+(\.?[0-9]?[0-9]?)?)/)
         //category
         if (product.category === '') {
-        
+
             error.category = 'Cannot be empty'
             error.ok = false
-        
+
         }
         else error.category = ""
         //title
@@ -95,7 +91,7 @@ setTimeout(() => {
             error.description = 'Need thirty characters at least'
             error.ok = false
         }
-    
+
         // price
         if (product.price === '') {
             error.price = 'Cannot be empty'
@@ -166,7 +162,6 @@ setTimeout(() => {
         setSend({ status: true })
         if (validation(product)) {
 
-            const { id } = props.match.params
             const fd = new FormData()
             fd.append("category", product.category)
             fd.append("price", product.price)
@@ -178,12 +173,33 @@ setTimeout(() => {
             fd.append("rating", product.rating)
             fd.append("title", product.title)
 
-
+            const id = props.props.match.params.id
             await props.editProduct(fd, id)
 
             setError({
                 ...error,
                 ok: true
+            })
+            setAlerta({
+                errorCat: '',
+                errorALC: '',
+                errorML: '',
+                errorPrice: '',
+                errorSTOCK: '',
+                errorDES: '',
+                errorTitle: '',
+                errorPIC: '',
+            })
+
+            setProduct({
+                category: "",
+                title: "",
+                price: "",
+                ml: "",
+                pic: "",
+                alcPct: "",
+                stock: "",
+                description: ""
             })
         }
         else {
@@ -203,7 +219,7 @@ setTimeout(() => {
                 errorTitle: error.title,
                 errorPIC: error.pic,
 
-                
+
             })
         }
 
@@ -212,7 +228,7 @@ setTimeout(() => {
     return (
 
         <>
-       
+
             <div className="container">
                 <form className="form">
                     <h2>Edit product</h2>
@@ -224,42 +240,42 @@ setTimeout(() => {
                                 return <option value={category.foto}>{category.nombre}</option>
                             })}
                         </select>
-                        <span  style={{color: "white"}}>{alerta.errorCat}</span>
+                        <span style={{ color: "white" }}>{alerta.errorCat}</span>
                     </div>
                     <div className="inputBox">
                         <label for="title">Titulo:</label>
                         <input type="text" name="title" onChange={handleChange} value={product.title}></input>
-                        <span  style={{color: "white"}}>{alerta.errorTitle}</span>
+                        <span style={{ color: "white" }}>{alerta.errorTitle}</span>
                     </div>
                     <div className="inputBox">
                         <label for="description">Descripción:</label>
                         <input type="text" name="description" onChange={handleChange} value={product.description}></input>
-                        <span  style={{color: "white"}}>{alerta.errorDES}</span>
+                        <span style={{ color: "white" }}>{alerta.errorDES}</span>
                     </div>
                     <div className="inputBox">
                         <label for="price">Precio:</label>
                         <input type="number" name="price" onChange={handleChange} value={product.price}></input>
-                        <span  style={{color: "white"}}>{alerta.errorPrice}</span>
+                        <span style={{ color: "white" }}>{alerta.errorPrice}</span>
                     </div>
                     <div className="inputBox">
                         <label for="stock">Stock:</label>
                         <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
-                        <span  style={{color: "white"}}>{alerta.errorSTOCK}</span>
+                        <span style={{ color: "white" }}>{alerta.errorSTOCK}</span>
                     </div>
                     <div className="inputBox">
                         <label for="ml">Mililitros:</label>
                         <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
-                        <span  style={{color: "white"}}>{alerta.errorML}</span>
+                        <span style={{ color: "white" }}>{alerta.errorML}</span>
                     </div>
                     <div className="inputBox">
                         <label for="alcPct">Porcentaje Alcoholico (%):</label>
                         <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
-                        <span  style={{color: "white"}}>{alerta.errorALC}</span>
+                        <span style={{ color: "white" }}>{alerta.errorALC}</span>
                     </div>
                     <div className="inputBox">
                         <label for="pic">Foto del producto:</label>
-                        <input type="file" name="pic" onChange={handleChange}></input>
-                        <span  style={{color: "white"}}>{alerta.errorPIC}</span>
+                        <input type="file" name="pic" onChange={handleChange} ></input>
+                        <span style={{ color: "white" }}>{alerta.errorPIC}</span>
                     </div>
 
                     <button onClick={handleClick}>Enviar datos</button>

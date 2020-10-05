@@ -29,18 +29,18 @@ function Account(props) {
         if (editInfo.editInfo === false) {
             setUser({
                 ...user,
-                firstName:props.firstName,
-                lastName:props.lastName,
+                firstName: props.firstName,
+                lastName: props.lastName,
                 nameFAC: props.billingAddress.nameFAC,
                 street: props.shippingAddress.street,
                 floor: props.shippingAddress.floor,
                 streetHeight: props.shippingAddress.streetHeight,
-                dniFAC: props.billingAddress.dniFAC, 
+                dniFAC: props.billingAddress.dniFAC,
                 voucherFAC: props.billingAddress.voucherFAC,
                 phone: props.shippingAddress.phone,
                 phoneFAC: props.billingAddress.phoneFAC,
                 notes: props.shippingAddress.notes,
-                receiver:props.shippingAddress.receiver,
+                receiver: props.shippingAddress.receiver,
                 notesFAC: props.billingAddress.notesFAC,
 
             })
@@ -102,14 +102,14 @@ function Account(props) {
                         </div>
                         <div className="buttonsInfo">
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
-                            <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : <button onClick={handleClick} disabled className="cancelButton" >Cancelar</button>}</div>
+                            <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : null}</div>
                         </div>
                     </div>
                 </div>
                 <div className="myBillingInfo">
                     <div ><div className='title'>Datos de Envio</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="street" placeholder="Calle" onChange={handlData} value={user.street}></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="streetHeight" placeholder="Altura" onChange={handlData} value={user.  streetHeight}></input> : <p>Altura: {props.shippingAddress.streetHeight}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="streetHeight" placeholder="Altura" onChange={handlData} value={user.streetHeight}></input> : <p>Altura: {props.shippingAddress.streetHeight}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="floor" placeholder="Piso" onChange={handlData} value={user.floor}></input> : <p>Piso/Dpto: {props.shippingAddress.floor}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="receiver" placeholder="Quien recibe?" onChange={handlData} value={user.receiver}></input> : <p>Quien recibe?: {props.shippingAddress.receiver}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phone" placeholder="Telefono" onChange={handlData} value={user.phone}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
@@ -122,7 +122,7 @@ function Account(props) {
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phoneFAC" placeholder="Telefono" onChange={handlData} value={user.phoneFAC}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="notesFAC" placeholder="Notas" onChange={handlData} value={user.notesFAC}></input> : <p>Notas: {props.billingAddress.notesFAC}</p>}</div>
                     </div>
-                    <div><div className='title'>Productos que deseo</div>
+                    <div ><div className='title'>Productos que deseo</div>
 
                         {props.productFound.length === undefined ?
 
