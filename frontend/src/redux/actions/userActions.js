@@ -86,6 +86,25 @@ const userActions = {
 	},
 
 
+    addShippingOrderInfo: (shipping) => {
+    return async (dispatch, getState) => {
+		dispatch({
+				type: "SHIPPING_ORDER_INFO",
+				payload: shipping
+			})
+	    }
+	},
+	
+	
+	addBillingOrderInfo: (billing) => {
+        return async (dispatch, getState) => {
+			dispatch({
+				type: "BILLING_ORDER_INFO",
+				payload: billing
+			})
+		}
+	},
+
 
 	getUserInfo: ( token ) => {
 		return async (dispatch, getState) => {
@@ -171,7 +190,6 @@ const userActions = {
 
 
 	modifyUser: (user) => {
-
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
@@ -192,9 +210,7 @@ const userActions = {
 			})
 			if (response.data.success) toast.success('Cambios guardados!')
 			else toast.error('Ha habido un problema')
-
 		}
-
 	},
 
 

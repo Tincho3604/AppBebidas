@@ -10,6 +10,7 @@ import '../styles/checkout.css';
 import { Alert } from 'reactstrap';
 const ShippingAddress = (props) => {
 
+
 const [shipping, setShipping] = useState({
     street: props.shippingAddress !== undefined ? props.shippingAddress.street : '',
     number: props.shippingAddress !== undefined ? props.shippingAddress.number : '',
@@ -41,11 +42,44 @@ const [alerta, setAlerta] = useState({
 	errorNotes: "",
 })
 
+console.log("Esto es lo que me viene del redux en billing --> ",props.orderShippingInfo)
+
+// Ale use esta funcion usando la action "addShippingOrderInfo" para cargar el redux :),
+const actualizarHandler = async e => {
+	e.preventDefault();
+	
+	if (validation(shipping)) {
+		props.history.push('/billingAddress')
+		await props.addShippingOrderInfo(shipping)
+	}else {
+		toast.error("¡Porfavor completar los campos obligatorios!", {
+			position: toast.POSITION.TOP_CENTER
+	    });
+		send.status = false
+	setSend({ status: false })
+	setError({
+		...error,
+		ok: false
+	})
+	setAlerta({
+		errorStreet: error.street,
+		errorNumber: error.number,
+		errorDpto: error.dpto,
+		errorWho: error.who,
+		errorPhone: error.phone,
+		errorNotes: error.notes,
+	    })
+	}
+}
+
+
+
 
 
                                     /*----------------------------------------------VALIDATION-----------------------------------------*/
 
-const validation = shipping => {
+const validation = (shipping) => {
+	
 	error.ok = true
 	
 	//RegEx
@@ -60,8 +94,6 @@ const validation = shipping => {
 	}
 	else error.street = ""
 	
-
-
 	// number
 	if (shipping.number === '') {
 		error.number = 'El número no puede estar vacío'
@@ -72,21 +104,14 @@ const validation = shipping => {
 		error.ok = false
 	}
 	else error.number = ''
-	 
     
 	//dpto
-	if (shipping.dpto === '') {
-		error.dpto = 'Piso/Dpto no puede estar vacía'
-		error.ok = false
-	}
-	else if (shipping.dpto > 15 || shipping.dpto === undefined) {
+	if (shipping.dpto > 15 || shipping.dpto === undefined) {
 		error.dpto = "El número máximo de pisos es 14"
 		error.ok = false
 	}
 	else error.dpto = ''
 	
-
-
 	//who
 	if (shipping.who === '') {
 		error.who = 'Quien recibe el producto No puede estar vacía'
@@ -94,8 +119,6 @@ const validation = shipping => {
 	}
 	else error.who = ""
 	
-
-
 	//phone
 	if (shipping.phone === '') {
 		error.phone = 'El teléfono no puede estar vacío'
@@ -107,19 +130,9 @@ const validation = shipping => {
 	}
 	else error.phone = ''
 	
-
-
-	//notes
-	if (shipping.notes === '') {
-		error.notes = 'Las notas no pueden estar vacías'
-		error.ok = false
-	}
-	else error.notes = ""
-
- //return
- console.log(error)
- return error.ok
-
+    //return
+    console.log(error)
+    return error.ok
 }
 
                                         /*----------------------------------------------VALIDATION-----------------------------------------*/
@@ -133,10 +146,7 @@ const inputHandler = (e) => {
 	})
 }
 
-
 const submitHandler = async e => {
-	
-		
 	e.preventDefault();
     send.status = true
     setSend({ status: true })
@@ -161,19 +171,9 @@ if (validation(shipping)) {
 		errorPhone: '',
 		errorNotes: '',
 	})
-
-	setShipping({
-		street: "",
-		number: "",
-		dpto: "",
-		who: "",
-		phone: "",
-		notes: "",
-	})
+    
 }
-
 else {
-
 	send.status = false
 	setSend({ status: false })
 	setError({
@@ -188,7 +188,7 @@ else {
 		errorPhone: error.phone,
 		errorNotes: error.notes,
 	    })
-    }
+	}
 }
 
 return (
@@ -244,8 +244,8 @@ return (
                 </div>
                 
                 <div className="buttons">
-                <button className="btnSecondary" onClick={() => props.history.push('/cartList')}>Volver</button>
-				<button className="btnPrimary" onClick={() => props.history.push('/billingAddress')}>Siguiente</button>
+                <button className="btnSecondary" onClick={() => props.history.push('/cartList') }>Volver</button>
+				<button className="btnPrimary" onClick={actualizarHandler}>Siguiente</button>
 				</div>
 			</form>
         </div> 
@@ -260,12 +260,14 @@ return (
 const mapStateToProps = state => {
     return {
         shippingAddress: state.userReducer.shippingAddress,
-        user: state.userReducer
+		orderShippingInfo: state.userReducer.orderShippingInfo,
+		user: state.userReducer
     }
 }
 
 const mapDispatchToProps = {
-    addShippingAddress: userActions.addShippingAddress
+	addShippingAddress: userActions.addShippingAddress,
+	addShippingOrderInfo: userActions.addShippingOrderInfo
     }
 
 
