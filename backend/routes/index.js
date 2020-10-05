@@ -51,7 +51,7 @@ router.route("/product/getProduct/:id")
 .get(productController.getProductById)
 
 
-router.route("/product/editProduct")
+router.route("/product/editProduct/:id")
 .put( productController.modifyProduct)
 
 

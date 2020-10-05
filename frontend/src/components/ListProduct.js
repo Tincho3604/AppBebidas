@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ListCategory from './ListCategory'
 import index, { CATEGORIES } from '../constants/index'
 
-const ListProducts = () => {
+const ListProducts = (props) => {
 
     return (
         <>

@@ -6,6 +6,7 @@ import '../styles/adminDashboard.css'
 import ListProduct from '../components/ListProduct'
 
 const AdminListProduct = (props) => {
+
 	return ( <>
 	<AdminHeader />
 	<div className="dashboard">
