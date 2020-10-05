@@ -9,12 +9,6 @@ import "../styles/checkout.css"
 import "../styles/cartList.css"
 
 const CardList = (props) => {	
-	useEffect (() => {
-		fetch('http://localhost:5000/categories').then(response => 
-			response.json().then(data => {
-				console.log("Data -->",data)
-			}))
-	},[])
 
 return(<>
 		<Header />
