@@ -67,3 +67,27 @@
 input{
 	color: white;
 }
+@media only screen and (max-width: 550px){
+	.checkout .breadcrum {
+		width: 70vh;
+	}
+	.checkout .addressForm {
+		width: 70vh;
+	}
+}
+@media only screen and (max-width: 450px){
+	.checkout .breadcrum {
+		width: 60vh;
+	}
+	.checkout .addressForm {
+		width: 60vh;
+	}
+}
+@media only screen and (max-width: 400px){
+	.checkout .breadcrum {
+		width: 55vh;
+	}
+	.checkout .addressForm {
+		width: 53vh;
+	}
+}

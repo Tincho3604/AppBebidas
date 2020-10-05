@@ -64,6 +64,7 @@
 	bottom: 0;
 	right: -50px;
 	transition: right .2s linear;
+	cursor: pointer;
 }
 
 .productCard .picture:hover .like {
@@ -107,6 +108,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 }
 
 @keyframes lupa {

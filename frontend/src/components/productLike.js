@@ -38,10 +38,16 @@ function ProductLike(props) {
 
     console.log(props)
     return (
-        <>
-            <p>{props.producto.title}</p>
+        < div className="theWish"> 
+            <div className="infoWish">
+                <div className="wishBack" style={{backgroundImage: `url(${props.producto.pic})`}}> </div>
+                <div>
+                    <p className="wishTitle">{props.producto.title}</p>
+                    <p>$ {props.producto.price}</p>
+                </div>
+            </div>
             {wish.wished ? <i className="fas fa-heart" onClick={wishlist} id={props.producto._id}></i> : <i className="far fa-heart" onClick={wishlist} id={props.producto._id}></i>}
-        </>
+        </ div>
     );
 }
 const mapStateToProps = state => {
