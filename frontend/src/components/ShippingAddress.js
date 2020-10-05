@@ -12,18 +12,18 @@ const ShippingAddress = (props) => {
 
 const [shipping, setShipping] = useState({
     street: props.shippingAddress !== undefined ? props.shippingAddress.street : '',
-    number: props.shippingAddress !== undefined ? props.shippingAddress.number : '',
-    dpto:  props.shippingAddress !== undefined ? props.shippingAddress.dpto : '',
-    who: props.shippingAddress !== undefined ? props.shippingAddress.who : '',
+    streetHeight: props.shippingAddress !== undefined ? props.shippingAddress.streetHeight : '',
+    floor:  props.shippingAddress !== undefined ? props.shippingAddress.floor : '',
+    receiver: props.shippingAddress !== undefined ? props.shippingAddress.receiver: '',
     phone: props.shippingAddress !== undefined ? props.shippingAddress.phone : '',
     notes: props.shippingAddress !== undefined ? props.shippingAddress.notes : '',
 })
 
 const [error, setError] = useState({
 	street:'',
-	number:'',
-	dpto:'',
-	who:'',
+	streetHeight:'',
+	floor:'',
+	receiver:'',
 	phone:'',
 	notes:''
 })
@@ -34,14 +34,14 @@ const [send, setSend] = useState({
 
 const [alerta, setAlerta] = useState({
 	errorStreet: "",
-	errorNumber: "",
-	errorDpto: "",
-	errorWho: "",
+	errorStreetHeight: "",
+	errorFloor: "",
+	errorReceiver: "",
 	errorPhone: "",
 	errorNotes: "",
 })
 
-
+console.log(props)
 
                                     /*----------------------------------------------VALIDATION-----------------------------------------*/
 
@@ -63,36 +63,36 @@ const validation = shipping => {
 
 
 	// number
-	if (shipping.number === '') {
-		error.number = 'El número no puede estar vacío'
+	if (shipping.streetHeight === '') {
+		error.streetHeight = 'El número no puede estar vacío'
 		error.ok = false
 	}
 	else if (!num.test(shipping.phone)) {
-		error.number = 'Solo puede contener números'
+		error.streetHeight = 'Solo puede contener números'
 		error.ok = false
 	}
-	else error.number = ''
+	else error.streetHeight = ''
 	 
     
 	//dpto
-	if (shipping.dpto === '') {
-		error.dpto = 'Piso/Dpto no puede estar vacía'
+	if (shipping.floor === '') {
+		error.floor = 'Piso/Dpto no puede estar vacía'
 		error.ok = false
 	}
-	else if (shipping.dpto > 15 || shipping.dpto === undefined) {
-		error.dpto = "El número máximo de pisos es 14"
+	else if (shipping.floor > 15 || shipping.floor === undefined) {
+		error.floor = "El número máximo de pisos es 14"
 		error.ok = false
 	}
-	else error.dpto = ''
+	else error.floor = ''
 	
 
 
 	//who
-	if (shipping.who === '') {
-		error.who = 'Quien recibe el producto No puede estar vacía'
+	if (shipping.receiver === '') {
+		error.receiver = 'Quien recibe el producto No puede estar vacía'
 		error.ok = false
 	}
-	else error.who = ""
+	else error.receiver = ""
 	
 
 
@@ -143,10 +143,11 @@ const submitHandler = async e => {
 
 if (validation(shipping)) {
 	
-	toast.success("¡Datos Confirmados!", {
+    toast.success("¡Datos Confirmados!", {
 		position: toast.POSITION.TOP_CENTER
 });
-	await props.addShippingAddress(shipping,props.user.token)
+	
+	 await props.addShipping(shipping, props.user.token)
 	
 	setError({
 		...error,
@@ -155,20 +156,20 @@ if (validation(shipping)) {
 	
 	setAlerta({
 		errorStreet: '',
-		errorNumber: '',
-		errorDpto: '',
-		errorWho: '',
+		errorStreetHeight: '',
+		errorFloor: '',
+		errorReceiver: '',
 		errorPhone: '',
 		errorNotes: '',
 	})
 
 	setShipping({
-		street: "",
-		number: "",
-		dpto: "",
-		who: "",
-		phone: "",
-		notes: "",
+		street: shipping.street,
+		streetHeight: shipping.streetHeight,
+		floor: shipping.floor,
+		receiver: shipping.receiver,
+		phone: shipping.phone,
+		notes: shipping.notes,
 	})
 }
 
@@ -182,9 +183,9 @@ else {
 	})
 	setAlerta({
 		errorStreet: error.street,
-		errorNumber: error.number,
-		errorDpto: error.dpto,
-		errorWho: error.who,
+		errorNumber: error.streetHeight,
+		errorDpto: error.floor,
+		errorWho: error.receiver,
 		errorPhone: error.phone,
 		errorNotes: error.notes,
 	    })
@@ -214,19 +215,19 @@ return (
 				</div>
 				<div className="input">
 					<label>Altura</label>
-					<input type='text' onChange={inputHandler} name="number" value={shipping.number} />
-				    <span style={{ color: "red" }}>{alerta.errorNumber}</span>
+					<input type='text' onChange={inputHandler} name="streetHeight" value={shipping.streetHeight} />
+				    <span style={{ color: "red" }}>{alerta.errorStreetHeight}</span>
 				</div>
 				
 				<div className="input">
 					<label>Piso/Dpto</label>
-					<input type='text' onChange={inputHandler} name="dpto" value={shipping.dpto} />
-				    <span style={{ color: "red" }}>{alerta.errorDpto}</span>
+					<input type='text' onChange={inputHandler} name="floor" value={shipping.floor} />
+				    <span style={{ color: "red" }}>{alerta.errorFloor}</span>
 				</div>
 				<div className="input">
 					<label>Quien recibe?</label>
-					<input type='text' onChange={inputHandler} name="who" value={shipping.who} />
-				    <span style={{ color: "red" }}>{alerta.errorWho}</span>
+					<input type='text' onChange={inputHandler} name="receiver" value={shipping.receiver} />
+				    <span style={{ color: "red" }}>{alerta.errorReceiver}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
@@ -265,7 +266,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    addShippingAddress: userActions.addShippingAddress
+	addShipping: userActions.addShippingAddress
     }
 
 

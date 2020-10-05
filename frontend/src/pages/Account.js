@@ -23,7 +23,7 @@ function Account(props) {
 
     }, [])
 
-
+console.log(user)
 
     const handleClick = e => {
         if (editInfo.editInfo === false) {
@@ -119,7 +119,7 @@ function Account(props) {
                         <div className="theInfo">   {editInfo.editInfo ? <input type="text" name="nameFAC" placeholder="Nombre y apellido / Nombre de fantasia" onChange={handlData} value={user.nameFAC}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.nameFAC}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="dniFAC" placeholder="CUIT/CUIL/DNI" onChange={handlData} value={user.dniFAC}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.dniFAC}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="voucherFAC" placeholder="Tipo de comprobante" onChange={handlData} value={user.voucherFAC}></input> : <p>Tipo de comprobante: {props.billingAddress.voucherFAC}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phoneFAC" placeholder="Telefono" onChange={handlData} value={user.phoneFAC}></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
+                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" name="phoneFAC" placeholder="Telefono" onChange={handlData} value={user.phoneFAC}></input> : <p>Telefono: {props.billingAddress.phoneFAC}</p>}</div>
                         <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="notesFAC" placeholder="Notas" onChange={handlData} value={user.notesFAC}></input> : <p>Notas: {props.billingAddress.notesFAC}</p>}</div>
                     </div>
                     <div ><div className='title'>Productos que deseo</div>
