@@ -20,7 +20,7 @@ const Cart = (props) => {
 			</div>
 			<div className="total" style={props.total !== '$0' ? {} : {display: 'none'}}><span>Total</span><span>{props.total}</span></div>
 			{props.cart.length !== 0 && <div className='buttons'>
-				<NavLink to='/cartList' className='buttons'><button className='btnPrimary'>Ir al checkout</button></NavLink>
+				<NavLink to='/cartList' className='buttons'><button className='btnPrimary'>Ir mi pedido</button></NavLink>
 				<button className='btnSecondary'>Vaciar carrito</button>
 			</div>}
 		</div>

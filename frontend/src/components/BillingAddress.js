@@ -224,8 +224,8 @@ return (
                 </div>
 
 				<div className="buttons">
-				<button className="btnSecondary" onClick={() => props.history.push('/shippingAddress')}>Volver a datos de envio</button>
-				<button className="btnPrimary" onClick={() => props.history.push('/payment')}>Ir pagar</button>
+				<button className="btnSecondary" onClick={() => props.history.push('/shippingAddress')}>Volver</button>
+				<button className="btnPrimary" onClick={() => props.history.push('/payment')}>Siguiente</button>
 				</div>
 			</form>
         </div> 
