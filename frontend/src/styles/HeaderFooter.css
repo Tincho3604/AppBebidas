@@ -63,6 +63,7 @@ header .cart .icono {
 	margin-top: 10px;
 	padding: 0 10px;
 	color: #d7b26c;
+	cursor: pointer;
 }
 
 header .cart .data {

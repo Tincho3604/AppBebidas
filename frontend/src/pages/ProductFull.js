@@ -93,7 +93,6 @@ const ProductFull = (props) => {
 
     return(
         <>
-		{console.log(props.product)}
         <Header/>
         <div >
         <img src={decoration2} className="homeBackgroundTwoo"/>

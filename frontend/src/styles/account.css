@@ -82,6 +82,7 @@
     width: 70%;
     height: 100%;
     padding: 4vw;
+    overflow-y: scroll;
 }
 .generaAccount .myBillingInfo .theInfo input{
     padding: 0.5vh 2vw;
@@ -102,6 +103,42 @@
 	font-weight: bold;
 	font-size: 25px;
 	border-bottom: 1px solid #a0a0a0;
+}
+.theWish{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #16191c;
+    width: 55vw;
+    padding: 1vh 1vw;
+    margin-top: 1vh;
+}
+.theWish .infoWish{
+    display: flex;
+    align-items: center;
+}
+.theWish .wishBack{
+    height: 100px;
+    width: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.theWish .infoWish .wishTitle{
+    font-weight: bold;
+    padding-bottom: 1vh; 
+    font-size: 1em;
+}
+.theWish .fas{
+    cursor: pointer;
+    padding: 1vh 2vw;
+}
+.theWish .far{
+    cursor: pointer;
+    padding: 1vh 2vw;
+}
+.theWish .fas:hover{
+   color: #ffffff71;
 }
 
 @media only screen and (max-width: 750px){
@@ -134,7 +171,11 @@
         width: 100%;
         padding: 4vw;
     }
+    .theWish{
+        width: 80vw;
+    }
 }
+
 @media only screen and (max-width: 500px){
     .generaAccount .myInfo .yourProfileInfo .buttonsInfo .theInfo button{
         font-size: 3vw;

@@ -28,6 +28,7 @@
 	position: absolute;
 	top: 10px;
 	right: 20px;	
+	cursor: pointer;
 }
 
 .drawerCart .title {
@@ -63,6 +64,12 @@
 	background: #d1b653;
 	border: none;
 	margin: 15px 0;
+	cursor: pointer;
+	border: #d1b653 1px solid;
+}
+.drawerCart .buttons .btnPrimary:hover{
+	background: none;
+	color: #d1b653;
 }
 
 .drawerCart .buttons .btnSecondary {
@@ -70,7 +77,12 @@
 	padding: 10px;
 	background: none;
 	color: #d1b653;
-	border: #d1b653 1px solid;	
+	border: #d1b653 1px solid;
+	cursor: pointer;	
+}
+.drawerCart .buttons .btnSecondary:hover{
+	color: #000000;
+	background: #d1b653;
 }
 
 .drawerCart .empty {
@@ -113,6 +125,7 @@
 	display: flex;
 	justify-content: center;
 	flex: 1;
+	cursor: pointer;
 }
 
 @media only screen and (max-width: 800px){
