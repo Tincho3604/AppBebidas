@@ -26,7 +26,7 @@ return(<>
 			{props.cart.map((product, index) => {
 				return <CartListItem data={product} index={index} key={index} />
 			})} 
-			<NavLink to="/shippingAddress" style={{alignSelf: "end", maxWidth: 400}}><button className="btnPrimary" style={{minWidth: 200}}>Confirmar y continuar</button></NavLink>
+			<NavLink to="/shippingAddress" style={{alignSelf: "center", maxWidth: 400}}><button className="btnPrimary" style={{minWidth: 200}}>Confirmar y continuar</button></NavLink>
 		</div>
 		<Footer />
 	</>

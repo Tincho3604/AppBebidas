@@ -43,7 +43,9 @@ const ListCategory = (props) => {
 				listProduct.map(product => {
 				return (<div className="listCard">
                 <div className="listContainer">
-                    <img src={product.pic} className="listImage"></img>
+                    <div className="listcardContainer"> 
+                        <div className="listImage" style={{backgroundImage: `url(${product.pic})`}}> </div>
+                    </div>
                     <div className="listSomeInfo">
                         <h4 className="listTitle">{product.title}</h4> 
                         <p className="listStock">{product.stock} unidades</p>

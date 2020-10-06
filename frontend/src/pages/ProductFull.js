@@ -117,7 +117,7 @@ const ProductFull = (props) => {
                     </div>
                     </div>
                     <p className="units">{props.product.stock < 5 
-                    ? "Ultimas unidades."
+                    ? "Ultimas unidades"
                     : ""} </p>
                     <p className="price">$ {props.product.price}</p>
                     <p className="description">{props.product.description}</p>
