@@ -236,7 +236,7 @@ return (
                 
 				
                 <div className="input">
-                    <button className="btnPrimary" style={{margin:'0 auto', width:'40vh'}} type="submit" value="Send Info" onClick={submitHandler}>Actualizar datos</button>
+                    <button className="btnPrimary" style={{margin:'0 auto', width:'40vh'}} type="submit" value="Send Info" onClick={submitHandler}>Guardar datos</button>
                 </div>
 
 				<div className="buttons">

@@ -2,16 +2,8 @@ const Order = require('../models/Order');
 
 const orderController = {
 	createOrder: async (req, res) => {
-	var {userId, items, shippingAddress, billingAddress, phone, payment, note} = req.body
-	const newOrder = new Order({
-		userId,
-		items,
-		shippingAddress,
-		billingAddress,
-		phone,
-		payment,
-		note
-	})
+	var {userId, items, shippingAddress, billingAddress, payment} = req.body
+	const newOrder = new Order({ ...req.body })
 
 	try{
 		await newOrder.save()
@@ -26,33 +18,6 @@ const orderController = {
 		    })
 	    }
 	},
-
-
-
-	
-	modifyOrder: async (req, res) => {
-	var id = req.params.id
-
-	var {items, shippingAddress, billingAddress, phone, payment, note} = req.body
-	try{
-		await Order.findOneAndUpdate(
-				{_id:id},
-				{items, shippingAddress, billingAddress, phone, payment, note}
-			)
-			res.json({
-				success:true,
-				response:"Order Modify"
-			})
-	    }catch{
-			res.json({
-				success:false,
-				response:"Error modify Order"
-			})
-		}
-    },
-	
-
-
 
 	deleteOrder: async (req, res) => {
 	var id = req.params.id
@@ -69,10 +34,6 @@ const orderController = {
 			})
 		}
 	},
-	
-
-
-	
 	
 	getUserOrder: async (req, res) => {
 	try{
