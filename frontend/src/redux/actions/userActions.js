@@ -58,7 +58,7 @@ const userActions = {
 		     } else {
 		     	dispatch({
 		     		type: "INFO_SHIPPING_ADDRESS_UPDATE",
-		     		payload: info
+		     		payload: shipping
 		     	})
 			 }
 		}
@@ -79,7 +79,7 @@ const userActions = {
 			} else {
 				dispatch({
 					type: "INFO_BILLING_ADDRESS_UPDATE",
-					payload: info
+					payload: billing
 				})
 			}
 		}
