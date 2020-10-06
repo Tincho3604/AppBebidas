@@ -10,7 +10,7 @@ const initialState = {
 	wishlist: [],
 	cart: [],
 	comments: null,
-
+	role: ''
 }
 
 function userReducer(state = initialState, action) {

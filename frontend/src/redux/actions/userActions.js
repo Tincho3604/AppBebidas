@@ -33,7 +33,7 @@ const userActions = {
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
 						rates: response.data.rates,
-						phone: response.data.phone
+						role: response.data.role
 					},
 				})
 			}
@@ -119,7 +119,7 @@ const userActions = {
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
 						rates: response.data.rates,
-						phone: response.data.phone
+						role: response.data.role
 					},
 				})
 			}
@@ -148,7 +148,7 @@ const userActions = {
 			} catch {
 				return false
 			}
-			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates, phone } = response.data
+			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates, role } = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
@@ -160,7 +160,7 @@ const userActions = {
 					billingAddress,
 					shippingAddress,
 					rates,
-					phone
+					role
 				},
 			})
 		}
@@ -365,6 +365,26 @@ const userActions = {
 			dispatch({
 				type: "RATES",
 				payload: response.data.rates
+			})
+		}
+	},
+
+	
+    addShippingOrderInfo: (shipping) => {
+		return async (dispatch, getState) => {
+			dispatch({
+					type: "SHIPPING_ORDER_INFO",
+					payload: shipping
+				})
+			}
+		},
+		
+		
+	addBillingOrderInfo: (billing) => {
+		return async (dispatch, getState) => {
+			dispatch({
+				type: "BILLING_ORDER_INFO",
+				payload: billing
 			})
 		}
 	},

@@ -42,7 +42,7 @@ const userController = {
 					shippingAddress: user.shippingAddress,
 					billingAddress: user.billingAddress,
 					rates: user.rates,
-					phone: user.phone
+					role: user.role
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
@@ -67,13 +67,13 @@ const userController = {
 			shippingAddress: userExists.shippingAddress,
 			billingAddress: userExists.billingAddress,
 			rates: userExists.rates,
-			phone: userExists.phone
+			role: userExists.role
 
 		})
 	},
 
 	decodeUser: (req, res) => {
-		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates, phone } = req.user
+		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates, role } = req.user
 		res.json({
 			firstName,
 			lastName,
@@ -82,7 +82,7 @@ const userController = {
 			billingAddress,
 			id: _id,
 			rates,
-			phone
+			role
 		})
 	},
 

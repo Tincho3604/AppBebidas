@@ -24,18 +24,12 @@ const NavAdmin = (props) => {
 				<div>Cargar Producto</div>
 			</div>
 		</NavLink>
-		<NavLink to='/admin/orders'>
+		<NavLink to='/orders'>
 			<div className='navItem str'>
 				<div><i className="fas fa-folder-open"></i></div>
 				<div>Ordenes</div>
 			</div>
 		</NavLink>
-		{/* <NavLink>
-			<div className='navItem'>
-				<div><i className="fas fa-images"></i></div>
-				<div>Modificar carrusel</div>
-			</div>
-		</NavLink> */}
 		<NavLink to='/home'>
 			<div className='navItem str'>
 				<div><i className="fas fa-store-alt"></i></div>

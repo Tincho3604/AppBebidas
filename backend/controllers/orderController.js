@@ -2,7 +2,6 @@ const Order = require('../models/Order');
 
 const orderController = {
 	createOrder: async (req, res) => {
-	var {userId, items, shippingAddress, billingAddress, payment} = req.body
 	const newOrder = new Order({ ...req.body })
 
 	try{
