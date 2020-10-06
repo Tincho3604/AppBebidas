@@ -85,27 +85,6 @@ const userActions = {
 		}
 	},
 
-
-    addShippingOrderInfo: (shipping) => {
-    return async (dispatch, getState) => {
-		dispatch({
-				type: "SHIPPING_ORDER_INFO",
-				payload: shipping
-			})
-	    }
-	},
-	
-	
-	addBillingOrderInfo: (billing) => {
-        return async (dispatch, getState) => {
-			dispatch({
-				type: "BILLING_ORDER_INFO",
-				payload: billing
-			})
-		}
-	},
-
-
 	getUserInfo: ( token ) => {
 		return async (dispatch, getState) => {
 			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, {
