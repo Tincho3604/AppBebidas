@@ -149,12 +149,9 @@ const userController = {
 
 
 	addShippingAddress: async (req, res) => {
-console.log(req.body)
-		const data = { street, streetHeight, floor, receiver, phone, notes } = req.body
-
 		try {
 		 	const shipping = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
-			console.log(shipping)
+			
 			 res.json({
 		 		success: true,
 		 		response: shipping
@@ -168,11 +165,8 @@ console.log(req.body)
 		}
 	},
 
-
-
 	addBillingAddress: async (req, res) => {
-		console.log(req.body)
-		const data = { nameFAC, dniFAC, voucherFAC, phoneFAC, notesFAC } = req.body
+		
 		try {
 			const billing = await User.findOneAndUpdate({ _id: req.user._id }, { billingAddress: req.body })
 			
@@ -189,6 +183,7 @@ console.log(req.body)
 
 		}
 	},
+
 	NewPass: async (req, res) => {
 		mailSent = req.body.mail
 
