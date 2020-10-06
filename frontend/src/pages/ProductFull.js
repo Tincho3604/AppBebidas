@@ -93,7 +93,7 @@ const ProductFull = (props) => {
 
 	const stars = (rating) => {
 		let total = 0
-		rating.map(rate => total += rate)
+		rating.map(rate => total += parseInt(rate))
 		const prom = total / rating.length
 		switch (Math.round(prom)) {
 			case 1:
@@ -172,20 +172,20 @@ const ProductFull = (props) => {
                     <div className="nameAndRating">
                     <h2>{props.product.title}</h2>
                     <div className="ratings">
-                        {stars(props.rating)}
-						{props.rating.length === 0 ? "N/A" : props.rating.length}
+                        {props.product.rating && stars(props.product.rating)}
+						{props.product.rating && (props.product.rating.length === 0 ? "  N/A" : `  (${props.product.rating.length})`)}
                     </div>
                     </div>
-                    <p className="units">{props.product.stock < 5 
-                    ? "Ultimas unidades."
+                    <p className="units">{props.product.stock === 0 ? "Sin stock" : props.product.stock < 5 
+                    ? "Ultimas unidades"
                     : ""} </p>
                     <p className="price">$ {props.product.price}</p>
                     <p className="description">{props.product.description}</p>
                     <div className="quantity">
-                        <button onClick={restar} className="plus"> -</button>
+                        {props.product.stock !== 0 && (<><button onClick={restar} className="plus"> -</button>
                         <p>{product.product}</p>
                         <button onClick={sumar} className="plus">+</button>
-                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button>
+                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button></>)}
                     </div>
 					<div className="aditionalInfo">
 						<p>{props.product.ml} ml</p>
