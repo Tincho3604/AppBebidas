@@ -169,6 +169,7 @@ const userActions = {
 
 
 	modifyUser: (user) => {
+		console.log(user)
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
@@ -183,7 +184,6 @@ const userActions = {
 					lastName: response.data.newInfo.lastName,
 					billingAddress: response.data.newInfo.billingAddress,
 					shippingAddress: response.data.newInfo.shippingAddress,
-					phone: response.data.newInfo.phone,
 					token:  getState().userReducer.token
 				},
 			})
