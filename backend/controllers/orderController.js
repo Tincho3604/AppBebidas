@@ -71,6 +71,7 @@ const orderController = {
 	},
 
 	getAllOrders: async (req, res) => {
+		console.log("hola")
 		try {
 			const data = await Order.find()
 			res.json({
