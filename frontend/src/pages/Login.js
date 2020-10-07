@@ -47,7 +47,7 @@ class Login extends React.Component {
                         <input type="mail" name="mail" onChange={this.leerInput} placeholder="Email" />
                         <input type="password" name="pass" onChange={this.leerInput} placeholder="Contraseña (min 5 caracteres)" />
                         <button onClick={this.enviarInfo}>Ingresar</button>
-						<NavLink to="/passRecovery" ><h4>Olvide mi contraseña</h4></NavLink>
+						<NavLink to="/passRecovery" ><h4 style={{marginTop: '5px'}}>Olvide mi contraseña</h4></NavLink>
                         <div id="botonGoogle">
                             <GoogleLogin
                             clientId="1036652497232-evt9ves8p9a3kqs1uu47f769ueldgr2n.apps.googleusercontent.com"

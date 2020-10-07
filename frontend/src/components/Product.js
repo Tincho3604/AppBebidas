@@ -125,9 +125,13 @@ return (<>
 				<Link to={`/product/${props.data._id}`}><span className="title">{props.data.title}</span></Link>
 				<Link to={`/product/${props.data._id}`}><span className="price">${props.data.price}</span></Link>
 			</div>
-			<div className="addToCartBtn" onClick={() => props.addToCart(props.data._id, 1)}>
+			{props.data.stock !== 0
+			? <div className="addToCartBtn" onClick={() => props.addToCart(props.data._id, 1)}>
 				Agregar al pedido <i className="fas fa-cart-plus"></i>
 			</div>
+			:<div className="addToCartBtn" style={{backgroundColor: 'black', color: 'white'}}>
+			Sin stock
+			</div>}
 		</div>
 	</div>
 </>
