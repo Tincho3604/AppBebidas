@@ -56,7 +56,8 @@ function App(props) {
 	<Route path='/payment' component={Payment}/>
 	<Route path='/CreateOrder' component={CreateOrder}/>
 	<Route path='/orders' component={AdminOrders}/>
-	 </>)
+
+	</>)
 
 	const rutas = (props.user.token === '')
 	? (<Switch>

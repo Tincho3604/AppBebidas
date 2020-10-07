@@ -398,6 +398,13 @@ const userActions = {
 			})
 		}
 	},
+	
+	getDataAdmin: () => {
+        return async (dispatch, getState) => {
+			const response = await axios.get(`${RUTA_API}/api/user/admin`)
+		    return response.data.response
+		}
+	}
 }
 
 export default userActions

@@ -1,22 +1,27 @@
-import React from 'react';
+
+import React, {useState, useEffect} from 'react';
+
+
 
 const DataAdmin = (props) => {
+	
 	return ( <>
 	<div className="dataPanel">
 			<div className='adminData'>
-				<span>5</span>
+				
+	        <span>{props.datos.ordenes}</span>
 				<span>Ordenes pendientes</span>
 			</div>
 			<div className='adminData'>
-				<span>3</span>
+				<span>{props.datos.articuloOutStock}</span>
 				<span>Articulos sin stock</span>
 			</div>
 			<div className='adminData'>
-				<span>35</span>
+				<span>{props.datos.cantidadDeUsuarios}</span>
 				<span>Cantidad de usuarios</span>
 			</div>
 			<div className='adminData'>
-				<span>7</span>
+	            <span>{props.datos.reseñas}</span>
 				<span>Reseñas hechas</span>
 			</div>
 		</div>
