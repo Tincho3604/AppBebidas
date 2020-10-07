@@ -133,7 +133,7 @@ function Account(props) {
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
                         </div>
                         <div className="buttonsInfo">
-                            <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
+                  
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : null}</div>
                             <div className="buttonsInfo">
                                 <div className="theInfo">  {orders.showOrders ? <button onClick={showOrders} >Volver</button> : <button onClick={showOrders} >Ver ordenes</button>}</div>
