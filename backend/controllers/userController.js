@@ -89,14 +89,11 @@ const userController = {
 
 	editUser: async (req, res) => {
 
-		const { firstName, lastName, phoneFAC, street, nameFAC, floor, notes, notesFAC, phone, receiver, voucherFAC, dniFAC, streetHeight } = req.body
+		const { firstName, lastName, shippingAddress, billingAddress} = req.body
 		const newInfo = await User.findOneAndUpdate({ _id: req.user._id },
 			{
-				firstName, lastName, phone,
-				$set: {
-					shippingAddress: { street: street, streetHeight: streetHeight, floor: floor, receiver: receiver, phone: phone, notes: notes },
-					billingAddress: { nameFAC: nameFAC, dniFAC: dniFAC, voucherFAC: voucherFAC, phoneFAC: phoneFAC, notesFAC: notesFAC }
-				}
+				firstName, lastName, billingAddress, shippingAddress
+			
 			}, { new: true })
 
 		res.json({

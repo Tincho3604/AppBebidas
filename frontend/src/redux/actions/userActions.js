@@ -58,7 +58,7 @@ const userActions = {
 		     } else {
 		     	dispatch({
 		     		type: "INFO_SHIPPING_ADDRESS_UPDATE",
-		     		payload: info
+		     		payload: shipping
 		     	})
 			 }
 		}
@@ -79,7 +79,7 @@ const userActions = {
 			} else {
 				dispatch({
 					type: "INFO_BILLING_ADDRESS_UPDATE",
-					payload: info
+					payload: billing
 				})
 			}
 		}
@@ -169,6 +169,7 @@ const userActions = {
 
 
 	modifyUser: (user) => {
+		console.log(user)
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
@@ -183,7 +184,6 @@ const userActions = {
 					lastName: response.data.newInfo.lastName,
 					billingAddress: response.data.newInfo.billingAddress,
 					shippingAddress: response.data.newInfo.shippingAddress,
-					phone: response.data.newInfo.phone,
 					token:  getState().userReducer.token
 				},
 			})
