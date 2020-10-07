@@ -21,7 +21,24 @@ const Rate = (props) => {
 			n: parseInt(e.target.id)
 		})
 	}
-	console.log(props.rates, 'array RATE')
+	
+	const addHandler = async () => {
+		await props.setRate(props.token, props.dato, rate.n)
+		setRate({
+			...rate,
+			exists: true
+		})
+	}
+
+	const remHandler = async () => {
+		await props.delRate(props.token, props.dato)
+		setRate({
+			...rate,
+			exists: false
+		})
+	}
+
+
 	return ( <div className="rate">
 	<h3>¿Ya lo conoces? Calificalo!</h3>
 	<div class="stars">
@@ -33,9 +50,9 @@ const Rate = (props) => {
 		<span>{rate.n}</span>
 	</div>
 	<div class="stars">
-		<button className="vote" onClick={() => {props.setRate(props.token, props.dato, rate.n)}}>{rate.exists ? "Cambiar" : "Calificar"}</button>
+		<button className="vote" onClick={addHandler}>{rate.exists ? "Cambiar" : "Calificar"}</button>
 		{rate.exists &&
-		<button className="voteSec" onClick={() => props.delRate(props.token, props.dato)}>Quitar</button>}
+		<button className="voteSec" onClick={remHandler}>Quitar</button>}
 	</div>
 	</div> );
 }

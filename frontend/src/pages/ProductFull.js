@@ -91,6 +91,69 @@ const ProductFull = (props) => {
 		})
 	}
 
+	const stars = (rating) => {
+		let total = 0
+		rating.map(rate => total += parseInt(rate))
+		const prom = total / rating.length
+		switch (Math.round(prom)) {
+			case 1:
+				return (<>
+				        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+				</>)
+				break;
+			case 2:
+				return (<>
+				        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+				</>)
+				break;
+			case 3:
+				return (<>
+				        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+				</>)
+				break;
+			case 4:
+				return (<>
+				        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+				</>)
+				break;
+			case 5:
+				return (<>
+				        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+				</>)
+				break;
+		
+			default:
+				return (<>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+			</>)
+				break;
+		}
+	}
+
     return(
         <>
         <Header/>
@@ -109,23 +172,20 @@ const ProductFull = (props) => {
                     <div className="nameAndRating">
                     <h2>{props.product.title}</h2>
                     <div className="ratings">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
+                        {props.product.rating && stars(props.product.rating)}
+						{props.product.rating && (props.product.rating.length === 0 ? "  N/A" : `  (${props.product.rating.length})`)}
                     </div>
                     </div>
-                    <p className="units">{props.product.stock < 5 
+                    <p className="units">{props.product.stock === 0 ? "Sin stock" : props.product.stock < 5 
                     ? "Ultimas unidades"
                     : ""} </p>
                     <p className="price">$ {props.product.price}</p>
                     <p className="description">{props.product.description}</p>
                     <div className="quantity">
-                        <button onClick={restar} className="plus"> -</button>
+                        {props.product.stock !== 0 && (<><button onClick={restar} className="plus"> -</button>
                         <p>{product.product}</p>
                         <button onClick={sumar} className="plus">+</button>
-                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button>
+                        <button className="addToBag" onClick={addHandler}>Añadir al pedido<i className="fas fa-cart-plus"></i></button></>)}
                     </div>
 					<div className="aditionalInfo">
 						<p>{props.product.ml} ml</p>

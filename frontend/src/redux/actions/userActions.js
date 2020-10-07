@@ -33,7 +33,7 @@ const userActions = {
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
 						rates: response.data.rates,
-						phone: response.data.phone
+						role: response.data.role
 					},
 				})
 			}
@@ -50,7 +50,7 @@ const userActions = {
 		})
 		
 			const info = response.data.response.shippingAddress
-           
+			console.log(info)
 			
 			if (!response.data.success) {
 		     	toast.error(response.data.error)
@@ -72,7 +72,7 @@ const userActions = {
 			},
 		})	
 			const info = response.data.response.billingAddress
-			
+			console.log(info)
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -84,8 +84,6 @@ const userActions = {
 			}
 		}
 	},
-
-
 
 	getUserInfo: ( token ) => {
 		return async (dispatch, getState) => {
@@ -121,7 +119,7 @@ const userActions = {
 						billingAddress: response.data.billingAddress,
 						shippingAddress: response.data.shippingAddress,
 						rates: response.data.rates,
-						phone: response.data.phone
+						role: response.data.role
 					},
 				})
 			}
@@ -150,7 +148,7 @@ const userActions = {
 			} catch {
 				return false
 			}
-			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates, phone } = response.data
+			const { lastName, firstName, wishlist, id, billingAddress, shippingAddress, rates, role } = response.data
 			dispatch({
 				type: "USER_IN",
 				payload: {
@@ -162,7 +160,7 @@ const userActions = {
 					billingAddress,
 					shippingAddress,
 					rates,
-					phone
+					role
 				},
 			})
 		}
@@ -171,7 +169,6 @@ const userActions = {
 
 
 	modifyUser: (user) => {
-
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
@@ -192,9 +189,7 @@ const userActions = {
 			})
 			if (response.data.success) toast.success('Cambios guardados!')
 			else toast.error('Ha habido un problema')
-
 		}
-
 	},
 
 
@@ -295,6 +290,16 @@ const userActions = {
 			})
 		}
 	},
+	clearCart: () => {
+		return async (dispatch, getState) => {
+			let cart = []
+			localStorage.removeItem("items")
+			dispatch({
+				type: 'LOAD_CART',
+				payload: cart
+			})
+		}
+	},
 
 	addToWishList: (id, token) => {
 
@@ -370,6 +375,26 @@ const userActions = {
 			dispatch({
 				type: "RATES",
 				payload: response.data.rates
+			})
+		}
+	},
+
+	
+    addShippingOrderInfo: (shipping) => {
+		return async (dispatch, getState) => {
+			dispatch({
+					type: "SHIPPING_ORDER_INFO",
+					payload: shipping
+				})
+			}
+		},
+		
+		
+	addBillingOrderInfo: (billing) => {
+		return async (dispatch, getState) => {
+			dispatch({
+				type: "BILLING_ORDER_INFO",
+				payload: billing
 			})
 		}
 	},

@@ -52,7 +52,7 @@ const handleInputChange = (e) => {
 					<form className='addressForm'>
 						<div className='input'>
 							<label>Numero</label>
-							<input type="tel" name="number" placeholder="Ej. 4912 1234 1234 1234" onChange={handleInputChange} onFocus={handleInputFocus} />
+							<input type="tel" name="number" placeholder="Ej. 4912 1234 1234 1234" onChange={handleInputChange} onFocus={handleInputFocus} maxLength={19} />
 						</div>
 						<div className='input'>
 							<label>Nombre</label>
@@ -60,11 +60,11 @@ const handleInputChange = (e) => {
 						</div>
 						<div className='input'>
 							<label>Fecha de expiracion</label>
-							<input type="tel" name="expiry" placeholder="MMAA" onChange={handleInputChange} onFocus={handleInputFocus} />
+							<input type="tel" name="expiry" placeholder="MMAA" onChange={handleInputChange} onFocus={handleInputFocus} maxLength={4} />
 						</div>
 						<div className='input'>
 							<label>Codigo de seguridad</label>
-							<input type="tel" name="cvc" placeholder="Ej. 123" onChange={handleInputChange} onFocus={handleInputFocus} />
+							<input type="tel" name="cvc" placeholder="Ej. 123" onChange={handleInputChange} onFocus={handleInputFocus} maxLength={3}/>
 						</div>
 						<div className="buttons">
 							<button className="btnSecondary" onClick={() => props.history.push('/billingAddress')}>Volver</button>

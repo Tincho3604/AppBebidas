@@ -42,7 +42,7 @@ const userController = {
 					shippingAddress: user.shippingAddress,
 					billingAddress: user.billingAddress,
 					rates: user.rates,
-					phone: user.phone
+					role: user.role
 				})
 			})
 			.catch(err => res.json({ success: "false", error: err }))
@@ -67,13 +67,13 @@ const userController = {
 			shippingAddress: userExists.shippingAddress,
 			billingAddress: userExists.billingAddress,
 			rates: userExists.rates,
-			phone: userExists.phone
+			role: userExists.role
 
 		})
 	},
 
 	decodeUser: (req, res) => {
-		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates, phone } = req.user
+		const { firstName, lastName, wishlist, shippingAddress, billingAddress, _id, rates, role } = req.user
 		res.json({
 			firstName,
 			lastName,
@@ -82,7 +82,7 @@ const userController = {
 			billingAddress,
 			id: _id,
 			rates,
-			phone
+			role
 		})
 	},
 
@@ -149,9 +149,6 @@ const userController = {
 
 
 	addShippingAddress: async (req, res) => {
-
-		const data = { street, number, dpto, who, phone, notes } = req.body
-
 		try {
 		 	const shipping = await User.findOneAndUpdate({_id: req.user._id }, { shippingAddress: req.body })
 			
@@ -168,11 +165,8 @@ const userController = {
 		}
 	},
 
-
-
 	addBillingAddress: async (req, res) => {
 		
-		const data = { name, cuit, type, phone, notes } = req.body
 		try {
 			const billing = await User.findOneAndUpdate({ _id: req.user._id }, { billingAddress: req.body })
 			
@@ -189,6 +183,7 @@ const userController = {
 
 		}
 	},
+
 	NewPass: async (req, res) => {
 		mailSent = req.body.mail
 

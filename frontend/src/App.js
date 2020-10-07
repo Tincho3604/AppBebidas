@@ -15,6 +15,7 @@ import Login from '../src/pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ShippingAddress from './components/ShippingAddress'
 import BillingAddress from './components/BillingAddress'
+import CreateOrder from './components/CreateOrder'
 import Payment from './components/Payment'
 import AdminCreateProduct from './pages/AdminCreateProduct';
 import AdminEditProduct from './pages/AdminEditProduct';
@@ -24,6 +25,7 @@ import ProductFull from './pages/ProductFull';
 import AdminListProduct from './pages/AdminListProduct'
 import PassRecovery from './pages/PassRecovery';
 import CartList from './pages/CartList';
+import AdminOrders from './pages/AdminOrders';
 
 
 function App(props) {
@@ -52,6 +54,8 @@ function App(props) {
 	<Route path='/passRecovery' component={PassRecovery} />
 	<Route path='/cartList' component={CartList}/>
 	<Route path='/payment' component={Payment}/>
+	<Route path='/CreateOrder' component={CreateOrder}/>
+	<Route path='/orders' component={AdminOrders}/>
 	 </>)
 
 	const rutas = (props.user.token === '')

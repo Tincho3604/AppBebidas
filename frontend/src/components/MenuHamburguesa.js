@@ -13,7 +13,6 @@ const MenuHamburguesa = (props) => {
             <div className='theLinks'>
                     <NavLink to="/" className='ufc'>Home</NavLink>
                     <NavLink to="products/all" className='ufc'>Bebidas</NavLink>
-                    <NavLink to className='ufc'>Contacto</NavLink>
             </div>
             <div className='theLinks'>
                 {!props.token

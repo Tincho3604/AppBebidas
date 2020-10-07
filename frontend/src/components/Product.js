@@ -39,6 +39,69 @@ const wishlist = e => {
 	}
 }
 
+const stars = (rating) => {
+	let total = 0
+	rating.map(rate => total += parseInt(rate))
+	const prom = total / rating.length
+	switch (Math.round(prom)) {
+		case 1:
+			return (<>
+					<i class="fas fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+			</>)
+			break;
+		case 2:
+			return (<>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+			</>)
+			break;
+		case 3:
+			return (<>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="far fa-star"></i>
+					<i class="far fa-star"></i>
+			</>)
+			break;
+		case 4:
+			return (<>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="far fa-star"></i>
+			</>)
+			break;
+		case 5:
+			return (<>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+			</>)
+			break;
+	
+		default:
+			return (<>
+				<i class="far fa-star"></i>
+				<i class="far fa-star"></i>
+				<i class="far fa-star"></i>
+				<i class="far fa-star"></i>
+				<i class="far fa-star"></i>
+		</>)
+			break;
+	}
+}
+
 return (<>
 	<div className="productCard">
 		<div className="picture">
@@ -56,11 +119,8 @@ return (<>
 		<div className="text">
 			<div className="data">
 				<span className="rating">
-					<i className="fas fa-star"></i>
-					<i className="fas fa-star"></i>
-					<i className="fas fa-star"></i>
-					<i className="fas fa-star-half-alt"></i>
-					<i className="far fa-star"></i>
+					{stars(props.data.rating)}
+					{props.data.rating.length === 0 ? "  N/A" : `  (${props.data.rating.length})`}
 				</span>
 				<Link to={`/product/${props.data._id}`}><span className="title">{props.data.title}</span></Link>
 				<Link to={`/product/${props.data._id}`}><span className="price">${props.data.price}</span></Link>

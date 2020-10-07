@@ -45,7 +45,6 @@ const Header = (props) => {
 				<div className='links'>
 					<NavLink to="/" className='ufc'>Home</NavLink>
 					<NavLink to="/products/all" className='ufc'>Bebidas</NavLink>
-					<NavLink to className='ufc'>Contacto</NavLink>
 				</div>
 				<div style={{flex: 1}}/>
 				<div className='links'>
@@ -55,7 +54,7 @@ const Header = (props) => {
 					<NavLink to="/signup" className='ufc'>Registrarse</NavLink>
 					</>
 					:<>
-					<NavLink to="/account" className='ufc'>Mi cuenta</NavLink> / 
+					<NavLink to={props.role === 'admin' ? "/admin" : "/account"} className='ufc'>{props.role === 'admin' ? "Panel de control" : "Mi cuenta"}</NavLink> / 
 					<NavLink to onClick={props.logOut} className='ufc'>Salir</NavLink>
 					</>}
 				</div>
@@ -99,7 +98,8 @@ const Header = (props) => {
 const mapStateToProps = state => {
     return {
 		token: state.userReducer.token,
-		cart: state.userReducer.cart
+		cart: state.userReducer.cart,
+		role: state.userReducer.role,
     }
 }
 

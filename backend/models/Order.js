@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
 	},
 	status: {
 		type: String,
-		default:"pendiente"
+		default:"Pendiente"
 	},
 	items: {
 		type: Array,
@@ -22,14 +22,7 @@ const orderSchema = new mongoose.Schema({
 		type: Object,
 		required: true
 	},
-	phone: {
-		type: String,
-		required: true
-	},
 	payment: {
-		type: String
-	},
-	note: {
 		type: String
 	}
 },{timestamps: true})
