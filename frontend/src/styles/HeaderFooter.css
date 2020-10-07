@@ -14,7 +14,7 @@ footer p {
 
 /* Header */
  .bigSize {
-	height: 15vh;
+	height: 18vh;
 	display: flex;
 	background: black;
 	color: white;
@@ -50,7 +50,7 @@ header .links a {
 header .cart {
 	display: flex;
 	height: 100%;
-	width: 18%;
+    margin-right: 30px;
 }
 
 header .cart .icono {
@@ -154,7 +154,7 @@ header .cart .data span {
 		color: white
 	}
 	header .cart {
-		width: auto;
+	margin-right: 10px;
 	}
 	header .logo {
 		width: 35%;

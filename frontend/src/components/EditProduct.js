@@ -42,7 +42,7 @@ const EditProduct = (props) => {
         f()
         changeState()
 
-    }, [props.productData.category])
+    }, [props.productData.title])
 
     const changeState = () => {
         setProduct({
