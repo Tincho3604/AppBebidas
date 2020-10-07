@@ -7,6 +7,7 @@ import userActions from '../redux/actions/userActions';
 import productActions from '../redux/actions/productActions';
 import ProductLike from "../components/productLike";
 
+
 function Account(props) {
 
     const [editInfo, setEditInfo] = useState({
@@ -16,14 +17,17 @@ function Account(props) {
     const [user, setUser] = useState({
 
     })
-
+    const [orders, setOrders] = useState({
+        showOrders: false
+    })
 
     useEffect(() => {
         props.productsList()
 
     }, [])
 
-    console.log(user)
+
+
 
     const handleClick = e => {
         if (editInfo.editInfo === false) {
@@ -60,7 +64,7 @@ function Account(props) {
         }
 
     }
-    console.log(user)
+
 
     const handlData = e => {
         const valor = e.target.value
@@ -96,14 +100,28 @@ function Account(props) {
         })
 
     }
+    const showOrders = async () => {
+        if (orders.showOrders === true) {
+            //accion
+            setOrders({
+                showOrders: false
+            })
+        } else {
+            await props.UserOrders(props.token)
 
+            setOrders({
+                showOrders: true
 
+            })
+        }
+    }
+    console.log(props)
 
     // nombre apellido mail telefono direccion calle number floor apartamento
     return (
         <>
             <Header />
-            <div className="generaAccount" >
+            {orders.showOrders ? <div className="generaAccount" >
                 <div className="myInfo">
                     {/*<div className="yourProfilePhoto">
                     {editInfo.editInfo ?<input type="file" name="pic" onChange={handlData}></input> : <div>PHOTO</div> }
@@ -117,45 +135,82 @@ function Account(props) {
                         <div className="buttonsInfo">
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : null}</div>
+                            <div className="buttonsInfo">
+                                <div className="theInfo">  {orders.showOrders ? <button onClick={showOrders} >Volver</button> : <button onClick={showOrders} >Ver ordenes</button>}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="myBillingInfo">
-                    <div ><div className='title'>Datos de Envio</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Calle" onChange={handlData} defaultValue={user.shippingAddress.street} name="street"></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Altura" onChange={handlData} defaultValue={user.shippingAddress.number} name="number"></input> : <p>Altura: {props.shippingAddress.number}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Piso" onChange={handlData} defaultValue={user.shippingAddress.dpto} name="dpto"></input> : <p>Piso/Dpto: {props.shippingAddress.dpto}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Quien recibe?" onChange={handlData} defaultValue={user.shippingAddress.who} name="who"></input> : <p>Quien recibe?: {props.shippingAddress.who}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} defaultValue={user.shippingAddress.phone} name="phone" ></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.shippingAddress.notes} name="notes"></input> : <p>Notas: {props.shippingAddress.notes}</p>}</div>
-                    </div>
-                    <div><div className='title'>Datos de facturacion</div>
-                        <div className="theInfo">   {editInfo.editInfo ? <input type="text" placeholder="Nombre y apellido / Nombre de fantasia" id="name" onChange={handlData} defaultValue={user.billingAddress.name}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.name}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="CUIT/CUIL/DNI" onChange={handlData} id="cuit" defaultValue={user.billingAddress.cuit}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.cuit}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Tipo de comprobante" onChange={handlData} id="type" defaultValue={user.billingAddress.type}></input> : <p>Tipo de comprobante: {props.billingAddress.type}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} id="phone" defaultValue={user.billingAddress.phone}></input> : <p>Telefono: {props.billingAddress.phone}</p>}</div>
-                        <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.billingAddress.notes} id="notes"></input> : <p>Notas: {props.billingAddress.notes}</p>}</div>
-                    </div>
-                    <div ><div className='title'>Productos que deseo</div>
-
-                        {props.productFound.length === undefined ?
-
-                            <p>No products available</p> :
-
-                            props.productFound.map(product => {
-                                if (props.wishlist.includes(product._id)) {
-
-                                    return <>
-                                        <p><ProductLike producto={product} />  </p>
-                                    </>
-
-                                }
-
-                            })
-                        }
-                    </div>
+                    {props.orders.map(order => {
+                       return order.items.map(item => {
+                            return  <>
+                            <p>{item.title}</p>
+                       <p>{item.category}</p>
+                            </>
+                        })
+                    })}
+                 
                 </div>
-            </div>
+            </div> : <div className="generaAccount" >
+                    <div className="myInfo">
+                        {/*<div className="yourProfilePhoto">
+                    {editInfo.editInfo ?<input type="file" name="pic" onChange={handlData}></input> : <div>PHOTO</div> }
+                </div>*/}
+                        <div className='title'>Tus Datos</div>
+                        <div className="yourProfileInfo" >
+                            <div className="myPersonalInfo">
+                                <div className="theInfo">  {editInfo.editInfo ? <input type="text" name="firstName" placeholder="Nombre" onChange={handlData} value={user.firstName} ></input> : <p><span>Nombre: </span>{props.firstName}</p>}</div>
+                                <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
+                            </div>
+                            <div className="buttonsInfo">
+                                <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
+                                <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : null}</div>
+                                <div className="buttonsInfo">
+                                    <div className="theInfo">  {orders.showOrders ? <button onClick={showOrders} >Volver</button> : <button onClick={showOrders} >Ver ordenes</button>}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="myBillingInfo">
+                        <div ><div className='title'>Datos de Envio</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Calle" onChange={handlData} defaultValue={user.shippingAddress.street} name="street"></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Altura" onChange={handlData} defaultValue={user.shippingAddress.number} name="number"></input> : <p>Altura: {props.shippingAddress.number}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Piso" onChange={handlData} defaultValue={user.shippingAddress.dpto} name="dpto"></input> : <p>Piso/Dpto: {props.shippingAddress.dpto}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Quien recibe?" onChange={handlData} defaultValue={user.shippingAddress.who} name="who"></input> : <p>Quien recibe?: {props.shippingAddress.who}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} defaultValue={user.shippingAddress.phone} name="phone" ></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.shippingAddress.notes} name="notes"></input> : <p>Notas: {props.shippingAddress.notes}</p>}</div>
+                        </div>
+                        <div><div className='title'>Datos de facturacion</div>
+                            <div className="theInfo">   {editInfo.editInfo ? <input type="text" placeholder="Nombre y apellido / Nombre de fantasia" id="name" onChange={handlData} defaultValue={user.billingAddress.name}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.name}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="CUIT/CUIL/DNI" onChange={handlData} id="cuit" defaultValue={user.billingAddress.cuit}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.cuit}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Tipo de comprobante" onChange={handlData} id="type" defaultValue={user.billingAddress.type}></input> : <p>Tipo de comprobante: {props.billingAddress.type}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} id="phone" defaultValue={user.billingAddress.phone}></input> : <p>Telefono: {props.billingAddress.phone}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.billingAddress.notes} id="notes"></input> : <p>Notas: {props.billingAddress.notes}</p>}</div>
+                        </div>
+                        <div ><div className='title'>Productos que deseo</div>
+
+                            {props.productFound.length === undefined ?
+
+                                <p>No products available</p> :
+
+                                props.productFound.map(product => {
+                                    if (props.wishlist.includes(product._id)) {
+
+                                        return <>
+                                            <p><ProductLike producto={product} />  </p>
+                                        </>
+
+                                    }
+
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>}
+
             <Footer />
         </>
     );
@@ -170,7 +225,8 @@ const mapStateToProps = state => {
         phone: state.userReducer.phone,
         wishlist: state.userReducer.wishlist,
         productFound: state.productReducer.productFound,
-        token: state.userReducer.token
+        token: state.userReducer.token,
+        orders: state.userReducer.orders
     }
 }
 
@@ -180,7 +236,9 @@ const mapDispatchToProps = {
     productsList: productActions.getAllProducts,
     addToWishList: userActions.addToWishList,
     removeFromWishList: userActions.removeFromWishList,
-    getInfo: userActions.getUserInfo
+    getInfo: userActions.getUserInfo,
+    UserOrders: userActions.getUserOrder
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account)

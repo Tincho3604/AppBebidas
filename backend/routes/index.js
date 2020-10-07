@@ -82,7 +82,7 @@ router.route("/orders/:id")
 .delete(orderController.deleteOrder)
 
 
-router.route("/orders/user")
+router.route("/order/user")
 .get(passport.authenticate('jwt', {session: false}), orderController.getUserOrder)
 
 

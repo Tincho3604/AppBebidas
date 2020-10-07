@@ -40,37 +40,37 @@ const userActions = {
 			return response
 		}
 	},
-	addShippingAddress: (shipping,token) => {
+	addShippingAddress: (shipping, token) => {
 		return async (dispatch, getState) => {
-			
-		    const response = await axios.put(`${RUTA_API}/api/user/addShippingAddress`,shipping ,{
+
+			const response = await axios.put(`${RUTA_API}/api/user/addShippingAddress`, shipping, {
 				headers: {
-				Authorization: "Bearer " + token,
-			},
-		})
-		
+					Authorization: "Bearer " + token,
+				},
+			})
+
 			const info = response.data.response.shippingAddress
 			console.log(info)
-			
+
 			if (!response.data.success) {
-		     	toast.error(response.data.error)
-		     	return response.data.error
-		     } else {
-		     	dispatch({
-		     		type: "INFO_SHIPPING_ADDRESS_UPDATE",
-		     		payload: shipping
-		     	})
-			 }
+				toast.error(response.data.error)
+				return response.data.error
+			} else {
+				dispatch({
+					type: "INFO_SHIPPING_ADDRESS_UPDATE",
+					payload: shipping
+				})
+			}
 		}
 	},
 
-	addBillingAddress: (billing,token) => {
+	addBillingAddress: (billing, token) => {
 		return async (dispatch, getState) => {
-			const response = await axios.put(`${RUTA_API}/api/user/addBillingAddress`, billing,{ 
+			const response = await axios.put(`${RUTA_API}/api/user/addBillingAddress`, billing, {
 				headers: {
-				Authorization: "Bearer " + token,
-			},
-		})	
+					Authorization: "Bearer " + token,
+				},
+			})
 			const info = response.data.response.billingAddress
 			console.log(info)
 			if (!response.data.success) {
@@ -85,7 +85,7 @@ const userActions = {
 		}
 	},
 
-	getUserInfo: ( token ) => {
+	getUserInfo: (token) => {
 		return async (dispatch, getState) => {
 			const response = await axios.get(`${RUTA_API}/api/user/getInfoUser`, {
 				headers: {
@@ -184,7 +184,7 @@ const userActions = {
 					lastName: response.data.newInfo.lastName,
 					billingAddress: response.data.newInfo.billingAddress,
 					shippingAddress: response.data.newInfo.shippingAddress,
-					token:  getState().userReducer.token
+					token: getState().userReducer.token
 				},
 			})
 			if (response.data.success) toast.success('Cambios guardados!')
@@ -253,15 +253,15 @@ const userActions = {
 	actCart: (id, cantidad) => {
 		return async (dispatch, getState) => {
 			let cart = getCartItems()
-				cart.map(item => {
-					if (item._id === id) {
-						item.quantity = cantidad;
-					}
-				})
-				dispatch({
-					type: 'LOAD_CART',
-					payload: cart
-				})
+			cart.map(item => {
+				if (item._id === id) {
+					item.quantity = cantidad;
+				}
+			})
+			dispatch({
+				type: 'LOAD_CART',
+				payload: cart
+			})
 		}
 	},
 	loadCart: () => {
@@ -310,7 +310,7 @@ const userActions = {
 					'Authorization': "Bearer " + token,
 				}
 			})
-			if(response.data.success){
+			if (response.data.success) {
 				toast.success('Añadido a favoritos')
 				dispatch({
 					type: "WISHLIST",
@@ -328,7 +328,7 @@ const userActions = {
 					'Authorization': "Bearer " + token,
 				}
 			})
-			if(response.data.success){
+			if (response.data.success) {
 				toast.success('Removido a favoritos')
 				dispatch({
 					type: "WISHLIST",
@@ -379,17 +379,17 @@ const userActions = {
 		}
 	},
 
-	
-    addShippingOrderInfo: (shipping) => {
+
+	addShippingOrderInfo: (shipping) => {
 		return async (dispatch, getState) => {
 			dispatch({
-					type: "SHIPPING_ORDER_INFO",
-					payload: shipping
-				})
-			}
-		},
-		
-		
+				type: "SHIPPING_ORDER_INFO",
+				payload: shipping
+			})
+		}
+	},
+
+
 	addBillingOrderInfo: (billing) => {
 		return async (dispatch, getState) => {
 			dispatch({
@@ -398,6 +398,21 @@ const userActions = {
 			})
 		}
 	},
+	getUserOrder: (token) => {
+		return async (dispatch, getState) => {
+			const response = await axios.get(`${RUTA_API}/api/order/user`, {
+				headers: {
+					'Authorization': "Bearer " + token,
+				}
+			})
+			const info = response.data.response
+			dispatch({
+				type: "USER_ORDER",
+				payload: info
+			})
+		}
+	},
+
 }
 
 export default userActions

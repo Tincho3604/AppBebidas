@@ -36,7 +36,7 @@ function ProductLike(props) {
         }
     }
 
-    console.log(props)
+   
     return (
         < div className="theWish"> 
             <div className="infoWish">
