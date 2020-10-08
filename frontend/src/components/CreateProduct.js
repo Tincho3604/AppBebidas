@@ -42,7 +42,6 @@ const CreateProduct = (props) => {
         errorDES: "",
     })
 
-    console.log(alerta)
     
     const validation = product => {
         error.ok = true
@@ -126,7 +125,6 @@ const CreateProduct = (props) => {
         }
         else error.alcPct = ''
         //return
-        console.log(error)
         return error.ok
     }
 

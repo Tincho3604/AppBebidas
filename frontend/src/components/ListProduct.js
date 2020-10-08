@@ -9,7 +9,7 @@ const ListProducts = (props) => {
         <div className="Container">
             
         {CATEGORIES.map(category => {
-                return  <ListCategory key={category._id} category = {category.foto}/> 
+                return  <ListCategory key={category._id} title={category.nombre} category = {category.foto}/> 
         })}
 
             </div>

@@ -29,7 +29,6 @@ const Products = (props) => {
 	const product500 = filtrarPrecio(501, 1000)
 	const product1000 = filtrarPrecio(1001, 2500)
 	const product5000 = filtrarPrecio(2501, 5000)
-console.log(productsFiltered)
 
 	useEffect(() => {
 		setProductsFiltered({

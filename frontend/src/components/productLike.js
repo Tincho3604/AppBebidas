@@ -27,7 +27,6 @@ function ProductLike(props) {
         } else if (wish.wished === false) {
     
             const idItem = e.target.id
-            console.log(idItem)
             const userToken = props.token
             props.addToWishList(idItem, userToken)
             setWish({

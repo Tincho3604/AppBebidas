@@ -26,7 +26,7 @@ const ListCategory = (props) => {
     if(listProduct[0] === undefined){
         return <div className="theTitleDiv">
                     <div className="theTitlesList">
-                        <h2>{props.category}</h2>
+                        <h2>{props.title}</h2>
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const ListCategory = (props) => {
         <>
         <div className="theTitleDiv">
             <div onClick={openDiv} className="theTitlesList">
-                <h2>{props.category}</h2>
+                <h2>{props.title}</h2>
                 {abrir ? <i class="fas fa-angle-up"></i> :<i class="fas fa-angle-down"></i> }
             </div>
             {abrir 

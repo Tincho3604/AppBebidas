@@ -50,7 +50,6 @@ const userActions = {
 			})
 
 			const info = response.data.response.shippingAddress
-			console.log(info)
 
 			if (!response.data.success) {
 				toast.error(response.data.error)
@@ -72,7 +71,7 @@ const userActions = {
 				},
 			})
 			const info = response.data.response.billingAddress
-			console.log(info)
+
 			if (!response.data.success) {
 				toast.error(response.data.error)
 				return response.data.error
@@ -169,7 +168,6 @@ const userActions = {
 
 
 	modifyUser: (user) => {
-		console.log(user)
 		return async (dispatch, getState) => {
 			const response = await axios.put(RUTA_API + "/api/user/modifyUser", user, {
 				headers: {
@@ -196,7 +194,6 @@ const userActions = {
 	newComment: comment => {
 		return async (dispatch, getState) => {
 			const response = await axios.post(RUTA_API + "/api/comment/", comment)
-			console.log(response, "holi")
 		}
 	},
 	getComments: productId => {
@@ -338,10 +335,9 @@ const userActions = {
 		}
 	},
 	sendMail: (mail) => {
-
 		return async (dispatch, getState) => {
 			const response = await axios.put(`${RUTA_API}/api/sendMail`, { mail })
-			console.log(response)
+			
 			dispatch({
 				type: "SEND_MAIL"
 			})

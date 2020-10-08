@@ -72,7 +72,7 @@ return (
                     <input type="text" name="apellido" id="apellido"  onChange={inputHandler} placeholder="Apellido" value={user.apellido}/>  
                 </div>
                 <div className="inputBox">
-                    <input type="number" name="telefono" id="telefono"  onChange={inputHandler} placeholder="Telefono" value={user.telefono}/>
+                    <input type="text" name="telefono" id="telefono"  onChange={inputHandler} placeholder="Telefono" value={user.telefono}/>
                 </div>
                 <div className="inputBox">
                     <input type="text" name="mail" id="mail"   onChange={inputHandler} placeholder="Email" value={user.mail}/>

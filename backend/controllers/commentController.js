@@ -3,7 +3,6 @@ const Comment = require("../models/Comment")
 const commentController = {
 	postComment: (req, res) => {
 		const newComment = new Comment({ ...req.body })
-		console.log(newComment)
 		newComment
 			.save()
 			.then(resp => res.json({ success: true, resp }))

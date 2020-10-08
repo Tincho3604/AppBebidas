@@ -38,12 +38,6 @@ const [alerta, setAlerta] = useState({
 	errorNotes: "",
 })
 
-
-
-
-console.log("Esto es lo que me viene del redux en billing --> ",props.orderBillingInfo)
-
-// Ale use esta funcion usando la action "addBillingOrderInfo" para cargar el redux :),
 const actualizarHandler = async e => {
 	e.preventDefault();
     send.status = true
@@ -113,10 +107,10 @@ const actualizarHandler = async e => {
 			error.type = 'El tipo no puede estar vacío'
 			error.ok = false
 		}
-		else if (billing.type > 3) {
-			error.type = "2 caracteres como máximo"
-			error.ok = false
-		}
+		// else if (billing.type > 3) {
+		// 	error.type = "2 caracteres como máximo"
+		// 	error.ok = false
+		// }
 		else error.type = ''
 		
 		//phone
@@ -131,10 +125,9 @@ const actualizarHandler = async e => {
 		else error.phone = ''
 	
 		//return
-    console.log(error)
-	return error.ok
-	
-	}
+		return error.ok
+		
+		}
 
 
 									
