@@ -23,7 +23,7 @@ const orderActions = {
 	},
 	terminarOrden: (id) => {
 		return async (dispatch, getState) => {
-			const response = await axios.delete(`${RUTA_API}/api/orders/${id}`)
+			const response = await axios.put(`${RUTA_API}/api/orders/${id}`)
 			const info = response.data.response
 			dispatch({
 				type: "ALL_ORDERS",
