@@ -4,6 +4,7 @@ import foto from '../images/ron-barcelo.png'
 import userActions from '../redux/actions/userActions';
 
 const CartItem = (props) => {
+	
 	return ( <>
 		<div className='cartItem'>
 			<div className='pic' style={{backgroundImage: `url(${props.data.pic})`}}>

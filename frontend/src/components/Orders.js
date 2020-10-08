@@ -20,7 +20,7 @@ const Orders = (props) => {
 
 			{props.Orders.length === undefined ?
 				null :
-				props.Orders.map(order => {
+				props.Orders.sort((a,b) => b.status.localeCompare(a.status)).map(order => {
 					return <>
 						<Order data={order}/>
 					</>

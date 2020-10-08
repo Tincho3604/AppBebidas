@@ -9,15 +9,13 @@ console.log(props)
 
 	return (<>
 
-		<div className="Container">
+		<div className="container">
 
 			{props.orders.length === undefined ?
 				null :
-				props.orders.map(orders => {
+				props.orders.map(order => {
 					return <>
-				
-
-						<OrderProfile orders={orders.items} billingAddress={orders.billingAddress} shippingAddress={orders.shippingAddress} status={orders.status} id={orders._id}/>
+						<OrderProfile data={order}/>
 					</>
 
 

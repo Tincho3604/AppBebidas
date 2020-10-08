@@ -21,7 +21,7 @@ const orderController = {
 	deleteOrder: async (req, res) => {
 		var id = req.params.id
 		try {
-			const response = await Order.findByIdAndDelete({ _id: id })
+			const response = await Order.findByIdAndUpdate({ _id: id }, {status: "Entregado"}, {new: true})
 			const data = await Order.find()
 			console.log(response)
 			res.json({

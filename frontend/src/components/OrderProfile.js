@@ -11,102 +11,97 @@ function OrderProfile(props) {
         setAbrir(!abrir)
     }
 
-    var data = props.orders
-    var sum = 0
-    data.map(order => {
+    let sum = 0
+    props.data.items.map(order => {
         sum += order.price * order.quantity
     })
-    const terminarOrden = async e => {
 
-        await props.terminarOrden(e.target.id)
-        setAbrir(!abrir)
-        toast.success("¡Orden Eliminada!", {
-            position: toast.POSITION.TOP_CENTER
-        })
-    }
-
-    if (props.orders === undefined) {
-        return <div className="theTitleDiv">
-            <div className="theTitlesList">
-
-                <i class="fas fa-angle-down"></i>
-            </div>
-        </div>
+    if (props.data === undefined) {
+        return <></>
     } else {
         return (
             <>
                 <div className="theTitleDiv">
                     <div onClick={openDiv} className="theTitlesList">
-                        <h2>ORDEN DE {props.shippingAddress.who} {props.status}</h2>
+                        <h2>Orden número {props.data._id.substr(props.data._id.length-6,5)} Estado: <span style={props.data.status === "Pendiente" ? {color: "yellow"} : props.data.status === "Entregado" ? {color: 'green'} : {}}>{props.data.status}</span></h2>
 
                         {abrir ? <i class="fas fa-angle-up"></i> : <i class="fas fa-angle-down"></i>}
                     </div>
                     {abrir
                         ? (<>
-                            <h1 style={{ color: "white" }}>Direccion de envio</h1>
-                            {/* <button onClick={terminarOrden} id={props.id}>Terminar</button> */}
-                            <div className="listCard">
-
-                                <div className="listContainer">
-                                    <div className="listSomeInfo">
-
-                                        <p className="listTitle">Calle: {props.shippingAddress.street}</p>
-                                        <p className="listTitle">Dpto: {props.shippingAddress.dpto}</p>
-                                        <p className="listTitle">Telefonos: {props.shippingAddress.phone}</p>
-                                        <p className="listTitle"> Notas: {props.shippingAddress.notes}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <h1 style={{ color: "white" }}>Direccion de facturacion</h1>
-                            <div className="listCard">
-
-                                <div className="listContainer">
-                                    <div className="listSomeInfo">
-
-                                        <p className="listTitle">Cuit: {props.billingAddress.cuit}</p>
-                                        <p className="listTitle">Nombre: {props.billingAddress.name}</p>
-                                        <p className="listTitle">Telefonos: {props.billingAddress.phone}</p>
-                                        <p className="listTitle"> Notas: {props.billingAddress.notes}</p>
-                                        <p className="listTitle"> Tipo de factura: {props.billingAddress.types}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 style={{ color: "white" }}>Productos</h2>
-                            {props.orders.map(product => {
-                                return (<div className="listCard">
-                                    <div className="listContainer">
-
-                                        <div className="listSomeInfo">
-
-                                            <p className="listTitle">{product.quantity} {product.title}</p>
-
-
-
-
-                                        </div>
-                                    </div>
-                                    {/* <div className="listLink">
-                                        <Link to={`/editProduct/${product._id}`} className="theLink">Edit</Link>
-
-                                        <Link to="/" className="theLink2">Remove</Link>
-                                    </div> */}
-                                </div>)
-
-                            })}
-                            < div className="listCard" >
-
-                                <div className="listContainer">
-                                    <div className="listSomeInfo">
-
-                                        <p className="listTitle">Total: {sum}</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                          
-                          
-                        </>
-                        )
+						<div className="orderData">
+							<div className="shippingData">
+								<span>Datos de envio</span>
+								<table>
+									<tr>
+										<td>Dirección:</td>
+										<td>{props.data.shippingAddress.street} {props.data.shippingAddress.number} Dto: {props.data.shippingAddress.dpto}</td>
+									</tr>
+									<tr>
+										<td>Recibe:</td>
+										<td>{props.data.shippingAddress.who}</td>
+									</tr>
+									<tr>
+										<td>Telefono:</td>
+										<td>{props.data.shippingAddress.phone}</td>
+									</tr>
+									<tr>
+										<td>Notas:</td>
+										<td>{props.data.shippingAddress.notes}</td>
+									</tr>
+								</table>
+							</div>
+							<div className="billingData">
+								<span>Datos de facturación</span>
+								<table>
+									<tr>
+										<td>Nombre:</td>
+										<td>{props.data.billingAddress.name}</td>
+									</tr>
+									<tr>
+										<td>CUIT:</td>
+										<td>{props.data.billingAddress.cuit}</td>
+									</tr>
+									<tr>
+										<td>Tipo de factura:</td>
+										<td>{props.data.billingAddress.type}</td>
+									</tr>
+									<tr>
+										<td>Telefono:</td>
+										<td>{props.data.billingAddress.phone}</td>
+									</tr>
+									<tr>
+										<td>Notas:</td>
+										<td>{props.data.billingAddress.note}</td>
+									</tr>
+								</table>
+							</div>
+							<div className="itemsData">
+								<table>
+									<thead>
+										<tr>
+											<th>Cantidad</th>
+											<th>Descripción</th>
+											<th>Precio unitario</th>
+											<th>Precio total</th>
+										</tr>
+									</thead>
+									{props.data.items.map(item => {
+										return (<tr>
+												<td>{item.quantity}</td>
+												<td>{item.title}</td>
+												<td>$ {item.price}</td>
+												<td>$ {item.price * item.quantity}</td>
+												</tr>)
+									})}
+									<tr>
+										<td colSpan={3} className="total">TOTAL</td>
+										<td>$ {sum}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						</>)
                         : <></>}
                 </div>
 

@@ -81,7 +81,7 @@ router.route("/orders")
 
 router.route("/orders/:id")
 .get(orderController.getOrderById)
-.delete(orderController.deleteOrder)
+.put(orderController.deleteOrder)
 
 
 router.route("/order/user")
