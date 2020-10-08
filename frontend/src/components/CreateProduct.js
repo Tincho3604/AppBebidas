@@ -108,10 +108,10 @@ const CreateProduct = (props) => {
             error.stock = 'Cannot be empty'
             error.ok = false
         }
-        // else if (!num.test(product.stock)) {
-        //     error.stock = 'Only can contains numbers'
-        //     error.ok = false
-        // }
+        else if (!num.test(product.stock)) {
+            error.stock = 'Only can contains numbers'
+            error.ok = false
+        }
         else error.stock = ''
         // alcPct
 
