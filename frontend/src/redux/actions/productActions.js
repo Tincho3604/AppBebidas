@@ -67,7 +67,17 @@ const productActions = {
         
         
             }
-        },
+		},
+		deleteProduct: id=> {
+			return async (dispatch, getState) => {
+				const response = await axios.delete(`${RUTA_API}/api/product/deleteProduct/${id}`)
+				if(response.data.success) toast.info('Articulo borrado')
+				dispatch({
+					type: "DATA_PRODUCT",
+					payload: response.data.productFound
+				})
+			}
+		},
     }
 
 

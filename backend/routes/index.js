@@ -57,7 +57,7 @@ router.route("/product/editProduct/:id")
 .put( productController.modifyProduct)
 
 
-router.route("/product/deleteProduct")
+router.route("/product/deleteProduct/:id")
 .delete(productController.deleteProduct)
 
 

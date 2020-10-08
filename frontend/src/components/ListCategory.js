@@ -56,7 +56,7 @@ const ListCategory = (props) => {
                 <div className="listLink">
                     <Link to={`/editProduct/${product._id}`} className="theLink">Editar</Link>
                     {/* Este link iria removeProduct */}
-                    <Link  to="/" className="theLink2">Eliminar</Link>  
+                    <p onClick={async () => { await props.deleteProduct(product._id); setList([...listProduct.filter(p => p._id !== product._id)])}} className="theLink2">Eliminar</p>  
                 </div>
             </div>)
 			})
@@ -78,7 +78,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    getListProduct: productActions.getListProduct
+	getListProduct: productActions.getListProduct,
+	deleteProduct: productActions.deleteProduct
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ListCategory)
