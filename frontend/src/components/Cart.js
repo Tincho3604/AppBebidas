@@ -15,7 +15,7 @@ const Cart = (props) => {
 			<div className='title'>Mi pedido</div>
 			<div className='items'>
 				{props.cart.length === 0 
-				?<span className='empty'>No hay items en el carrito</span>
+				?<span className='empty'>No hay productos en el carrito</span>
 				:props.cart.map(product => {
 							return <CartItem data={product} />
 						})
