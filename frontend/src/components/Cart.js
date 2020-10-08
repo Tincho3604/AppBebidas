@@ -14,11 +14,15 @@ const Cart = (props) => {
 			<span onClick={props.cerrar} className='close'>X Cerrar</span>
 			<div className='title'>Mi pedido</div>
 			<div className='items'>
-				{props.cart.length === 0
-				? <span className='empty'>No hay items en el carrito</span>
+				{props.cart.length === 0 
+				?<span className='empty'>No hay items en el carrito</span>
 				:props.cart.map(product => {
-					return <CartItem data={product} />
-				})}
+							return <CartItem data={product} />
+						})
+				}
+					
+				
+				
 			</div>
 			<div className="total" style={props.total !== '$0' ? {} : {display: 'none'}}><span>Total</span><span>{props.total}</span></div>
 			{props.cart.length !== 0 && <div className='buttons'>
