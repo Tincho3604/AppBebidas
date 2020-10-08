@@ -139,7 +139,6 @@
 		else error.number = ''
 	
 		//Return
-        console.log(error)
   	    return error.ok
 	}
 
