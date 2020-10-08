@@ -8,7 +8,6 @@ import productActions from '../redux/actions/productActions';
 import ProductLike from "../components/productLike";
 import Orders from '../components/Orders';
 import Order from '../components/Order';
-import OrdersProfile from '../components/OrdersProfile';
 
 
 function Account(props) {
@@ -149,7 +148,7 @@ function Account(props) {
                     </div>
                 </div>
 
-               <OrdersProfile orders = {props.orders}/>
+               <Orders/>
 
             </div> : <div className="generaAccount" >
                     <div className="myInfo">

@@ -19,7 +19,7 @@ function Order(props) {
 
         await props.terminarOrden(e.target.id)
         setAbrir(!abrir)
-        toast.success("¡Orden Eliminada!", {
+        toast.success("¡Orden Terminada!", {
             position: toast.POSITION.TOP_CENTER
         })
     }
