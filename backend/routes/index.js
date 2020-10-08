@@ -7,7 +7,9 @@ const passport = require("../config/passport")
 const orderController = require("../controllers/orderController")
 const router = express.Router()
 
-
+//ADMIN ROUTES
+router.route("/user/admin")
+.get(userController.getDataAdmin)
 
 // USER ROUTES
 router.route("/user/register")
@@ -82,7 +84,7 @@ router.route("/orders/:id")
 .delete(orderController.deleteOrder)
 
 
-router.route("/orders/user")
+router.route("/order/user")
 .get(passport.authenticate('jwt', {session: false}), orderController.getUserOrder)
 
 

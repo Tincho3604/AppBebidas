@@ -10,7 +10,8 @@ const initialState = {
 	wishlist: [],
 	cart: [],
 	comments: null,
-	role: ''
+	role: '',
+	orders:""
 }
 
 function userReducer(state = initialState, action) {
@@ -67,6 +68,11 @@ function userReducer(state = initialState, action) {
 				...state,
 				orderBillingInfo: action.payload
 			}
+			case "USER_ORDER":
+				return{
+					...state,
+					orders: action.payload
+				}
 			
 		default:
 			return state

@@ -70,11 +70,6 @@
 	}
 
 
-
-
-
-
-
   const handleInputFocus = (e) => {
   	setCard({...card, focus: e.target.name });
   }
@@ -142,9 +137,7 @@
   	    return error.ok
 	}
 
-
-									
-  	    /*----------------------------------------------VALIDATION-----------------------------------------*/
+  	    /*---------------------------------------------VALIDATION-----------------------------------------*/
 
   const inputHandler = (e) => {
   	const valor = e.target.value;
@@ -154,16 +147,6 @@
   			[campo]: valor
   	})
   }
-
-
-
-
-
-
-
-
-
-
  	return (
  		<>
  			<Header />

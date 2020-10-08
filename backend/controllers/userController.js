@@ -1,8 +1,10 @@
 const User = require("../models/User")
+const Comment = require("../models/Comment")
 const nodeMailer = require('nodemailer')
 const Product = require("../models/Product")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const Order = require("../models/Order")
 const message = "Mail or Password incorrect"
 
 
@@ -288,6 +290,30 @@ const userController = {
 				})
 
 			})
+	},
+
+
+	getDataAdmin: async (req, res) => {
+		
+		const pendingOrdes = await Order.find({status:"Pendiente"}).countDocuments()
+		const totalUser = await User.find().countDocuments()
+		const outStock = await Product.find({stock: 0}).countDocuments()
+		const reviewsMade = await Comment.find().countDocuments()
+		
+        const infoAdmin = {pendingOrdes,totalUser,outStock,reviewsMade}
+
+		try {
+			res.json({
+				success: true,
+				response: infoAdmin
+			})
+		} catch (error) {
+			res.json({
+				success: false,
+				response: error
+			})
+	    }
 	}
+
 }
 module.exports = userController
