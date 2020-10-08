@@ -24,7 +24,7 @@ const Orders = (props) => {
 					return <>
 				
 
-						<Order orders={orders.items} billingAddress={orders.billingAddress} shippingAddress={orders.shippingAddress} status={orders.status} />
+						<Order orders={orders.items} billingAddress={orders.billingAddress} shippingAddress={orders.shippingAddress} status={orders.status} id={orders._id}/>
 					</>
 
 

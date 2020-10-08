@@ -21,10 +21,12 @@ const orderController = {
 	deleteOrder: async (req, res) => {
 		var id = req.params.id
 		try {
-			await Order.findByIdAndDelete({ _id: id })
+			const response = await Order.findByIdAndDelete({ _id: id })
+			const data = await Order.find()
+			console.log(response)
 			res.json({
 				success: true,
-				response: "Order Deleted"
+				response: data
 			})
 		} catch {
 			res.json({

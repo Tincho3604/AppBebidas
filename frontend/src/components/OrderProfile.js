@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import orderActions from '../redux/actions/orderActions';
 import { toast } from 'react-toastify';
 
-function Order(props) {
+function OrderProfile(props) {
 
     const [abrir, setAbrir] = useState(false)
     const openDiv = () => {
@@ -43,7 +43,7 @@ function Order(props) {
                     {abrir
                         ? (<>
                             <h1 style={{ color: "white" }}>Direccion de envio</h1>
-                            <button onClick={terminarOrden} id={props.id}>Terminar</button>
+                            {/* <button onClick={terminarOrden} id={props.id}>Terminar</button> */}
                             <div className="listCard">
 
                                 <div className="listContainer">
@@ -103,7 +103,7 @@ function Order(props) {
                                 </div>
                             </div>
                           
-                           
+                          
                         </>
                         )
                         : <></>}
@@ -117,4 +117,4 @@ function Order(props) {
 const mapDispatchToProps = {
     terminarOrden: orderActions.terminarOrden
 }
-export default connect(null, mapDispatchToProps)(Order)
+export default connect(null, mapDispatchToProps)(OrderProfile)

@@ -6,6 +6,9 @@ import Footer from "../components/Footer"
 import userActions from '../redux/actions/userActions';
 import productActions from '../redux/actions/productActions';
 import ProductLike from "../components/productLike";
+import Orders from '../components/Orders';
+import Order from '../components/Order';
+import OrdersProfile from '../components/OrdersProfile';
 
 
 function Account(props) {
@@ -21,12 +24,16 @@ function Account(props) {
         showOrders: false
     })
 
+    const [abrir, setAbrir] = useState(false)
     useEffect(() => {
         props.productsList()
 
     }, [])
 
 
+    const openDiv = () => {
+        setAbrir(!abrir)
+    }
 
 
     const handleClick = e => {
@@ -133,7 +140,7 @@ function Account(props) {
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
                         </div>
                         <div className="buttonsInfo">
-                  
+
                             <div className="theInfo">  {editInfo.editInfo ? <button onClick={handleClick} className="cancelButton" >Cancelar</button> : null}</div>
                             <div className="buttonsInfo">
                                 <div className="theInfo">  {orders.showOrders ? <button onClick={showOrders} >Volver</button> : <button onClick={showOrders} >Ver ordenes</button>}</div>
@@ -142,17 +149,8 @@ function Account(props) {
                     </div>
                 </div>
 
-                <div className="myBillingInfo">
-                    {props.orders.map(order => {
-                       return order.items.map(item => {
-                            return  <>
-                            <p>{item.title}</p>
-                       <p>{item.category}</p>
-                            </>
-                        })
-                    })}
-                 
-                </div>
+               <OrdersProfile orders = {props.orders}/>
+
             </div> : <div className="generaAccount" >
                     <div className="myInfo">
                         {/*<div className="yourProfilePhoto">
@@ -226,7 +224,8 @@ const mapStateToProps = state => {
         wishlist: state.userReducer.wishlist,
         productFound: state.productReducer.productFound,
         token: state.userReducer.token,
-        orders: state.userReducer.orders
+        orders: state.userReducer.orders,
+        id: state.userReducer.id
     }
 }
 
