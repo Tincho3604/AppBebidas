@@ -34,7 +34,8 @@ const Cart = (props) => {
  
 const mapStateToProps = state => {
     return {
-		cart: state.userReducer.cart
+		cart: state.userReducer.cart,
+		token: state.userReducer.token
     }
 }
 
