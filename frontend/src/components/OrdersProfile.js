@@ -5,7 +5,6 @@ import OrderProfile from './OrderProfile';
 
 const OrdersProfile = (props) => {
 
-console.log(props)
 
 	return (<>
 

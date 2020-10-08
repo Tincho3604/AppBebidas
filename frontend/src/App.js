@@ -37,37 +37,35 @@ function App(props) {
 		props.loadCart()
 	}
 
-	const rutasGenerales = ( <> 
-	<Route exact path='/' component={Home} />
-	<Route exact path='/home' component={Home} />
-	<Route path='/signup' component={SignUp} />
-	<Route path='/login' component={Login} />
-	<Route path='/admin' component={AdminDashboard}/>
-	<Route path='/createProduct' component={AdminCreateProduct} />
-	<Route path='/editProduct/:id' component={AdminEditProduct} />
-	<Route path='/products/:category' component={Products} />
-	<Route path='/product/:id' component={ProductFull} />
-	<Route path='/account' component={Account} />
-	<Route path='/shippingAddress' component={ShippingAddress}/>      
-	<Route path='/billingAddress' component={BillingAddress}/>
-	<Route path='/adminListProduct' component={AdminListProduct} />
-	<Route path='/passRecovery' component={PassRecovery} />
-	<Route path='/cartList' component={CartList}/>
-	<Route path='/payment' component={Payment}/>
-	<Route path='/CreateOrder' component={CreateOrder}/>
-	<Route path='/orders' component={AdminOrders}/>
-
-	</>)
-
 	const rutas = (props.user.token === '')
 	? (<Switch>
 		{/* RUTAS USUARIO DESLOGUEADO */}
-		{rutasGenerales}
+		<Route exact path='/' component={Home} />
+		<Route exact path='/home' component={Home} />
+		<Route path='/signup' component={SignUp} />
+		<Route path='/login' component={Login} />
+		<Route path='/products/:category' component={Products} />
+		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/passRecovery' component={PassRecovery} />
 		<Redirect to='/' />
 	</Switch>)
 	: (<Switch>
 		{/* RUTAS USUARIO LOGUEADO  */}
-		{rutasGenerales}	
+		<Route exact path='/' component={Home} />
+		<Route exact path='/home' component={Home} />
+		<Route path='/admin' component={AdminDashboard}/>
+		<Route path='/createProduct' component={AdminCreateProduct} />
+		<Route path='/editProduct/:id' component={AdminEditProduct} />
+		<Route path='/products/:category' component={Products} />
+		<Route path='/product/:id' component={ProductFull} />
+		<Route path='/account' component={Account} />
+		<Route path='/shippingAddress' component={ShippingAddress}/>      
+		<Route path='/billingAddress' component={BillingAddress}/>
+		<Route path='/adminListProduct' component={AdminListProduct} />
+		<Route path='/cartList' component={CartList}/>
+		<Route path='/payment' component={Payment}/>
+		<Route path='/CreateOrder' component={CreateOrder}/>
+		<Route path='/orders' component={AdminOrders}/>	
  		<Redirect to='/' />
 	</Switch>);
 	

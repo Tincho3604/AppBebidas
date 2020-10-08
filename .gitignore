@@ -1,4 +1,5 @@
 # BACKEND
+backend/client/build
 backend/node_modules
 backend/.env
 

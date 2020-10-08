@@ -23,7 +23,6 @@ const orderController = {
 		try {
 			const response = await Order.findByIdAndUpdate({ _id: id }, {status: "Entregado"}, {new: true})
 			const data = await Order.find()
-			console.log(response)
 			res.json({
 				success: true,
 				response: data
@@ -73,7 +72,6 @@ const orderController = {
 	},
 
 	getAllOrders: async (req, res) => {
-		console.log("hola")
 		try {
 			const data = await Order.find()
 			res.json({

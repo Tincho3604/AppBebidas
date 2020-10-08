@@ -8,6 +8,8 @@ import productActions from '../redux/actions/productActions';
 import ProductLike from "../components/productLike";
 import Orders from '../components/Orders';
 import Order from '../components/Order';
+import OrderProfile from '../components/OrderProfile';
+import OrdersProfile from '../components/OrdersProfile';
 
 
 function Account(props) {
@@ -120,10 +122,8 @@ function Account(props) {
 
             })
         }
-    }
-    console.log(props)
-
-    // nombre apellido mail telefono direccion calle number floor apartamento
+	}
+	
     return (
         <>
             <Header />
@@ -148,7 +148,7 @@ function Account(props) {
                     </div>
                 </div>
 
-               <Orders/>
+               <OrdersProfile orders={props.orders} />
 
             </div> : <div className="generaAccount" >
                     <div className="myInfo">
@@ -174,17 +174,17 @@ function Account(props) {
                     <div className="myBillingInfo">
                         <div ><div className='title'>Datos de Envio</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Calle" onChange={handlData} defaultValue={user.shippingAddress.street} name="street"></input> : <p>Calle: {props.shippingAddress.street}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Altura" onChange={handlData} defaultValue={user.shippingAddress.number} name="number"></input> : <p>Altura: {props.shippingAddress.number}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Piso" onChange={handlData} defaultValue={user.shippingAddress.dpto} name="dpto"></input> : <p>Piso/Dpto: {props.shippingAddress.dpto}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Altura" onChange={handlData} defaultValue={user.shippingAddress.number} name="number"></input> : <p>Altura: {props.shippingAddress.number}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Piso" onChange={handlData} defaultValue={user.shippingAddress.dpto} name="dpto"></input> : <p>Piso/Dpto: {props.shippingAddress.dpto}</p>}</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Quien recibe?" onChange={handlData} defaultValue={user.shippingAddress.who} name="who"></input> : <p>Quien recibe?: {props.shippingAddress.who}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} defaultValue={user.shippingAddress.phone} name="phone" ></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Telefono" onChange={handlData} defaultValue={user.shippingAddress.phone} name="phone" ></input> : <p>Telefono: {props.shippingAddress.phone}</p>}</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.shippingAddress.notes} name="notes"></input> : <p>Notas: {props.shippingAddress.notes}</p>}</div>
                         </div>
                         <div><div className='title'>Datos de facturacion</div>
                             <div className="theInfo">   {editInfo.editInfo ? <input type="text" placeholder="Nombre y apellido / Nombre de fantasia" id="name" onChange={handlData} defaultValue={user.billingAddress.name}></input> : <p>Nombre y apellido / Nombre de fantasia: {props.billingAddress.name}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="CUIT/CUIL/DNI" onChange={handlData} id="cuit" defaultValue={user.billingAddress.cuit}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.cuit}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="CUIT/CUIL/DNI" onChange={handlData} id="cuit" defaultValue={user.billingAddress.cuit}></input> : <p>CUIT/CUIL/DNI: {props.billingAddress.cuit}</p>}</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Tipo de comprobante" onChange={handlData} id="type" defaultValue={user.billingAddress.type}></input> : <p>Tipo de comprobante: {props.billingAddress.type}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="number" placeholder="Telefono" onChange={handlData} id="phone" defaultValue={user.billingAddress.phone}></input> : <p>Telefono: {props.billingAddress.phone}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Telefono" onChange={handlData} id="phone" defaultValue={user.billingAddress.phone}></input> : <p>Telefono: {props.billingAddress.phone}</p>}</div>
                             <div className="theInfo"> {editInfo.editInfo ? <input type="text" placeholder="Notas" onChange={handlData} defaultValue={user.billingAddress.notes} id="notes"></input> : <p>Notas: {props.billingAddress.notes}</p>}</div>
                         </div>
                         <div ><div className='title'>Productos que deseo</div>

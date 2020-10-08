@@ -78,7 +78,6 @@ class PassRecovery extends React.Component{
                <div className="divGoBack">
                     <button className="goBack"><NavLink to='/login' style={{textDecoration: "none", color:"white"}}> volver </NavLink></button>
                 </div>
-           {/* <img src="https://www.vinetur.com/imagenes/2020/mayo/18/whisky.jpg"/> */}
             </div>
             <Footer/>
             </div>

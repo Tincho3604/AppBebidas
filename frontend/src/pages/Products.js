@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import NavProducts from '../components/NavProducts';
 import Product from '../components/Product';
+import { CATEGORIES } from '../constants';
 import productActions from '../redux/actions/productActions';
 import '../styles/products.css'
 
@@ -29,7 +31,6 @@ const Products = (props) => {
 	const product500 = filtrarPrecio(501, 1000)
 	const product1000 = filtrarPrecio(1001, 2500)
 	const product5000 = filtrarPrecio(2501, 5000)
-console.log(productsFiltered)
 
 	useEffect(() => {
 		setProductsFiltered({
@@ -71,8 +72,13 @@ console.log(productsFiltered)
 				</div>
 				<div className="filters">
 					<div style={{ display: "flex", flexDirection: "column", margin: "25px" }}>
+						<p>Categorias</p>
+						{CATEGORIES.map(cat => {
+							return <NavLink to={`/products/${cat.foto}`}><button style={{ marginBottom: "10px" }}>{cat.nombre}</button></NavLink>
+						})}
+							<NavLink to={`/products/all`}><button style={{ marginBottom: "10px" }}>Todos los productos</button></NavLink>
 						<p>Filtrar por Precio</p>
-						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="0">Todas las bebidas</button>
+						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="0">Sin filtro</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="1">$150 - $500</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="2">$501 - $1000</button>
 						<button style={{ marginBottom: "10px" }} onClick={HandlePrice} id="3">$1001- $2500</button>
@@ -83,7 +89,7 @@ console.log(productsFiltered)
 			</div>
 			<div className='productList'>
 				{productsFiltered.products.length === 0 ? <p style={{color:"white"}}>No hay items</p>: productsFiltered.products.map(product => {
-			return		<Product data= {product}/>
+					return <Product data= {product}/>
 				})}
 			</div>
 		</div>

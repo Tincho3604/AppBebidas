@@ -43,9 +43,6 @@ const [alerta, setAlerta] = useState({
 	errorNotes: "",
 })
 
-console.log("Esto es lo que me viene del redux en billing --> ",props.orderShippingInfo)
-
-// Ale use esta funcion usando la action "addShippingOrderInfo" para cargar el redux :),
 const actualizarHandler = async e => {
 	e.preventDefault();
 	
@@ -107,11 +104,11 @@ const validation = (shipping) => {
 	else error.number = ''
     
 	//dpto
-	if (shipping.dpto > 15 || shipping.dpto === undefined) {
-		error.dpto = "El número máximo de pisos es 14"
-		error.ok = false
-	}
-	else error.dpto = ''
+	// if (shipping.dpto > 15 || shipping.dpto === undefined) {
+	// 	error.dpto = "El número máximo de pisos es 14"
+	// 	error.ok = false
+	// }
+	// else error.dpto = ''
 	
 	//who
 	if (shipping.who === '') {
@@ -132,7 +129,6 @@ const validation = (shipping) => {
 	else error.phone = ''
 	
     //return
-    console.log(error)
     return error.ok
 }
 

@@ -137,7 +137,7 @@ const userController = {
 		const userWishList = await User.findById({ _id: req.user._id })
 
 		const filteredWishList = userWishList.wishlist.filter(wishlist => wishlist != id)
-		// console.log(filteredWishList)
+		
 		const user = await User.findOneAndUpdate({ _id: req.user._id }, { wishlist: filteredWishList }, { new: true })
 
 		res.json({
@@ -235,13 +235,11 @@ const userController = {
 			req.user.rates.map(rate => {
 				if (rate.id === rId) {
 					rate.value = rVal;
-					console.log(rate)
 					found = true;
 				}
 			})
 		}
 		if (found) {
-			console.log(req.user.rates)
 			req.user.save()
 				.then(user => {
 					res.json({

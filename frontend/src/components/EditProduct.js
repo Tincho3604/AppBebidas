@@ -59,8 +59,6 @@ const EditProduct = (props) => {
 
     }
 
-
-    console.log(product)
     const validation = product => {
         error.ok = true
         //RegEx
@@ -136,13 +134,8 @@ const EditProduct = (props) => {
         }
         else error.alcPct = ''
         //return
-        console.log(error)
         return error.ok
     }
-
-console.log(props)
-
-
 
     const handleChange = e => {
         const valor = e.target.name === "pic" ? e.target.files[0] : e.target.value

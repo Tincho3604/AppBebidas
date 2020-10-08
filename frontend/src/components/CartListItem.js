@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import { RUTA_API } from '../constants';
 import userActions from '../redux/actions/userActions';
 
 const  CartListItem = (props) => {
@@ -49,7 +50,7 @@ const  CartListItem = (props) => {
     <div className="TheConteiner">
         <div className="cardCard">
             <div className="cardContainer"> 
-                <div className="Photo" style={{backgroundImage: `url(${props.data.pic})`}}> </div>
+                <div className="Photo" style={{backgroundImage: `url(${RUTA_API}/${props.data._id}.jpg)`}}> </div>
             </div>  
             <div className="botones">
                 <h1>{props.data.title}</h1>

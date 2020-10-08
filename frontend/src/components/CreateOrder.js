@@ -30,7 +30,6 @@ const CreateOrder = (props) => {
 				items: props.user.cart,
 				payment: 'Tarjeta de credito'
 			}
-			console.log(order)
 			createOr(order)
 		}, 3000);
 

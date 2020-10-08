@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { RUTA_API } from '../constants';
 import foto from '../images/ron-barcelo.png'
 import userActions from '../redux/actions/userActions';
 
@@ -7,7 +8,7 @@ const CartItem = (props) => {
 	
 	return ( <>
 		<div className='cartItem'>
-			<div className='pic' style={{backgroundImage: `url(${props.data.pic})`}}>
+			<div className='pic' style={{backgroundImage: `url(${RUTA_API}/${props.data._id}.jpg)`}}>
 
 			</div>
 			<div className='text'>
