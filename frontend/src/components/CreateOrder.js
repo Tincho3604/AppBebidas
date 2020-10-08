@@ -5,14 +5,19 @@ import Footer from './Footer';
 import Header from './Header';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { NavLink } from 'react-router-dom';
 
 const CreateOrder = (props) => {
 	
 	const [loading, setLoading] = useState(true)
 	
+	const [goHome, setgohome] = useState(true)
+	
+	
 	const [pop, setPop] = useState(false)
 	const popHandler = () => {
 		setPop(!pop)
+		
 	}
 
 	useEffect(() => {
@@ -32,8 +37,9 @@ const CreateOrder = (props) => {
 			}
 			createOr(order)
 		}, 3000);
-
-
+		setTimeout(() => {
+		setgohome(false)
+		},6000);
 	}, [])
 
 	return (  <>
@@ -52,13 +58,29 @@ const CreateOrder = (props) => {
 			<p className="TheBuy">Procesando compra</p>
 			</>
 			: <>
+			{goHome &&
+			<>
 			<div className='backgroundCart' onClick={popHandler} style={!pop ? {} : {display: 'none', opacity: 0}}></div>
 			<div className="animationDiv" data-aos="zoom-in-down" onClick={popHandler} style={pop ? {display:"none"} : {}}>
 			    <h4>¡Muchas gracias por su compra!</h4>
 				<p>En breve le llegara un mail.</p>
 			    <img src={require('../images/hola3.gif')}/>
 			</div>
-			  </>}
+			</>}
+			</>
+            }
+			{!goHome && (
+		    <div>
+				<p className='textPrimaryy' >Muchas gracias!</p>
+				<div className="buttonsOrderDone">
+					<NavLink to='/home'><button className='btnPrimaryy' > Volver al Inicio</button></NavLink>
+					<NavLink to='/products/all'><button className='btnPrimaryyy' >Seguir Comprando</button></NavLink>
+				</div>
+			</div>)}
+		
+			
+			
+			  
 		</div>
 		<Footer />
 		</> );

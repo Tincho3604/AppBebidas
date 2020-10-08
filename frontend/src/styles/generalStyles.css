@@ -56,6 +56,43 @@ a, a:visited {
 	font-size: 1em;
 	font-style: italic;
 }
+.btnPrimaryy{
+	width: 20vw;
+	padding: 10px;
+	background: #d1b653;
+	border:  1px solid #d1b653 ;
+	margin: 15px 0;
+}
+.btnPrimaryyy{
+	width: 20vw;
+	padding: 10px;
+	background: none;
+	border: 1px solid #d1b653 ;
+	margin: 15px 0;
+	color: #ffffff;
+}
+.btnPrimaryyy:hover{
+	background: #d1b653;
+	color: #000000;
+}
+.btnPrimaryy:hover{
+	background: none;
+	color: #ffffff;
+}
+.textPrimaryy{
+	font-size: 1.8em;
+	font-weight: bold;
+	text-align: center; 
+	color:white;
+	margin: 30px;
+}
+.buttonsOrderDone{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90vw;
+	justify-content: center;
+}
 .loader{
 	width:90px;
 	margin-top: 20vh;
