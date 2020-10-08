@@ -25,6 +25,7 @@ const ProductFull = (props) => {
         id: ""
 	})
     useEffect(() => {
+		window.scroll(0,0)
 		const gR = async () => {
 			await props.dataProduct(props.match.params.id)
 			await props.getComments(props.match.params.id)
