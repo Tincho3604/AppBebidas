@@ -219,6 +219,7 @@ const userActions = {
 	},
 	addToCart: (id, cantidad) => {
 		return async (dispatch, getState) => {
+			toast.success('Articulo añadido al pedido')
 			let found = false
 			let cart = getCartItems()
 			if (cart.length > 0) {

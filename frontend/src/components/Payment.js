@@ -45,9 +45,6 @@
 		setSend({ status: true })
 	
 		if (validation(card)) {
-			toast.success("¡Compra realizada! Felicitaciones", {
-				position: toast.POSITION.TOP_CENTER
-			});
 			props.history.push('/createOrder')
 			
 		}else{
