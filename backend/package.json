@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "back": "node ./server.js",
+    "back": "nodemon ./server.js",
     "concu": "concurrently --kill-others-on-fail \"npm run back\" \"npm run front\"",
-    "start": "nodemon ./server.js",
+    "start": "node ./server.js",
     "front": "cd .. & cd frontend & npm start",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },

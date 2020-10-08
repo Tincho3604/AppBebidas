@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState }  from 'react';
 import userActions from '../redux/actions/userActions';
 import productActions from '../redux/actions/productActions';
 import {connect} from "react-redux"
+import { RUTA_API } from '../constants';
 
 function ProductLike(props) {
     const [wish, setWish] = useState({
@@ -40,7 +41,7 @@ function ProductLike(props) {
     return (
         < div className="theWish"> 
             <div className="infoWish">
-                <div className="wishBack" style={{backgroundImage: `url(${props.producto.pic})`}}> </div>
+                <div className="wishBack" style={{backgroundImage: `url(${RUTA_API}/${props.producto._id}.jpg)`}}> </div>
                 <div>
                     <p className="wishTitle">{props.producto.title}</p>
                     <p>$ {props.producto.price}</p>

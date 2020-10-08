@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RUTA_API } from '../constants';
 import productActions from '../redux/actions/productActions';
 import userActions from '../redux/actions/userActions';
 import '../styles/product.css'
@@ -110,7 +111,7 @@ return (<>
 					<i className="fas fa-search"></i>
 				</Link>
 			</div>
-			<img src={props.data.pic} alt="test" />
+			<img src={`${RUTA_API}/${props.data._id}.jpg`} alt="test" />
 			<div className="like">
 				{wish.wished ? <i className="fas fa-heart" onClick={wishlist}></i> : <i className="far fa-heart" onClick={wishlist}></i>}
 
