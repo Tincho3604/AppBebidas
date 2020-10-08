@@ -1,6 +1,7 @@
 const initialState = {
 	shippingAddress:{},
-	billingAddress: {}
+	billingAddress: {},
+	Orders:{}
 }
 
 function orderReducer(state = initialState, action) {
@@ -15,7 +16,11 @@ function orderReducer(state = initialState, action) {
 				...state,
 				billingAddress: action.payload,
 			}
-		
+		case "ALL_ORDERS":
+			return{
+				...state,
+				Orders: action.payload
+			}
 		default:
 			return state
 	}
