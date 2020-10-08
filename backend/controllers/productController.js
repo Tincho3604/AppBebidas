@@ -47,14 +47,14 @@ console.log(req.params.id)
 		if (req.files.pic !== undefined) {
 			const path = require('path');
 			const file = req.files.pic
-			const ruta = `${path.join(__dirname, '..', 'client', 'img')}/${req.body.id}.jpg`
+			const ruta = `${path.join(__dirname, '..', 'client', 'img')}/${id}.jpg`
 			let error = false
 			file.mv(ruta, async err => {
 				if (err) {
 					error = 'Error saving image';
 				}
 				else {
-					const editedProduct = await Product.findByIdAndUpdate(id , { category, title, description, price, stock, ml, alcPct,pic: `http://localhost:4000/${req.body.id}.jpg` }, { returnNewDocument: true })
+					const editedProduct = await Product.findByIdAndUpdate(id , { category, title, description, price, stock, ml, alcPct,pic: `http://localhost:4000/${id}.jpg` }, { returnNewDocument: true })
 					console.log(editedProduct)
 					res.json({
 						success: !error ? true : false,

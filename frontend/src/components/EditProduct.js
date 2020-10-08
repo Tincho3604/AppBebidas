@@ -87,10 +87,10 @@ const EditProduct = (props) => {
             error.description = 'Cannot be empty'
             error.ok = false
         }
-        else if (product.description.length > 30) {
-            error.description = 'Need thirty characters at least'
-            error.ok = false
-        }
+        // else if (product.description.length > 30) {
+        //     error.description = 'Need thirty characters at least'
+        //     error.ok = false
+        // }
 
         // price
         if (product.price === '') {
