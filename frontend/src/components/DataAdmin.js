@@ -1,15 +1,10 @@
-
 import React, {useState, useEffect} from 'react';
 
-
-
 const DataAdmin = (props) => {
-	
 	return ( <>
-	<div className="dataPanel">
+		<div className="dataPanel">
 			<div className='adminData'>
-				
-	        <span>{props.datos.ordenes}</span>
+	        	<span>{props.datos.ordenes}</span>
 				<span>Ordenes pendientes</span>
 			</div>
 			<div className='adminData'>
@@ -22,7 +17,7 @@ const DataAdmin = (props) => {
 			</div>
 			<div className='adminData'>
 	            <span>{props.datos.reseñas}</span>
-				<span>Reseñas hechas</span>
+				<span>Comentarios realizados</span>
 			</div>
 		</div>
 	</> );

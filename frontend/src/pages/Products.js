@@ -14,7 +14,7 @@ const Products = (props) => {
 		}
 		f()
 
-	}, [])
+	}, [props.match.params.category])
 
 
 	const [productsFiltered, setProductsFiltered] = useState({
