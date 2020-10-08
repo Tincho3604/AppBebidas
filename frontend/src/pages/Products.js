@@ -88,7 +88,10 @@ const Products = (props) => {
 				</div>
 			</div>
 			<div className='productList'>
-				{productsFiltered.products.length === 0 ? <p style={{color:"white"}}>No hay items</p>: productsFiltered.products.map(product => {
+				{productsFiltered.products.length === 0 &&  <div className="noItemsDiv"><img src={require('../images/NoItems.png')} alt="NoTinerary" className="noItems"/></div>  }
+				{productsFiltered.products  === undefined 
+				? <img src={require('../images/loader.gif')} alt="NoTinerary" className="loadingss"/>
+				: productsFiltered.products.map(product => {
 					return <Product data= {product}/>
 				})}
 			</div>

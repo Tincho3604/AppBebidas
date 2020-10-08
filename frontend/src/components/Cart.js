@@ -14,8 +14,8 @@ const Cart = (props) => {
 			<span onClick={props.cerrar} className='close'>X Cerrar</span>
 			<div className='title'>Mi pedido</div>
 			<div className='items'>
-				{props.cart.length === 0 && (<span className='empty'>No hay items en el carrito</span>)}
-				{props.cart === undefined  ?<img src={require('../images/loader.gif')} alt="NoTinerary" id="loading"/>
+				{props.cart.length === 0 
+				?<span className='empty'>No hay items en el carrito</span>
 				:props.cart.map(product => {
 							return <CartItem data={product} />
 						})
