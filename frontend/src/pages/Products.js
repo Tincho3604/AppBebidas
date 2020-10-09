@@ -39,7 +39,6 @@ const Products = (props) => {
 
 	}, [props.products])
 
-
 	const HandlePrice = e => {
 		if (e.target.id === "1") {
 			setProductsFiltered({
@@ -88,11 +87,12 @@ const Products = (props) => {
 				</div>
 			</div>
 			<div className='productList'>
-				{productsFiltered.products.length === 0 ?  <div className="noItemsDiv"><img src={require('../images/NoItems.png')} alt="NoTinerary" className="noItems"/></div>  
-				: productsFiltered.products  === undefined 
+				{props.products.length === 0
 				? <img src={require('../images/loader.gif')} alt="NoTinerary" className="loadingss"/>
-				: productsFiltered.products.map(product => {
-					return <Product data= {product}/>
+				: productsFiltered.products.length === 0 
+					?  <div className="noItemsDiv"><img src={require('../images/NoItems.png')} alt="NoTinerary" className="noItems"/></div>
+					: productsFiltered.products.map(product => {
+						return <Product data= {product}/>
 				})}
 			</div>
 		</div>
