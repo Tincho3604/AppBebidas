@@ -194,7 +194,7 @@ const ProductFull = (props) => {
 					</div>
                 </div>
                 </div>
-				{props.token === '' && <div className="rating">
+				{props.token !== '' && <div className="rating">
 						<Rate dato={props.product._id} rates={props.rates} setUpdate={setUpdate} v={update} />
 				</div>}
                 <div className="theComments">
