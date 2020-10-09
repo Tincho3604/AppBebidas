@@ -215,7 +215,7 @@ const CreateProduct = (props) => {
         <>
             <div className="container">
                 <form className="form">
-                    <h2>Create your product</h2>
+                    <h2>Crear un producto</h2>
                     <div className="inputBox">
                         <label for="category">Categoria:</label>
                         <select name="category" onChange={handleChange} value={product.category}>

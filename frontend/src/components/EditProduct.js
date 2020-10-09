@@ -220,7 +220,7 @@ const EditProduct = (props) => {
 
             <div className="container">
                 <form className="form">
-                    <h2>Edit product</h2>
+                    <h2>Editar producto</h2>
                     <div className="inputBox">
                         <label for="category">Categoria:</label>
                         <select name="category" onChange={handleChange} value={product.category}>

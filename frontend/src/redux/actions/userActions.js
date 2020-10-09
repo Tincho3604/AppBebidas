@@ -21,7 +21,7 @@ const userActions = {
 				return;
 			}
 			else {
-				toast.success(`Account created!`)
+				toast.success(`Cuenta creada!`)
 				dispatch({
 					type: "USER_IN",
 					payload: {
