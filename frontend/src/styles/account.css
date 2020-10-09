@@ -94,6 +94,13 @@
 .generaAccount .myBillingInfo .theInfo {
     padding: 1vh 2vw;
 }
+.generaAccount .myBillingInfo .theInfo p {
+    display: flex;
+}
+.generaAccount .myBillingInfo .theInfo span {
+	min-width: 20ch;
+	font-weight: bold;
+}
 
 .generaAccount .myBillingInfo .title{
     width: 90%;
@@ -181,7 +188,11 @@
         width: 35vw;
     }
     .generaAccount .myBillingInfo .title{
-      
         font-size: 20px;
-    }
+	}
+
+	.generaAccount .myBillingInfo .theInfo p {
+		flex-direction: column;
+	}
+	
 }

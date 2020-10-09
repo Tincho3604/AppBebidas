@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { RUTA_API } from '../constants';
 import productActions from '../redux/actions/productActions';
 import userActions from '../redux/actions/userActions';
@@ -20,6 +21,10 @@ const Product = (props) => {
 		}
 },[])
 const wishlist = e => {
+	if(props.token === ''){
+		toast.info('Debes tener cuenta para añadir a deseados')
+		return null;
+	}
 	if (wish.wished === true) {
 
 		const idItem = props.data._id

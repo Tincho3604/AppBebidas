@@ -53,11 +53,15 @@
 	flex-direction: column;
 }
 
-.checkout .addressForm .input input {
+.checkout .addressForm .input input, .checkout .addressForm .input select {
 	background: none;
 	border: 1px solid goldenrod;
 	padding: 7px;
 	margin-bottom: 10px;
+}
+
+.checkout .addressForm .input select {
+	color: white;
 }
 
 .checkout .addressForm .input label {

@@ -52,70 +52,70 @@ const CreateProduct = (props) => {
         //category
         if (product.category === '') {
 
-            error.category = 'Cannot be empty'
+            error.category = 'No puede estar vacio'
             error.ok = false
 
         }
         else error.category = ""
         //title
         if (product.title === '') {
-            error.title = 'Cannot be empty'
+            error.title = 'No puede estar vacio'
             error.ok = false
         }
         else if (product.title.length > 31) {
-            error.title = "Max 30 characters"
+            error.title = "Máximo treinta (30) letras"
             error.ok = false
         }
         else error.title = ''
         //description
         if (product.description === '') {
-            error.description = 'Cannot be empty'
+            error.description = 'No puede estar vacio'
             error.ok = false
         }
         else if (product.description.length < 30) {
-            error.description = 'Need thirty characters at least'
+            error.description = 'Necesita al menos treinta (30) letras'
             error.ok = false
         }
         else error.description = ''
         // price
         if (product.price === '') {
-            error.price = 'Cannot be empty'
+            error.price = 'No puede estar vacio'
             error.ok = false
         }
         else if (!decimals.test(product.price)) {
-            error.price = 'Solo puede contener numeros con dos decimales'
+            error.price = 'Solo puede contener números con dos decimales'
             error.ok = false
         }
         else error.price = ''
         // Pic
         if (product.pic === '') {
-            error.pic = 'Cannot be empty'
+            error.pic = 'No puede estar vacio'
             error.ok = false
         } else {
             error.pic = ""
         }
         if (product.ml === '') {
-            error.ml = 'Cannot be empty'
+            error.ml = 'No puede estar vacio'
             error.ok = false
         }
         else if (!num.test(product.ml)) {
-            error.ml = 'Only can contains numbers'
+            error.ml = 'Solo puede contener números'
             error.ok = false
         }
         else error.ml = ''
         if (product.stock === '') {
-            error.stock = 'Cannot be empty'
+            error.stock = 'No puede estar vacio'
             error.ok = false
         }
         else if (!num.test(product.stock)) {
-            error.stock = 'Only can contains numbers'
+            error.stock = 'Solo puede contener números'
             error.ok = false
         }
         else error.stock = ''
         // alcPct
 
         if (product.alcPct === '') {
-            error.alcPct = 'Cannot be empty'
+            error.alcPct = 'No puede estar vacio'
             error.ok = false
         }
 
@@ -224,42 +224,42 @@ const CreateProduct = (props) => {
                                 return <option value={category.foto}>{category.nombre}</option>
                             })}
                         </select>
-                        <span style={{ color: "white" }}>{alerta.errorCat}</span>
+                        <span className="errorC">{alerta.errorCat}</span>
                     </div>
                     <div className="inputBox">
                         <label for="title">Titulo:</label>
                         <input type="text" name="title" onChange={handleChange} value={product.title} maxLength={30}></input>
-                        <span style={{ color: "white" }}>{alerta.errorTitle}</span>
+                        <span className="errorC">{alerta.errorTitle}</span>
                     </div>
                     <div className="inputBox">
                         <label for="description">Descripción:</label>
                         <input type="text" name="description" onChange={handleChange} value={product.description}></input>
-                        <span style={{ color: "white" }}>{alerta.errorDES}</span>
+                        <span className="errorC">{alerta.errorDES}</span>
                     </div>
                     <div className="inputBox">
                         <label for="price">Precio:</label>
                         <input type="number" name="price" onChange={handleChange} value={product.price}></input>
-                        <span style={{ color: "white" }}>{alerta.errorPrice}</span>
+                        <span className="errorC">{alerta.errorPrice}</span>
                     </div>
                     <div className="inputBox">
                         <label for="stock">Stock:</label>
                         <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
-                        <span style={{ color: "white" }}>{alerta.errorSTOCK}</span>
+                        <span className="errorC">{alerta.errorSTOCK}</span>
                     </div>
                     <div className="inputBox">
                         <label for="ml">Mililitros:</label>
                         <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
-                        <span style={{ color: "white" }}>{alerta.errorML}</span>
+                        <span className="errorC">{alerta.errorML}</span>
                     </div>
                     <div className="inputBox">
                         <label for="alcPct">Porcentaje Alcoholico (%):</label>
                         <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
-                        <span style={{ color: "white" }}>{alerta.errorALC}</span>
+                        <span className="errorC">{alerta.errorALC}</span>
                     </div>
                     <div className="inputBox">
                         <label for="pic">Foto del producto:</label>
                         <input type="file" name="pic" onChange={handleChange}></input>
-                        <span style={{ color: "white" }}>{alerta.errorPIC}</span>
+                        <span className="errorC">{alerta.errorPIC}</span>
                     </div>
 
                     <button onClick={handleClick}>Enviar datos</button>

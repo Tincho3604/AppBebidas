@@ -72,11 +72,14 @@ router.route("/product/wishList")
 router.route("/products/:category")
 .get(productController.getProductByCat)
 
+router.route("/rateProd/:id")
+.post(productController.instaRate)
+
 
 // ORDER ROUTES
 router.route("/orders")
 .get(orderController.getAllOrders)
-.post(orderController.createOrder)
+.post(passport.authenticate('jwt', {session: false}), orderController.createOrder)
 // .put(passport.authenticate('jwt', {session: false}), orderController.modifyOrder)
 
 router.route("/orders/:id")

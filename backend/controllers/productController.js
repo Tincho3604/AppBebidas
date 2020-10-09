@@ -114,6 +114,13 @@ const productController = {
 		Product.find({ category })
 		.then(listProducts => res.json({success: true, listProducts}))
 	    .catch(error => res.json({success: false ,error}))
+	},
+	instaRate: async (req, res) => {
+		const { id } = req.params
+		const { rate } = req.body
+		Product.findByIdAndUpdate({_id: id}, {$push: {rating: rate} }, {new: true})
+			.then(product => res.json({success: true, product}))
+			.catch(error => res.json({success: false ,error}))
 	}
 }
 

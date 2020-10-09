@@ -204,27 +204,31 @@ return (
 				<div className="input">
 					<label>Nombre y apellido / Nombre de fantasia</label>
 					<input type='text' onChange={inputHandler} name="name" value={billing.name} />
-				    <span style={{ color: "red" }}>{alerta.errorName}</span>
+				    <span className="errorC">{alerta.errorName}</span>
 				</div>
 				<div className="input">
 					<label>CUIT/CUIL/DNI</label>
 					<input type='text' onChange={inputHandler} name="cuit" value={billing.cuit} />
-					<span style={{ color: "red" }}>{alerta.errorCuit}</span>
+					<span className="errorC">{alerta.errorCuit}</span>
 				</div>
 				<div className="input">
 					<label>Tipo de comprobante</label>
-					<input type='text' onChange={inputHandler} name="type" value={billing.type} />
-				    <span style={{ color: "red" }}>{alerta.errorType}</span>
+					<select onChange={inputHandler} name="type" value={billing.type}>
+						<option value="Consumidor Final">Consumidor Final</option>
+						<option value="FCA">Factura A</option>
+						<option value="FCB">Factura B</option>
+					</select>
+				    <span className="errorC">{alerta.errorType}</span>
 				</div>
 				<div className="input">
 					<label>Telefono</label>
 					<input type='text' onChange={inputHandler} name="phone" value={billing.phone} />
-				    <span style={{ color: "red" }}>{alerta.errorPhone}</span>
+				    <span className="errorC">{alerta.errorPhone}</span>
 				</div>
 				<div className="input">
 					<label>Notas</label>
 					<input type='text' onChange={inputHandler} name="notes" value={billing.notes} />
-				    <span style={{ color: "red" }}>{alerta.errorNotes}</span>
+				    <span className="errorC">{alerta.errorNotes}</span>
 				</div>
                 
 				

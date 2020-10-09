@@ -102,3 +102,9 @@ a, a:visited {
 	font-size: 1em;
 	color: #d1b653;
 }
+
+.errorC {
+	color: red;
+	font-size: 12px;
+	align-self: center;
+}

@@ -202,18 +202,22 @@ const userController = {
 				from: "Deluxe <notresponse@notreply.com>",
 				sender: "Deluxe <notresponse@notreply.com>",
 				to: `${user.mail}`,
-				subject: "Nueva Contreseña",
-				html: `<div>
-					<img src= "https://paraiba.com.br/site/wp-content/uploads/2019/12/UISQUE.jpg" />
+				subject: "Nueva Contraseña",
+				html: `<div style="background: white; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif; height: 100%;">
+				<div style="background: black; width: 70%; margin: 0 auto;">
+					<div style="width: 100%;">
+						<img style="width: 250px; padding-left: 250px; padding-top: 30px" src="https://deluxeapp.herokuapp.com/static/media/logoBlanco.c99fe978.png" alt="">
+					</div>
 					<div>
-					<span style="color: #d7b26c; font-size:15px; text-align: center;">
-					<h1><a href="https://www.lostragos.com/">DELUXE</a></h1>
-                    <h1 border="1" >Nueva contraseña: <span style="color: #d7b26c; font-size:25px;">${newPass}</span></h1>
-					<h1><span style="color: #7f673e; font-size:25px;">puede continuar su compra en Deluxe 🔥</span></h1>
-					<p>Vuelva a ingresar<p>
-					</span>
-					</div>  
-                    </>`,
+						<p style="font-size: 30px; margin: 0 auto; margin-top: 20px; font-weight: bold; text-align: center">Reinicio de contraseña</p>
+						<p style="margin-top: 30px; font-weight: bold;"></p>
+						<p style="text-align: center; margin: 30px">En respuesta a su pedido de reinicio de contraseña, aqui le enviamos la nueva para que pueda seguir navegando en nuestro sitio</p>
+						<p style="text-align: center; margin: 30px; color: #d7b26c; font-size: 25px;">${newPass}</p>
+						<p style="text-align: center;"><a style="text-decoration: none; margin: 30px; color: white">Haga click aqui para ir a ingresar a la web</a></p>
+						<p style="padding: 40px; font-weight: bold; text-align: center"> 2020 - Deluxe &copy; </p>
+					</div>
+				</div>
+			</div>`,
 			}
 			transport.sendMail(mailOptions, (error, info) => {
 
@@ -230,63 +234,25 @@ const userController = {
 	setRate: async (req, res) => {
 		const rId = req.body.id
 		const rVal = req.body.value
-		let found = false
-		if (req.user.rates.length > 0) {
-			req.user.rates.map(rate => {
-				if (rate.id === rId) {
-					rate.value = rVal;
-					found = true;
-				}
+		const user = await User.findByIdAndUpdate({_id: req.user._id}, {$addToSet: {rates: {id: rId, value: rVal}}}, {new: true})
+		await Product.findByIdAndUpdate({_id: rId}, {$push: {rating: rVal} }, {new: true})
+		res.json({
+				success: true,
+				rates: user.rates
 			})
-		}
-		if (found) {
-			req.user.save()
-				.then(user => {
-					res.json({
-						success: true,
-						rates: user.rates
-					})
-				})
-				.catch(err => {
-					res.json({
-						success: false,
-						err
-					})
 
-				})
-		} else {
-			req.user.rates.push({ id: rId, value: rVal })
-			req.user.save()
-				.then(user => {
-					res.json({
-						success: true,
-						rates: user.rates
-					})
-				})
-				.catch(err => {
-					res.json({
-						success: false,
-						err
-					})
-				})
-		}
 	},
-	delRate: (req, res) => {
+	delRate: async (req, res) => {
 		const { id } = req.body
 		req.user.rates = req.user.rates.filter(rate => rate.id !== id)
-		req.user.save()
-			.then(user => {
-				res.json({
-					success: true,
-					rates: user.rates
-				})
-			})
-			.catch(err => {
-				res.json({
-					success: false,
-					err
-				})
-
+		const user = await req.user.save()
+		const prod = await Product.findOne({_id: id})
+		prod.rating.pop() 
+		const product = await Product.findByIdAndUpdate({_id: id}, {rating: prod.rating}, {new: true})
+		res.json({
+				success: true,
+				rates: user.rates,
+				product: product.rating
 			})
 	},
 
@@ -314,4 +280,4 @@ const userController = {
 	}
 
 }
-module.exports = userController
+module.exports = userController;

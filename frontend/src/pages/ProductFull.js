@@ -8,7 +8,7 @@ import Comment from '../components/Comment';
 import userActions from "../redux/actions/userActions"
 import { toast } from "react-toastify"
 import productActions from '../redux/actions/productActions';
-import { CATEGORIES } from '../constants';
+import { CATEGORIES, RUTA_API } from '../constants';
 import decoration2 from "../images/decoration3.png"
 import Rate from '../components/Rate';
 
@@ -168,7 +168,7 @@ const ProductFull = (props) => {
             </div>
             <div className="infoProduct">
                 <div className="allInformation">
-                    <img src={props.product.pic}/>
+                    <img src={`${RUTA_API}/${props.product._id}.jpg`}/>
                     <div>
                     <div className="nameAndRating">
                     <h2>{props.product.title}</h2>
@@ -195,7 +195,7 @@ const ProductFull = (props) => {
                 </div>
                 </div>
 				<div className="rating">
-						<Rate dato={props.product._id} rates={props.rates} />
+						<Rate dato={props.product._id} rates={props.rates} setUpdate={setUpdate} v={update} />
 				</div>
                 <div className="theComments">
                 <h2>Comentarios</h2>

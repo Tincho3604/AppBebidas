@@ -299,8 +299,7 @@ const userActions = {
 		}
 	},
 
-	addToWishList: (id, token) => {
-
+	addToWishList: (id, token) => {		
 		return async (dispatch, getState) => {
 
 			const response = await axios.put(`${RUTA_API}/api/user/addWishList/`, { id: id }, {

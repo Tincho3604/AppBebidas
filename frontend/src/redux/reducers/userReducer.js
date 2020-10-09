@@ -11,7 +11,8 @@ const initialState = {
 	cart: [],
 	comments: null,
 	role: '',
-	orders:""
+	orders:"",
+	rates: []
 }
 
 function userReducer(state = initialState, action) {
@@ -72,7 +73,13 @@ function userReducer(state = initialState, action) {
 				return{
 					...state,
 					orders: action.payload
-				}
+			}
+			case "RATES":
+				console.log(action.payload)
+				return{
+					...state,
+					rates: action.payload
+			}
 			
 		default:
 			return state

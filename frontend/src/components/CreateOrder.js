@@ -39,7 +39,7 @@ const CreateOrder = (props) => {
 		}, 3000);
 		setTimeout(() => {
 		setgohome(false)
-		},6000);
+		},10000);
 	}, [])
 
 	return (  <>

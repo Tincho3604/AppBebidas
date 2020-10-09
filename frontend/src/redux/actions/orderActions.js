@@ -5,8 +5,21 @@ import { RUTA_API } from "../../constants"
 const orderActions = {
 	createOrder: order => {
 		return async (dispatch, getState) => {
-			const response = await axios.post(`${RUTA_API}/api/orders`, order)
-			if (response.data.success) localStorage.removeItem('items')
+			const response = await axios.post(`${RUTA_API}/api/orders`, order, {
+				headers: {
+					'Authorization': "Bearer " + getState().userReducer.token,
+				}
+
+			})
+			
+			if (response.data.success) {
+				localStorage.removeItem('items')
+				let cart = []
+				dispatch({
+					type: 'LOAD_CART',
+					payload: cart
+				})
+			}
 		}
 	},
 	getAllOrders: () => {

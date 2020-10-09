@@ -28,6 +28,7 @@ const Rate = (props) => {
 			...rate,
 			exists: true
 		})
+		props.setUpdate(!props.v)
 	}
 
 	const remHandler = async () => {
@@ -36,6 +37,7 @@ const Rate = (props) => {
 			...rate,
 			exists: false
 		})
+		props.setUpdate(!props.v)
 	}
 
 

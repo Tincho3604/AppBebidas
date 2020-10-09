@@ -229,42 +229,42 @@ const EditProduct = (props) => {
                                 return <option value={category.foto}>{category.nombre}</option>
                             })}
                         </select>
-                        <span style={{ color: "white" }}>{alerta.errorCat}</span>
+                        <span className="errorC">{alerta.errorCat}</span>
                     </div>
                     <div className="inputBox">
                         <label for="title">Titulo:</label>
                         <input type="text" name="title" onChange={handleChange} value={product.title}></input>
-                        <span style={{ color: "white" }}>{alerta.errorTitle}</span>
+                        <span className="errorC">{alerta.errorTitle}</span>
                     </div>
                     <div className="inputBox">
                         <label for="description">Descripción:</label>
                         <input type="text" name="description" onChange={handleChange} value={product.description}></input>
-                        <span style={{ color: "white" }}>{alerta.errorDES}</span>
+                        <span className="errorC">{alerta.errorDES}</span>
                     </div>
                     <div className="inputBox">
                         <label for="price">Precio:</label>
                         <input type="number" name="price" onChange={handleChange} value={product.price}></input>
-                        <span style={{ color: "white" }}>{alerta.errorPrice}</span>
+                        <span className="errorC">{alerta.errorPrice}</span>
                     </div>
                     <div className="inputBox">
                         <label for="stock">Stock:</label>
                         <input type="number" name="stock" onChange={handleChange} value={product.stock}></input>
-                        <span style={{ color: "white" }}>{alerta.errorSTOCK}</span>
+                        <span className="errorC">{alerta.errorSTOCK}</span>
                     </div>
                     <div className="inputBox">
                         <label for="ml">Mililitros:</label>
                         <input type="number" name="ml" onChange={handleChange} value={product.ml}></input>
-                        <span style={{ color: "white" }}>{alerta.errorML}</span>
+                        <span className="errorC">{alerta.errorML}</span>
                     </div>
                     <div className="inputBox">
                         <label for="alcPct">Porcentaje Alcoholico (%):</label>
                         <input type="number" name="alcPct" onChange={handleChange} value={product.alcPct}></input>
-                        <span style={{ color: "white" }}>{alerta.errorALC}</span>
+                        <span className="errorC">{alerta.errorALC}</span>
                     </div>
                     <div className="inputBox">
                         <label for="pic">Foto del producto:</label>
                         <input type="file" name="pic" onChange={handleChange} ></input>
-                        <span style={{ color: "white" }}>{alerta.errorPIC}</span>
+                        <span className="errorC">{alerta.errorPIC}</span>
                     </div>
 
                     <button onClick={handleClick}>Enviar datos</button>
