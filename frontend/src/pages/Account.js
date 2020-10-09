@@ -136,7 +136,7 @@ function Account(props) {
                     <div className="yourProfileInfo" >
                         <div className="myPersonalInfo">
                             <div className="theInfo">  {editInfo.editInfo ? <input type="text" name="firstName" placeholder="Nombre" onChange={handlData} value={user.firstName} ></input> : <p><span>Nombre: </span>{props.firstName}</p>}</div>
-                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
+                            <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>Apellido:</span> {props.lastName}</p>}</div>
                         </div>
                         <div className="buttonsInfo">
 
@@ -159,7 +159,7 @@ function Account(props) {
                         <div className="yourProfileInfo" >
                             <div className="myPersonalInfo">
                                 <div className="theInfo">  {editInfo.editInfo ? <input type="text" name="firstName" placeholder="Nombre" onChange={handlData} value={user.firstName} ></input> : <p><span>Nombre: </span>{props.firstName}</p>}</div>
-                                <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>apellido:</span> {props.lastName}</p>}</div>
+                                <div className="theInfo"> {editInfo.editInfo ? <input type="text" name="lastName" placeholder="Apellido" onChange={handlData} value={user.lastName}></input> : <p><span>Apellido:</span> {props.lastName}</p>}</div>
                             </div>
                             <div className="buttonsInfo">
                                 <div className="theInfo">  {editInfo.editInfo ? <button onClick={SendInfo} >Guardar informacion</button> : <button onClick={handleClick} >Editar perfil</button>}</div>
