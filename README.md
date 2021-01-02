@@ -1,86 +1,85 @@
 # DELUXE
 
-_Aplicación web desarrollada con stack mern. Es una aplicación de bebidas premium, en la que simulamos un E-Commerce de bebidas, con carrito de compras y una plataforma de pagos on-line._
-_Este proyecto fue una instancia evaluativa en el bootcamp realizado en mindhub_
+_Web application developed with stack mern. It is a premium beverage application, in which we simulate an E-Commerce of beverages, with a shopping cart and an online payment platform._
+_This project was an evaluative instance in the bootcamp carried out in mindhub_
 
 ## Demo 📦
 
-_Para ver una demo del proyecto desplegado, puedes ir a [Demo del proyecto](https://deluxeapp.herokuapp.com/)_
+_To see a demo of the deployed project, you can go to [Project Demo] (https://deluxeapp.herokuapp.com/) _
 
-## Comenzando 🚀
+## Starting 🚀
 
-```# Instalar dependencias para el servidor
+`` `# Install dependencies for the server
 npm install
 
-# Instalar dependencias para el cliente
+# Install dependencies for the client
 npm install
 
-# Correr solo el servidor
-npm start en backend
+# Run only the server
+npm start in backend
 
-# Correr solo el cliente
-npm start en frontend
+# Run only the client
+npm start on frontend
 
-# El servidor corre en http://localhost:4000 y el cliente en http://localhost:3000
-```
+# The server runs at http: // localhost: 4000 and the client at http: // localhost: 3000
+`` ''
 
-### Pre-requisitos 📋
+### Pre-requisites 📋
 
-Incluye un archivo `.env`en el directorio del servidor con las siguientes variables de entorno: MONGODB_URI, SECRETORKEY.
+Include a `.env` file in the server directory with the following environment variables: MONGODB_URI, SECRETORKEY.
 
 
-### Instalación 🔧
+### Installation 🔧
 
-_Ingresar a la carpeta del repositorio_ 
+_ Enter the repository folder_
 
-_Ingresar a frontend_
+_ Enter frontend_
 
-```
+`` ''
 cd frontend
 npm install
 npm start
-```
+`` ''
 
-_Ingresar a backend_
+_ Enter backend_
 
-```
+`` ''
 cd backend
 npm install
 npm start
-```
+`` ''
 
-_Tras realizar estos pasos ya podrás visualizar el proyecto_
-
-
-## Construido con 🛠️
-
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-* [Node.js](https://nodejs.org) - Entorno de ejecución para JavaScript
-* [Express](https://expressjs.com) - Infraestructura de la aplicacion web
-* [MongoDB](https://www.mongodb.com) - Base de datos utilizada
-* [Mongoose](https://mongoosejs.com/) - Modelado de objetos (Object Document Mapper (ODM))
-* [Bcrypt](https://www.npmjs.com/package/bcrypt) - Librería para hashear contraseñas
-* [Jsonwebtoken](https://jwt.io/)
-* [React](https://es.reactjs.org/) - Framework utilizado
-* [Redux](https://es.redux.js.org/) - Utilizado para trabajar con un estado global
+_After completing these steps you will be able to view the project_
 
 
-## Autores ✒️
+## Built with 🛠️
 
-_Proyecto realizado de manera grupal_
+_Mention the tools you used to create your project_
+* [Node.js] (https://nodejs.org) - Runtime environment for JavaScript
+* [Express] (https://expressjs.com) - Infrastructure of the web application
+* [MongoDB] (https://www.mongodb.com) - Database used
+* [Mongoose] (https://mongoosejs.com/) - Object Modeling (Object Document Mapper (ODM))
+* [Bcrypt] (https://www.npmjs.com/package/bcrypt) - Library for hashing passwords
+* [Jsonwebtoken] (https://jwt.io/)
+* [React] (https://es.reactjs.org/) - Framework used
+* [Redux] (https://es.redux.js.org/) - Used to work with a global state
 
-* **Alejandro Limia** - *Lider del grupo*
-* **Tahyana Villareal** - *integrante del grupo*
-* **Martin Cumpe** - *integrante del grupo*
-* **Camila Mendez** - *integrante del grupo*
-* **Cristian Suarez** - *integrante del grupo*
 
-## Licencia 📄
+## Authors ✒️
 
-Todos los derechos reservados. 
+_Project carried out in a group way_
 
-## Expresiones de Gratitud 🎁
+* ** Alejandro Limia ** - * Group leader *
+* ** Tahyana Villareal ** - * member of the group *
+* ** Martin Cumpe ** - * member of the group *
+* ** Camila Mendez ** - * member of the group *
+* ** Cristian Suarez ** - * member of the group *
 
-* Agradezco a Fer B por la mentoría y la paciencia 🍺
-* También a Mindhub por la oportunidad de crecer como developer 🤓
+## License 📄
 
+All rights reserved.
+
+## Expressions of Gratitude 🎁
+
+* I thank Fer B for the mentoring and patience 🍺
+* Also to Mindhub for the opportunity to grow as a developer 🤓
