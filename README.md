@@ -63,7 +63,7 @@ _After completing these steps you will be able to view the project_
 
 ## Built with 🛠️
 
-_Mention the tools you used to create your project_
+_The tools I use for this project are as follows:_
 * [Node.js] (https://nodejs.org) - Runtime environment for JavaScript
 * [Express] (https://expressjs.com) - Infrastructure of the web application
 * [MongoDB] (https://www.mongodb.com) - Database used
