@@ -30,7 +30,7 @@ npm start in backend
 npm start on frontend
 ```
 
-# The server runs at http: // localhost: 4000 and the client at http: // localhost: 3000
+## The server runs at http: // localhost: 4000 and the client at http: // localhost: 3000
 
 
 ### Pre-requisites 📋
