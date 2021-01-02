@@ -5,7 +5,7 @@ _This project was an evaluative instance in the bootcamp carried out in mindhub_
 
 ## Demo 📦
 
-_To see a demo of the deployed project, you can go to [Project Demo] (https://deluxeapp.herokuapp.com/) _
+_To see a demo of the deployed project, you can go to [Project Demo] (https://deluxeapp.herokuapp.com/)_
 
 ## Starting 🚀
 
