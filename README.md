@@ -9,20 +9,29 @@ _To see a demo of the deployed project, you can go to [Project Demo] (https://de
 
 ## Starting 🚀
 
-`` `# Install dependencies for the server
+
+# Install dependencies for the server
+```
 npm install
+```
 
 # Install dependencies for the client
+```
 npm install
+```
 
 # Run only the server
+```
 npm start in backend
+```
 
 # Run only the client
+```
 npm start on frontend
+```
 
 # The server runs at http: // localhost: 4000 and the client at http: // localhost: 3000
-`` ''
+
 
 ### Pre-requisites 📋
 
@@ -31,23 +40,23 @@ Include a `.env` file in the server directory with the following environment var
 
 ### Installation 🔧
 
-_ Enter the repository folder_
+_Enter the repository folder_
 
-_ Enter frontend_
+_Enter frontend_
 
-`` ''
+```
 cd frontend
 npm install
 npm start
-`` ''
+```
 
-_ Enter backend_
+_Enter backend_
 
-`` ''
+```
 cd backend
 npm install
 npm start
-`` ''
+```
 
 _After completing these steps you will be able to view the project_
 
